@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { territory, theatre as theatreChain, storage } from '../chain'
 import type { Theatre } from '../chain/theatre'
 import type { CampaignLocation, ResourceType } from '../chain/types'
-import worldMapData from '../data/rules/world_map.json'
-import worldStatusData from '../data/rules/world_status.json'
+import hexMapData from '../data/rules/hex_map.json'
+import hexCountriesData from '../data/rules/hex_countries.json'
+import hexRegionsData from '../data/rules/hex_regions.json'
+import hexPoiData from '../data/rules/hex_poi.json'
 
 const RES: Record<ResourceType, { code: string; color: string; label: string }> = {
   ducats: { code: 'DUC', color: '#b45309', label: 'Ducats' },
@@ -33,71 +35,125 @@ interface DragState {
   startPosY: number
 }
 
-interface Province {
-  iso: string
+// --- Hex map types and data ---
+interface HexTile {
+  q: number
+  r: number
+  t: string
+  g: string | null
+  w: boolean
+}
+
+interface HexRegion {
   name: string
   country: string
-  terrain: string
-  path: string
+  tiles: number[][]
 }
 
-interface RegionDef {
+interface HexCountry {
   name: string
-  biome: string
-  faction: string | null
-  corrupted: boolean
-  countries: string[]
-}
-
-interface RegionStatus {
   faction: string
-  control: 'faithful' | 'heretic' | 'contested' | 'neutral'
-  note: string
-  contested_provinces?: string[]
+  control: string
+  label_tile: number[]
+  regions: string[]
 }
 
-interface FactionDef {
+interface HexPoi {
+  id: string
   name: string
-  color: string
-  description: string
+  tile: number[] | null
+  type: string
+  lore: string
 }
 
-const TERRAIN_COLORS: Record<string, { name: string; color: string }> = worldMapData.biomes as Record<string, { name: string; color: string }>
-const VIEW_BOX = (worldMapData.meta as { viewBox: string }).viewBox
-const REGION_MAP = worldMapData.region_mapping as Record<string, RegionDef>
-const PROVINCES = worldMapData.provinces as Province[]
-const REGION_STATUS = (worldStatusData as { regions: Record<string, RegionStatus> }).regions
-const FACTIONS = (worldStatusData as { factions: Record<string, FactionDef> }).factions
+const HEX_META = hexMapData.meta as { cols: number; rows: number; hex_size: number; svg_width: number; svg_height: number }
+const HEX_TILES = hexMapData.tiles as HexTile[]
+const HEX_REGIONS = hexRegionsData as Record<string, HexRegion>
+const HEX_COUNTRIES = hexCountriesData as Record<string, HexCountry>
+const HEX_POIS = hexPoiData as HexPoi[]
 
-const GREAT_IRON_WALL = "M972.6,603.0L896.8,580.1L846.3,591.6L795.8,603.0L776.8,630.9L770.5,657.9L783.2,689.4L808.4,730.0L821.1,759.7"
+const TERRAIN_COLORS: Record<string, string> = {
+  sea: '#1e3a5f',
+  temperate_forest: '#4a7a4a',
+  taiga: '#3d6b4e',
+  tropical_forest: '#2d7a3a',
+  plains: '#7a9a5a',
+  steppe: '#9a9a5a',
+  desert: '#c4a84a',
+  semi_arid: '#a89a5a',
+  mountain: '#7a7a7a',
+  tundra: '#b0c4d4',
+  mediterranean: '#6a9a5a',
+  marsh: '#5a7a6a',
+  volcanic: '#4a3030',
+  snow: '#d4dce8',
+  iron_wall: '#3d3d3d',
+}
 
-function getProvinceControl(province: Province, regionId: string): 'faithful' | 'heretic' | 'contested' | 'neutral' {
-  const status = REGION_STATUS[regionId]
-  if (!status) return 'neutral'
-  if (status.contested_provinces?.some(cp => province.name.toLowerCase().includes(cp.toLowerCase()) || cp.toLowerCase().includes(province.name.toLowerCase()))) {
-    return 'contested'
+const TERRAIN_NAMES: Record<string, string> = {
+  sea: 'Sea', temperate_forest: 'Forest', taiga: 'Taiga',
+  tropical_forest: 'Tropical Forest', plains: 'Plains', steppe: 'Steppe',
+  desert: 'Desert', semi_arid: 'Semi-Arid', mountain: 'Mountain',
+  tundra: 'Tundra', mediterranean: 'Mediterranean', marsh: 'Marsh',
+  volcanic: 'Volcanic', snow: 'Snow', iron_wall: 'Iron Wall',
+}
+
+const POI_ICONS: Record<string, string> = {
+  heretic_landmark: '\u{1F525}', faithful_fortress: '\u{1F3F0}',
+  heretic_fortress: '\u2620', heretic_outpost: '\u2694',
+  neutral_fortress: '\u{1F5E1}', battlefield: '\u2694',
+  wall_gate: '\u{1F6AA}', faithful_city: '\u{1F3DB}',
+  divine_site: '\u2727',
+}
+
+function hexCenter(q: number, r: number): [number, number] {
+  const size = HEX_META.hex_size
+  const x = size * (3.0 / 2 * q)
+  const y = size * (Math.sqrt(3) * (r + 0.5 * (q % 2)))
+  const xOff = (HEX_META.svg_width - size * 1.5 * (HEX_META.cols - 1)) / 2
+  const yOff = (HEX_META.svg_height - size * Math.sqrt(3) * HEX_META.rows) / 2
+  return [x + xOff, y + yOff]
+}
+
+function hexPoints(cx: number, cy: number): string {
+  const size = HEX_META.hex_size
+  const pts: string[] = []
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 180) * (60 * i)
+    pts.push(`${(cx + size * Math.cos(angle)).toFixed(1)},${(cy + size * Math.sin(angle)).toFixed(1)}`)
   }
-  return status.control
+  return pts.join(' ')
 }
 
-function getRegionForCountry(iso: string): { id: string; def: RegionDef } | null {
-  for (const [id, def] of Object.entries(REGION_MAP)) {
-    if (def.countries.includes(iso)) return { id, def }
-  }
-  return null
-}
-
-interface HoverState {
-  province: Province
-  regionId: string
-  regionDef: RegionDef
-}
 
 function WorldMapGrid() {
   const [showControl, setShowControl] = useState(true)
-  const [hovered, setHovered] = useState<HoverState | null>(null)
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null)
+  const [hoveredRegion, setHoveredRegion] = useState<string | null>(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
+  const [selectedRegions, setSelectedRegions] = useState<Set<string>>(new Set())
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const landTiles = useMemo(() => HEX_TILES.filter(h => h.t !== 'sea'), [])
+
+  // Map region -> country for quick lookups
+  const regionToCountry = useMemo(() => {
+    const map = new Map<string, string>()
+    for (const [rid, rdef] of Object.entries(HEX_REGIONS)) {
+      map.set(rid, rdef.country)
+    }
+    return map
+  }, [])
+
+
+  // Country labels from label_tile field
+  const countryLabels = useMemo(() => {
+    return Object.entries(HEX_COUNTRIES).map(([cid, cdef]) => {
+      const [lq, lr] = cdef.label_tile
+      const [x, y] = hexCenter(lq, lr)
+      return { id: cid, x, y, name: cdef.name, faction: cdef.faction }
+    })
+  }, [])
 
   function handleMouseMove(e: React.MouseEvent) {
     if (!containerRef.current) return
@@ -105,23 +161,27 @@ function WorldMapGrid() {
     setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top })
   }
 
-  function handleProvinceEnter(province: Province) {
-    const region = getRegionForCountry(province.iso)
-    if (region) {
-      setHovered({ province, regionId: region.id, regionDef: region.def })
-    }
+  function handleHexEnter(tile: HexTile) {
+    if (!tile.g) return
+    const country = regionToCountry.get(tile.g)
+    if (!country) return
+    setHoveredCountry(country)
+    setHoveredRegion(tile.g)
   }
 
-  function getControlPattern(province: Province, regionId: string): string | null {
-    const provControl = getProvinceControl(province, regionId)
-    if (provControl === 'heretic') return 'url(#heretic-pattern)'
-    if (provControl === 'contested') return 'url(#contested-pattern)'
-    return null
+  function handleHexLeave() {
+    setHoveredCountry(null)
+    setHoveredRegion(null)
   }
 
-  function isNeutralRegion(regionId: string): boolean {
-    const status = REGION_STATUS[regionId]
-    return status?.faction === 'NEUTRAL'
+  function handleHexClick(tile: HexTile) {
+    if (!tile.g) return
+    setSelectedRegions(prev => {
+      const next = new Set(prev)
+      if (next.has(tile.g!)) next.delete(tile.g!)
+      else next.add(tile.g!)
+      return next
+    })
   }
 
   return (
@@ -131,263 +191,210 @@ function WorldMapGrid() {
           <h1 className="text-2xl">The Lands of the Great Powers</h1>
           <p className="text-sm text-[var(--muted)] mt-1">Strategic overview — territories held and lost in the eternal war.</p>
         </div>
-        <label className="flex items-center gap-2 cursor-pointer select-none">
-          <span className="text-sm text-[var(--muted)] uppercase tracking-wider font-bold">War Status</span>
-          <div className="relative">
-            <input
-              type="checkbox"
-              checked={showControl}
-              onChange={() => setShowControl(!showControl)}
-              className="sr-only peer"
-            />
-            <div className="w-10 h-5 rounded-full bg-[var(--border)] peer-checked:bg-[#7f1d1d] transition-colors" />
-            <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-[var(--parchment)] peer-checked:translate-x-5 transition-transform shadow" />
-          </div>
-        </label>
+        <div className="flex items-center gap-4">
+          {selectedRegions.size > 0 && (
+            <span className="text-xs text-[var(--accent)] font-bold">{selectedRegions.size} regions selected</span>
+          )}
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <span className="text-sm text-[var(--muted)] uppercase tracking-wider font-bold">War Status</span>
+            <div className="relative">
+              <input type="checkbox" checked={showControl} onChange={() => setShowControl(!showControl)} className="sr-only peer" />
+              <div className="w-10 h-5 rounded-full bg-[var(--border)] peer-checked:bg-[#7f1d1d] transition-colors" />
+              <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-[var(--parchment)] peer-checked:translate-x-5 transition-transform shadow" />
+            </div>
+          </label>
+        </div>
       </div>
 
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
         className="relative w-full border border-[var(--border)] rounded-sm overflow-hidden select-none"
-        style={{ aspectRatio: '1200/850' }}
+        style={{ aspectRatio: `${HEX_META.svg_width}/${HEX_META.svg_height}` }}
       >
         <svg
-          viewBox={VIEW_BOX}
+          viewBox={`0 0 ${HEX_META.svg_width} ${HEX_META.svg_height}`}
           className="absolute inset-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
+            <pattern id="heretic-pattern" patternUnits="userSpaceOnUse" width="5" height="5">
+              <line x1="0" y1="5" x2="5" y2="0" stroke="rgba(160,0,0,0.4)" strokeWidth="1" />
+            </pattern>
             <pattern id="contested-pattern" patternUnits="userSpaceOnUse" width="6" height="6">
               <line x1="0" y1="6" x2="6" y2="0" stroke="rgba(200,100,0,0.4)" strokeWidth="1.2" />
             </pattern>
-            <pattern id="heretic-pattern" patternUnits="userSpaceOnUse" width="5" height="5">
-              <line x1="0" y1="5" x2="5" y2="0" stroke="rgba(160,0,0,0.35)" strokeWidth="1" />
-            </pattern>
           </defs>
 
-          {/* Sea background */}
-          <rect x="0" y="0" width="1200" height="850" fill={TERRAIN_COLORS.sea?.color ?? '#1e3a5f'} />
+          <rect x="0" y="0" width={HEX_META.svg_width} height={HEX_META.svg_height} fill={TERRAIN_COLORS.sea} />
 
-          {/* Province paths — colored by terrain, neutral = greyscale */}
-          {PROVINCES.map((prov, i) => {
-            const region = getRegionForCountry(prov.iso)
-            if (!region) return null
-            const terrainColor = TERRAIN_COLORS[prov.terrain]?.color ?? '#555'
-            const neutral = isNeutralRegion(region.id)
-            const isProvinceHovered = hovered?.province === prov
-            const isCountryHovered = hovered?.province.iso === prov.iso
-            const isRegionHovered = hovered?.regionId === region.id
+          {/* Hex tiles */}
+          {HEX_TILES.map((tile, i) => {
+            if (tile.t === 'sea') return null
+            const [cx, cy] = hexCenter(tile.q, tile.r)
+            const pts = hexPoints(cx, cy)
+            const color = TERRAIN_COLORS[tile.t] ?? '#555'
+            const tileCountry = tile.g ? regionToCountry.get(tile.g) : null
+            const isCountryHovered = tileCountry === hoveredCountry
+            const isRegionHovered = tile.g === hoveredRegion
+            const isSelected = tile.g ? selectedRegions.has(tile.g) : false
+
+            let stroke = 'rgba(30,25,20,0.15)'
+            let strokeW = 0.2
+            if (isSelected) { stroke = '#fbbf24'; strokeW = 1.5 }
+            else if (isRegionHovered) { stroke = 'rgba(255,255,255,0.9)'; strokeW = 1.2 }
+            else if (isCountryHovered) { stroke = 'rgba(255,255,255,0.45)'; strokeW = 0.8 }
 
             return (
-              <path
+              <polygon
                 key={i}
-                d={prov.path}
-                fill={terrainColor}
-                stroke={
-                  isProvinceHovered
-                    ? '#f4ece1'
-                    : isCountryHovered
-                      ? 'rgba(244,236,225,0.5)'
-                      : isRegionHovered
-                        ? 'rgba(244,236,225,0.25)'
-                        : 'rgba(50,40,30,0.25)'
-                }
-                strokeWidth={isProvinceHovered ? 1.5 : isCountryHovered ? 0.7 : 0.2}
+                points={pts}
+                fill={color}
+                stroke={stroke}
+                strokeWidth={strokeW}
                 className="cursor-pointer"
-                style={{ opacity: isRegionHovered ? 1 : 0.92, filter: neutral ? 'saturate(0.3) brightness(0.85)' : undefined }}
-                onMouseEnter={() => handleProvinceEnter(prov)}
-                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => handleHexEnter(tile)}
+                onMouseLeave={handleHexLeave}
+                onClick={() => handleHexClick(tile)}
               />
             )
           })}
 
-          {/* Region borders (red outlines) */}
-          {Object.entries(REGION_MAP).map(([regionId, def]) => {
-            const regionProvs = PROVINCES.filter(p => def.countries.includes(p.iso))
-            if (regionProvs.length === 0) return null
+          {/* Control overlay: stripes for heretic/contested countries */}
+          {showControl && landTiles.map((tile, i) => {
+            if (!tile.g || tile.w) return null
+            const country = regionToCountry.get(tile.g)
+            if (!country) return null
+            const countryDef = HEX_COUNTRIES[country]
+            if (!countryDef) return null
+            const control = countryDef.control
+            if (control !== 'heretic' && control !== 'contested') return null
+            const [cx, cy] = hexCenter(tile.q, tile.r)
+            const pts = hexPoints(cx, cy)
+            const patternId = control === 'heretic' ? 'heretic-pattern' : 'contested-pattern'
+            return <polygon key={`ctrl-${i}`} points={pts} fill={`url(#${patternId})`} className="pointer-events-none" />
+          })}
+
+
+          {/* Points of Interest */}
+          {HEX_POIS.map(poi => {
+            if (!poi.tile) return null
+            const [cx, cy] = hexCenter(poi.tile[0], poi.tile[1])
+            const icon = POI_ICONS[poi.type] ?? '\u2738'
+            const isCity = poi.type.endsWith('_city')
+            const labelColor = poi.type.includes('heretic') ? '#ff6b6b' : poi.type === 'neutral_fortress' ? '#c0c0c0' : poi.type === 'divine_site' ? '#a8e6ff' : '#ffd700'
             return (
-              <g key={`region-border-${regionId}`} className="pointer-events-none">
-                {regionProvs.map((prov, j) => (
-                  <path
-                    key={j}
-                    d={prov.path}
-                    fill="none"
-                    stroke="rgba(160,30,30,0.7)"
-                    strokeWidth="1"
-                    strokeLinejoin="round"
-                  />
-                ))}
+              <g key={poi.id} className="pointer-events-none">
+                <circle cx={cx} cy={cy} r={HEX_META.hex_size * 0.4} fill="rgba(0,0,0,0.7)" stroke={labelColor} strokeWidth={0.8} />
+                <text x={cx} y={cy + 0.5} textAnchor="middle" dominantBaseline="middle" fontSize={HEX_META.hex_size * 0.5} className="select-none">
+                  {icon}
+                </text>
+                <text
+                  x={cx} y={cy + HEX_META.hex_size * (isCity ? 0.9 : 1.1)}
+                  textAnchor="middle" dominantBaseline="middle"
+                  className="select-none"
+                  style={{
+                    fontSize: isCity ? '5px' : '6.5px',
+                    fontWeight: isCity ? 400 : 700,
+                    fill: labelColor,
+                    stroke: 'rgba(0,0,0,0.85)',
+                    strokeWidth: isCity ? 1.5 : 2,
+                    paintOrder: 'stroke',
+                  }}
+                >
+                  {poi.name}
+                </text>
               </g>
             )
           })}
 
-          {/* Control overlay: stripes only (no background fill) */}
-          {showControl && PROVINCES.map((prov, i) => {
-            const region = getRegionForCountry(prov.iso)
-            if (!region) return null
-            const pattern = getControlPattern(prov, region.id)
-            if (!pattern) return null
-            return <path key={`ctrl-${i}`} d={prov.path} fill={pattern} className="pointer-events-none" />
-          })}
-
-          {/* Special landmark: Breach of Córdoba */}
-          {showControl && (
-            <text
-              x={255} y={595}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="pointer-events-none select-none"
-              style={{ fontSize: '8px', fontWeight: 700, fill: '#fbbf24', stroke: 'rgba(15,0,0,0.85)', strokeWidth: 2.5, paintOrder: 'stroke' }}
-            >
-              Breach of Córdoba
-            </text>
-          )}
-
-          {/* Great Iron Wall of Iskandar */}
-          <g className="pointer-events-none">
-            <path
-              d={GREAT_IRON_WALL}
-              fill="none"
-              stroke="#4a3520"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d={GREAT_IRON_WALL}
-              fill="none"
-              stroke="#8b7355"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="6,3"
-            />
-            <text x="780" y="645" fontSize="7" fill="#d4a862" fontWeight="700" textAnchor="end" className="select-none" style={{ paintOrder: 'stroke', stroke: 'rgba(20,10,0,0.8)', strokeWidth: 2 }}>
-              Iron Wall
-            </text>
-          </g>
-
-          {/* Region labels — positioned at centroid */}
-          {Object.entries(REGION_MAP).map(([regionId, def]) => {
-            const regionProvinces = PROVINCES.filter(p => def.countries.includes(p.iso))
-            if (regionProvinces.length === 0) return null
-            let sumX = 0, sumY = 0, count = 0
-            for (const prov of regionProvinces) {
-              const nums = prov.path.match(/[\d.]+/g)
-              if (!nums || nums.length < 2) continue
-              for (let k = 0; k < nums.length - 1; k += 2) {
-                sumX += parseFloat(nums[k])
-                sumY += parseFloat(nums[k + 1])
-                count++
-              }
-            }
-            if (count === 0) return null
-            const cx = sumX / count
-            const cy = sumY / count
-            const status = REGION_STATUS[regionId]
-            const isHeretic = status?.control === 'heretic'
-            const isContested = status?.control === 'contested'
-            const isIslamic = status?.faction === 'FAITHFUL_ISLAMIC'
-            const fontSize = def.name.length > 18 ? 9 : def.name.length > 12 ? 11 : 13
+          {/* Country labels */}
+          {countryLabels.map(label => {
+            const faction = label.faction
+            const isHeretic = faction === 'HERETIC'
+            const isIslamic = faction === 'FAITHFUL_ISLAMIC'
+            const fontSize = label.name.length > 20 ? 9 : label.name.length > 14 ? 11 : 13
             return (
               <text
-                key={`label-${regionId}`}
-                x={cx}
-                y={cy}
-                textAnchor="middle"
-                dominantBaseline="middle"
+                key={`lbl-${label.id}`}
+                x={label.x} y={label.y}
+                textAnchor="middle" dominantBaseline="middle"
                 className="pointer-events-none select-none"
                 style={{
-                  fontSize: `${fontSize}px`,
-                  fontWeight: 700,
-                  fill: isHeretic ? '#fca5a5' : isContested ? '#fbbf24' : isIslamic ? '#e8c860' : '#f4ece1',
+                  fontSize: `${fontSize}px`, fontWeight: 700,
+                  fill: isHeretic ? '#fca5a5' : isIslamic ? '#e8c860' : '#f4ece1',
                   stroke: isHeretic ? 'rgba(15,0,0,0.85)' : 'rgba(25,20,15,0.75)',
-                  strokeWidth: 3,
-                  paintOrder: 'stroke',
-                  letterSpacing: '0.3px',
+                  strokeWidth: 3, paintOrder: 'stroke', letterSpacing: '0.3px',
                 }}
               >
-                {def.name}
+                {label.name}
               </text>
             )
           })}
         </svg>
 
         {/* Hover tooltip */}
-        {hovered && (
-          <div
-            className="absolute z-50 pointer-events-none w-72 bg-[var(--card)] border border-[var(--sepia)] rounded-sm p-3 shadow-xl"
-            style={{
-              left: Math.min(mouse.x + 16, (containerRef.current?.clientWidth ?? 400) - 300),
-              top: Math.min(mouse.y - 10, (containerRef.current?.clientHeight ?? 300) - 200),
-            }}
-          >
-            <div className="font-bold text-sm text-[var(--fg)]">{hovered.regionDef.name}</div>
-            <div className="text-[11px] text-[var(--sepia)] mb-0.5">{hovered.province.country} — {hovered.province.name}</div>
-            <div className="flex items-center gap-2 my-1.5">
-              <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: TERRAIN_COLORS[hovered.province.terrain]?.color }} />
-              <span className="text-[10px] text-[var(--muted)]">{TERRAIN_COLORS[hovered.province.terrain]?.name ?? hovered.province.terrain}</span>
+        {hoveredCountry && hoveredRegion && (() => {
+          const countryDef = HEX_COUNTRIES[hoveredCountry]
+          const regionDef = HEX_REGIONS[hoveredRegion]
+          if (!countryDef || !regionDef) return null
+          const factionColor = countryDef.faction === 'HERETIC' ? '#f87171' : countryDef.faction === 'NEUTRAL' ? '#a3a3a3' : countryDef.faction === 'FAITHFUL_ISLAMIC' ? '#e8c860' : '#86efac'
+          return (
+            <div
+              className="absolute z-50 pointer-events-none w-56 bg-[var(--card)] border border-[var(--sepia)] rounded-sm p-3 shadow-xl"
+              style={{
+                left: Math.min(mouse.x + 16, (containerRef.current?.clientWidth ?? 400) - 240),
+                top: Math.min(mouse.y - 10, (containerRef.current?.clientHeight ?? 300) - 120),
+              }}
+            >
+              <div className="font-bold text-sm text-[var(--fg)]">{countryDef.name}</div>
+              <div className="text-[11px] text-[var(--sepia)] mb-1">{regionDef.name}</div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: factionColor }} />
+                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: factionColor }}>
+                  {countryDef.faction.replace(/_/g, ' ')}
+                </span>
+              </div>
             </div>
-            {(() => {
-              const status = REGION_STATUS[hovered.regionId]
-              if (!status) return null
-              const provControl = getProvinceControl(hovered.province, hovered.regionId)
-              const controlColor = provControl === 'heretic' ? '#f87171' : provControl === 'contested' ? '#fbbf24' : provControl === 'faithful' ? '#86efac' : '#a3a3a3'
-              const controlLabel = provControl === 'heretic' ? 'Heretic Dominion' : provControl === 'contested' ? 'Contested' : provControl === 'faithful' ? 'Faithful' : 'Neutral'
-              const faction = FACTIONS[status.faction]
-              return (
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: controlColor }} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: controlColor }}>{controlLabel}</span>
-                  </div>
-                  {faction && <div className="text-[9px] text-[var(--muted)] mb-1">{faction.name}</div>}
-                  <p className="text-[9px] text-[var(--muted)] leading-relaxed italic">{status.note}</p>
-                </div>
-              )
-            })()}
-          </div>
-        )}
+          )
+        })()}
       </div>
 
-      {/* Legend — belligerent groups */}
+      {/* Legend */}
       <div className="mt-3 grid grid-cols-3 gap-4 text-xs">
         <div>
           <div className="font-bold text-[var(--fg)] uppercase tracking-wider text-[10px] mb-1 border-b border-blue-800/50 pb-0.5">The Faithful</div>
-          {Object.entries(REGION_MAP).filter(([id]) => REGION_STATUS[id]?.faction?.startsWith('FAITHFUL')).map(([id, def]) => (
+          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction.startsWith('FAITHFUL')).map(([id, c]) => (
             <div key={id} className="flex items-center gap-1.5 py-0.5">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: REGION_STATUS[id]?.faction === 'FAITHFUL_ISLAMIC' ? '#e8c860' : '#86b6dc' }} />
-              <span className="text-[var(--muted)]">{def.name}</span>
-              {REGION_STATUS[id]?.control === 'contested' && <span className="text-orange-500 text-[9px]">[contested]</span>}
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.faction === 'FAITHFUL_ISLAMIC' ? '#e8c860' : '#86b6dc' }} />
+              <span className="text-[var(--muted)]">{c.name}</span>
             </div>
           ))}
         </div>
         <div>
           <div className="font-bold text-red-400 uppercase tracking-wider text-[10px] mb-1 border-b border-red-900/50 pb-0.5">Forces of Hell</div>
-          {Object.entries(REGION_MAP).filter(([id]) => REGION_STATUS[id]?.faction === 'HERETIC').map(([id, def]) => (
+          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction === 'HERETIC').map(([id, c]) => (
             <div key={id} className="flex items-center gap-1.5 py-0.5">
               <div className="w-2 h-2 rounded-full bg-red-700" />
-              <span className="text-[var(--muted)]">{def.name}</span>
+              <span className="text-[var(--muted)]">{c.name}</span>
             </div>
           ))}
         </div>
         <div>
           <div className="font-bold text-[var(--muted)] uppercase tracking-wider text-[10px] mb-1 border-b border-[var(--border)] pb-0.5">Neutral / Independent</div>
-          {Object.entries(REGION_MAP).filter(([id]) => REGION_STATUS[id]?.faction === 'NEUTRAL').map(([id, def]) => (
+          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction === 'NEUTRAL').map(([id, c]) => (
             <div key={id} className="flex items-center gap-1.5 py-0.5">
               <div className="w-2 h-2 rounded-full bg-stone-500" />
-              <span className="text-[var(--muted)]">{def.name}</span>
-              {REGION_STATUS[id]?.control === 'contested' && <span className="text-orange-500 text-[9px]">[contested]</span>}
+              <span className="text-[var(--muted)]">{c.name}</span>
             </div>
           ))}
         </div>
       </div>
       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
-        {Object.entries(TERRAIN_COLORS).filter(([c]) => c !== 'sea' && c !== 'volcanic').map(([code, biome]) => (
+        {Object.entries(TERRAIN_COLORS).filter(([c]) => c !== 'sea' && c !== 'volcanic').map(([code, color]) => (
           <div key={code} className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm border border-[var(--border)]" style={{ backgroundColor: biome.color }} />
-            <span className="text-[var(--muted)]">{biome.name}</span>
+            <div className="w-3 h-3 rounded-sm border border-[var(--border)]" style={{ backgroundColor: color }} />
+            <span className="text-[var(--muted)]">{TERRAIN_NAMES[code] ?? code}</span>
           </div>
         ))}
       </div>
