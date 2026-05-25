@@ -1,0 +1,200 @@
+{
+  "faction_id": 4,
+  "faction_code": "SULTANATE",
+  "items": [
+    {
+      "item_code": "ALAYBOZAN",
+      "cost": 9,
+      "tags": ["SULTANATE_SAPPERS_ONLY", "SHIELD_COMBO"]
+    },
+    {
+      "item_code": "FLAME_CANNON",
+      "cost": 60,
+      "tags": ["BRAZEN_BULL_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "FLAMETHROWER",
+      "cost": 30,
+      "tags": ["LIMIT_3"]
+    },
+    {
+      "item_code": "JEZZAIL",
+      "cost": 7
+    },
+    {
+      "item_code": "MURAD_BOMBARD",
+      "cost": 50,
+      "tags": ["BRAZEN_BULL_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "MACHINE_GUN",
+      "cost": 50,
+      "tags": ["LIMIT_1"]
+    },
+    {
+      "item_code": "MUSKET",
+      "cost": 5,
+      "tags": ["BAYONET_LUG"]
+    },
+    {
+      "item_code": "PISTOL",
+      "cost": 6
+    },
+    {
+      "item_code": "SHOTGUN",
+      "cost": 10,
+      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+    },
+    {
+      "item_code": "SIEGE_JEZZAIL",
+      "cost": 30
+    },
+    {
+      "item_code": "SNIPER_RIFLE",
+      "cost": 35,
+      "tags": ["ELITE_AND_JANISSARIES", "LIMIT_2"]
+    },
+    {
+      "item_code": "ASSASSINS_DAGGER",
+      "cost": 15,
+      "tags": ["SULTANATE_ASSASSINS_ONLY"]
+    },
+    {
+      "item_code": "BAYONET",
+      "cost": 2,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "GREAT_HAMMER_MAUL",
+      "cost": 10
+    },
+    {
+      "item_code": "GREAT_SWORD_AXE",
+      "cost": 12
+    },
+    {
+      "item_code": "HALBERD_GUN",
+      "cost": 20,
+      "tags": ["ELITE_ONLY"]
+    },
+    {
+      "item_code": "POLEARM",
+      "cost": 7,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "SWORD_AXE",
+      "cost": 4
+    },
+    {
+      "item_code": "TITAN_ZULFIQAR",
+      "cost": 30,
+      "tags": ["BRAZEN_BULL_ONLY"]
+    },
+    {
+      "item_code": "TRENCH_CLUB",
+      "cost": 3
+    },
+    {
+      "item_code": "TRENCH_KNIFE",
+      "cost": 1
+    },
+    {
+      "item_code": "FRAG_GRENADES",
+      "cost": 7
+    },
+    {
+      "item_code": "INCENDIARY_GRENADES",
+      "cost": 15,
+      "tags": ["JABIREAN_ALCHEMIST_ONLY"]
+    },
+    {
+      "item_code": "TRENCH_SHIELD",
+      "cost": 10,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "ALCHEMIST_ARMOUR",
+      "cost": 50,
+      "tags": ["ELITE_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "REINFORCED_ARMOUR",
+      "cost": 40,
+      "tags": ["ELITE_AND_JANISSARIES"]
+    },
+    {
+      "item_code": "STANDARD_ARMOUR",
+      "cost": 15
+    },
+    {
+      "item_code": "ALCHEMICAL_AMMUNITION",
+      "cost": 3
+    },
+    {
+      "item_code": "BINOCULARS",
+      "cost": 10,
+      "tags": ["ELITE_ONLY"]
+    },
+    {
+      "item_code": "CLOAK_OF_ALAMUT",
+      "cost": 25,
+      "tags": ["ELITE_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "COMBAT_HELMET",
+      "cost": 5,
+      "tags": ["HEADGEAR"]
+    },
+    {
+      "item_code": "GAS_MASK",
+      "cost": 5
+    },
+    {
+      "item_code": "HOLY_RELIC",
+      "cost": 2,
+      "cost_type": "glory",
+      "tags": ["ELITE_ONLY"]
+    },
+    {
+      "item_code": "MARID_SHOVEL",
+      "cost": 15,
+      "tags": ["BRAZEN_BULL_ONLY"]
+    },
+    {
+      "item_code": "MEDI_KIT",
+      "cost": 5
+    },
+    {
+      "item_code": "MOUNTAINEER_KIT",
+      "cost": 3,
+      "tags": ["LIMIT_2"]
+    },
+    {
+      "item_code": "MUSICAL_INSTRUMENT",
+      "cost": 15,
+      "tags": ["LIMIT_1"]
+    },
+    {
+      "item_code": "SHOVEL",
+      "cost": 5
+    },
+    {
+      "item_code": "TAKWIN_ANQ_BIRD",
+      "cost": 2,
+      "cost_type": "glory",
+      "tags": ["ELITE_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "TROOP_FLAG",
+      "cost": 1,
+      "cost_type": "glory",
+      "tags": ["LIMIT_1"]
+    },
+    {
+      "item_code": "WIND_AMULET",
+      "cost": 10,
+      "tags": ["LIMIT_2"]
+    }
+  ]
+}

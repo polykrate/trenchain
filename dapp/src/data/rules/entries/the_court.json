@@ -1,0 +1,281 @@
+{
+  "faction_id": 6,
+  "faction_code": "COURT",
+  "entries": [
+    {
+      "id": "PRAETOR",
+      "name": "Praetor",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 115,
+      "profile": {
+        "movement_inches": 8,
+        "movement_type": "Flying",
+        "ranged": 3,
+        "melee": 3,
+        "armour": 0,
+        "base": "50mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "ELITE",
+        "FEAR",
+        "FLYING",
+        "LEADER",
+        "STRONG",
+        "TOUGH"
+      ],
+      "description": "Praetors are demonic commanders and magistrates within a small corner of the fiefdom of a mighty archdevil or demon lord. Each commands small cohorts at their liege's behest, raised from the denizens of the ever-shifting domains of Hell. Yoke Fiends muster at their command and Hell Knights, bound to blind obedience, bend their knees to these field commanders of Hell.",
+      "battlekit_rules": "A Praetor can have any Battlekit from The Court's Armoury Tables. A Praetor can have up to 2 Goetic Powers. Praetors from a Warband dedicated to Wrath can have only 1 Goetic Power.",
+      "included_battlekit": [],
+      "abilities": [],
+      "composition_note": "A Court Warband must include either a Praetor or a Sorcerer, and it can include both."
+    },
+    {
+      "id": "SORCERER",
+      "name": "Sorcerer",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 75,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Flying",
+        "ranged": 1,
+        "melee": 1,
+        "armour": 0,
+        "base": "50mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "ELITE",
+        "FEAR",
+        "FLYING"
+      ],
+      "description": "Sorcerers come in many forms and manipulate their bodies to better cast the mighty spells they are charged with. Some have many arms, others multiple heads or countless alterations and terrible improvements, some self-administered, others forced upon them, based on the whims of the archdevil and the cabal of High Sorcerers who lead their Goetic strategy. A Sorcerer's feet do not touch the ground, a distant echo of their angelic past, instead they float across No Man's Land, chanting the cruel gospel of Hell as they advance. Their dark wisdom and cunning make them equally capable of leading one of the Court's warbands or acting as advisors to one of the Praetors as they stride forth into the mortal realms.",
+      "battlekit_rules": "A Sorcerer can have any Battlekit from The Court's Armoury Tables apart from Ranged Weapons and Grenades. A Sorcerer can have up to 3 Goetic Powers. In addition it has the Blessing of the Serpent Moon Goetic Spell at no extra cost.",
+      "included_battlekit": [
+        "Blessing of the Serpent Moon (Goetic Spell)"
+      ],
+      "abilities": [
+        {
+          "name": "Blessing of the Serpent Moon",
+          "description": "Goetic Spell (Cost 2/4/6, Sorcerers Only). You can cast this spell before an Injury Roll is made for the spellcaster. If you do so, add a -1 INJURY MODIFIER to the roll for every 2 BLOOD MARKERS that were paid to cast the spell."
+        }
+      ],
+      "composition_note": "A Court Warband must include either a Praetor or a Sorcerer, and it can include both."
+    },
+    {
+      "id": "HUNTER_OF_THE_LEFT_HAND_PATH",
+      "name": "Hunter of the Left-Hand Path",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 110,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 2,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "ELITE",
+        "INFILTRATOR"
+      ],
+      "description": "The Hunters of the Court of the Seven-Headed Serpent are followers of the Left-Hand Path. They stalk the primordial hinterlands of hell where they hunt terrifying beasts. They perform vile magicks and auguries using the innards of their still-living prey to discern portents and omens.",
+      "battlekit_rules": "A Hunter of the Left-Hand Path always has a Bow of Lethe, and it cannot be removed or lost over the course of the campaign for any reason. The Hunter of the Left-Hand Path must always hold it in one of their hands. They can also have any Battlekit from The Court's Armoury Tables apart from 2-Handed Weapons.",
+      "included_battlekit": [
+        "Bow of Lethe (1-Handed, 24\", ASSAULT)",
+        "Left-Hand Path (Goetic Spell)",
+        "Oracle Beast Cloak (Goetic Spell)",
+        "Shadow-walker (Goetic Spell)"
+      ],
+      "abilities": [
+        {
+          "name": "Bow of Lethe - Special Ammunition",
+          "description": "Before making an Injury Roll for an attack made with a Bow of Lethe, you must choose if the roll will have the +2 INJURY DICE Keyword or the IGNORE ARMOUR Keyword."
+        },
+        {
+          "name": "Left-Hand Path",
+          "description": "Goetic Spell (Cost 2, Hunter of the Left-Hand Path Only). You can cast this spell when the spellcaster takes a Move, Charge, Retreat or Dash ACTION and moves into contact with a terrain piece. If you do so, you can interrupt the spellcaster's move to remove them from the battlefield and then redeploy them in contact with another terrain piece and more than 1\" from any enemy models, unless the spellcaster is making a charge. If the spell is cast during a charge, the spellcaster must redeploy closer to the target than it was before it was removed from the battlefield. You can then carry on with the spellcaster's move as normal. This spell can be cast more than once during the course of a single ACTION (you must pay its cost each time it is cast). If it is cast as part of a charge, the spellcaster must still start the charge within 12\" of the target model."
+        },
+        {
+          "name": "Oracle Beast Cloak",
+          "description": "Goetic Spell (Cost 3, Hunter of the Left-Hand Path Only). You can cast this spell once per Turn after an Injury Roll is made for the spellcaster. If you do so, the result of the Injury Roll is changed to a No Effect result (make Injury Rolls for other models hit by the same attack normally)."
+        },
+        {
+          "name": "Shadow-walker",
+          "description": "Goetic Spell (Cost 2, Hunter of the Left-Hand Path Only). You can cast this spell before the spellcaster takes a Retreat ACTION. If you do so, enemy models cannot make a Melee Attack on the spellcaster when they retreat."
+        }
+      ],
+      "composition_note": "Up to 1."
+    },
+    {
+      "id": "HELL_KNIGHT",
+      "name": "Hell Knight",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 100,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 2,
+        "armour": -2,
+        "base": "40mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "ELITE",
+        "STRONG"
+      ],
+      "description": "The silent battalions of Inferno, summoned to serve when the Court of the Seven-Headed Serpent seeks sport, are composed of Hell Knights. Their ever-burning banners stream as they march to war, carrying out the bidding of their masters. They are the bannerets of the high lords of the Court, champions who respond to foolish mortals daring to challenge the hunting parties of the Serpent's nobility.",
+      "battlekit_rules": "A Hell Knight always has a suit of Infernal Iron Armour. The Infernal Iron Armour cannot be removed or lost over the course of the campaign for any reason. The Injury Modifier for the Armour is already included in the model's Profile above. They can also have any Battlekit from The Court's Armoury Tables apart from Armour. A Hell Knight can have up to 2 Goetic Powers, one of which must be the Blood Magic Goetic Spell taken at no extra cost.",
+      "included_battlekit": [
+        "Infernal Iron Armour (-2 INJURY MODIFIER, IMPERVIOUS)",
+        "Blood Magic (Goetic Spell)"
+      ],
+      "abilities": [
+        {
+          "name": "Blood Magic",
+          "description": "Goetic Spell (Cost 1, Hell Knight Only). You can cast this spell before making any Injury Rolls for an attack made by the spellcaster. If you do so, add +1 INJURY DICE to all of the Injury Rolls you make for the attack. For example, if the attack has the BLAST Keyword, you would add +1 INJURY DICE to the rolls for each model that was caught in the blast radius of the attack."
+        }
+      ],
+      "composition_note": "Up to 3."
+    },
+    {
+      "id": "WRETCHED",
+      "name": "Wretched",
+      "min_count": 0,
+      "max_count": null,
+      "cost": 20,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": -1,
+        "melee": -1,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "THE_COURT"
+      ],
+      "description": "These unfortunate souls possess not a drop of demon blood. They act as disposable shock troops or are used as subjects of torture to power the Goetic magic of the sorcerers and other users of the dark arts. Should a Wretched bring down a mighty opponent, the Law of Hell is clear, the mortal will gain its freedom, in memory and honour of the First Rebellion when there was war in Heaven and blood of the angels painted the firmament red.",
+      "battlekit_rules": "Wretched can have any Battlekit from The Court's Armoury Tables that costs up to 10 ducats. A Wretched must have at least 1 Weapon (they cannot be sent into battle completely unarmed).",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Law of Hell",
+          "description": "If an attack made by a Wretched takes an enemy model with the ELITE Keyword out of Action, the Wretched model gains its freedom and is immediately removed from the game. It no longer counts as being part of the Warband for the purposes of Morale Checks, and is removed from the Warband Roster."
+        }
+      ],
+      "composition_note": "The number of Wretched in a Warband must be outnumbered by the number of models with the DEMONIC Keyword."
+    },
+    {
+      "id": "PIT_LOCUST",
+      "name": "Pit Locust",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 90,
+      "profile": {
+        "movement_inches": 8,
+        "movement_type": "Flying",
+        "ranged": 0,
+        "melee": 2,
+        "armour": -2,
+        "base": "30x60mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "FEAR",
+        "FLYING"
+      ],
+      "description": "Pit Locusts are terrifying, horse-sized, winged, and armoured creatures with twisted faces resembling humans. They fight with rending blades attached to their limbs and with poison stingers.",
+      "battlekit_rules": "A Pit Locust can have a Crown of Hellfire from The Court's Armoury Tables. They cannot have any other Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Poison Stingers",
+          "description": "A Pit Locust can make a Melee Attack with the CLEAVE 2 and SHRAPNEL Keywords even though it does not have a Melee Weapon."
+        }
+      ],
+      "composition_note": "Up to 3."
+    },
+    {
+      "id": "YOKE_FIEND",
+      "name": "Yoke Fiend",
+      "min_count": 0,
+      "max_count": null,
+      "cost": 30,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC"
+      ],
+      "description": "A Yoke Fiend stands some seven to eight feet tall, with layers of shivering fat and muscle branded by their masters, carved by the knives of the priests of Hell to mark them as property of greater demons. They exhibit bestial features such as horns and hooves of cattle or goats, ape-like limbs with immensely dense bones. They hate seeing their own reflections, as in their heart of hearts they know the beauty and glory they have lost for all eternity.",
+      "battlekit_rules": "A Yoke Fiend can have 1 Ranged Weapon that has a cost of 30 ducats or less from The Court's Armoury Tables. They can have any other Battlekit from The Court's Armoury Tables apart from Ranged Weapons.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Hateful",
+          "description": "When a Yoke Fiend is Activated, if it is more than 1\" from any enemy models and there is an enemy model within 12\" of it, that is in its Line of Sight, and that does not have the BLACK GRAIL or DEMONIC Keywords, then the Yoke Fiend must take a Charge ACTION with the closest enemy model as the target of the charge. If the Yoke Fiend was Down at the start of the Activation, it will stand up if it can do so and must then attempt to make the charge."
+        },
+        {
+          "name": "Torturer",
+          "description": "When a Yoke Fiend makes a Melee Attack, it can target a friendly model that does not have the DEMONIC Keyword. If it does so, it cannot attack again during the same Activation."
+        }
+      ],
+      "composition_note": "No limit."
+    },
+    {
+      "id": "DESECRATED_SAINT",
+      "name": "Desecrated Saint",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 140,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": null,
+        "melee": 3,
+        "armour": -3,
+        "base": "60mm"
+      },
+      "keywords": [
+        "THE_COURT",
+        "DEMONIC",
+        "IGNORE_OFF_HAND",
+        "FEAR",
+        "STRONG",
+        "TOUGH"
+      ],
+      "description": "Desecrated Saints are the most prized possessions of the lords of Hell: men and women once destined to become saints, great prophets or holy ones according to God's plan, but who were led astray and fell from grace.",
+      "battlekit_rules": "A Desecrated Saint has several arms. It can have up to three 1-Handed Melee Weapons from The Court's Armoury Tables or two 1-Handed Melee Weapons and one 2-Handed Melee Weapon. It cannot have any other Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Annihilator",
+          "description": "A Desecrated Saint can take 1 Fight ACTION per Activation with each Melee Weapon it is equipped with."
+        },
+        {
+          "name": "Demonic Aura",
+          "description": "A Desecrated Saint has one of the following auras, determined by the Deadly Sin its Warband is dedicated to: Aura of Wrath — Add +1 DICE to rolls for Melee Attacks and the Risky Success Roll for taking a Dash ACTION for friendly models that are within 8\" of this Desecrated Saint (including the Desecrated Saint themselves). Aura of Envy — Enemy models within 12\" of the Desecrated Saint cannot charge a model from the Desecrated Saint's Warband that is within 1\" of a model from the charging model's own Warband. Aura of Lust — If an enemy model within 4\" of this Desecrated Saint is wearing Armour that does not have the IMPERVIOUS Keyword, you can negate any of the Armour's Keywords or special rules for as long as the model is within 4\" of the Desecrated Saint. The only rules or Keywords you cannot negate are those that affect the size of the base the model is mounted on. Aura of Pride — Place 1 BLOOD MARKER next to each enemy model that is within 8\" of this Desecrated Saint when the Desecrated Saint's Activation ends. Aura of Sloth — Enemy models within 8\" of this Desecrated Saint treat Minor Hit results as Down results. The aura affects enemy models that normally treat Down results as a Minor Hit result (such as models wearing Machine Armour). Aura of Gluttony — Add -1 DICE to rolls for enemy models within 8\" of this Desecrated Saint unless the enemy model has the BLACK GRAIL or ARTIFICIAL Keyword. Aura of Greed — Enemy models within 12\" of this Desecrated Saint that take a Charge ACTION must charge this Desecrated Saint if it is within 12\", in the Line of Sight of the charging model, and can be reached without having to cross Dangerous terrain or Climb, Jump, Jump Down or make a Diving Charge."
+        }
+      ],
+      "composition_note": "Up to 1."
+    }
+  ]
+}

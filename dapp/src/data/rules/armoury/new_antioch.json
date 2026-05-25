@@ -1,0 +1,201 @@
+{
+  "faction_id": 3,
+  "faction_code": "ANTIOCH",
+  "items": [
+    {
+      "item_code": "AUTOMATIC_PISTOL",
+      "cost": 20,
+      "tags": ["ELITE_ONLY", "LIMIT_3"]
+    },
+    {
+      "item_code": "AUTOMATIC_RIFLE",
+      "cost": 40,
+      "tags": ["BAYONET_LUG", "LIMIT_1"]
+    },
+    {
+      "item_code": "AUTOMATIC_SHOTGUN",
+      "cost": 15,
+      "tags": ["BAYONET_LUG", "SHIELD_COMBO", "LIMIT_2"]
+    },
+    {
+      "item_code": "BOLT_ACTION_RIFLE",
+      "cost": 10,
+      "tags": ["BAYONET_LUG"]
+    },
+    {
+      "item_code": "FLAMETHROWER",
+      "cost": 30,
+      "tags": ["LIMIT_3"]
+    },
+    {
+      "item_code": "GRENADE_LAUNCHER",
+      "cost": 30,
+      "tags": ["LIMIT_2"]
+    },
+    {
+      "item_code": "HEAVY_FLAMETHROWER",
+      "cost": 55,
+      "tags": ["LIMIT_1"]
+    },
+    {
+      "item_code": "HEAVY_SHOTGUN",
+      "cost": 20,
+      "tags": ["SHIELD_COMBO", "LIMIT_2"]
+    },
+    {
+      "item_code": "MACHINE_GUN",
+      "cost": 50,
+      "tags": ["LIMIT_2"]
+    },
+    {
+      "item_code": "PISTOL",
+      "cost": 6
+    },
+    {
+      "item_code": "SEMI_AUTOMATIC_RIFLE",
+      "cost": 15,
+      "tags": ["BAYONET_LUG"]
+    },
+    {
+      "item_code": "SHOTGUN",
+      "cost": 10,
+      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+    },
+    {
+      "item_code": "SNIPER_RIFLE",
+      "cost": 35,
+      "tags": ["LIMIT_3"]
+    },
+    {
+      "item_code": "SUBMACHINE_GUN",
+      "cost": 30,
+      "tags": ["BAYONET_LUG", "SHIELD_COMBO", "LIMIT_2"]
+    },
+    {
+      "item_code": "BAYONET",
+      "cost": 2,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "GREAT_HAMMER_MAUL",
+      "cost": 10
+    },
+    {
+      "item_code": "GREAT_SWORD_AXE",
+      "cost": 12
+    },
+    {
+      "item_code": "MISERICORDIA",
+      "cost": 15,
+      "tags": ["COMBAT_MEDIC_ONLY", "LIMIT_1"]
+    },
+    {
+      "item_code": "POLEARM",
+      "cost": 7,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "SWORD_AXE",
+      "cost": 4
+    },
+    {
+      "item_code": "TRENCH_CLUB",
+      "cost": 3
+    },
+    {
+      "item_code": "TRENCH_KNIFE",
+      "cost": 1
+    },
+    {
+      "item_code": "FRAG_GRENADES",
+      "cost": 7
+    },
+    {
+      "item_code": "INCENDIARY_GRENADES",
+      "cost": 15,
+      "tags": ["LIMIT_2"]
+    },
+    {
+      "item_code": "SATCHEL_CHARGE",
+      "cost": 15,
+      "tags": ["CONSUMABLE", "LIMIT_3"]
+    },
+    {
+      "item_code": "HEAVY_BALLISTIC_SHIELD",
+      "cost": 15,
+      "tags": ["MACHINE_ARMOUR_WEARER_ONLY", "SHIELD_COMBO"]
+    },
+    {
+      "item_code": "TRENCH_SHIELD",
+      "cost": 10,
+      "tags": ["SHIELD_COMBO"]
+    },
+    {
+      "item_code": "ENGINEER_BODY_ARMOUR",
+      "cost": 45,
+      "tags": ["COMBAT_ENGINEER_ONLY"]
+    },
+    {
+      "item_code": "MACHINE_ARMOUR",
+      "cost": 50,
+      "tags": ["ELITE_AND_MECH_INFANTRY", "LIMIT_1_EXCL_MECH_INFANTRY"]
+    },
+    {
+      "item_code": "REINFORCED_ARMOUR",
+      "cost": 40,
+      "tags": ["ELITE_AND_MECH_INFANTRY"]
+    },
+    {
+      "item_code": "STANDARD_ARMOUR",
+      "cost": 15
+    },
+    {
+      "item_code": "BINOCULARS",
+      "cost": 10,
+      "tags": ["ELITE_ONLY"]
+    },
+    {
+      "item_code": "COMBAT_HELMET",
+      "cost": 5,
+      "tags": ["HEADGEAR"]
+    },
+    {
+      "item_code": "FIELD_SHRINE",
+      "cost": 2,
+      "cost_type": "glory"
+    },
+    {
+      "item_code": "GAS_MASK",
+      "cost": 5
+    },
+    {
+      "item_code": "MARTYRDOM_PILLS",
+      "cost": 1,
+      "cost_type": "glory",
+      "tags": ["CONSUMABLE", "ELITE_ONLY", "LIMIT_2"]
+    },
+    {
+      "item_code": "MEDI_KIT",
+      "cost": 5
+    },
+    {
+      "item_code": "MOUNTAINEER_KIT",
+      "cost": 3,
+      "tags": ["LIMIT_4"]
+    },
+    {
+      "item_code": "MUSICAL_INSTRUMENT",
+      "cost": 15,
+      "tags": ["LIMIT_1"]
+    },
+    {
+      "item_code": "SHOVEL",
+      "cost": 5
+    },
+    {
+      "item_code": "TROOP_FLAG",
+      "cost": 1,
+      "cost_type": "glory"
+    }
+  ]
+}

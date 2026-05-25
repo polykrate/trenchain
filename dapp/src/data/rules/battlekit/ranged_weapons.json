@@ -1,0 +1,398 @@
+{
+  "items": [
+    {
+      "name": "Alaybozan",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "ALAYBOZAN"
+    },
+    {
+      "name": "Anti-Materiel Rifle",
+      "description": "Enormous long rifles designed to take out heavily armoured targets, vehicles and strongpoints. With the powerful armour available to the armies of the Great war, these terrifying weapons are much in demand. A downside is their enormous weight and terrifying recoil, and thus they are most often used by Communicants or Anointed who possess the supernatural strength to wield such weapons.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 36
+      },
+      "keywords": [
+        "PISTOL",
+        "COVER",
+        "GOLEM",
+        "HERETIC"
+      ],
+      "special_rules": null,
+      "code": "ANTI_MATERIEL_RIFLE"
+    },
+    {
+      "name": "Arquebus",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 18
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "ARQUEBUS"
+    },
+    {
+      "name": "Automatic Pistol",
+      "description": "Automatic pistols are symbols of prestige owing to their rarity and cost. They are excellent weapons when storming trenches or fighting in hand-to-hand combat. They boast a high rate of fire, though they can be hard to control even for the best sharpshooters since they usually lack a stock.",
+      "battlekit_type": "OneHanded",
+      "range": {
+        "DualPurpose": 12
+      },
+      "keywords": [
+        "ASSAULT",
+        "AUTOMATIC_2",
+        "NEW_ANTIOCH"
+      ],
+      "special_rules": null,
+      "code": "AUTOMATIC_PISTOL"
+    },
+    {
+      "name": "Automatic Rifle",
+      "description": "A marvel of modern engineering, only a few prototypes exist. It has a high rate of fire and can be quickly re-loaded.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 24
+      },
+      "keywords": [
+        "ASSAULT",
+        "AUTOMATIC_2"
+      ],
+      "special_rules": "Focused Fire: When this Weapon is used to make 2 Ranged Attacks, the same enemy model must be the target of both attacks.",
+      "code": "AUTOMATIC_RIFLE"
+    },
+    {
+      "name": "Automatic Shotgun",
+      "description": "This shotgun is equipped with an auto-loader, a recent invention by the Prussian engineering corps of Konigsberg. It is ideal for close quarter combat thanks to its high rate of power and accuracy. The technology has not been perfected, however, and sometimes leads to misfeeds and jams.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [
+        "PILGRIM",
+        "ASSAULT",
+        "RISKY"
+      ],
+      "special_rules": null,
+      "code": "AUTOMATIC_SHOTGUN"
+    },
+    {
+      "name": "Blunderbuss",
+      "description": "A firearm of a bygone era, loaded with rusty nails, lead shot, grenade shrapnel and shell pieces.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 10
+      },
+      "keywords": [
+        "SCATTER"
+      ],
+      "special_rules": null,
+      "code": "BLUNDERBUSS"
+    },
+    {
+      "name": "Bolt-Action Rifle",
+      "description": "The workhorse of the Great War. Sturdy, highly reliable and reasonably accurate, it is no surprise that most of the infantry of the Great War carry this battlefield classic.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 24
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "BOLT_ACTION_RIFLE"
+    },
+    {
+      "name": "Corruption Belcher",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "CORRUPTION_BELCHER"
+    },
+    {
+      "name": "Flame Cannon",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "FLAME_CANNON"
+    },
+    {
+      "name": "Flamethrower",
+      "description": "A flamethrower is a terrifying Weapon capable of projecting great streams of fire and flammable liquids at a distance. It is ideal for clearing bunkers, trenches and other fortifications, killing in a most horrific way. Consequently, it is greatly favoured by the Heretic forces.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": [
+        "MINED",
+        "FEAR",
+        "FIRETEAM",
+        "HERETIC"
+      ],
+      "special_rules": null,
+      "code": "FLAMETHROWER"
+    },
+    {
+      "name": "Grenade Launcher",
+      "description": "Modifications of great siege rifles designed to lob grenades over long distances.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 36
+      },
+      "keywords": [
+        "BLAST_3",
+        "GOLEM",
+        "IGNORE_ARMOUR",
+        "SCATTER"
+      ],
+      "special_rules": null,
+      "code": "GRENADE_LAUNCHER"
+    },
+    {
+      "name": "Heavy Flamethrower",
+      "description": "These massive flamethrowers are normally mounted on armoured vehicles, but those possessing uncanny strength may use them as infantry weapons.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 10
+      },
+      "keywords": [
+        "MINED",
+        "AUTOMATIC_2",
+        "FEAR",
+        "FIRETEAM",
+        "GOLEM",
+        "HERETIC"
+      ],
+      "special_rules": null,
+      "code": "HEAVY_FLAMETHROWER"
+    },
+    {
+      "name": "Heavy Shotgun",
+      "description": "This massive 8 bore shotgun is used to take down extremely powerful and large opponents at short range. It is known as a \"Wolf-Killer\" in New Antioch as it is the weapon favoured by the soldiery of the Duke to take down the Heretic War Wolf Assault Beasts. Heavy shotguns use tungsten-orichalcum alloy shot which explains their enormous stopping power at short ranges.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [
+        "PILGRIM",
+        "PISTOL",
+        "GOLEM",
+        "RISKY"
+      ],
+      "special_rules": "Tungsten-orichalcum Alloy Shot: Add +1 INJURY DICE to rolls for Ranged Attacks made by this Weapon at Short Range.",
+      "code": "HEAVY_SHOTGUN"
+    },
+    {
+      "name": "Infested Rifle",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 18
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "INFESTED_RIFLE"
+    },
+    {
+      "name": "Jezzail",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 18
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "JEZZAIL"
+    },
+    {
+      "name": "Machine Gun",
+      "description": "Machine guns are lethal fully-automatic firearms, capable of mowing down entire ranks of infantry from afar. The firing rate depends on the lock assembly used but averages 500 rounds per minute.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 36
+      },
+      "keywords": [
+        "AUTOMATIC_3",
+        "GOLEM",
+        "PLUS_1_INJURY_MODIFIER"
+      ],
+      "special_rules": null,
+      "code": "MACHINE_GUN"
+    },
+    {
+      "name": "M.U.R.A.D. Bombard",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": {
+        "Ranged": 36
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "MURAD_BOMBARD"
+    },
+    {
+      "name": "Musket",
+      "description": "A primitive weapon from a bygone age, the musket is a smooth bore long rifle that shoots lead balls. It still sees widespread use due to its simple construction and low price.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 18
+      },
+      "keywords": [
+        "MINED"
+      ],
+      "special_rules": null,
+      "code": "MUSKET"
+    },
+    {
+      "name": "Ophidian Rifle",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 30
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "OPHIDIAN_RIFLE"
+    },
+    {
+      "name": "Pistol",
+      "description": "Pistols come in a staggering variety, ranging from revolvers to semi-automatic pistols. Heretic forges produce their own, often highly elaborate sidearms. They see extensive use in close-quarter combat.",
+      "battlekit_type": "OneHanded",
+      "range": {
+        "DualPurpose": 12
+      },
+      "keywords": [
+        "NEW_ANTIOCH"
+      ],
+      "special_rules": null,
+      "code": "PISTOL"
+    },
+    {
+      "name": "Punt Gun",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 18
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "PUNT_GUN"
+    },
+    {
+      "name": "Putrid Shotgun",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "PUTRID_SHOTGUN"
+    },
+    {
+      "name": "Semi-Automatic Rifle",
+      "description": "Semi-automatic rifles are said to be an invention of Marbas, the Devil who holds great wisdom and knowledge in mechanical arts. They are excellent both at long range and in assault, combining accuracy and high rate of fire, though they are prone to jamming.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 24
+      },
+      "keywords": [
+        "ASSAULT"
+      ],
+      "special_rules": null,
+      "code": "SEMI_AUTOMATIC_RIFLE"
+    },
+    {
+      "name": "Serpent Assault Gun",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 36
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "SERPENT_ASSAULT_GUN"
+    },
+    {
+      "name": "Shotgun",
+      "description": "Short-barrelled pump action shotgun loaded with six rounds containing antimony hardened 00 buckshot, the combat shotgun is ideal for short-range engagements, clearing trenches and taking out lightly-armoured infantry. Often featuring stocks made of walnut or other rare wood, it is a custom of the troops to decorate these arms with carvings and inscriptions.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [
+        "PILGRIM",
+        "RISKY"
+      ],
+      "special_rules": null,
+      "code": "SHOTGUN"
+    },
+    {
+      "name": "Siege Jezzail",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 30
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "SIEGE_JEZZAIL"
+    },
+    {
+      "name": "Silenced Pistol",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": {
+        "Ranged": 12
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "SILENCED_PISTOL"
+    },
+    {
+      "name": "Sniper Rifle",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 48
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "SNIPER_RIFLE"
+    },
+    {
+      "name": "Submachine Gun",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 16
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "SUBMACHINE_GUN"
+    },
+    {
+      "name": "Viscera Cannon",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": {
+        "Ranged": 24
+      },
+      "keywords": [],
+      "special_rules": null,
+      "code": "VISCERA_CANNON"
+    }
+  ]
+}

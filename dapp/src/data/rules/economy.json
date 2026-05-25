@@ -1,0 +1,249 @@
+{
+  "buildings": [
+    {
+      "id": "iron_mine",
+      "name": "Iron Mine",
+      "description": "Deep underground extraction of iron ore. Essential for forging all weapons and armour.",
+      "produces": [{ "resource": "iron", "output": 3 }],
+      "allowed_terrain": ["mountain", "mine", "quarry", "fortress"],
+      "build_cost": [{ "resource": "ducats", "amount": 40 }, { "resource": "flesh", "amount": 10 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "foundry",
+      "name": "Foundry",
+      "description": "Smelts raw iron into weapons-grade steel. Required for advanced weapons manufacturing.",
+      "produces": [{ "resource": "iron", "output": 2 }, { "resource": "powder", "output": 1 }],
+      "allowed_terrain": ["factory", "city", "fortress"],
+      "build_cost": [{ "resource": "ducats", "amount": 60 }, { "resource": "iron", "amount": 20 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "powder_mill",
+      "name": "Powder Mill",
+      "description": "Grinds saltpetre, charcoal, and sulphur into black powder. Volatile but vital for any ranged engagement.",
+      "produces": [{ "resource": "powder", "output": 3 }],
+      "allowed_terrain": ["factory", "mountain", "quarry"],
+      "build_cost": [{ "resource": "ducats", "amount": 50 }, { "resource": "iron", "amount": 10 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "munitions_factory",
+      "name": "Munitions Factory",
+      "description": "Mass-production of cartridges, shells, and explosive ordnance. The beating heart of industrial warfare.",
+      "produces": [{ "resource": "powder", "output": 2 }, { "resource": "iron", "output": 1 }],
+      "allowed_terrain": ["factory", "city"],
+      "build_cost": [{ "resource": "ducats", "amount": 80 }, { "resource": "iron", "amount": 30 }, { "resource": "powder", "amount": 15 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "trade_post",
+      "name": "Trade Post",
+      "description": "Commerce hub where goods are taxed and exchanged. Generates steady income from passing merchants and supply trains.",
+      "produces": [{ "resource": "ducats", "output": 3 }],
+      "allowed_terrain": ["city", "village", "port", "crossroads", "harbor"],
+      "build_cost": [{ "resource": "ducats", "amount": 20 }, { "resource": "flesh", "amount": 5 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "market",
+      "name": "Market Square",
+      "description": "A bustling marketplace attracting traders from across the theatre. Increases local wealth and morale.",
+      "produces": [{ "resource": "ducats", "output": 4 }],
+      "allowed_terrain": ["city", "port", "crossroads"],
+      "build_cost": [{ "resource": "ducats", "amount": 50 }, { "resource": "flesh", "amount": 10 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "barracks",
+      "name": "Barracks",
+      "description": "Military quarters where troops are billeted, trained, and prepared for deployment. Attracts recruits.",
+      "produces": [{ "resource": "flesh", "output": 3 }],
+      "allowed_terrain": ["city", "village", "fortress", "encampment"],
+      "build_cost": [{ "resource": "ducats", "amount": 30 }, { "resource": "iron", "amount": 10 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "refugee_camp",
+      "name": "Refugee Camp",
+      "description": "Displaced civilians desperate enough to take up arms. A grim but plentiful source of expendable bodies.",
+      "produces": [{ "resource": "flesh", "output": 4 }],
+      "allowed_terrain": ["plains", "village", "ruins", "encampment"],
+      "build_cost": [{ "resource": "ducats", "amount": 15 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "alchemy_workshop",
+      "name": "Alchemy Workshop",
+      "description": "Alchemists distill reagents from local flora and minerals. Produces chemicals for grenades, medicine, and arcane experiments.",
+      "produces": [{ "resource": "alchemy", "output": 3 }],
+      "allowed_terrain": ["marsh", "forest", "laboratory", "city"],
+      "build_cost": [{ "resource": "ducats", "amount": 45 }, { "resource": "relics", "amount": 5 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "apothecary",
+      "name": "Apothecary",
+      "description": "Herbalist gathering natural remedies and poisons from the wild. Less efficient than a workshop but requires fewer resources to establish.",
+      "produces": [{ "resource": "alchemy", "output": 2 }],
+      "allowed_terrain": ["forest", "marsh", "village", "monastery"],
+      "build_cost": [{ "resource": "ducats", "amount": 20 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "shrine",
+      "name": "Shrine / Temple",
+      "description": "A consecrated site where the faithful pray and holy relics are unearthed. Attracts pilgrims bearing sacred artefacts.",
+      "produces": [{ "resource": "relics", "output": 3 }],
+      "allowed_terrain": ["cathedral", "monastery", "ruins", "village"],
+      "build_cost": [{ "resource": "ducats", "amount": 35 }, { "resource": "relics", "amount": 5 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "archaeological_dig",
+      "name": "Archaeological Dig",
+      "description": "Excavation of ancient ruins seeking pre-Fall artefacts. Slow but can uncover extremely valuable relics.",
+      "produces": [{ "resource": "relics", "output": 2 }, { "resource": "occult", "output": 1 }],
+      "allowed_terrain": ["ruins", "cathedral", "mountain"],
+      "build_cost": [{ "resource": "ducats", "amount": 40 }, { "resource": "flesh", "amount": 10 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "dark_altar",
+      "name": "Dark Altar",
+      "description": "A profane site where blood sacrifices fuel infernal rituals. The veil between worlds grows thin here.",
+      "produces": [{ "resource": "occult", "output": 3 }],
+      "allowed_terrain": ["hellgate", "ruins", "cathedral", "marsh"],
+      "build_cost": [{ "resource": "occult", "amount": 10 }, { "resource": "flesh", "amount": 15 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "summoning_circle",
+      "name": "Summoning Circle",
+      "description": "Permanent ritual infrastructure for calling forth entities from beyond the veil. Extremely dangerous but potent.",
+      "produces": [{ "resource": "occult", "output": 4 }, { "resource": "alchemy", "output": 1 }],
+      "allowed_terrain": ["hellgate", "laboratory"],
+      "build_cost": [{ "resource": "occult", "amount": 20 }, { "resource": "relics", "amount": 10 }, { "resource": "flesh", "amount": 20 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "lumber_mill",
+      "name": "Lumber Mill",
+      "description": "Harvests timber for fortifications, gun stocks, and fuel. The forest echoes with the sound of axes.",
+      "produces": [{ "resource": "ducats", "output": 2 }, { "resource": "iron", "output": 1 }],
+      "allowed_terrain": ["forest", "village"],
+      "build_cost": [{ "resource": "ducats", "amount": 20 }, { "resource": "iron", "amount": 5 }],
+      "upgrade_levels": 2
+    },
+    {
+      "id": "harbor_dock",
+      "name": "Harbor Docks",
+      "description": "Deep-water berths for resupply ships. Controls naval logistics and overseas trade routes.",
+      "produces": [{ "resource": "ducats", "output": 3 }, { "resource": "iron", "output": 1 }, { "resource": "powder", "output": 1 }],
+      "allowed_terrain": ["harbor", "port", "coastal"],
+      "build_cost": [{ "resource": "ducats", "amount": 60 }, { "resource": "iron", "amount": 15 }],
+      "upgrade_levels": 3
+    },
+    {
+      "id": "field_hospital",
+      "name": "Field Hospital",
+      "description": "Medical facility reducing losses from trauma. Does not produce resources but reduces post-battle casualties.",
+      "produces": [{ "resource": "flesh", "output": 1 }, { "resource": "alchemy", "output": 1 }],
+      "allowed_terrain": ["encampment", "city", "village", "monastery"],
+      "build_cost": [{ "resource": "ducats", "amount": 30 }, { "resource": "alchemy", "amount": 10 }],
+      "upgrade_levels": 2
+    }
+  ],
+  "crafting_costs": {
+    "description": "Resource costs by battlekit category. Each item in a category requires these resources in addition to its ducat cost.",
+    "categories": {
+      "melee": {
+        "resources": [{ "resource": "iron", "amount": 2 }],
+        "description": "Forged blades and blunt instruments"
+      },
+      "melee_twohanded": {
+        "resources": [{ "resource": "iron", "amount": 4 }],
+        "description": "Large weapons requiring more metal"
+      },
+      "ranged_basic": {
+        "resources": [{ "resource": "iron", "amount": 2 }, { "resource": "powder", "amount": 2 }],
+        "description": "Pistols, muskets, basic rifles"
+      },
+      "ranged_advanced": {
+        "resources": [{ "resource": "iron", "amount": 3 }, { "resource": "powder", "amount": 3 }],
+        "description": "Semi-automatic rifles, automatic pistols"
+      },
+      "ranged_heavy": {
+        "resources": [{ "resource": "iron", "amount": 5 }, { "resource": "powder", "amount": 4 }, { "resource": "alchemy", "amount": 2 }],
+        "description": "Machine guns, flamethrowers"
+      },
+      "shield": {
+        "resources": [{ "resource": "iron", "amount": 3 }],
+        "description": "Trench shields and bucklers"
+      },
+      "armour": {
+        "resources": [{ "resource": "iron", "amount": 4 }],
+        "description": "Body armour, plate, mail"
+      },
+      "armour_reinforced": {
+        "resources": [{ "resource": "iron", "amount": 6 }, { "resource": "alchemy", "amount": 2 }],
+        "description": "Heavy reinforced armour for ELITE"
+      },
+      "grenade": {
+        "resources": [{ "resource": "iron", "amount": 1 }, { "resource": "powder", "amount": 2 }, { "resource": "alchemy", "amount": 1 }],
+        "description": "Frag, incendiary, and gas grenades"
+      },
+      "equipment_holy": {
+        "resources": [{ "resource": "relics", "amount": 3 }],
+        "description": "Blessed icons, holy relics, field shrines"
+      },
+      "equipment_unholy": {
+        "resources": [{ "resource": "occult", "amount": 3 }],
+        "description": "Infernal brands, soul contracts, unholy trinkets"
+      },
+      "equipment_chemical": {
+        "resources": [{ "resource": "alchemy", "amount": 2 }],
+        "description": "Gas masks, medi-kits, martyrdom pills"
+      },
+      "equipment_general": {
+        "resources": [{ "resource": "ducats", "amount": 5 }],
+        "description": "Shovels, musical instruments, generic gear"
+      },
+      "recruitment_troop": {
+        "resources": [{ "resource": "flesh", "amount": 1 }, { "resource": "ducats", "amount": 10 }],
+        "description": "Recruiting a standard Troop model"
+      },
+      "recruitment_elite": {
+        "resources": [{ "resource": "flesh", "amount": 2 }, { "resource": "ducats", "amount": 20 }],
+        "description": "Recruiting an ELITE model"
+      }
+    }
+  },
+  "terrain_buildings": {
+    "description": "Which building types are available per terrain type on the strategic map.",
+    "mappings": {
+      "mountain": ["iron_mine", "powder_mill", "archaeological_dig"],
+      "mine": ["iron_mine", "foundry", "powder_mill"],
+      "quarry": ["iron_mine", "powder_mill", "lumber_mill"],
+      "factory": ["foundry", "munitions_factory", "powder_mill"],
+      "city": ["trade_post", "market", "barracks", "foundry", "munitions_factory", "alchemy_workshop", "field_hospital"],
+      "village": ["trade_post", "barracks", "refugee_camp", "apothecary", "shrine", "lumber_mill", "field_hospital"],
+      "port": ["trade_post", "market", "harbor_dock", "barracks"],
+      "harbor": ["harbor_dock", "trade_post", "market", "munitions_factory"],
+      "coastal": ["trade_post", "harbor_dock", "barracks"],
+      "fortress": ["barracks", "iron_mine", "foundry", "munitions_factory"],
+      "plains": ["refugee_camp", "barracks", "trade_post"],
+      "forest": ["lumber_mill", "apothecary", "alchemy_workshop"],
+      "marsh": ["alchemy_workshop", "apothecary", "dark_altar"],
+      "ruins": ["archaeological_dig", "shrine", "dark_altar", "refugee_camp"],
+      "cathedral": ["shrine", "archaeological_dig", "dark_altar"],
+      "monastery": ["shrine", "apothecary", "field_hospital"],
+      "hellgate": ["dark_altar", "summoning_circle"],
+      "laboratory": ["alchemy_workshop", "summoning_circle", "apothecary"],
+      "crossroads": ["trade_post", "market", "barracks"],
+      "encampment": ["barracks", "field_hospital", "refugee_camp"],
+      "bridge": ["trade_post", "barracks"],
+      "mountain_pass": ["iron_mine", "barracks"]
+    }
+  }
+}

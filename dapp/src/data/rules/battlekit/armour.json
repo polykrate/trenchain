@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "name": "Alchemist Armour",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "ALCHEMIST_ARMOUR"
+    },
+    {
+      "name": "Engineer Body Armour",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "ENGINEER_BODY_ARMOUR"
+    },
+    {
+      "name": "Infernal Iron Armour",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "INFERNAL_IRON_ARMOUR"
+    },
+    {
+      "name": "Machine Armour",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "MACHINE_ARMOUR"
+    },
+    {
+      "name": "Reinforced Armour",
+      "description": "Reinforced armour is a master-crafted suit made individually for the most important and elite troops. Each one is richly decorated and often carries the personal device of the warrior who wears it.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [
+        "MINUS_1_INJURY_DICE"
+      ],
+      "special_rules": null,
+      "code": "REINFORCED_ARMOUR"
+    },
+    {
+      "name": "Standard Armour",
+      "description": "With the advancements in metallurgy and technology, both Faithful and Heretic armies are well-equipped with suits of alloy armour that can withstand an impact from a bullet or turn aside the sharpest of blades. Standard armour is usually mass-produced, but highly effective even against high-calibre weapons.",
+      "battlekit_type": "Armour",
+      "range": "None",
+      "keywords": [
+        "MINUS_1_DICE"
+      ],
+      "special_rules": null,
+      "code": "STANDARD_ARMOUR"
+    }
+  ]
+}

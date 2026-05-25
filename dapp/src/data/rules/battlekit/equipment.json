@@ -1,0 +1,309 @@
+{
+  "items": [
+    {
+      "name": "Alchemical Ammunition",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "ALCHEMICAL_AMMUNITION"
+    },
+    {
+      "name": "Armour-Piercing Bullets",
+      "description": "Advanced armour technology has forced the armouries of the Great War to forge new types of bullets. Expensive and labour-intensive to produce, these hardened tungsten rounds are more effective against battlefield armour.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "AMMUNITION_ARMOUR_PIERCING",
+        "BLOOD_MARKER"
+      ],
+      "special_rules": null,
+      "code": "ARMOUR_PIERCING_BULLETS"
+    },
+    {
+      "name": "Binoculars",
+      "description": "It is quite common for officers to carry finely-crafted battlefield binoculars to survey the land ahead, spot hidden enemy troops and observe any sign of movement.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": "Survey the Land: Enemy models cannot use the INFILTRATOR Keyword to deploy within 16\" of a model with this Keyword unless they are in their own side's deployment zone.",
+      "code": "BINOCULARS"
+    },
+    {
+      "name": "Blessed Icon",
+      "description": "Small icons of saints, great angels and holy warriors are a common sight amongst the Trench Pilgrims. They are hung on rosaries, belts, or attached to portable shrines carried on the Pilgrims' backs.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "BLOOD_MARKER"
+      ],
+      "special_rules": "Talisman: Once during a game, when a Risky Success Roll for a model with a Blessed Icon is a Failure, you can say that the model will use its Talisman. If you do, the model's Activation does not end.",
+      "code": "BLESSED_ICON"
+    },
+    {
+      "name": "Cloak of Alamut",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "CLOAK_OF_ALAMUT"
+    },
+    {
+      "name": "Combat Helmet",
+      "description": "The simple combat helmet has proven its value on the battlefield time and again.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "NEGATE_HEAVY"
+      ],
+      "special_rules": null,
+      "code": "COMBAT_HELMET"
+    },
+    {
+      "name": "Compound Eyes Helmet",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "COMPOUND_EYES_HELMET"
+    },
+    {
+      "name": "Crown of Hellfire",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "CROWN_OF_HELLFIRE"
+    },
+    {
+      "name": "Dum-Dum Bullets",
+      "description": "These hollow-point bullets are far more likely to cause fatal wounds than standard ammunition.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "AMMUNITION_CRITICAL",
+        "BLOOD_MARKER"
+      ],
+      "special_rules": null,
+      "code": "DUM_DUM_BULLETS"
+    },
+    {
+      "name": "Field Shrine",
+      "description": "Holy reliquaries, blessed artefacts and sacred crosses are often carried to the battlefield to encourage the troops, while the Heretics bring idols of the Golden Calf, tortured captives or other wicked totems to bear.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "DEMONIC"
+      ],
+      "special_rules": "A Field Shrine is represented by a terrain piece that is at least 1/2\" high and which is mounted on a 40mm base. It is Impassable terrain. Site of Worship: After you deploy a model that has Field Shrine, you can also deploy their Field Shrine anywhere wholly within their deployment zone. In the Morale Phase, each friendly Field Shrine on the battlefield adds 3 to the number of models you have in your Warband that are not Down or Out of Action, up to a maximum bonus of 9 extra models. Once deployed, the model that had the Field Shrine is not considered to be carrying it for the rest of the game. Tear It Down!: Models can attack a Field Shrine as if it were an enemy model. If it is hit by an attack or is in the blast radius of an attack made with a Weapon that has the BLAST Keyword, it is removed from the battlefield and is removed from the Warband Roster (no Injury Roll is required).",
+      "code": "FIELD_SHRINE"
+    },
+    {
+      "name": "Gas Mask",
+      "description": "Mustard gas, phosgene, chlorine as well as noxious fumes from the bolgias of Hell plague the battlefield. The gas mask allows soldiers to withstand such attacks.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "NEGATE_FEAR"
+      ],
+      "special_rules": null,
+      "code": "GAS_MASK"
+    },
+    {
+      "name": "Grail Devotee",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "GRAIL_DEVOTEE"
+    },
+    {
+      "name": "Hellbound Soul Contract",
+      "description": "An infernal contract signed by a Heretic and the demon who will come to collect the damned soul when death is close. The mortal signatory bursts into Infernal flames when seriously wounded.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": "Fiery Exodus: If a model with a Hellbound Soul Contract is taken Out of Action, before removing it from the battlefield add 1 BLOOD MARKER to each enemy model that is within 1\" of it. Models that have the NEGATE FIRE Keyword are not affected by this special rule.",
+      "code": "HELLBOUND_SOUL_CONTRACT"
+    },
+    {
+      "name": "Holy Relic",
+      "description": "Due to the threat to all Creation, the churches, cathedrals and basilicas have emptied their reliquaries and distributed their relics to the frontline troops to aid them in their battle against the damned.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "BLESSED_1"
+      ],
+      "special_rules": null,
+      "code": "HOLY_RELIC"
+    },
+    {
+      "name": "Incendiary Ammunition",
+      "description": "Developed by Aym, the great duke of Hell, these bullets set any target they hit on fire.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "AMMUNITION_FIRE",
+        "BLOOD_MARKER"
+      ],
+      "special_rules": null,
+      "code": "INCENDIARY_AMMUNITION"
+    },
+    {
+      "name": "Infernal Brand",
+      "description": "A Heretic who has made a holy pilgrimage into Hell itself is branded by their patron devil with an ever-burning mark. Mortal fire no longer has the power to harm them.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "MINUS_2_INJURY_MODIFIER"
+      ],
+      "special_rules": null,
+      "code": "INFERNAL_BRAND"
+    },
+    {
+      "name": "Iron Capirote",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "IRON_CAPIROTE"
+    },
+    {
+      "name": "Marid Shovel",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "MARID_SHOVEL"
+    },
+    {
+      "name": "Martyrdom Pills",
+      "description": "Martyrdom pills are a potent mixture of mind-altering drugs and chemicals that inure a soldier against all pain and injury. However, it takes a tremendous toll on the body.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "BLOOD_MARKER"
+      ],
+      "special_rules": "Inured to Pain: When you deploy a model that has Martyrdom Pills you can say that they will consume them. If you do so, until the end of the game the model has the NEGATE FEAR Keyword. In addition, add -1 INJURY DICE to rolls for attacks that hit the model.",
+      "code": "MARTYRDOM_PILLS"
+    },
+    {
+      "name": "Medi-kit",
+      "description": "Battlefield first aid has brought many soldiers back from the brink of death. Blessed ointments can seal fatal wounds completely, while the black blood of demons used by twisted Heretic medics allows mangled troops to return to the fray.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": "Treat ACTION: A model with this Keyword can take a Treat ACTION. If it does so, take a Risky Success Roll for the model. If the roll is a Failure, the model's Activation ends immediately. If it is a Success or a Critical Success, you can do one of the following things: Remove 1 BLOOD MARKER from the model or a friendly model within 1\" of the model. Stand up a friendly model that is Down and within 1\" of the model.",
+      "code": "MEDI_KIT"
+    },
+    {
+      "name": "Mountaineer Kit",
+      "description": "This kit includes ropes, carabiners, slings, mountaineering harness and pitons to aid a soldier in overcoming almost any vertical obstacle.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": "Ropes and Pitons: Add +1 DICE to Risky Success Rolls for friendly models with this special rule that are attempting to climb a sheer surface.",
+      "code": "MOUNTAINEER_KIT"
+    },
+    {
+      "name": "Musical Instrument",
+      "description": "Horns, drums, trumpets, whistles, bagpipes and many other types of instruments are used extensively in the battles of the Great War. They can bolster the hearts of those facing the horrors of Hell, or they can recite terrifying hymns praising the lords of the Inferno!",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "HEAVY"
+      ],
+      "special_rules": "Fanfare: Add +1 DICE to Risky Success Rolls for friendly models that are taking a Dash ACTION and are within 4\" of one or more models with a Musical Instrument.",
+      "code": "MUSICAL_INSTRUMENT"
+    },
+    {
+      "name": "Restraining Muzzle",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "RESTRAINING_MUZZLE"
+    },
+    {
+      "name": "Shovel",
+      "description": "Battlefield shovels allow troops to dig in and fight from cover in virtually any battlefield.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": "Dug In: A model equipped with a Shovel that starts the game on Open terrain has the COVER Keyword until it moves away from its starting position. In addition, a model equipped with a Shovel can use it as a 2-Handed Melee Weapon instead of using any other Melee Weapons it has.",
+      "code": "SHOVEL"
+    },
+    {
+      "name": "Takwin Anqā Bird",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "TAKWIN_ANQ_BIRD"
+    },
+    {
+      "name": "Tracer Bullets",
+      "description": "Tracer bullets allow soldiers to adjust their aim efficiently.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "AMMUNITION_PLUS_1_DICE",
+        "BLOOD_MARKER"
+      ],
+      "special_rules": null,
+      "code": "TRACER_BULLETS"
+    },
+    {
+      "name": "Troop Flag",
+      "description": "Most warbands and units carry banners, flags, standards, pennants or other symbols to rally the troops.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "INFECTION_MARKERS",
+        "HEAVY"
+      ],
+      "special_rules": null,
+      "code": "TROOP_FLAG"
+    },
+    {
+      "name": "Unholy Relic",
+      "description": "An artefact bestowed with unholy power. Examples include nephilim heads, desecrated splinters of the True Cross or mummified body parts of fallen saints and bishops.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "ELITE"
+      ],
+      "special_rules": null,
+      "code": "UNHOLY_RELIC"
+    },
+    {
+      "name": "Unholy Trinket",
+      "description": "Many Heretic Troopers carry a talisman or charm that are sold by soothsayers and imps in the Heretic domains. Such a trinket might be a skull, preserved foetus, horn of a goat, and is often covered in Goetic runes.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [
+        "BLOOD_MARKER"
+      ],
+      "special_rules": "Talisman: Once during a game, when a Risky Success Roll for a model with an Unholy Trinket is a Failure, you can say that the model will use it. If you do, the model's Activation does not end.",
+      "code": "UNHOLY_TRINKET"
+    },
+    {
+      "name": "Wind Amulet",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Equipment",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "WIND_AMULET"
+    }
+  ]
+}

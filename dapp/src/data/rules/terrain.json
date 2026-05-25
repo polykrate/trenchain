@@ -1,0 +1,281 @@
+{
+  "terrain_categories": [
+    {
+      "id": "open",
+      "name": "Open Terrain",
+      "description": "Any area where nothing impedes a model. Models can be moved freely across Open terrain.",
+      "movement_effect": "None",
+      "cover": false
+    },
+    {
+      "id": "difficult",
+      "name": "Difficult Terrain",
+      "description": "Every 1\" a model moves across terrain with this type counts as 2\".",
+      "movement_effect": "1\" costs 2\" of movement",
+      "cover": true
+    },
+    {
+      "id": "dangerous",
+      "name": "Dangerous Terrain",
+      "description": "When activated in or moved into: take a Risky Success Roll. Failure = Injury Roll and Activation ends.",
+      "movement_effect": "Risky Success Roll required",
+      "cover": true
+    },
+    {
+      "id": "impassable",
+      "name": "Impassable Terrain",
+      "description": "Models cannot be moved onto or across this terrain. Exception: models with FLYING Keyword.",
+      "movement_effect": "Cannot cross",
+      "cover": true
+    }
+  ],
+  "terrain_pieces": [
+    {
+      "id": "open_ground",
+      "name": "Open Ground",
+      "category": "open",
+      "description": "Flat, unobstructed ground.",
+      "provides_cover": false,
+      "climbing": false
+    },
+    {
+      "id": "landmark",
+      "name": "Landmark",
+      "category": "impassable",
+      "description": "A single piece of Impassable terrain (statues, shrines, altars). Can be used as scenario markers.",
+      "provides_cover": true,
+      "climbing": false
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "category": "open",
+      "description": "Open terrain for movement. Blocks LoS to far side if tall enough. Grants height advantage (+1 DICE to Ranged if 3\"+ higher than target).",
+      "provides_cover": false,
+      "climbing": false,
+      "special": "Height advantage: +1 DICE to Ranged Attacks if 3\"+ above target. Blocks LoS to far side."
+    },
+    {
+      "id": "linear",
+      "name": "Linear Terrain",
+      "category": "open",
+      "description": "Walls, hedges. Open if up to 1\" high; must Climb if over 1\" high.",
+      "provides_cover": true,
+      "climbing": true,
+      "special": "Defended Obstacle: -1 DICE to Melee if cover lies between attacker and target."
+    },
+    {
+      "id": "trench",
+      "name": "Trench Section",
+      "category": "open",
+      "description": "4-12\" long, 2-4\" wide. Sides are Open if <3\" high, must Climb/Jump Down if 3\"+. Can jump across gap.",
+      "provides_cover": true,
+      "climbing": true,
+      "special": "Grants Cover. Can include crossroads/T-junctions."
+    },
+    {
+      "id": "ruined_building",
+      "name": "Ruined Building",
+      "category": "difficult",
+      "description": "Walls can be Climbed. Stairs/floors are Open; rubble piles are Difficult terrain.",
+      "provides_cover": true,
+      "climbing": true
+    },
+    {
+      "id": "corner_ruin",
+      "name": "Corner Ruin",
+      "category": "difficult",
+      "description": "Two ruined walls in L or T shape, up to 6\" each. Can include upper floors. Rubble is Difficult.",
+      "provides_cover": true,
+      "climbing": true
+    },
+    {
+      "id": "river",
+      "name": "River",
+      "category": "dangerous",
+      "description": "Enters one edge, exits another. Dangerous terrain. Must include crossing points (bridges/fords = Open).",
+      "provides_cover": false,
+      "climbing": false,
+      "special": "Only usable if scenario requires or both players agree."
+    },
+    {
+      "id": "stream",
+      "name": "Stream",
+      "category": "difficult",
+      "description": "Enters from edge, exits by different edge or ends in swamp/lake. Difficult terrain. Includes crossing points.",
+      "provides_cover": false,
+      "climbing": false
+    },
+    {
+      "id": "barbed_wire",
+      "name": "Barbed Wire",
+      "category": "dangerous",
+      "description": "Area of Dangerous terrain. Common in No Man's Land and Trench Lines.",
+      "provides_cover": false,
+      "climbing": false
+    },
+    {
+      "id": "crater",
+      "name": "Crater / Rubble",
+      "category": "difficult",
+      "description": "Area of Difficult terrain. Shell craters, piles of rubble, fallen trees.",
+      "provides_cover": true,
+      "climbing": false
+    },
+    {
+      "id": "minefield",
+      "name": "Minefield",
+      "category": "dangerous",
+      "description": "Area of Dangerous terrain. Hidden explosive devices.",
+      "provides_cover": false,
+      "climbing": false
+    }
+  ],
+  "battlefield_archetypes": [
+    {
+      "id": "no_mans_land",
+      "name": "No Man's Land",
+      "description": "The area between trench systems. Stark and deadly, criss-crossed with machine-gun fire and artillery. Only occasional ruins, craters, and shrines provide cover.",
+      "allowed_terrain": ["trench", "ruined_building", "corner_ruin", "hill", "barbed_wire", "crater", "landmark"],
+      "minimum_pieces": "At least 2 of each type. Pieces >8\" count as 2.",
+      "setup_rules": "Each piece at least 3\" from any other. Trenches only within Deployment Zones."
+    },
+    {
+      "id": "decimated_ruins",
+      "name": "Decimated Ruins",
+      "description": "Cities, towns and villages reduced to ruins by constant warfare. Brutal short-ranged engagements among shattered buildings.",
+      "allowed_terrain": ["ruined_building", "corner_ruin", "barbed_wire", "minefield", "crater", "landmark"],
+      "minimum_pieces": "At least 6 ruined buildings + 2 of each other type. Pieces >8\" count as 2.",
+      "setup_rules": "Set up ruins first. First ruin anywhere. Each subsequent ruin 3-9\" from another ruin. Other terrain 3\" from any other."
+    },
+    {
+      "id": "trench_lines",
+      "name": "Trench Lines",
+      "description": "Interconnected trench systems several miles thick. Deep enough to shield warriors. Combat mostly within trenches themselves.",
+      "allowed_terrain": ["trench", "corner_ruin", "barbed_wire", "minefield", "crater", "landmark"],
+      "minimum_pieces": "Enough trenches to span battlefield edge to edge. Plus at least 2 of each other type.",
+      "setup_rules": "Set up trenches first, connecting edge to opposite edge. Other terrain at least 1\" from trenches and 3\" from other terrain."
+    },
+    {
+      "id": "mine_complex",
+      "name": "Mine Complex",
+      "description": "Underground tunnels and surface infrastructure. Narrow passages, support beams, cave-in hazards, and minecart tracks. Close-quarters fighting with extreme cover.",
+      "allowed_terrain": ["trench", "corner_ruin", "crater", "landmark", "barbed_wire"],
+      "minimum_pieces": "At least 4 trench sections (representing tunnels) + 2 corner ruins. Trenches must connect.",
+      "setup_rules": "Set up trench 'tunnels' first forming a network. Corner ruins represent shaft entrances. Other terrain fills dead-ends."
+    },
+    {
+      "id": "urban_warfare",
+      "name": "Urban Warfare",
+      "description": "Street-to-street fighting in a partially intact city. Multi-story buildings, alleyways, barricades, and ambush points at every corner.",
+      "allowed_terrain": ["ruined_building", "corner_ruin", "linear", "barbed_wire", "crater", "landmark"],
+      "minimum_pieces": "At least 8 ruined buildings forming city blocks. 4 linear terrain as barricades. Pieces >8\" count as 2.",
+      "setup_rules": "Buildings placed in rough grid. Streets (open ground) between them must be 3-4\" wide. Barricades block some streets."
+    },
+    {
+      "id": "forest_ambush",
+      "name": "Forest Ambush",
+      "description": "Dense woodland with limited lines of sight. Fallen logs, undergrowth, and streams impede movement. Ideal for close-range engagements and flanking.",
+      "allowed_terrain": ["linear", "stream", "crater", "hill", "landmark"],
+      "minimum_pieces": "At least 6 linear terrain (treelines/logs) + 2 streams or craters. All non-open terrain is Difficult.",
+      "setup_rules": "Linear terrain scattered 2-4\" apart. Entire battlefield counts as Difficult unless on a path (Open lane 2\" wide, max 2 paths)."
+    },
+    {
+      "id": "marsh_crossing",
+      "name": "Marsh Crossing",
+      "description": "Treacherous wetlands with limited solid ground. Boardwalks and causeways offer the only safe passage. Step wrong and the swamp swallows you.",
+      "allowed_terrain": ["stream", "linear", "hill", "landmark", "crater"],
+      "minimum_pieces": "At least 4 streams (representing marshland) + 2 linear (boardwalks). Hills are small islands.",
+      "setup_rules": "Majority of battlefield is Dangerous (marsh). Linear terrain pieces are raised boardwalks (Open). Hills are solid ground islands."
+    },
+    {
+      "id": "fortified_position",
+      "name": "Fortified Position",
+      "description": "A defended stronghold with walls, towers, and killing grounds. The attacker must breach layered defenses while the defender holds chokepoints.",
+      "allowed_terrain": ["linear", "trench", "ruined_building", "hill", "barbed_wire", "minefield", "landmark"],
+      "minimum_pieces": "At least 4 linear (walls) + 2 ruined buildings (towers). Barbed wire and minefields in front.",
+      "setup_rules": "Walls form a defensive perimeter on one side. Defender deploys behind walls. Open killing ground (12\"+) in front of defenses."
+    },
+    {
+      "id": "river_crossing",
+      "name": "River Crossing",
+      "description": "A bridge or ford as the sole crossing point over an otherwise impassable river. Control the crossing or die trying.",
+      "allowed_terrain": ["river", "linear", "trench", "hill", "crater", "landmark"],
+      "minimum_pieces": "1 river spanning edge to edge. 1-2 bridges (linear placed across river = Open crossing). Hills on flanks.",
+      "setup_rules": "River divides battlefield. Bridge is the only Open crossing (2-3\" wide). Flanking positions on hills provide fire lanes."
+    },
+    {
+      "id": "holy_ground",
+      "name": "Holy Ground",
+      "description": "Sacred architecture — cathedral naves, crypt passages, reliquary chambers. Columns block shots, altar areas are defensible, crypts below hide ambushers.",
+      "allowed_terrain": ["ruined_building", "corner_ruin", "linear", "landmark", "hill"],
+      "minimum_pieces": "1 large central ruin (cathedral). 4 linear (columns/pews). Multiple landmarks (altars/statues).",
+      "setup_rules": "Central cathedral building dominates. Columns provide Cover lanes. Altar (landmark) at center is objective. Crypts (trenches) optional below."
+    },
+    {
+      "id": "industrial_ruin",
+      "name": "Industrial Ruin",
+      "description": "Bombed-out factory with machinery, catwalks, pipes, and fuel tanks. Dangerous terrain from leaked chemicals. Multi-level with elevation advantages.",
+      "allowed_terrain": ["ruined_building", "corner_ruin", "hill", "crater", "barbed_wire", "minefield", "landmark"],
+      "minimum_pieces": "At least 4 ruined buildings (factory blocks). 2 hills (catwalks/platforms). Craters filled with chemicals (Dangerous).",
+      "setup_rules": "Factory blocks placed 4-6\" apart. Catwalks (hills) connect upper levels. Chemical craters (Dangerous) scattered between buildings."
+    },
+    {
+      "id": "open_field",
+      "name": "Open Field",
+      "description": "Wide-open terrain with minimal cover. Artillery dominates. Speed and firepower determine survival — there is nowhere to hide.",
+      "allowed_terrain": ["hill", "crater", "linear", "landmark"],
+      "minimum_pieces": "Maximum 4 terrain pieces total. Mostly open. 1-2 hills, 1-2 craters for minimal cover.",
+      "setup_rules": "Sparse terrain only. No piece within 6\" of another. Vast open killing ground between deployment zones."
+    },
+    {
+      "id": "hellscape",
+      "name": "Hellscape",
+      "description": "Reality fractured by Infernal energy. Lava fissures, floating debris, inverted gravity pockets, and demonic terrain that shifts between turns.",
+      "allowed_terrain": ["river", "crater", "landmark", "hill", "barbed_wire", "minefield"],
+      "minimum_pieces": "At least 2 rivers (lava fissures, Dangerous). 4 craters. Multiple landmarks (daemon totems).",
+      "setup_rules": "Lava fissures (rivers, Dangerous not crossable except at bridges). Craters glow with infernal energy. D6 each turn: on 1, random terrain piece moves D6\" in random direction."
+    }
+  ],
+  "terrain_battlefields": {
+    "description": "Maps strategic map terrain types to which battlefield archetypes are used when fighting at that location.",
+    "mappings": {
+      "port": ["urban_warfare", "fortified_position"],
+      "coastal": ["open_field", "fortified_position"],
+      "fortress": ["fortified_position", "trench_lines"],
+      "mountain_pass": ["mine_complex", "river_crossing", "fortified_position"],
+      "mountain": ["mine_complex", "open_field"],
+      "mine": ["mine_complex"],
+      "quarry": ["mine_complex", "open_field"],
+      "forest": ["forest_ambush"],
+      "ruins": ["decimated_ruins", "holy_ground"],
+      "factory": ["industrial_ruin", "urban_warfare"],
+      "city": ["urban_warfare", "decimated_ruins", "trench_lines"],
+      "village": ["decimated_ruins", "no_mans_land"],
+      "plains": ["open_field", "no_mans_land"],
+      "bridge": ["river_crossing"],
+      "cathedral": ["holy_ground"],
+      "monastery": ["holy_ground", "fortified_position"],
+      "marsh": ["marsh_crossing"],
+      "hellgate": ["hellscape"],
+      "laboratory": ["industrial_ruin", "mine_complex"],
+      "crossroads": ["no_mans_land", "open_field"],
+      "harbor": ["urban_warfare", "fortified_position"],
+      "encampment": ["trench_lines", "no_mans_land"]
+    }
+  },
+  "combat_modifiers": {
+    "cover": {
+      "ranged_penalty": "-1 DICE to Ranged Attack rolls if target is in Cover",
+      "melee_penalty": "-1 DICE (Defended Obstacle) if cover lies between attacker and target"
+    },
+    "elevation": {
+      "ranged_bonus": "+1 DICE to Ranged Attack if attacker is 3\"+ higher than target"
+    },
+    "climbing": {
+      "risky_roll": "Risky Success Roll required to Climb sheer surfaces. Failure = Activation ends.",
+      "jumping_gap": "Can jump gaps up to half Movement Characteristic. Risky Success Roll. Failure = Fall.",
+      "jumping_down": "Free (no movement cost). Falls 3\"+ = Injury Roll (+1 INJURY DICE per 3\")."
+    }
+  }
+}

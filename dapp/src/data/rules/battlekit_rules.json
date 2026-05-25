@@ -1,0 +1,79 @@
+{
+  "slot_system": {
+    "hands": 2,
+    "rules": [
+      { "type": "OneHanded", "slots": 1, "max_per_model": 2 },
+      { "type": "TwoHanded", "slots": 2, "max_per_model": 1 },
+      { "type": "Shield", "slots": 1, "max_per_model": 1, "off_hand_only": true },
+      { "type": "Grenade", "slots": 0, "max_per_model": null },
+      { "type": "Armour", "slots": 0, "max_per_model": 1 },
+      { "type": "Equipment", "slots": 0, "max_per_model": null }
+    ]
+  },
+  "tags": {
+    "BAYONET_LUG": {
+      "name": "Bayonet Lug",
+      "description": "This 2-Handed ranged weapon has a bayonet lug. A Bayonet can be attached, making the weapon also usable in melee without occupying an extra slot.",
+      "effect": "ALLOWS_BAYONET_ATTACHMENT"
+    },
+    "SHIELD_COMBO": {
+      "name": "Shield Combo",
+      "description": "This weapon can be used one-handed in combination with a Shield, despite normally being 2-Handed.",
+      "effect": "REDUCES_TO_ONE_HAND_WITH_SHIELD"
+    },
+    "ELITE_ONLY": {
+      "name": "ELITE only",
+      "description": "Only models with the ELITE keyword can equip this item.",
+      "requires_keyword": "ELITE"
+    },
+    "HEADGEAR": {
+      "name": "Headgear",
+      "description": "A model can only wear one piece of Headgear at a time.",
+      "exclusive_slot": "HEADGEAR"
+    },
+    "CONSUMABLE": {
+      "name": "Consumable",
+      "description": "This item is used once and then removed from the roster after the game.",
+      "one_use": true
+    },
+    "HEAVY": {
+      "name": "Heavy",
+      "description": "Model cannot Dash or Climb while equipped with this item.",
+      "movement_penalty": true
+    },
+    "LIMIT_1": { "name": "Limit 1", "description": "Maximum 1 in the warband.", "warband_limit": 1 },
+    "LIMIT_2": { "name": "Limit 2", "description": "Maximum 2 in the warband.", "warband_limit": 2 },
+    "LIMIT_3": { "name": "Limit 3", "description": "Maximum 3 in the warband.", "warband_limit": 3 },
+    "LIMIT_4": { "name": "Limit 4", "description": "Maximum 4 in the warband.", "warband_limit": 4 },
+    "LIMIT_1_EXCL_MECH_INFANTRY": {
+      "name": "Limit 1 excluding Mechanized Heavy Infantry",
+      "description": "Maximum 1 in the warband, not counting models that are Mechanized Heavy Infantry.",
+      "warband_limit": 1,
+      "excludes_entry": "MECHANIZED_HEAVY_INFANTRY"
+    }
+  },
+  "model_restriction_tags": {
+    "DEATH_COMMANDO_ONLY": { "name": "Death Commando only", "requires_entry": "DEATH_COMMANDO" },
+    "ANOINTED_ONLY": { "name": "Anointed only", "requires_entry": "ANOINTED_HEAVY_INFANTRY" },
+    "ANOINTED_AND_ELITE": { "name": "Anointed & ELITE only", "requires_entry_any": ["ANOINTED_HEAVY_INFANTRY"], "requires_keyword": "ELITE" },
+    "HERETIC_TROOPERS_ONLY": { "name": "Heretic Troopers & Legionnaires only", "requires_entry_any": ["HERETIC_TROOPER"] },
+    "AMALGAM_ONLY": { "name": "Amalgam only", "requires_entry": "AMALGAM" },
+    "ELITE_AND_HERALDS": { "name": "ELITE & Heralds only", "requires_keyword": "ELITE", "requires_entry_any": ["HERALD_OF_BEELZEBUB"] },
+    "PIT_LOCUST_ONLY": { "name": "Pit Locust only", "requires_entry": "PIT_LOCUST" },
+    "SORCERER_ONLY": { "name": "Sorcerer only", "requires_entry": "SORCERER" },
+    "HELL_KNIGHT_ONLY": { "name": "Hell Knight only", "requires_entry": "HELL_KNIGHT" },
+    "HUNTER_ONLY": { "name": "Hunter only", "requires_entry": "HUNTER_OF_THE_LEFT_HAND_PATH" },
+    "COMBAT_MEDIC_ONLY": { "name": "Combat Medic only", "requires_entry": "COMBAT_MEDIC" },
+    "MACHINE_ARMOUR_WEARER_ONLY": { "name": "Models wearing Machine Armour only", "requires_equipment": "MACHINE_ARMOUR" },
+    "COMBAT_ENGINEER_ONLY": { "name": "Combat Engineer only", "requires_entry": "COMBAT_ENGINEER" },
+    "ELITE_AND_MECH_INFANTRY": { "name": "ELITE & Mechanized Heavy Infantry only", "requires_keyword": "ELITE", "requires_entry_any": ["MECHANIZED_HEAVY_INFANTRY"] },
+    "SULTANATE_SAPPERS_ONLY": { "name": "Sultanate Sappers only", "requires_entry": "SULTANATE_SAPPER" },
+    "BRAZEN_BULL_ONLY": { "name": "Brazen Bull only", "requires_entry": "BRAZEN_BULL" },
+    "ELITE_AND_JANISSARIES": { "name": "ELITE & Janissaries only", "requires_keyword": "ELITE", "requires_entry_any": ["JANISSARY"] },
+    "SULTANATE_ASSASSINS_ONLY": { "name": "Sultanate Assassins only", "requires_entry": "SULTANATE_ASSASSIN" },
+    "JABIREAN_ALCHEMIST_ONLY": { "name": "Jabirean Alchemist only", "requires_entry": "JABIREAN_ALCHEMIST" },
+    "ELITE_AND_PIT_LOCUSTS": { "name": "ELITE & Pit Locusts only", "requires_keyword": "ELITE", "requires_entry_any": ["PIT_LOCUST"] },
+    "YOKE_FIEND_ONLY": { "name": "Yoke Fiend only", "requires_entry": "YOKE_FIEND" },
+    "WRETCHED_AND_YOKE_FIENDS_ONLY": { "name": "Wretched & Yoke Fiends only", "requires_entry_any": ["WRETCHED", "YOKE_FIEND"] }
+  }
+}

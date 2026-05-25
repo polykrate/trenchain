@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "description": "Control status of TC regions. Year 1914. Iron Wall = crescent from Caspian (N of Tehran) to Red Sea.",
+    "version": "5.0"
+  },
+  "factions": {
+    "FAITHFUL_CHRISTIAN": {
+      "name": "The Faithful (Christendom)",
+      "color": "rgba(100,160,220,0.12)",
+      "description": "European Christendom and allied forces"
+    },
+    "FAITHFUL_ISLAMIC": {
+      "name": "The Faithful (Iron Sultanate)",
+      "color": "rgba(180,140,60,0.15)",
+      "description": "The Great Sultanate behind the Iron Wall of Dhu al-Qarnayn"
+    },
+    "HERETIC": {
+      "name": "Forces of Hell",
+      "color": "rgba(120,0,0,0.2)",
+      "description": "Earthly Domains of Hell — demons, heretics, and the damned"
+    },
+    "NEUTRAL": {
+      "name": "Neutral / Independent",
+      "color": "rgba(120,120,80,0.1)",
+      "description": "Not directly aligned with either side"
+    }
+  },
+  "regions": {
+    "kalmar_union": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "The Kalmar Union (Scandinavia). Remote northern territories under Faithful control."
+    },
+    "crown_england": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "The Crown of England, Kingdom of Eire, Kingdom of Alba and Wales. Project Invincible launched the Moving Fortress of Britannia.",
+      "contested_provinces": ["Highland", "Argyll and Bute", "Perth and Kinross", "Aberdeenshire"]
+    },
+    "france": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Kingdom of France. The Antipope of Avignon is a heretical schismatic threat in the south.",
+      "contested_provinces": ["Vaucluse", "Bouches-du-Rhône"]
+    },
+    "holy_roman_empire": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "The Holy Roman Empire — Germanic heartlands, including the Free State of Prussia."
+    },
+    "iberia": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Castille-Aragon Union & Kingdom of Portugal. The Breach of Cordoba (1910): Heretics struck from Gibraltar.",
+      "contested_provinces": ["Córdoba", "Cádiz", "Seville", "Málaga", "Huelva", "Granada", "Almería"]
+    },
+    "papal_states": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "The Papal States. Seat of the Church Militant and naval power in the Mediterranean."
+    },
+    "hungary": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Kingdom of Hungary and Principality of Wallachia. Bulwark against the Balkan Heretic advance."
+    },
+    "balkans": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "contested",
+      "note": "Frontline. Heretic Rijeka seized in 1872. Greece holds firm. The Sacred Order of the Dragon defends Wallachia.",
+      "contested_provinces": ["Primorje-Gorski Kotar", "Split-Dalmatia", "Dubrovnik-Neretva"]
+    },
+    "plc": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Polish-Lithuanian Commonwealth. Includes the Free State of Prussia and Teutonic Order."
+    },
+    "kyiv": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Principality of Kyiv. Eastern Orthodox Faithful holding the steppes."
+    },
+    "novgorod": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "faithful",
+      "note": "Czardom of Novgorod. Vast northern forests and the Kingdom of Perm."
+    },
+    "anatolia": {
+      "faction": "HERETIC",
+      "control": "heretic",
+      "note": "After the destruction of Byzantium, all of Anatolia fell to the forces of Hell. The Taurus Mts mark the northern anchor of the Iron Wall."
+    },
+    "golden_khanate": {
+      "faction": "NEUTRAL",
+      "control": "neutral",
+      "note": "The Golden Khanate. Steppe nomads maintain uneasy independence."
+    },
+    "caucasus": {
+      "faction": "NEUTRAL",
+      "control": "contested",
+      "note": "Alamut endures outside the Iron Wall — protected by warped time and space. A brutal contested frontier."
+    },
+    "new_antioch": {
+      "faction": "FAITHFUL_CHRISTIAN",
+      "control": "contested",
+      "note": "Principality of New Antioch. Duke Constantine XI commands. The Home of All Our Hopes, first line of defence. Carcass Front to the north."
+    },
+    "levant": {
+      "faction": "HERETIC",
+      "control": "heretic",
+      "note": "The Gate of Hell opened in Jerusalem 1099. The Levant is the Earthly Domain of Beelzebub. Inverted pyramids and temples to the Princes of Hell."
+    },
+    "iron_sultanate": {
+      "faction": "FAITHFUL_ISLAMIC",
+      "control": "faithful",
+      "note": "Behind the Iron Wall (Caspian to Red Sea crescent). Tehran, Aleppo, Baghdad, Mecca within. Damascus is a Gate. Four Great Gates. Never broken."
+    },
+    "morocco": {
+      "faction": "NEUTRAL",
+      "control": "neutral",
+      "note": "Kingdom of Morocco. Northern coast near Heretic Gibraltar is contested.",
+      "contested_provinces": ["Tanger-Tétouan", "Tanger - Tétouan", "Tangier"]
+    },
+    "numidia": {
+      "faction": "FAITHFUL_ISLAMIC",
+      "control": "contested",
+      "note": "Kingdom of Numidia — part of the anti-Heretic coalition with Nubia and Abyssinia. Resisting Mammon's westward advance."
+    },
+    "libya": {
+      "faction": "HERETIC",
+      "control": "heretic",
+      "note": "Under Heretic control. Staging ground for Mammon's push toward Numidia and Mali."
+    },
+    "domain_mammon": {
+      "faction": "HERETIC",
+      "control": "heretic",
+      "note": "Domain of Mammon (Prince of Greed). Egypt and Sudan consumed. Knights of Avarice strip all wealth. Pushing toward Numidia and Abyssinia."
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "threshold_table": [
+    { "game": 1, "threshold_value": 700, "field_strength": 10 },
+    { "game": 2, "threshold_value": 800, "field_strength": 11 },
+    { "game": 3, "threshold_value": 900, "field_strength": 12 },
+    { "game": 4, "threshold_value": 1000, "field_strength": 13 },
+    { "game": 5, "threshold_value": 1100, "field_strength": 14 },
+    { "game": 6, "threshold_value": 1200, "field_strength": 15 },
+    { "game": 7, "threshold_value": 1300, "field_strength": 16 },
+    { "game": 8, "threshold_value": 1400, "field_strength": 17 },
+    { "game": 9, "threshold_value": 1500, "field_strength": 18 },
+    { "game": 10, "threshold_value": 1600, "field_strength": 19 },
+    { "game": 11, "threshold_value": 1700, "field_strength": 20 },
+    { "game": 12, "threshold_value": 1800, "field_strength": 22 }
+  ],
+  "victory_points": {
+    "winner": 15,
+    "loser": 7,
+    "draw": 10
+  },
+  "glorious_deeds": {
+    "description": "Each Glorious Deed can only be carried out once per game, but several times across a campaign.",
+    "effects": [
+      "+1 Victory Point toward winning the game",
+      "ELITE models that carry out Glorious Deeds receive +1 Experience Point",
+      "+1 Glory Point (☼) for the Warband",
+      "+1D6 to Promotion Pool after the game"
+    ]
+  },
+  "glory_points": {
+    "description": "Earned by carrying out Glorious Deeds. Spent in Quartermaster Step to purchase Battlekit/models costed in ☼, Glory Items, or Mercenaries.",
+    "can_save": true
+  },
+  "trauma": {
+    "troops": {
+      "description": "Roll D6 for each Troop taken Out of Action.",
+      "dead_range": [1, 2],
+      "survived_range": [3, 4, 5, 6]
+    },
+    "elite": {
+      "description": "Roll D66 for each ELITE model taken Out of Action.",
+      "battle_scars": "Each OOA = +1 Battle Scar. At 3 Battle Scars = Unfit for Duty (removed)."
+    },
+    "trauma_table": [
+      { "roll": "11", "name": "Dead", "effect": "Remove model and Battlekit from roster." },
+      { "roll": "12", "name": "Captured", "effect": "Negotiate ransom in ducats. If not paid, executed. If paid, Full Recovery." },
+      { "roll": "13", "name": "Severe Nerve Damage", "effect": "All Success Rolls treated as Risky Success Rolls." },
+      { "roll": "14", "name": "Hand Wound", "effect": "-1 DICE to Melee attacks with weapon in injured hand." },
+      { "roll": "15", "name": "Lost an Eye", "effect": "-1 DICE to Ranged Attacks. Second time = blinded, removed." },
+      { "roll": "16", "name": "Chest Wound", "effect": "+1 INJURY DICE to Injury Rolls targeting this model." },
+      { "roll": "21", "name": "Insomniac", "effect": "Must be first deployed. Loses INFILTRATOR." },
+      { "roll": "22", "name": "Head Wound", "effect": "Cannot gain XP. Assign Promotion Dice as Troop. Roll of 6 regains XP." },
+      { "roll": "23", "name": "Shell-shocked", "effect": "First deployment: D6, on 1-2 = -1 DICE for rest of game." },
+      { "roll": "24", "name": "Dark Memory", "effect": "-1 DICE to Melee vs models from Warband that caused injury." },
+      { "roll": "25", "name": "Paranoid", "effect": "Cannot deploy within 8\" of friendly model." },
+      { "roll": "26", "name": "Lost Arm", "effect": "Cannot use 2-hand Battlekit. Only one 1-hand item." },
+      { "roll": "31", "name": "Leg Wound", "effect": "-2\" Movement. -1 DICE to Dash Risky Success Roll." },
+      { "roll": "32", "name": "Expensive Treatment", "effect": "Must deduct 10 ducats before deploying." },
+      { "roll": "33", "name": "Possessed", "effect": "First ACTION must be Dash away 3\" if >1\" from enemies." },
+      { "roll": "34", "name": "Muscle Damage", "effect": "Cannot have HEAVY Battlekit. Existing HEAVY items lost." },
+      { "roll": "35", "name": "Minor Wound", "effect": "Cannot be used in next game." },
+      { "roll": "36", "name": "Robbed", "effect": "All Battlekit lost. No Injury or Battle Scar." },
+      { "roll": "41-63", "name": "Full Recovery", "effect": "No ill effects. No Injury or Battle Scar." },
+      { "roll": "64", "name": "Hardened", "effect": "Gains NEGATE FEAR. No Injury or Battle Scar." },
+      { "roll": "65", "name": "Bitter Lessons", "effect": "Gains D3 extra Experience Points. No Injury or Battle Scar." },
+      { "roll": "66", "name": "Prominent Scar", "effect": "+1 DICE to Melee vs causing Warband. No Injury or Battle Scar." }
+    ]
+  },
+  "promotions": {
+    "description": "Troops can be Promoted to ELITE status using Promotion Dice.",
+    "dice_pool": "1D6 base + 1D6 per Glorious Deed carried out in the game.",
+    "assignment": "Assign dice to Troop models. Cannot assign 3rd die until all Troops have 2, etc.",
+    "success": "Roll a 6 = Promoted to ELITE. After 5 consecutive non-6 rolls, next roll is automatic 6.",
+    "max_elites": 6,
+    "on_promotion": "Gains ELITE Keyword. Starts with 0 XP but gains 1 for surviving."
+  },
+  "experience": {
+    "sources": [
+      { "condition": "ELITE model survived the game (even if taken OOA)", "xp": 1 },
+      { "condition": "ELITE model performed at least 1 Glorious Deed", "xp": 1 }
+    ],
+    "advancement": "When XP reaches a circle-marked box on roster, make an Advancement Roll.",
+    "advancement_roll": {
+      "steps": [
+        "Pick two Skill Tables to roll on",
+        "Roll 2D6 on each table, look up available Skills",
+        "If rolled Skill already owned, use next lowest (or highest)",
+        "If Patron Skill rolled, use one from your Patron",
+        "Pick one of the two Skills to learn"
+      ]
+    },
+    "skill_tables": ["Melee & Strength", "Ranged", "Stealth & Speed", "Wildcard"]
+  },
+  "campaign_scenarios": {
+    "early": {
+      "games": "1-3",
+      "scenarios": ["Claim No Man's Land", "Hunt for Heroes", "The High Ground", "Relic Hunt", "Supply Raid"]
+    },
+    "mid": {
+      "games": "4-8",
+      "scenarios": ["Hunt for Heroes", "Armoured Train", "Trench Warfare", "Claim No Man's Land", "Dragon Hunt"]
+    },
+    "endgame": {
+      "games": "9-11",
+      "scenarios": ["Trench Warfare", "Dragon Hunt", "From Below", "Fields of Glory", "Don't Breathe"]
+    },
+    "final": {
+      "games": "12",
+      "scenarios": ["The Great War"]
+    }
+  },
+  "campaign_phase_steps": [
+    { "order": 1, "name": "Trauma Step", "description": "Check what happened to models taken Out of Action." },
+    { "order": 2, "name": "Promotions & Experience", "description": "Promote Troops, record XP, learn Skills." },
+    { "order": 3, "name": "Reinforcements (Optional)", "description": "Call for reinforcements if heavy losses. Forfeits Exploration and Quartermaster." },
+    { "order": 4, "name": "Exploration", "description": "Roll Exploration Dice to discover loot. Loot = Roll × 10 ducats." },
+    { "order": 5, "name": "Quartermaster", "description": "Recruit models, hire Mercenaries, buy/sell/reallocate Battlekit, purchase Glory Items." },
+    { "order": 6, "name": "Roster Update", "description": "Final update to Warband Roster. Ready for next game." }
+  ]
+}

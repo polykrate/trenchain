@@ -1,0 +1,225 @@
+{
+  "items": [
+    {
+      "name": "Anti-Tank Hammer",
+      "description": "A polearm with a directional explosive mounted on its head. It is exceedingly good at taking out armoured targets but puts its user in grave danger.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [
+        "PISTOL",
+        "COVER",
+        "HERETIC",
+        "REGENERATE_1"
+      ],
+      "special_rules": "Dangerous: Place 1 BLOOD MARKER next to the model using this Weapon if it makes a Melee Attack and the Success Roll is a Success or a Critical Success.",
+      "code": "ANTI_TANK_HAMMER"
+    },
+    {
+      "name": "Assassin's Dagger",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "ASSASSINS_DAGGER"
+    },
+    {
+      "name": "Bayonet",
+      "description": "Bayonets are blades in the form of spikes or daggers that can be fixed to the tip of a firearm and used in melee combat.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [
+        "CRITICAL"
+      ],
+      "special_rules": null,
+      "code": "BAYONET"
+    },
+    {
+      "name": "Beelzebub's Axe",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "BEELZEBUBS_AXE"
+    },
+    {
+      "name": "Blasphemous Staff",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "BLASPHEMOUS_STAFF"
+    },
+    {
+      "name": "Flail/Scourge",
+      "description": "The metal whips of the Church are supremely good at both instilling discipline in the ranks of the faithful and tormenting the heretics. Many devils also enjoy using these weapons due to the excruciating pain they inflict. These weapons are extremely difficult to dodge.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [
+        "PILGRIM"
+      ],
+      "special_rules": "Unwieldy: The +1 DICE Keyword does not apply when this Weapon is used as an Off-Hand Weapon.",
+      "code": "FLAIL_SCOURGE"
+    },
+    {
+      "name": "Great Hammer/Maul",
+      "description": "These are large, cumbersome weapons, often made from sturdy wood with a metal tip of steel, lead or iron of Tartarus. It takes great strength to fight with it for any length of time. They are especially suited for attacking armoured targets.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [
+        "PLUS_1_DICE",
+        "GOLEM"
+      ],
+      "special_rules": null,
+      "code": "GREAT_HAMMER_MAUL"
+    },
+    {
+      "name": "Great Sword/Axe",
+      "description": "Claymores, Zweihanders and even huge battle axes are used in the trenches when bullets fail to stop quick or well-armoured targets. The strikes from these weapons can easily lop off limbs and heads.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [
+        "PISTOL",
+        "COVER",
+        "GOLEM"
+      ],
+      "special_rules": null,
+      "code": "GREAT_SWORD_AXE"
+    },
+    {
+      "name": "Halberd-Gun",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "HALBERD_GUN"
+    },
+    {
+      "name": "Headtaker",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "HEADTAKER"
+    },
+    {
+      "name": "Hellblade",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "HELLBLADE"
+    },
+    {
+      "name": "Malebranche Sword",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "MALEBRANCHE_SWORD"
+    },
+    {
+      "name": "Misericordia",
+      "description": "The misericordia dagger is designed to put enemies out of their misery by finding chinks in the armour: eye slits, neck joints and every other vulnerable seam.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": "Despatch: This weapon has the IGNORE ARMOUR Keyword if the target is Down.",
+      "code": "MISERICORDIA"
+    },
+    {
+      "name": "Plague Blade",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "PLAGUE_BLADE"
+    },
+    {
+      "name": "Polearm",
+      "description": "Trench pikes, billhooks, spears and other long polearms are excellent defensive weapons, but are cumbersome and heavy.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [
+        "BLESSING_MARKER",
+        "CRITICAL"
+      ],
+      "special_rules": null,
+      "code": "POLEARM"
+    },
+    {
+      "name": "Sacrificial Blade",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "SACRIFICIAL_BLADE"
+    },
+    {
+      "name": "Sword/Axe",
+      "description": "Because of the martial traditions of many proud nations and due to the advances in armour technology, swords and axes are extremely popular, especially amongst elite units and officers. They are supremely useful for finishing off downed opponents and causing profusely bleeding wounds.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [
+        "COVER"
+      ],
+      "special_rules": null,
+      "code": "SWORD_AXE"
+    },
+    {
+      "name": "Tartarus Claws",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "TARTARUS_CLAWS"
+    },
+    {
+      "name": "Titan Zulfiqar",
+      "description": "Faction-specific item.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "TITAN_ZULFIQAR"
+    },
+    {
+      "name": "Torture Instrument",
+      "description": "Faction-specific item.",
+      "battlekit_type": "TwoHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "TORTURE_INSTRUMENT"
+    },
+    {
+      "name": "Trench Club",
+      "description": "Trench Clubs are one of the most common weapons of the Great War, as melee combat is frequent and brutal. Usually made of wood with a metal tip from iron, lead or steel, trench clubs often feature spikes and hobnails. Most designs have some form of cord or leather strap at the end to wrap around the user's wrist.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [],
+      "special_rules": null,
+      "code": "TRENCH_CLUB"
+    },
+    {
+      "name": "Trench Knife",
+      "description": "Virtually all soldiers carry a trench knife, dagger or other kind of blade for close quarter engagements. It may lack the devastating power of a great maul or other heavier melee weapons, but this humble weapon has taken countless lives during the Great War.",
+      "battlekit_type": "OneHanded",
+      "range": "Melee",
+      "keywords": [
+        "LEADER"
+      ],
+      "special_rules": null,
+      "code": "TRENCH_KNIFE"
+    }
+  ]
+}

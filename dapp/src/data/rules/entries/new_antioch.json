@@ -1,0 +1,272 @@
+{
+  "faction_id": 3,
+  "faction_code": "ANTIOCH",
+  "entries": [
+    {
+      "id": "LIEUTENANT",
+      "name": "Lieutenant",
+      "min_count": 1,
+      "max_count": 1,
+      "cost": 70,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 2,
+        "melee": 2,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "ELITE",
+        "LEADER",
+        "TOUGH"
+      ],
+      "description": "Lieutenants are the leaders of small squads or platoons of New Antioch's soldiers, playing a fundamental role on the frontlines. They are steadfast in their duty, preserving the unity and morale of their troops amid relentless conflict. A lieutenant may be a noble family's favoured son or daughter, or have risen through the ranks by impressing their superiors with their exceptional strategic acumen and audacious bravery. In addition to their command role, Lieutenants are responsible for acquiring weapons, arms, equipment and provisions for their troops. With resupply sporadic at best, they are frequently forced to loot the battlefields of No Man's Land or even raid settlements to sustain their forces. Having rightfully earned their position, Lieutenants enjoy the privilege of selecting their preferred arms and armour, often claiming the rarest battlefield finds. Many wield distinctive weapons, be it a revered family heirloom, an idiosyncratic affectation, or an ostentatious piece providing some much-needed swagger.",
+      "battlekit_rules": "A Lieutenant can have any Battlekit from the New Antioch Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Hold Your Fire! ACTION",
+          "description": "The Lieutenant orders their warband to stop shooting, forcing the enemy to move first. To represent this, a Lieutenant can take a Hold Your Fire! ACTION. If they do so, pick 1 enemy model that is in the Lieutenant's Line of Sight and that the opponent is allowed to Activate. The Lieutenant's Activation then ends, and the opponent must Activate the model you picked."
+        }
+      ],
+      "composition_note": "A New Antioch Warband must include 1 Lieutenant."
+    },
+    {
+      "id": "SNIPER_PRIEST",
+      "name": "Sniper Priest",
+      "min_count": 0,
+      "max_count": 2,
+      "cost": 50,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 2,
+        "melee": -1,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "ELITE"
+      ],
+      "description": "These devotees of the Church ritually blind themselves as a devotion to God, relying solely on their faith to strike His enemies. Stories have been told that during the Siege of the Monastery of Saint Lux, a Sniper Priest killed a target three miles away.",
+      "battlekit_rules": "A Sniper Priest can have any Battlekit from the New Antioch Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Absolute Faith",
+          "description": "Sniper Priests do not use their eyesight to aim at their enemies. The opposing player cannot spend BLOOD MARKERS to add -DICE to a Ranged Attack by a Sniper Priest."
+        },
+        {
+          "name": "Aim ACTION",
+          "description": "A Sniper Priest can take an Aim ACTION. If they do so, take a Risky Success Roll for the model and add +2 DICE to the roll. If the roll is a Failure, nothing happens and the Sniper Priest's Activation ends. If the roll is a Success or Critical Success, for the rest of the Activation, add +2 DICE to the Success Rolls for Ranged Attacks that are made by the Sniper Priest."
+        }
+      ],
+      "composition_note": "Up to 2."
+    },
+    {
+      "id": "TRENCH_CLERIC",
+      "name": "Trench Cleric",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 60,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "ELITE",
+        "NEGATE_FEAR"
+      ],
+      "description": "A holy warrior entrusted with the very souls of the soldiers in the company. The Cleric chants inspiring battle prayers and can invoke divine miracles, from healing the wounded to smiting the enemy. The Cleric often carries a portable shrine on their back, honouring the company's Patron, be it a revered saint of their homeland, a mighty archangel, or the Lord himself.",
+      "battlekit_rules": "Trench Clerics can have any Battlekit from the New Antioch Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "God is With Us! ACTION",
+          "description": "A Trench Cleric can take a God is With Us! ACTION. If they do so, take a Risky Success Roll for the Trench Cleric. If the roll is a Failure, nothing happens, and the Trench Cleric's Activation ends. If the roll is a Success or a Critical Success, you can place 1 BLESSING MARKER next to the Trench Cleric or a friendly model within 6\" of the Trench Cleric."
+        },
+        {
+          "name": "Onward Christian Soldiers!",
+          "description": "Friendly NEW ANTIOCH models within 8\" of a Trench Cleric have the NEGATE FEAR Keyword."
+        }
+      ],
+      "composition_note": "Up to 1."
+    },
+    {
+      "id": "YEOMAN",
+      "name": "Yeoman",
+      "min_count": 0,
+      "max_count": null,
+      "cost": 30,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 0,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH"
+      ],
+      "description": "The basic troopers of New Antioch are brave men and women who have undergone standard training and sworn an oath to the Duke of New Antioch. Though they may lack the combat skills of more elite troops, they make up for it with sheer numbers and access to a wide array of weaponry.",
+      "battlekit_rules": "A Yeoman may be recruited with a Bolt-Action Rifle for a reduced cost of 5 ducats. The Yeoman can also have any Battlekit from the New Antioch Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Trench Moles",
+          "description": "Trench Moles are scouts who use tunnels that criss-cross No Man's Land to reach positions ahead of the main trench lines. Up to 2 Yeomen can be upgraded to Trench Moles with the INFILTRATOR Keyword at a cost of +10 ducats each. You can include a 3rd Trench Mole in a Warband if the total cost of all of the other models in the Warband (including their Battlekit, etc) adds up to 1,000 ducats or more."
+        }
+      ],
+      "composition_note": "No limit. Trench Mole upgrade limited to 2 (or 3 if warband total >= 1,000 ducats)."
+    },
+    {
+      "id": "SHOCK_TROOPER",
+      "name": "Shock Trooper",
+      "min_count": 0,
+      "max_count": 5,
+      "cost": 45,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 1,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH"
+      ],
+      "description": "Highly trained in combined arms and fireteam tactics, these assault troops specialise in breaching enemy defences, and are masters of rapid assault and melee combat.",
+      "battlekit_rules": "A Shock Trooper can have any Battlekit from the New Antioch Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Assault Drill",
+          "description": "You can ignore the Effect of the HEAVY Keyword for 1 Melee Weapon that a Shock Trooper has. A Shock Trooper still cannot have more than 1 Weapon (of any type) with the HEAVY Keyword."
+        },
+        {
+          "name": "Shock Charge",
+          "description": "When you roll the Charge Bonus for a Shock Trooper, roll 1 extra D6 and use the single highest die to determine the bonus."
+        }
+      ],
+      "composition_note": "Up to 5."
+    },
+    {
+      "id": "COMBAT_ENGINEER",
+      "name": "Combat Engineer",
+      "min_count": 0,
+      "max_count": 2,
+      "cost": 80,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 1,
+        "armour": -2,
+        "base": "25mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "NEGATE_MINED"
+      ],
+      "description": "Combat Engineers specialise in destroying bunkers, discovering minefields, and building battlefield emplacements. Clad in steel body armour and armed for close combat, they brave the most perilous frontlines. Casualties within their ranks are exceedingly high, yet they consider it an honour to fight and die for New Antioch and the Church.",
+      "battlekit_rules": "A Combat Engineer always has Engineer Body Armour and a Shovel. This Battlekit cannot be removed or lost throughout the campaign for any reason. The Injury Modifier for the Armour is included in the model's Profile above. They can also have any Battlekit from the New Antioch Armoury Tables, apart from Armour.",
+      "included_battlekit": [
+        "Engineer Body Armour",
+        "Shovel"
+      ],
+      "abilities": [
+        {
+          "name": "Battlefield Demolition",
+          "description": "You can ignore the Effect of the HEAVY Keyword for 1 Satchel Charge that a Combat Engineer has. A Combat Engineer still cannot have more than 1 Weapon (of any type) with the HEAVY Keyword."
+        },
+        {
+          "name": "Set Mine ACTION",
+          "description": "A Combat Engineer can take a Set Mine ACTION if they are in contact with a terrain piece that measures up to 8\" by 8\" that doesn't have the MINED Keyword. If they do so, take a Success Roll for the model and add +2 DICE to the roll. If the roll is a Failure, nothing happens. If the roll is a Success or a Critical Success, the terrain piece gains the MINED Keyword."
+        },
+        {
+          "name": "Defuse Mine",
+          "description": "When you move a Combat Engineer into contact with a Marker or terrain piece with the MINED Keyword, you can say the Combat Engineer will try to defuse the mine before it detonates. If you do so, take a Risky Success Roll for the model. If the roll is a Failure the mine detonates and the Combat Engineer's Activation ends. If the roll is a Success or a Critical Success, the mine does not detonate, and the Marker or terrain piece loses the MINED Keyword. A model that sets a mine on a terrain piece can defuse the mine automatically if it moves into contact with the terrain piece (do not take a Risky Success Roll)."
+        },
+        {
+          "name": "Fortify ACTION",
+          "description": "A Combat Engineer can take a Fortify ACTION. If they do so, take a Risky Success Roll for the Combat Engineer. If the roll is a Failure, the Combat Engineer's Activation ends. If the roll is a Success or a Critical Success, the Combat Engineer has the COVER Keyword until they move away from their current position."
+        }
+      ],
+      "composition_note": "Up to 2."
+    },
+    {
+      "id": "MECHANIZED_HEAVY_INFANTRY",
+      "name": "Mechanized Heavy Infantry",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 85,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 0,
+        "armour": -2,
+        "base": "40mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "STRONG"
+      ],
+      "description": "Well-armoured, imposing soldiers, the Mechanized Heavy Infantry wield the heavy weaponry of the company. Selected from amongst the best, they undergo heavy chemical enhancements to maximise their strength and endurance.",
+      "battlekit_rules": "A Mechanized Heavy Infantry model always has either Reinforced Armour at cost of 85 ducats, or Machine Armour at a cost of 95 ducats. Their Armour cannot be removed or lost throughout the campaign for any reason. The Injury Modifier for the Armour is included in the model's Profile above. They can have any Battlekit from the New Antioch Armoury Tables, apart from Armour.",
+      "included_battlekit": [
+        "Reinforced Armour (or Machine Armour at 95 ducats with -3 Armour)"
+      ],
+      "abilities": [],
+      "composition_note": "Up to 3. Cost is 85 ducats with Reinforced Armour (-2) or 95 ducats with Machine Armour (-3)."
+    },
+    {
+      "id": "COMBAT_MEDIC",
+      "name": "Combat Medic",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 65,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 0,
+        "armour": -1,
+        "base": "25mm"
+      },
+      "keywords": [
+        "NEW_ANTIOCH",
+        "NEGATE_FEAR"
+      ],
+      "description": "New Antioch Combat Medics are highly-trained specialist troops. Many are devout followers of Saint Michael, the Archangel, revered as both a warrior-saint and the protector of medics, whom they believe steadies their hands and guides their blades. Combat Medics serve a brutal dual duty. They must deliver emergency battlefield treatment aimed at returning soldiers to the fight as swiftly as possible, while also standing shoulder to shoulder with them on the front lines. Their misericordia knives are equally useful for on-the-spot surgery and the rapid dispatch of fallen enemies.",
+      "battlekit_rules": "A Combat Medic always has Standard Armour, a Gas Mask, a Medi-kit, and a Misericordia. The Injury Modifier for the Armour is included in the model's Profile above. They can also have any Battlekit from the New Antioch Armoury Tables, apart from Armour.",
+      "included_battlekit": [
+        "Standard Armour",
+        "Gas Mask",
+        "Medi-kit",
+        "Misericordia"
+      ],
+      "abilities": [
+        {
+          "name": "Expert Medic",
+          "description": "Add +2 DICE to the Risky Success Roll when a Combat Medic carries out a Treat ACTION with their Medi-kit."
+        },
+        {
+          "name": "Finish the Fallen",
+          "description": "Due to their knowledge of anatomy and physiology, medics are experts at inflicting debilitating injuries and excruciating pain. Add +1 INJURY DICE to Injury Rolls for Melee Attacks made by a Combat Medic if the target is Down and does not have the BLACK GRAIL or DEMONIC Keywords."
+        }
+      ],
+      "composition_note": "Up to 1."
+    }
+  ]
+}

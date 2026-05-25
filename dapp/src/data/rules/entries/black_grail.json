@@ -1,0 +1,283 @@
+{
+  "faction_id": 5,
+  "faction_code": "BLACK_GRAIL",
+  "entries": [
+    {
+      "id": "LORD_OF_TUMOURS",
+      "name": "Lord of Tumours",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 130,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 4,
+        "armour": 0,
+        "base": "50mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "ELITE",
+        "FEAR",
+        "LEADER",
+        "NEGATE_GAS",
+        "STRONG",
+        "TOUGH"
+      ],
+      "description": "A high-ranking noble officiant in the Cult of the Black Grail, the Lord of Tumours spreads filth and corruption amongst friend and foe alike. They commune with the Lord of the Flies through a trance-like ecstasy and can channel the very power of the Seventh Circle of Hell which Beelzebub rules.",
+      "battlekit_rules": "A Lord of Tumours can have any Battlekit from the Cult of the Black Grail Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Beelzebub's Touch",
+          "description": "Whenever a Melee Attack made by a Lord of Tumours causes any BLOOD MARKERS or INFECTION MARKERS to be placed on the target, place 1 extra INFECTION MARKER next to the target model."
+        },
+        {
+          "name": "Crushing Blows",
+          "description": "A Lord of Tumours can make a Crushing Blows Melee Attack even if it does not have any Melee Weapons, or instead of using any Melee Weapons that it has. If it does so, this Melee Attack has the CLEAVE 2 Keyword."
+        },
+        {
+          "name": "Undead Fortitude",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Lord of Tumours unless the attack has the FIRE Keyword."
+        }
+      ],
+      "composition_note": "A Cult of the Black Grail Warband must include at least 1 Lord of Tumours or 1 Plague Knight."
+    },
+    {
+      "id": "PLAGUE_KNIGHT",
+      "name": "Plague Knight",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 60,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 2,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "ELITE",
+        "FEAR",
+        "NEGATE_GAS",
+        "STRONG"
+      ],
+      "description": "Ranking lowest in the nobility of the Black Grail, these great armoured warriors were once truly depraved worshippers of Beelzebub. When the Cult of the Black Grail came for them, they willingly submitted to the authority of the Lord of Flies. As a result they retain a semblance of sentience and the ability to wield weapons as they did in life. They aspire to win favour in the eyes of Beelzebub and one day be promoted in the hierarchy of the Order of the Fly.",
+      "battlekit_rules": "A Plague Knight can have any Battlekit from the Cult of the Black Grail Armoury Tables. It must have a suit of Armour. No restrictions apply to any other Types of Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Undead Fortitude",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Plague Knight unless the attack has the FIRE Keyword."
+        },
+        {
+          "name": "Plague Knight Ranks",
+          "description": "Each Plague Knight can be given one of the following ranks: Plague Almoner (10 ducats) — If you convert an Injury Roll into a Bloodbath Roll for an attack made by this Plague Knight, the cost in BLOOD MARKERS and/or INFECTION MARKERS of the Bloodbath Roll is reduced by 1. Knight Companion of the Fly (5 ducats) — Add +1 DICE to either the Ranged or the Melee Characteristic of this Plague Knight (you can choose which). Knight of the Rotten Cross (5 ducats, Limit: 1) — You can purchase 1 Ranged Weapon or 1 Melee Weapon from the New Antioch or Heretic Legions Armoury Tables for this model. Stipulations that apply to the Weapon must be followed. The Weapon cannot be sold or reallocated in the Quartermaster Step but can be replaced if lost."
+        }
+      ],
+      "composition_note": "If a Lord of Tumours is included, up to 2 Plague Knights. If no Lord of Tumours, between 1 and 3 Plague Knights."
+    },
+    {
+      "id": "CORPSE_GUARD",
+      "name": "Corpse Guard",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 55,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "ELITE",
+        "FEAR",
+        "NEGATE_GAS"
+      ],
+      "description": "Only the strongest human devotees can survive the compounding blessings of the Cult of the Black Grail. The ones that do are inducted into the ranks of the Corpse Guards, bodyguards to the nobility of the Cult of the Black Grail. If they serve with distinction, they may one day join the ranks of the Infernal nobility.",
+      "battlekit_rules": "A Corpse Guard can have any Battlekit from the Cult of the Black Grail Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Bodyguard",
+          "description": "If a friendly BLACK GRAIL model within 1\" of a Corpse Guard is hit by a Ranged Attack or Melee Attack, you can say that the Corpse Guard will take the hit. If you do so, make an Injury Roll for the Corpse Guard instead of the original target. This ability cannot be used against attacks that have the BLAST Keyword."
+        },
+        {
+          "name": "Parasite Host",
+          "description": "Whenever a Melee Attack made by a Corpse Guard causes any BLOOD MARKERS or INFECTION MARKERS to be placed on the target, you can remove up to 1 BLOOD MARKER or INFECTION MARKER from the attacking Corpse Guard model."
+        },
+        {
+          "name": "Undead Fortitude",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Corpse Guard unless the attack has the FIRE Keyword."
+        }
+      ],
+      "composition_note": "Up to 3."
+    },
+    {
+      "id": "GRAIL_THRALL",
+      "name": "Grail Thrall",
+      "min_count": 0,
+      "max_count": null,
+      "cost": 25,
+      "profile": {
+        "movement_inches": 5,
+        "movement_type": "Infantry",
+        "ranged": null,
+        "melee": -1,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "FEAR",
+        "NEGATE_GAS"
+      ],
+      "description": "The boons of the Cult of the Black Grail lead slowly but surely down the path of utter corruption. Only very few of the chosen can withstand the blessings of the Lord of the Flies. Most are turned into Grail Thralls, destined to join the endless legions of empty, hollowed-out and diseased husks who must obey the whims of the Cult of the Black Grail nobles for all eternity, while suffering the torment of their countless supernatural infections. Thralls come in two varieties: Grail Thralls, which have become almost impervious to pain, and Fly Thralls, controlled by the gargantuan hell-flies that have buried their proboscis deep into the central nervous system of their victims, allowing far greater mobility in exchange for less resistance to pain. Fly Thralls have a profile of 6\"/Flying, -1 DICE Melee, 0 Armour, 25mm base and gain the FLYING Keyword but do not have Undead Fortitude.",
+      "battlekit_rules": "A Thrall cannot have any Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Overwhelming Horde",
+          "description": "A Grail Thrall or Fly Thrall can make a Melee Attack even though it does not have a Melee Weapon. In addition, add +1 DICE to the Success Roll for a Melee Attack made by a Grail Thrall or Fly Thrall for each other friendly model within 3\" of the attacking model (not including the attacking model itself)."
+        },
+        {
+          "name": "Undead Fortitude",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Grail Thrall unless the attack has the FIRE Keyword. Fly Thralls do not have this ability."
+        }
+      ],
+      "composition_note": "No limit. Each model is either a Grail Thrall (5\"/Infantry) or a Fly Thrall (6\"/Flying, no Undead Fortitude)."
+    },
+    {
+      "id": "HOUND_OF_THE_BLACK_GRAIL",
+      "name": "Hound of the Black Grail",
+      "min_count": 0,
+      "max_count": 3,
+      "cost": 55,
+      "profile": {
+        "movement_inches": 8,
+        "movement_type": "Infantry",
+        "ranged": null,
+        "melee": 1,
+        "armour": 0,
+        "base": "30x60mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "FEAR",
+        "NEGATE_GAS"
+      ],
+      "description": "These are parasitic carcasses of canines infested with maggots and flies spawned from the body of Beelzebub himself. Their unholy mission is to prowl No Man's Land and spread disease and pestilence in the name of their dark master.",
+      "battlekit_rules": "A Hound of the Black Grail cannot have any Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Disease Carrier",
+          "description": "If an enemy model is Activated while it is within 1\" of a Hound of the Black Grail, place 1 INFECTION MARKER next to the enemy model before it carries out any Actions."
+        },
+        {
+          "name": "Frightening Speed",
+          "description": "Add +1 DICE to the Risky Success Roll for a Hound of the Black Grail that is taking a Dash ACTION. In addition, do not halve the Movement Characteristic of a Hound of the Black Grail when it stands up at the start of an Activation."
+        },
+        {
+          "name": "Infested Carcasses",
+          "description": "Hounds of the Black Grail models can add the INFECTION MARKERS Keyword to their melee attacks at a cost of +5 ducats each."
+        },
+        {
+          "name": "Teeth & Claws",
+          "description": "A Hound of the Black Grail can make a Melee Attack even though it does not have a Melee Weapon."
+        },
+        {
+          "name": "Undead Fortitude",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Hound of the Black Grail unless the attack has the FIRE Keyword."
+        }
+      ],
+      "composition_note": "Up to 3."
+    },
+    {
+      "id": "HERALD_OF_BEELZEBUB",
+      "name": "Herald of Beelzebub",
+      "min_count": 0,
+      "max_count": 4,
+      "cost": 50,
+      "profile": {
+        "movement_inches": 10,
+        "movement_type": "Flying",
+        "ranged": 0,
+        "melee": 0,
+        "armour": 0,
+        "base": "40mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "FEAR",
+        "FLYING",
+        "NEGATE_GAS",
+        "SKIRMISHER"
+      ],
+      "description": "Some victims of the Cult of the Black Grail suffer a far worse fate than becoming a Thrall. They are bestowed with the black honour of being melded with hell-flies, growing into a grotesque winged insect made of bloated flesh. After this torturous metamorphosis they take to the air as Heralds of Beelzebub, the winged squires and scouts of the Order of the Fly. Their vestigial human bodies are still conscious as they are slowly eaten from within to be used as fuel by the Herald, all the while their warped bodies fight for the glory of Hell against their will. The Heralds are the vanguard in any assault of the Cult of the Black Grail, and the ear-numbing otherworldly drone of their wings strikes terror in any defender, breaking their focus and sapping their willpower.",
+      "battlekit_rules": "A Herald of Beelzebub can have any Ranged Weapon from the Cult of the Black Grail Armoury Tables. They cannot have any other Battlekit apart from a Compound Eyes Helmet.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Infected Proboscis",
+          "description": "A Herald of Beelzebub can make a Melee Attack with the INFECTION MARKERS Keyword even though it does not have a Melee Weapon. If a Melee Attack made by a Herald of Beelzebub causes any INFECTION MARKERS to be placed on the target model, you can remove up to 1 BLOOD MARKER from the attacking Herald of Beelzebub."
+        },
+        {
+          "name": "Maddening Buzzing",
+          "description": "Up to 1 Herald of Beelzebub model can have the Maddening Buzzing ability at a cost of +10 ducats. Success Rolls taken for enemy models within 8\" of a model with this ability become Risky Success Rolls (there is no additional effect if they are Risky Success Rolls already)."
+        }
+      ],
+      "composition_note": "Up to 4."
+    },
+    {
+      "id": "AMALGAM",
+      "name": "Amalgam",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 140,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 0,
+        "armour": 0,
+        "base": "60mm"
+      },
+      "keywords": [
+        "BLACK_GRAIL",
+        "FEAR",
+        "NEGATE_GAS",
+        "STRONG",
+        "TOUGH"
+      ],
+      "description": "An Amalgam is a huge, shambling mass of dozens of bodies of infected enemy warriors, insects, mammals and any other living creatures that had the misfortune of succumbing to the agonising blessings of the Cult of the Black Grail together. These aberrations shamble across the battlefield like walking mountains of corpulent, diseased flesh, their flailing arms still wielding weapons its victims used in life. Anyone or anything unfortunate enough to be in its path is crushed into a disgusting pulp beneath its elephantine feet.",
+      "battlekit_rules": "An Amalgam has six arms, which allows it to carry a vast combination of different Ranged and Melee Weapons. It can have up to six Ranged or Melee Weapons from the Black Grail Armoury. In addition, an Amalgam can treat two 2-Handed Weapons with the HEAVY Keyword (regardless of whether they are Ranged or Melee Weapons) as 1-Handed Weapons instead of the single 2-Handed Melee Weapon granted by the STRONG Keyword. Remaining 2-Handed Weapons count as two weapons towards this total. An Amalgam cannot have the same Weapon more than twice and it cannot have Grenades. An Amalgam may have up to 1 Trench Shield in place of one of its 1-Handed Weapons, but it does not benefit from the Shield Combo rule. It cannot have any other Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Six-armed Monstrosity",
+          "description": "An Amalgam can take 1 Shoot ACTION per Activation with each Ranged Weapon it is equipped with, and can take 1 Fight ACTION per Activation with each Melee Weapon it is equipped with. The Off-Hand Weapon modifier does not apply to any of its Melee Attacks."
+        },
+        {
+          "name": "Corpulent",
+          "description": "Add -2 INJURY DICE to Injury Rolls for any attacks that target an Amalgam model."
+        },
+        {
+          "name": "Trample ACTION",
+          "description": "An Amalgam can take a Trample ACTION. If it does so, it can make a Melee Attack that must target an enemy model that is Down. A Trample Melee Attack does not use a Melee Weapon and has the IGNORE ARMOUR Keyword."
+        },
+        {
+          "name": "Unstoppable",
+          "description": "Enemy models that are mounted on a base of 32mm or less are not allowed to make a Melee Attack when an Amalgam that is within 1\" of them retreats. In addition, an Amalgam can take a Move or Charge ACTION if all enemy models within 1\" of it are mounted on bases of 32mm or less."
+        }
+      ],
+      "composition_note": "Up to 1."
+    }
+  ]
+}

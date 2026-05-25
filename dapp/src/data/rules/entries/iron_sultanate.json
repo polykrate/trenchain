@@ -1,0 +1,290 @@
+{
+  "faction_id": 4,
+  "faction_code": "SULTANATE",
+  "entries": [
+    {
+      "id": "YZBA",
+      "name": "Yüzbaşı",
+      "min_count": 1,
+      "max_count": 1,
+      "cost": 70,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 2,
+        "melee": 2,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "ELITE",
+        "LEADER",
+        "NEGATE_FEAR",
+        "TOUGH"
+      ],
+      "description": "Military expeditions over the Great Iron Wall into No Man's Land carry many risks, and their commanders are field officers known as Yüzbaşı. They are expected to lead from the front and their selection is solely on merit, with no consideration given to family pedigree or wealth. Yüzbaşı are selected from amongst the very best soldiers of the Sultanate, and their bodies are hardened against injury by the Jabirean arts.",
+      "battlekit_rules": "A Yüzbaşı can have any Battlekit from the Iron Sultanate Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Janissary Veteran",
+          "description": "You can make the Yüzbaşı a Janissary Veteran with the STRONG Keyword and the Janissary Counter-Charge ability at a cost of +10 ducats."
+        },
+        {
+          "name": "Counter-Charge",
+          "description": "If the first ACTION a Yüzbaşı makes during their Activation is a Charge, add +1 DICE to Melee Attacks made by the Yüzbaşı for the rest of the Activation. Requires the Janissary Veteran upgrade."
+        },
+        {
+          "name": "Mubarizun",
+          "description": "A Yüzbaşı is expected to face the mightiest of their enemies in personal combat, inspiring the troops to victory with their personal prowess. Add +1 INJURY DICE for attacks made by a Yüzbaşı if the target model has the TOUGH Keyword."
+        }
+      ],
+      "composition_note": "An Iron Sultanate Warband must include 1 Yüzbaşı."
+    },
+    {
+      "id": "JABIREAN_ALCHEMIST",
+      "name": "Jabirean Alchemist",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 55,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 2,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "ELITE"
+      ],
+      "description": "The Jabirean Alchemist is a master of esoteric powers, able to control fire, ice, metal and liquid, capable of creating intricate mechanical devices and artificial life as well as weapons of calamitous potency. In exchange for the freedom to practise their arts, the Alchemists supply the Sultanate with the peerless Jabirean Battle Lions, and serve on the front lines, where their devastating alchemical compounds melt the flesh from the bones of the Unbelievers, or dissolve through even the toughest enemy armour.",
+      "battlekit_rules": "A Jabirean Alchemist can have any Battlekit from the Iron Sultanate Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Mastery of the Elements",
+          "description": "When this model is deployed for the first time in a game, you can give one of the following Keywords to all of the Jabirean Alchemist's Ranged Weapons and Melee Weapons: FIRE or GAS or SHRAPNEL. All of the Weapons have the same Keyword. If the Weapon already has the Keyword, it does not receive it a second time."
+        },
+        {
+          "name": "Elemental Change ACTION",
+          "description": "A Jabirean Alchemist can take an Elemental Change ACTION. If they do so, take a Risky Success Roll for the model. If the roll is a Failure, nothing happens and the Jabirean Alchemist's Activation ends. If the roll is a Success or a Critical Success, you can change the Master of the Elements Keyword on all of the Jabirean Alchemist's Weapons to one of the other two choices."
+        }
+      ],
+      "composition_note": "Up to 1."
+    },
+    {
+      "id": "SULTANATE_ASSASSIN",
+      "name": "Sultanate Assassin",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 85,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 2,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "ELITE",
+        "INFILTRATOR"
+      ],
+      "description": "Assassins are a legendary order of mystic warriors, whispered about the world over for their secrecy and ruthlessness. Assassins are able to bend space and time using the sacred rituals and powerful hallucinogens discovered by magi of the order. With this esoteric power they prowl behind enemy lines, hunting their targets with merciless efficiency. They can seemingly appear in two places simultaneously, strike a foe with startling speed and then travel back into time to a moment a few heartbeats before, safe from any retaliation.",
+      "battlekit_rules": "A Sultanate Assassin can have any Battlekit from the Iron Sultanate Armoury.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Temporal Assassin",
+          "description": "After determining the Charge Bonus for a Sultanate Assassin that has not already carried out a Fight ACTION in its Activation, you can say that the Sultanate Assassin will split itself through time. If you do so, choose an additional enemy model as the target of the Charge (the normal rules for picking a target apply, but do not count enemy models picked as targets for the Charge as interposing enemy models). Then make a charge move with the Sultanate Assassin which finishes within 1\" of the first enemy model you picked as a target, and then take a Fight ACTION with the enemy model as the target. After resolving the Fight ACTION, you must immediately remove the Sultanate Assassin from the battlefield and redeploy it to within 1\" of the other model that you picked. Then take a second Fight ACTION with the other enemy model as the target. The Sultanate Assassin must use the same Melee Weapon for both attacks, and cannot take a Fight ACTION later in the same Activation."
+        },
+        {
+          "name": "Time Slip",
+          "description": "If your opponent fails their Success Roll for an attack targeting a Sultanate Assassin, you can say the Sultanate Assassin will slip into a moment in the future. If you do so, you can redeploy it anywhere within 6\" of its original location (measured from the centre of its base to the centre of its base), and more than 1\" away from any enemy models. If the failed attack took place because the Sultanate Assassin is retreating, the retreat move ends after you redeploy the model."
+        }
+      ],
+      "composition_note": "Up to 1."
+    },
+    {
+      "id": "AZEB",
+      "name": "Azeb",
+      "min_count": 0,
+      "max_count": null,
+      "cost": 25,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": -1,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "SULTANATE"
+      ],
+      "description": "Azebs are soldiers recruited from the multitude of provinces of the sultanate, where one house in every twenty is required to equip and provide a warrior to serve the prince of Those Who Believe. They are often used by their superiors as light skirmishers to harass and tie down the enemy while heavier troops close in for the kill.",
+      "battlekit_rules": "An Azeb can have any Battlekit from the Iron Sultanate Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Light Skirmishers",
+          "description": "Any number of Azebs can have the SKIRMISHER Keyword at a cost of +5 ducats each."
+        }
+      ],
+      "composition_note": "No limit."
+    },
+    {
+      "id": "SULTANATE_SAPPER",
+      "name": "Sultanate Sapper",
+      "min_count": 0,
+      "max_count": 2,
+      "cost": 50,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 0,
+        "armour": 0,
+        "base": "25mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "NEGATE_MINED"
+      ],
+      "description": "The Sultan's Sappers are valued specialists, holding the great cannons of the Iron Wall no matter what their enemies throw at them. They are easily identified by the terrible burns all over their bodies as their mighty artillery is prone to overheating.",
+      "battlekit_rules": "A Sultanate Sapper always has a Shovel which cannot be removed or lost over the course of the campaign. They can also have any Battlekit from the Iron Sultanate Armoury Tables.",
+      "included_battlekit": [
+        "Shovel"
+      ],
+      "abilities": [
+        {
+          "name": "Set Mine ACTION",
+          "description": "A Sultanate Sapper can take a Set Mine ACTION if they are in contact with a terrain piece that measures up to 8\" by 8\" that doesn't have the MINED Keyword. If they do so, take a Success Roll for the model and add +2 DICE to the roll. If the roll is a Failure, nothing happens. If the roll is a Success or a Critical Success, the terrain piece gains the MINED Keyword."
+        },
+        {
+          "name": "Defuse Mine",
+          "description": "When you move a Sultanate Sapper into contact with a Marker or terrain piece with the MINED Keyword, you can say the Sultanate Sapper will try to defuse the mine before it detonates. If you do so, take a Risky Success Roll for the model. If the roll is a Failure the mine detonates and the Sultanate Sapper's Activation ends. If the roll is a Success or a Critical Success, the mine does not detonate, and the Marker or terrain piece loses the MINED Keyword. A model that sets a mine on a terrain piece can defuse the mine automatically if it moves into contact with the terrain piece (do not take a Risky Success Roll)."
+        },
+        {
+          "name": "Fortify ACTION",
+          "description": "A Sultanate Sapper can take a Fortify ACTION. If they do so, take a Risky Success Roll for the Sultanate Sapper. If the roll is a Failure, the Sultanate Sapper's Activation ends. If the roll is a Success or a Critical Success, the Sultanate Sapper has the COVER Keyword until they move away from their current position."
+        },
+        {
+          "name": "Forward Positions",
+          "description": "When you deploy a Sultanate Sapper for the first time in a game, you can deploy them up to 6\" away from your deployment zone and in contact with a terrain piece that is at least 1/2\" high."
+        }
+      ],
+      "composition_note": "Up to 2."
+    },
+    {
+      "id": "LION_OF_JABIR",
+      "name": "Lion of Jabir",
+      "min_count": 0,
+      "max_count": 2,
+      "cost": 60,
+      "profile": {
+        "movement_inches": 8,
+        "movement_type": "Infantry",
+        "ranged": null,
+        "melee": 1,
+        "armour": 0,
+        "base": "50mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "ARTIFICIAL"
+      ],
+      "description": "Named after the deadly hunters of the plains, the Lions of Jabir can take many forms, not all of them leonine. Each one is a unique masterwork, and they are grown according to the skills and artistry of the Jabirean scientist that created them. The speed and ferocity of the Lions is nearly unmatched, and some even have strange powers granted by their alchemical birth.",
+      "battlekit_rules": "A Lion of Jabir can have Armour and/or a Wind Amulet from the Iron Sultanate Armoury Tables. They cannot have Shields or any other Battlekit. Any number of Lions of Jabir can have the FEAR Keyword at a cost of +5 ducats each.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Agile",
+          "description": "Add +1 DICE to Risky Success Roll when a Lion of Jabir Climbs, Jumps, or makes a Diving Charge, or takes a Dash ACTION."
+        },
+        {
+          "name": "Artificial Life",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Lion of Jabir."
+        },
+        {
+          "name": "Teeth and Claws",
+          "description": "A Lion of Jabir can make a Melee Attack even though it does not have any Melee Weapons."
+        },
+        {
+          "name": "Pin",
+          "description": "Enemy models that are Down and that are mounted on a base of 40mm or less are not allowed to stand up if a Lion of Jabir is within 1\" of them (even if the Lion of Jabir is also Down)."
+        }
+      ],
+      "composition_note": "Up to 2."
+    },
+    {
+      "id": "JANISSARY",
+      "name": "Janissary",
+      "min_count": 0,
+      "max_count": 6,
+      "cost": 55,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 1,
+        "melee": 1,
+        "armour": 0,
+        "base": "32mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "STRONG"
+      ],
+      "description": "The Janissaries are the Sultanate's elite warriors, raised from childhood in the arts of war. Captured during raids upon the desolate northern and eastern marches beyond the Iron Wall, they are subjected to rigorous martial training and indoctrination from an early age. On the battlefield, Janissaries excel at devastating counter-charges, crushing the enemy's elite formations and acting as the bodyguard for high-ranking individuals.",
+      "battlekit_rules": "A Janissary can have any Battlekit from the Iron Sultanate Armoury Tables.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Counter-Charge",
+          "description": "If the first ACTION a Janissary makes during their Activation is a Charge, add +1 DICE to Melee Attacks made by the Janissary for the rest of the Activation."
+        }
+      ],
+      "composition_note": "Up to 6."
+    },
+    {
+      "id": "BRAZEN_BULL",
+      "name": "Brazen Bull",
+      "min_count": 0,
+      "max_count": 1,
+      "cost": 100,
+      "profile": {
+        "movement_inches": 6,
+        "movement_type": "Infantry",
+        "ranged": 0,
+        "melee": 2,
+        "armour": 0,
+        "base": "60mm"
+      },
+      "keywords": [
+        "SULTANATE",
+        "ARTIFICIAL",
+        "FEAR",
+        "STRONG",
+        "TOUGH"
+      ],
+      "description": "A Brazen Bull is a monstrous being of immense power and vitality, capable of tearing even the bastard child of a demon clean in half. The Sultan's armourers equip the Bulls with heavy artillery that even the superhuman Janissaries cannot lift, let alone use in battle: flame cannons, volley guns and holy blades blessed by the Word of the Great Protector.",
+      "battlekit_rules": "A Brazen Bull can have Battlekit from the Iron Sultanate Armoury Tables. It may only have Weapons that have the HEAVY Keyword, and may not have a Shovel unless it is a Marid Shovel. No restrictions apply to any other Types of Battlekit.",
+      "included_battlekit": [],
+      "abilities": [
+        {
+          "name": "Artificial Life",
+          "description": "Add -1 INJURY DICE to Injury Rolls for a Brazen Bull."
+        },
+        {
+          "name": "Trample ACTION",
+          "description": "A Brazen Bull can take a Trample ACTION. If it does so, it can make a Melee Attack that must target an enemy model that is Down. A Trample Melee Attack does not use a Melee Weapon and has the IGNORE ARMOUR Keyword."
+        }
+      ],
+      "composition_note": "Up to 1."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "name": "Black Grail Shield",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Shield",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "BLACK_GRAIL_SHIELD"
+    },
+    {
+      "name": "Heavy Ballistic Shield",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Shield",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "HEAVY_BALLISTIC_SHIELD"
+    },
+    {
+      "name": "Holy Icon Shield",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Shield",
+      "range": "None",
+      "keywords": [],
+      "special_rules": null,
+      "code": "HOLY_ICON_SHIELD"
+    },
+    {
+      "name": "Trench Shield",
+      "description": "Shields used in trench warfare are made of steel reinforced with orichalcum to allow them to withstand even high-calibre bullets, or from metal mined from Infernal bedrock and shaped in the armouries of Pandemonium, the capital of Hell.",
+      "battlekit_type": "Shield",
+      "range": "None",
+      "keywords": [
+        "MINUS_1_DICE"
+      ],
+      "special_rules": null,
+      "code": "TRENCH_SHIELD"
+    }
+  ]
+}

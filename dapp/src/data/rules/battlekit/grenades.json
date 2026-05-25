@@ -1,0 +1,110 @@
+{
+  "items": [
+    {
+      "name": "Frag Grenades",
+      "description": "Fragmentation grenades or hand bombs are a staple of trench warfare. Usually referred to as frag grenades, they can kill the enemy underground or behind cover. They can also force the enemy into the open, providing targets for rifle and machine gun fire.",
+      "battlekit_type": "Grenade",
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": [
+        "ASSAULT",
+        "BLAST_2",
+        "IGNORE_ARMOUR",
+        "IGNORE_COVER",
+        "SCATTER"
+      ],
+      "special_rules": null,
+      "code": "FRAG_GRENADES"
+    },
+    {
+      "name": "Gas Grenades",
+      "description": "Gas grenades are insidious weapons, attacking the lungs and other internal organs with noxious fumes. Devil alchemists of the Fifth Circle are especially clever in creating these fiendish and hated weapons.",
+      "battlekit_type": "Grenade",
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": [
+        "MINED",
+        "ASSAULT",
+        "BLAST_3",
+        "FLYING",
+        "HERETIC",
+        "IGNORE_ARMOUR",
+        "IGNORE_COVER"
+      ],
+      "special_rules": null,
+      "code": "GAS_GRENADES"
+    },
+    {
+      "name": "Incendiary Grenades",
+      "description": "Incendiary grenades can set their target alight with sulphur, phosphorous or flammable gas captured from the Lake of Fire in the Seventh Circle of Hell.",
+      "battlekit_type": "Grenade",
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": [
+        "ASSAULT",
+        "FEAR",
+        "IGNORE_ARMOUR",
+        "IGNORE_COVER"
+      ],
+      "special_rules": "Liquid Fire: If the Success Roll for a Ranged Attack made with an Incendiary Grenade is a Critical Success then the Injury Roll for the attack has the IGNORE ARMOUR Keyword.",
+      "code": "INCENDIARY_GRENADES"
+    },
+    {
+      "name": "Molotov Cocktail",
+      "description": "Developed on the desperate Finnish battle frontier against ice demons, this improvised weapon consists of a glass bottle containing a flammable substance such as gasoline, alcohol or a napalm-like mixture plus a source of ignition.",
+      "battlekit_type": "Grenade",
+      "range": {
+        "Ranged": 6
+      },
+      "keywords": [
+        "MINED",
+        "ASSAULT",
+        "FEAR",
+        "IGNORE_ARMOUR",
+        "IGNORE_COVER"
+      ],
+      "special_rules": "Liquid Fire: If the Success Roll for a Ranged Attack made with a Molotov Cocktail is a Critical Success then the Injury Roll for the attack has the IGNORE ARMOUR Keyword.",
+      "code": "MOLOTOV_COCKTAIL"
+    },
+    {
+      "name": "Parasite Grenades",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Grenade",
+      "range": null,
+      "keywords": [],
+      "special_rules": null,
+      "code": "PARASITE_GRENADES"
+    },
+    {
+      "name": "Satchel Charge",
+      "description": "Battlefield explosives designed to break apart enemy fortifications and to crack even the toughest of armour.",
+      "battlekit_type": "Grenade",
+      "range": {
+        "Ranged": 6
+      },
+      "keywords": [
+        "PISTOL",
+        "BLAST_3",
+        "BLOOD_MARKER",
+        "GOLEM",
+        "HERETIC",
+        "IGNORE_ARMOUR",
+        "RELOAD"
+      ],
+      "special_rules": "Heavy Explosive: Once during a game, a model with a Satchel Charge can use it to make a Ranged Attack.",
+      "code": "SATCHEL_CHARGE"
+    },
+    {
+      "name": "Warcross",
+      "description": "Faction-specific item.",
+      "battlekit_type": "Grenade",
+      "range": null,
+      "keywords": [],
+      "special_rules": null,
+      "code": "WARCROSS"
+    }
+  ]
+}
