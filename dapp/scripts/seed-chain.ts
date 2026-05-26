@@ -82,13 +82,13 @@ function mapWeaponRange(raw: any): TcPrimitivesWeaponRange {
   if (raw === 'Melee') return { type: 'Melee' };
   if (raw === 'None') return { type: 'None' };
   if (typeof raw === 'object') {
+    if (raw.Ranged != null) return { type: 'Ranged', value: { inches: raw.Ranged } };
+    if (raw.DualPurpose != null) return { type: 'DualPurpose', value: { inches: raw.DualPurpose } };
     if (raw.type === 'Melee') return { type: 'Melee' };
-    if (raw.type === 'None') return { type: 'None' };
-    if (raw.inches) return { type: 'Ranged', value: { inches: raw.inches } };
+    if (raw.type === 'Ranged') return { type: 'Ranged', value: { inches: raw.value?.inches ?? 0 } };
+    if (raw.type === 'DualPurpose') return { type: 'DualPurpose', value: { inches: raw.value?.inches ?? 0 } };
     return { type: 'None' };
   }
-  const match = String(raw).match(/(\d+)/);
-  if (match) return { type: 'Ranged', value: { inches: parseInt(match[1]) } };
   return { type: 'None' };
 }
 
