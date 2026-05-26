@@ -581,6 +581,7 @@ export interface ChainConsts extends GenericChainConsts {
   building: {
     maxNameLen: number;
     maxTerrainsPerBuilding: number;
+    maxResourcesPerBuilding: number;
 
     /**
      * Generic pallet constant
@@ -592,6 +593,41 @@ export interface ChainConsts extends GenericChainConsts {
    **/
   exploration: {
     maxDiscoveries: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Tile`'s constants
+   **/
+  tile: {
+    maxNameLen: number;
+    maxBatchSize: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Region`'s constants
+   **/
+  region: {
+    maxNameLen: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Country`'s constants
+   **/
+  country: {
+    maxNameLen: number;
+    maxRegionsPerCountry: number;
 
     /**
      * Generic pallet constant

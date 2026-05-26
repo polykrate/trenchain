@@ -41,6 +41,7 @@ import type {
   TcPrimitivesStatProfile,
   PalletBattleBattleReport,
   TcPrimitivesExplorationTable,
+  TcPrimitivesRegionControl,
 } from "./types.js";
 
 export type ChainSubmittableExtrinsic<
@@ -3407,17 +3408,19 @@ export interface ChainTx<
      *
      * @param {FixedBytes<32>} code
      * @param {BytesLike} name
-     * @param {number} production
-     * @param {number} costDucats
+     * @param {Array<[FixedBytes<16>, number]>} produces
+     * @param {Array<[FixedBytes<16>, number]>} buildCost
      * @param {Array<FixedBytes<16>>} allowedTerrains
+     * @param {number} upgradeLevels
      **/
     registerBuilding: GenericTxCall<
       (
         code: FixedBytes<32>,
         name: BytesLike,
-        production: number,
-        costDucats: number,
+        produces: Array<[FixedBytes<16>, number]>,
+        buildCost: Array<[FixedBytes<16>, number]>,
         allowedTerrains: Array<FixedBytes<16>>,
+        upgradeLevels: number,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Building";
@@ -3426,9 +3429,10 @@ export interface ChainTx<
             params: {
               code: FixedBytes<32>;
               name: BytesLike;
-              production: number;
-              costDucats: number;
+              produces: Array<[FixedBytes<16>, number]>;
+              buildCost: Array<[FixedBytes<16>, number]>;
               allowedTerrains: Array<FixedBytes<16>>;
+              upgradeLevels: number;
             };
           };
         },
@@ -3447,6 +3451,27 @@ export interface ChainTx<
           palletCall: {
             name: "RemoveBuilding";
             params: { code: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} code
+     * @param {FixedBytes<32>} name
+     **/
+    registerResource: GenericTxCall<
+      (
+        code: FixedBytes<16>,
+        name: FixedBytes<32>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Building";
+          palletCall: {
+            name: "RegisterResource";
+            params: { code: FixedBytes<16>; name: FixedBytes<32> };
           };
         },
         ChainKnownTypes
@@ -3537,6 +3562,275 @@ export interface ChainTx<
           palletCall: {
             name: "GrantExplorationSkill";
             params: { warbandId: number; skill: FixedBytes<16> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Tile`'s transaction calls
+   **/
+  tile: {
+    /**
+     *
+     * @param {[number, number]} coord
+     * @param {FixedBytes<16>} terrain
+     * @param {BytesLike | undefined} name
+     * @param {FixedBytes<32> | undefined} region
+     **/
+    registerTile: GenericTxCall<
+      (
+        coord: [number, number],
+        terrain: FixedBytes<16>,
+        name: BytesLike | undefined,
+        region: FixedBytes<32> | undefined,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Tile";
+          palletCall: {
+            name: "RegisterTile";
+            params: {
+              coord: [number, number];
+              terrain: FixedBytes<16>;
+              name: BytesLike | undefined;
+              region: FixedBytes<32> | undefined;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {Array<[[number, number], FixedBytes<16>, BytesLike | undefined, FixedBytes<32> | undefined]>} tiles
+     **/
+    registerTilesBatch: GenericTxCall<
+      (
+        tiles: Array<
+          [
+            [number, number],
+            FixedBytes<16>,
+            BytesLike | undefined,
+            FixedBytes<32> | undefined,
+          ]
+        >,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Tile";
+          palletCall: {
+            name: "RegisterTilesBatch";
+            params: {
+              tiles: Array<
+                [
+                  [number, number],
+                  FixedBytes<16>,
+                  BytesLike | undefined,
+                  FixedBytes<32> | undefined,
+                ]
+              >;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {[number, number]} coord
+     * @param {FixedBytes<32> | undefined} region
+     **/
+    setTileRegion: GenericTxCall<
+      (
+        coord: [number, number],
+        region: FixedBytes<32> | undefined,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Tile";
+          palletCall: {
+            name: "SetTileRegion";
+            params: {
+              coord: [number, number];
+              region: FixedBytes<32> | undefined;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Region`'s transaction calls
+   **/
+  region: {
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {BytesLike} name
+     * @param {FixedBytes<32>} country
+     * @param {TcPrimitivesRegionControl} control
+     **/
+    registerRegion: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        name: BytesLike,
+        country: FixedBytes<32>,
+        control: TcPrimitivesRegionControl,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Region";
+          palletCall: {
+            name: "RegisterRegion";
+            params: {
+              code: FixedBytes<32>;
+              name: BytesLike;
+              country: FixedBytes<32>;
+              control: TcPrimitivesRegionControl;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {TcPrimitivesRegionControl} control
+     **/
+    setRegionControl: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        control: TcPrimitivesRegionControl,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Region";
+          palletCall: {
+            name: "SetRegionControl";
+            params: {
+              code: FixedBytes<32>;
+              control: TcPrimitivesRegionControl;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} region
+     * @param {[number, number]} coord
+     * @param {TcPrimitivesAlignment} alignment
+     **/
+    setTileControl: GenericTxCall<
+      (
+        region: FixedBytes<32>,
+        coord: [number, number],
+        alignment: TcPrimitivesAlignment,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Region";
+          palletCall: {
+            name: "SetTileControl";
+            params: {
+              region: FixedBytes<32>;
+              coord: [number, number];
+              alignment: TcPrimitivesAlignment;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Country`'s transaction calls
+   **/
+  country: {
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {BytesLike} name
+     * @param {TcPrimitivesAlignment} alignment
+     * @param {Array<FixedBytes<32>>} regions
+     **/
+    registerCountry: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        name: BytesLike,
+        alignment: TcPrimitivesAlignment,
+        regions: Array<FixedBytes<32>>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Country";
+          palletCall: {
+            name: "RegisterCountry";
+            params: {
+              code: FixedBytes<32>;
+              name: BytesLike;
+              alignment: TcPrimitivesAlignment;
+              regions: Array<FixedBytes<32>>;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} country
+     * @param {FixedBytes<32>} region
+     **/
+    addRegion: GenericTxCall<
+      (
+        country: FixedBytes<32>,
+        region: FixedBytes<32>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Country";
+          palletCall: {
+            name: "AddRegion";
+            params: { country: FixedBytes<32>; region: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} country
+     * @param {FixedBytes<32>} region
+     **/
+    removeRegion: GenericTxCall<
+      (
+        country: FixedBytes<32>,
+        region: FixedBytes<32>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Country";
+          palletCall: {
+            name: "RemoveRegion";
+            params: { country: FixedBytes<32>; region: FixedBytes<32> };
           };
         },
         ChainKnownTypes

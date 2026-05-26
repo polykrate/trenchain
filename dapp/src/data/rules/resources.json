@@ -1,0 +1,9 @@
+[
+  { "code": "ducats", "name": "Ducats" },
+  { "code": "iron", "name": "Iron" },
+  { "code": "powder", "name": "Powder" },
+  { "code": "flesh", "name": "Flesh" },
+  { "code": "relics", "name": "Relics" },
+  { "code": "alchemy", "name": "Alchemy" },
+  { "code": "occult", "name": "Occult" }
+]

@@ -47,7 +47,10 @@ export type ParachainTemplateRuntimeRuntimeCall =
   | { pallet: "Battle"; palletCall: PalletBattleCall }
   | { pallet: "Territory"; palletCall: PalletTerritoryCall }
   | { pallet: "Building"; palletCall: PalletBuildingCall }
-  | { pallet: "Exploration"; palletCall: PalletExplorationCall };
+  | { pallet: "Exploration"; palletCall: PalletExplorationCall }
+  | { pallet: "Tile"; palletCall: PalletTileCall }
+  | { pallet: "Region"; palletCall: PalletRegionCall }
+  | { pallet: "Country"; palletCall: PalletCountryCall };
 
 export type ParachainTemplateRuntimeRuntimeCallLike =
   | { pallet: "System"; palletCall: FrameSystemCallLike }
@@ -80,7 +83,10 @@ export type ParachainTemplateRuntimeRuntimeCallLike =
   | { pallet: "Battle"; palletCall: PalletBattleCallLike }
   | { pallet: "Territory"; palletCall: PalletTerritoryCallLike }
   | { pallet: "Building"; palletCall: PalletBuildingCallLike }
-  | { pallet: "Exploration"; palletCall: PalletExplorationCallLike };
+  | { pallet: "Exploration"; palletCall: PalletExplorationCallLike }
+  | { pallet: "Tile"; palletCall: PalletTileCallLike }
+  | { pallet: "Region"; palletCall: PalletRegionCallLike }
+  | { pallet: "Country"; palletCall: PalletCountryCallLike };
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -3462,7 +3468,7 @@ export type PalletFactionCallLike =
       params: { code: FixedBytes<16>; keywords: Array<FixedBytes<32>> };
     };
 
-export type TcPrimitivesAlignment = "Faithful" | "Fallen";
+export type TcPrimitivesAlignment = "Faithful" | "Fallen" | "Neutral";
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -3887,12 +3893,17 @@ export type PalletBuildingCall =
       params: {
         code: FixedBytes<32>;
         name: Bytes;
-        production: number;
-        costDucats: number;
+        produces: Array<[FixedBytes<16>, number]>;
+        buildCost: Array<[FixedBytes<16>, number]>;
         allowedTerrains: Array<FixedBytes<16>>;
+        upgradeLevels: number;
       };
     }
-  | { name: "RemoveBuilding"; params: { code: FixedBytes<32> } };
+  | { name: "RemoveBuilding"; params: { code: FixedBytes<32> } }
+  | {
+      name: "RegisterResource";
+      params: { code: FixedBytes<16>; name: FixedBytes<32> };
+    };
 
 export type PalletBuildingCallLike =
   | {
@@ -3900,12 +3911,17 @@ export type PalletBuildingCallLike =
       params: {
         code: FixedBytes<32>;
         name: BytesLike;
-        production: number;
-        costDucats: number;
+        produces: Array<[FixedBytes<16>, number]>;
+        buildCost: Array<[FixedBytes<16>, number]>;
         allowedTerrains: Array<FixedBytes<16>>;
+        upgradeLevels: number;
       };
     }
-  | { name: "RemoveBuilding"; params: { code: FixedBytes<32> } };
+  | { name: "RemoveBuilding"; params: { code: FixedBytes<32> } }
+  | {
+      name: "RegisterResource";
+      params: { code: FixedBytes<16>; name: FixedBytes<32> };
+    };
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -3963,6 +3979,162 @@ export type PalletExplorationCallLike =
     };
 
 export type TcPrimitivesExplorationTable = "Common" | "Rare" | "Legendary";
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletTileCall =
+  | {
+      name: "RegisterTile";
+      params: {
+        coord: [number, number];
+        terrain: FixedBytes<16>;
+        name?: Bytes | undefined;
+        region?: FixedBytes<32> | undefined;
+      };
+    }
+  | {
+      name: "RegisterTilesBatch";
+      params: {
+        tiles: Array<
+          [
+            [number, number],
+            FixedBytes<16>,
+            Bytes | undefined,
+            FixedBytes<32> | undefined,
+          ]
+        >;
+      };
+    }
+  | {
+      name: "SetTileRegion";
+      params: { coord: [number, number]; region?: FixedBytes<32> | undefined };
+    };
+
+export type PalletTileCallLike =
+  | {
+      name: "RegisterTile";
+      params: {
+        coord: [number, number];
+        terrain: FixedBytes<16>;
+        name?: BytesLike | undefined;
+        region?: FixedBytes<32> | undefined;
+      };
+    }
+  | {
+      name: "RegisterTilesBatch";
+      params: {
+        tiles: Array<
+          [
+            [number, number],
+            FixedBytes<16>,
+            BytesLike | undefined,
+            FixedBytes<32> | undefined,
+          ]
+        >;
+      };
+    }
+  | {
+      name: "SetTileRegion";
+      params: { coord: [number, number]; region?: FixedBytes<32> | undefined };
+    };
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletRegionCall =
+  | {
+      name: "RegisterRegion";
+      params: {
+        code: FixedBytes<32>;
+        name: Bytes;
+        country: FixedBytes<32>;
+        control: TcPrimitivesRegionControl;
+      };
+    }
+  | {
+      name: "SetRegionControl";
+      params: { code: FixedBytes<32>; control: TcPrimitivesRegionControl };
+    }
+  | {
+      name: "SetTileControl";
+      params: {
+        region: FixedBytes<32>;
+        coord: [number, number];
+        alignment: TcPrimitivesAlignment;
+      };
+    };
+
+export type PalletRegionCallLike =
+  | {
+      name: "RegisterRegion";
+      params: {
+        code: FixedBytes<32>;
+        name: BytesLike;
+        country: FixedBytes<32>;
+        control: TcPrimitivesRegionControl;
+      };
+    }
+  | {
+      name: "SetRegionControl";
+      params: { code: FixedBytes<32>; control: TcPrimitivesRegionControl };
+    }
+  | {
+      name: "SetTileControl";
+      params: {
+        region: FixedBytes<32>;
+        coord: [number, number];
+        alignment: TcPrimitivesAlignment;
+      };
+    };
+
+export type TcPrimitivesRegionControl =
+  | { type: "Sovereign" }
+  | {
+      type: "Contested";
+      value: { faithfulTiles: number; hereticTiles: number };
+    };
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletCountryCall =
+  | {
+      name: "RegisterCountry";
+      params: {
+        code: FixedBytes<32>;
+        name: Bytes;
+        alignment: TcPrimitivesAlignment;
+        regions: Array<FixedBytes<32>>;
+      };
+    }
+  | {
+      name: "AddRegion";
+      params: { country: FixedBytes<32>; region: FixedBytes<32> };
+    }
+  | {
+      name: "RemoveRegion";
+      params: { country: FixedBytes<32>; region: FixedBytes<32> };
+    };
+
+export type PalletCountryCallLike =
+  | {
+      name: "RegisterCountry";
+      params: {
+        code: FixedBytes<32>;
+        name: BytesLike;
+        alignment: TcPrimitivesAlignment;
+        regions: Array<FixedBytes<32>>;
+      };
+    }
+  | {
+      name: "AddRegion";
+      params: { country: FixedBytes<32>; region: FixedBytes<32> };
+    }
+  | {
+      name: "RemoveRegion";
+      params: { country: FixedBytes<32>; region: FixedBytes<32> };
+    };
 
 export type SpRuntimeMultiSignature =
   | { type: "Ed25519"; value: FixedBytes<64> }
@@ -4053,7 +4225,10 @@ export type ParachainTemplateRuntimeRuntimeEvent =
   | { pallet: "Battle"; palletEvent: PalletBattleEvent }
   | { pallet: "Territory"; palletEvent: PalletTerritoryEvent }
   | { pallet: "Building"; palletEvent: PalletBuildingEvent }
-  | { pallet: "Exploration"; palletEvent: PalletExplorationEvent };
+  | { pallet: "Exploration"; palletEvent: PalletExplorationEvent }
+  | { pallet: "Tile"; palletEvent: PalletTileEvent }
+  | { pallet: "Region"; palletEvent: PalletRegionEvent }
+  | { pallet: "Country"; palletEvent: PalletCountryEvent };
 
 /**
  * Event for the System pallet.
@@ -5221,11 +5396,9 @@ export type PalletTerritoryEvent =
  * The `Event` enum of this pallet
  **/
 export type PalletBuildingEvent =
-  | {
-      name: "BuildingRegistered";
-      data: { code: FixedBytes<32>; production: number; cost: number };
-    }
-  | { name: "BuildingRemoved"; data: { code: FixedBytes<32> } };
+  | { name: "BuildingRegistered"; data: { code: FixedBytes<32> } }
+  | { name: "BuildingRemoved"; data: { code: FixedBytes<32> } }
+  | { name: "ResourceRegistered"; data: { code: FixedBytes<16> } };
 
 /**
  * The `Event` enum of this pallet
@@ -5248,6 +5421,49 @@ export type PalletExplorationEvent =
   | {
       name: "ExplorationSkillGranted";
       data: { warbandId: number; skill: FixedBytes<16> };
+    };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletTileEvent =
+  | { name: "TileRegistered"; data: { coord: [number, number] } }
+  | { name: "TilesBatchRegistered"; data: { count: number } }
+  | {
+      name: "TileRegionUpdated";
+      data: { coord: [number, number]; region?: FixedBytes<32> | undefined };
+    };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletRegionEvent =
+  | { name: "RegionRegistered"; data: { code: FixedBytes<32> } }
+  | {
+      name: "RegionControlUpdated";
+      data: { code: FixedBytes<32>; control: TcPrimitivesRegionControl };
+    }
+  | {
+      name: "TileControlSet";
+      data: {
+        region: FixedBytes<32>;
+        coord: [number, number];
+        alignment: TcPrimitivesAlignment;
+      };
+    };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletCountryEvent =
+  | { name: "CountryRegistered"; data: { code: FixedBytes<32> } }
+  | {
+      name: "RegionAdded";
+      data: { country: FixedBytes<32>; region: FixedBytes<32> };
+    }
+  | {
+      name: "RegionRemoved";
+      data: { country: FixedBytes<32>; region: FixedBytes<32> };
     };
 
 export type FrameSystemLastRuntimeUpgradeInfo = {
@@ -6268,15 +6484,21 @@ export type PalletTerritoryError =
 
 export type PalletBuildingBuildingDef = {
   name: Bytes;
-  production: number;
-  costDucats: number;
+  produces: Array<[FixedBytes<16>, number]>;
+  buildCost: Array<[FixedBytes<16>, number]>;
   allowedTerrains: Array<FixedBytes<16>>;
+  upgradeLevels: number;
 };
+
+export type PalletBuildingResourceDef = { name: FixedBytes<32> };
 
 /**
  * The `Error` enum of this pallet.
  **/
-export type PalletBuildingError = "AlreadyRegistered" | "UnknownBuilding";
+export type PalletBuildingError =
+  | "AlreadyRegistered"
+  | "UnknownBuilding"
+  | "ResourceAlreadyRegistered";
 
 export type PalletExplorationExplorationOutcome = {
   diceCount: number;
@@ -6298,6 +6520,47 @@ export type PalletExplorationError =
   | "NoExplorationResult"
   | "OptionAlreadyChosen"
   | "InvalidOption";
+
+export type PalletTileTileDef = {
+  terrain: FixedBytes<16>;
+  name?: Bytes | undefined;
+  region?: FixedBytes<32> | undefined;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletTileError =
+  | "AlreadyRegistered"
+  | "TileNotFound"
+  | "BatchTooLarge";
+
+export type PalletRegionRegionDef = {
+  name: Bytes;
+  country: FixedBytes<32>;
+  control: TcPrimitivesRegionControl;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletRegionError = "AlreadyRegistered" | "RegionNotFound";
+
+export type PalletCountryCountryDef = {
+  name: Bytes;
+  alignment: TcPrimitivesAlignment;
+  regions: Array<FixedBytes<32>>;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletCountryError =
+  | "AlreadyRegistered"
+  | "CountryNotFound"
+  | "RegionAlreadyInCountry"
+  | "RegionNotInCountry"
+  | "TooManyRegions";
 
 export type SpConsensusSlotsSlotDuration = bigint;
 
@@ -6425,4 +6688,7 @@ export type ParachainTemplateRuntimeRuntimeError =
   | { pallet: "Battle"; palletError: PalletBattleError }
   | { pallet: "Territory"; palletError: PalletTerritoryError }
   | { pallet: "Building"; palletError: PalletBuildingError }
-  | { pallet: "Exploration"; palletError: PalletExplorationError };
+  | { pallet: "Exploration"; palletError: PalletExplorationError }
+  | { pallet: "Tile"; palletError: PalletTileError }
+  | { pallet: "Region"; palletError: PalletRegionError }
+  | { pallet: "Country"; palletError: PalletCountryError };

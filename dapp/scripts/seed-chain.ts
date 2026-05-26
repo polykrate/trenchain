@@ -265,7 +265,7 @@ async function main() {
     return sample ? `verified (${patrons[0].code})` : `FAILED`;
   });
 
-  // ─── 8. Buildings ───────────────────────────────────────────────
+  // ─── 8. Buildings (enriched: multi-resource) ────────────────────
   const { buildings } = loadJson('economy.json');
   await seedBatch(client, alice, 'Buildings', buildings.map((b: any) => ({
     pallet: 'Building',
@@ -274,14 +274,123 @@ async function main() {
       params: {
         code: toCode32(b.id),
         name: b.name,
-        production: (b.produces?.[0]?.output || 0) as number,
-        costDucats: (b.build_cost?.find((c: any) => c.resource === 'ducats')?.amount || 0) as number,
+        produces: (b.produces || []).slice(0, 8).map((p: any) => [toCode16(p.resource), p.output]),
+        buildCost: (b.build_cost || []).slice(0, 8).map((c: any) => [toCode16(c.resource), c.amount]),
         allowedTerrains: (b.allowed_terrain || []).slice(0, 8).map((t: string) => toCode16(t)),
+        upgradeLevels: b.upgrade_levels || 1,
       },
     },
   })), async () => {
     const sample = await client.query.building.buildingDefs(toCode32(buildings[0].id));
     return sample ? `verified (${buildings[0].id})` : `FAILED`;
+  });
+
+  // ─── 9. Resources ─────────────────────────────────────────────────
+  const resources = loadJson('resources.json');
+  await seedBatch(client, alice, 'Resources', resources.map((r: any) => ({
+    pallet: 'Building',
+    palletCall: {
+      name: 'RegisterResource',
+      params: {
+        code: toCode16(r.code),
+        name: toCode32(r.name),
+      },
+    },
+  })), async () => {
+    const sample = await client.query.building.resources(toCode16(resources[0].code));
+    return sample ? `verified (${resources[0].code})` : `FAILED`;
+  });
+
+  // ─── 10. Countries ────────────────────────────────────────────────
+  const countriesData = loadJson('hex_countries.json');
+  const countryEntries = Object.entries(countriesData) as [string, any][];
+
+  function mapCountryAlignment(faction: string): TcPrimitivesAlignment {
+    if (faction === 'HERETIC') return 'Fallen';
+    if (faction === 'NEUTRAL') return 'Neutral';
+    return 'Faithful';
+  }
+
+  await seedBatch(client, alice, 'Countries', countryEntries.map(([code, c]) => ({
+    pallet: 'Country',
+    palletCall: {
+      name: 'RegisterCountry',
+      params: {
+        code: toCode32(code),
+        name: c.name,
+        alignment: mapCountryAlignment(c.faction),
+        regions: (c.regions || []).slice(0, 32).map((r: string) => toCode32(r)),
+      },
+    },
+  })), async () => {
+    const sample = await client.query.country.countries(toCode32(countryEntries[0][0]));
+    return sample ? `verified (${countryEntries[0][0]})` : `FAILED`;
+  });
+
+  // ─── 11. Regions ──────────────────────────────────────────────────
+  const regionsData = loadJson('hex_regions.json');
+  const regionEntries = Object.entries(regionsData) as [string, any][];
+
+  function mapRegionControl(control: string): any {
+    return { type: 'Sovereign' };
+  }
+
+  await seedBatch(client, alice, 'Regions', regionEntries.map(([code, r]) => ({
+    pallet: 'Region',
+    palletCall: {
+      name: 'RegisterRegion',
+      params: {
+        code: toCode32(code),
+        name: r.name,
+        country: toCode32(r.country),
+        control: mapRegionControl(r.control),
+      },
+    },
+  })), async () => {
+    const sample = await client.query.region.regions(toCode32(regionEntries[0][0]));
+    return sample ? `verified (${regionEntries[0][0]})` : `FAILED`;
+  });
+
+  // ─── 12. Tiles (batch extrinsic, ~5400 tiles) ─────────────────────
+  const hexMap = loadJson('hex_map.json');
+  const allTiles: any[] = hexMap.tiles.filter((t: any) => t.t !== 'sea');
+
+  // Build a lookup: (q,r) -> region_code
+  const tileToRegion: Record<string, string> = {};
+  for (const [regionCode, regionData] of regionEntries) {
+    for (const [q, r] of (regionData as any).tiles || []) {
+      tileToRegion[`${q},${r}`] = regionCode;
+    }
+  }
+
+  const TILE_BATCH_SIZE = 200;
+  const tileChunks: any[][] = [];
+  for (let i = 0; i < allTiles.length; i += TILE_BATCH_SIZE) {
+    tileChunks.push(allTiles.slice(i, i + TILE_BATCH_SIZE));
+  }
+
+  const tileCalls: ParachainTemplateRuntimeRuntimeCallLike[] = tileChunks.map(chunk => ({
+    pallet: 'Tile',
+    palletCall: {
+      name: 'RegisterTilesBatch',
+      params: {
+        tiles: chunk.map((t: any) => {
+          const regionCode = tileToRegion[`${t.q},${t.r}`];
+          return [
+            [t.q, t.r],
+            toCode16(t.t),
+            t.g ? t.g : undefined,
+            regionCode ? toCode32(regionCode) : undefined,
+          ];
+        }),
+      },
+    },
+  }));
+
+  await seedBatch(client, alice, 'Tiles', tileCalls, async () => {
+    const firstNonSea = allTiles[0];
+    const count = await client.query.tile.tileCount();
+    return count > 0 ? `verified — ${count} tiles stored (${allTiles.length} submitted)` : `FAILED`;
   });
 
   console.log('\nAll reference data seeded!');
@@ -307,7 +416,7 @@ async function seedBatch(
 
     const batchCall: ParachainTemplateRuntimeRuntimeCallLike = {
       pallet: 'Utility',
-      palletCall: { name: 'BatchAll', params: { calls: chunk } },
+      palletCall: { name: 'Batch', params: { calls: chunk } },
     };
 
     try {

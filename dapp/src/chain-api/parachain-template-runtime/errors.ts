@@ -794,6 +794,7 @@ export interface ChainErrors extends GenericChainErrors {
   building: {
     AlreadyRegistered: GenericPalletError;
     UnknownBuilding: GenericPalletError;
+    ResourceAlreadyRegistered: GenericPalletError;
 
     /**
      * Generic pallet error
@@ -810,6 +811,46 @@ export interface ChainErrors extends GenericChainErrors {
     NoExplorationResult: GenericPalletError;
     OptionAlreadyChosen: GenericPalletError;
     InvalidOption: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Tile`'s errors
+   **/
+  tile: {
+    AlreadyRegistered: GenericPalletError;
+    TileNotFound: GenericPalletError;
+    BatchTooLarge: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Region`'s errors
+   **/
+  region: {
+    AlreadyRegistered: GenericPalletError;
+    RegionNotFound: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Country`'s errors
+   **/
+  country: {
+    AlreadyRegistered: GenericPalletError;
+    CountryNotFound: GenericPalletError;
+    RegionAlreadyInCountry: GenericPalletError;
+    RegionNotInCountry: GenericPalletError;
+    TooManyRegions: GenericPalletError;
 
     /**
      * Generic pallet error

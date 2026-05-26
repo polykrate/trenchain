@@ -28,6 +28,7 @@ import type {
   TcPrimitivesKeywordKind,
   TcPrimitivesAlignment,
   TcPrimitivesBattlekitType,
+  TcPrimitivesRegionControl,
 } from "./types.js";
 
 export interface ChainEvents extends GenericChainEvents {
@@ -1672,12 +1673,17 @@ export interface ChainEvents extends GenericChainEvents {
     BuildingRegistered: GenericPalletEvent<
       "Building",
       "BuildingRegistered",
-      { code: FixedBytes<32>; production: number; cost: number }
+      { code: FixedBytes<32> }
     >;
     BuildingRemoved: GenericPalletEvent<
       "Building",
       "BuildingRemoved",
       { code: FixedBytes<32> }
+    >;
+    ResourceRegistered: GenericPalletEvent<
+      "Building",
+      "ResourceRegistered",
+      { code: FixedBytes<16> }
     >;
 
     /**
@@ -1709,6 +1715,85 @@ export interface ChainEvents extends GenericChainEvents {
       "Exploration",
       "ExplorationSkillGranted",
       { warbandId: number; skill: FixedBytes<16> }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Tile`'s events
+   **/
+  tile: {
+    TileRegistered: GenericPalletEvent<
+      "Tile",
+      "TileRegistered",
+      { coord: [number, number] }
+    >;
+    TilesBatchRegistered: GenericPalletEvent<
+      "Tile",
+      "TilesBatchRegistered",
+      { count: number }
+    >;
+    TileRegionUpdated: GenericPalletEvent<
+      "Tile",
+      "TileRegionUpdated",
+      { coord: [number, number]; region?: FixedBytes<32> | undefined }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Region`'s events
+   **/
+  region: {
+    RegionRegistered: GenericPalletEvent<
+      "Region",
+      "RegionRegistered",
+      { code: FixedBytes<32> }
+    >;
+    RegionControlUpdated: GenericPalletEvent<
+      "Region",
+      "RegionControlUpdated",
+      { code: FixedBytes<32>; control: TcPrimitivesRegionControl }
+    >;
+    TileControlSet: GenericPalletEvent<
+      "Region",
+      "TileControlSet",
+      {
+        region: FixedBytes<32>;
+        coord: [number, number];
+        alignment: TcPrimitivesAlignment;
+      }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Country`'s events
+   **/
+  country: {
+    CountryRegistered: GenericPalletEvent<
+      "Country",
+      "CountryRegistered",
+      { code: FixedBytes<32> }
+    >;
+    RegionAdded: GenericPalletEvent<
+      "Country",
+      "RegionAdded",
+      { country: FixedBytes<32>; region: FixedBytes<32> }
+    >;
+    RegionRemoved: GenericPalletEvent<
+      "Country",
+      "RegionRemoved",
+      { country: FixedBytes<32>; region: FixedBytes<32> }
     >;
 
     /**

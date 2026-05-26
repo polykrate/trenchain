@@ -74,7 +74,12 @@ import type {
   PalletBattleBattleReport,
   PalletTerritoryTerritoryState,
   PalletBuildingBuildingDef,
+  PalletBuildingResourceDef,
   PalletExplorationExplorationOutcome,
+  PalletTileTileDef,
+  PalletRegionRegionDef,
+  TcPrimitivesAlignment,
+  PalletCountryCountryDef,
 } from "./types.js";
 
 export interface ChainStorage extends GenericChainStorage {
@@ -1645,6 +1650,16 @@ export interface ChainStorage extends GenericChainStorage {
     >;
 
     /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<PalletBuildingResourceDef | undefined> =} callback
+     **/
+    resources: GenericStorageQuery<
+      (arg: FixedBytes<16>) => PalletBuildingResourceDef | undefined,
+      FixedBytes<16>
+    >;
+
+    /**
      * Generic pallet storage query
      **/
     [storage: string]: GenericStorageQuery;
@@ -1671,6 +1686,81 @@ export interface ChainStorage extends GenericChainStorage {
      * @param {Callback<Array<number>> =} callback
      **/
     discoveryLog: GenericStorageQuery<(arg: number) => Array<number>, number>;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Tile`'s storage queries
+   **/
+  tile: {
+    /**
+     *
+     * @param {[number, number]} arg
+     * @param {Callback<PalletTileTileDef | undefined> =} callback
+     **/
+    tiles: GenericStorageQuery<
+      (arg: [number, number]) => PalletTileTileDef | undefined,
+      [number, number]
+    >;
+
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    tileCount: GenericStorageQuery<() => number>;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Region`'s storage queries
+   **/
+  region: {
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<PalletRegionRegionDef | undefined> =} callback
+     **/
+    regions: GenericStorageQuery<
+      (arg: FixedBytes<32>) => PalletRegionRegionDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     *
+     * @param {[FixedBytes<32>, [number, number]]} arg
+     * @param {Callback<TcPrimitivesAlignment | undefined> =} callback
+     **/
+    regionTileControl: GenericStorageQuery<
+      (
+        arg: [FixedBytes<32>, [number, number]],
+      ) => TcPrimitivesAlignment | undefined,
+      [FixedBytes<32>, [number, number]]
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Country`'s storage queries
+   **/
+  country: {
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<PalletCountryCountryDef | undefined> =} callback
+     **/
+    countries: GenericStorageQuery<
+      (arg: FixedBytes<32>) => PalletCountryCountryDef | undefined,
+      FixedBytes<32>
+    >;
 
     /**
      * Generic pallet storage query
