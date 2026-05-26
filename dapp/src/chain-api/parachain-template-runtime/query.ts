@@ -65,7 +65,9 @@ import type {
   PalletSkillSkillRecord,
   PalletFactionFactionRecord,
   PalletBattlekitItemRecord,
+  PalletArmouryArmouryEntryDef,
   PalletEntryEntryRecord,
+  PalletEntryAbilityDef,
   PalletPatronPatronRecord,
   PalletWarbandWarbandMeta,
   PalletRosterRecruit,
@@ -80,6 +82,24 @@ import type {
   PalletRegionRegionDef,
   TcPrimitivesAlignment,
   PalletCountryCountryDef,
+  PalletEquiprulesSlotRule,
+  TcPrimitivesBattlekitType,
+  PalletEquiprulesTagDef,
+  PalletCampaignRulesThresholdRow,
+  PalletCampaignRulesVictoryConfig,
+  PalletCampaignRulesTraumaRow,
+  PalletCampaignRulesPhaseStep,
+  PalletCampaignRulesPromotionRules,
+  PalletCampaignRulesQuartermasterAction,
+  PalletExplorationRulesDiceProgressionRow,
+  PalletExplorationRulesTableProgressionRow,
+  PalletExplorationRulesExplorationEvent,
+  TcPrimitivesExplorationTable,
+  PalletExplorationRulesExplorationSkillDef,
+  PalletTerrainRulesTerrainCategory,
+  PalletTerrainRulesTerrainPiece,
+  PalletTerrainRulesBattlefieldArchetype,
+  PalletTerrainRulesCombatModifierConfig,
 } from "./types.js";
 
 export interface ChainStorage extends GenericChainStorage {
@@ -1403,10 +1423,12 @@ export interface ChainStorage extends GenericChainStorage {
     /**
      *
      * @param {[FixedBytes<16>, FixedBytes<32>]} arg
-     * @param {Callback<[] | undefined> =} callback
+     * @param {Callback<PalletArmouryArmouryEntryDef | undefined> =} callback
      **/
     entries: GenericStorageQuery<
-      (arg: [FixedBytes<16>, FixedBytes<32>]) => [] | undefined,
+      (
+        arg: [FixedBytes<16>, FixedBytes<32>],
+      ) => PalletArmouryArmouryEntryDef | undefined,
       [FixedBytes<16>, FixedBytes<32>]
     >;
 
@@ -1447,6 +1469,16 @@ export interface ChainStorage extends GenericChainStorage {
     factionEntries: GenericStorageQuery<
       (arg: FixedBytes<16>) => Array<FixedBytes<32>>,
       FixedBytes<16>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<Array<PalletEntryAbilityDef>> =} callback
+     **/
+    entryAbilities: GenericStorageQuery<
+      (arg: FixedBytes<32>) => Array<PalletEntryAbilityDef>,
+      FixedBytes<32>
     >;
 
     /**
@@ -1760,6 +1792,220 @@ export interface ChainStorage extends GenericChainStorage {
     countries: GenericStorageQuery<
       (arg: FixedBytes<32>) => PalletCountryCountryDef | undefined,
       FixedBytes<32>
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Equiprules`'s storage queries
+   **/
+  equiprules: {
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    handSlots: GenericStorageQuery<() => number>;
+
+    /**
+     *
+     * @param {TcPrimitivesBattlekitType} arg
+     * @param {Callback<PalletEquiprulesSlotRule | undefined> =} callback
+     **/
+    slotRules: GenericStorageQuery<
+      (arg: TcPrimitivesBattlekitType) => PalletEquiprulesSlotRule | undefined,
+      TcPrimitivesBattlekitType
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<PalletEquiprulesTagDef | undefined> =} callback
+     **/
+    tags: GenericStorageQuery<
+      (arg: FixedBytes<32>) => PalletEquiprulesTagDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `CampaignRules`'s storage queries
+   **/
+  campaignRules: {
+    /**
+     *
+     * @param {Callback<Array<PalletCampaignRulesThresholdRow>> =} callback
+     **/
+    thresholdTable: GenericStorageQuery<
+      () => Array<PalletCampaignRulesThresholdRow>
+    >;
+
+    /**
+     *
+     * @param {Callback<PalletCampaignRulesVictoryConfig | undefined> =} callback
+     **/
+    victory: GenericStorageQuery<
+      () => PalletCampaignRulesVictoryConfig | undefined
+    >;
+
+    /**
+     *
+     * @param {Callback<Array<PalletCampaignRulesTraumaRow>> =} callback
+     **/
+    traumaTable: GenericStorageQuery<() => Array<PalletCampaignRulesTraumaRow>>;
+
+    /**
+     *
+     * @param {Callback<Array<PalletCampaignRulesPhaseStep>> =} callback
+     **/
+    phaseSteps: GenericStorageQuery<() => Array<PalletCampaignRulesPhaseStep>>;
+
+    /**
+     *
+     * @param {Callback<PalletCampaignRulesPromotionRules | undefined> =} callback
+     **/
+    promotions: GenericStorageQuery<
+      () => PalletCampaignRulesPromotionRules | undefined
+    >;
+
+    /**
+     *
+     * @param {Callback<Array<PalletCampaignRulesQuartermasterAction>> =} callback
+     **/
+    quartermasterActions: GenericStorageQuery<
+      () => Array<PalletCampaignRulesQuartermasterAction>
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `ExplorationRules`'s storage queries
+   **/
+  explorationRules: {
+    /**
+     *
+     * @param {Callback<Array<PalletExplorationRulesDiceProgressionRow>> =} callback
+     **/
+    diceProgression: GenericStorageQuery<
+      () => Array<PalletExplorationRulesDiceProgressionRow>
+    >;
+
+    /**
+     *
+     * @param {Callback<Array<PalletExplorationRulesTableProgressionRow>> =} callback
+     **/
+    tableProgression: GenericStorageQuery<
+      () => Array<PalletExplorationRulesTableProgressionRow>
+    >;
+
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    lootMultiplier: GenericStorageQuery<() => number>;
+
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    rerollsBase: GenericStorageQuery<() => number>;
+
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    rerollsBonusIfWon: GenericStorageQuery<() => number>;
+
+    /**
+     *
+     * @param {[TcPrimitivesExplorationTable, number]} arg
+     * @param {Callback<PalletExplorationRulesExplorationEvent | undefined> =} callback
+     **/
+    events: GenericStorageQuery<
+      (
+        arg: [TcPrimitivesExplorationTable, number],
+      ) => PalletExplorationRulesExplorationEvent | undefined,
+      [TcPrimitivesExplorationTable, number]
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<PalletExplorationRulesExplorationSkillDef | undefined> =} callback
+     **/
+    skills: GenericStorageQuery<
+      (
+        arg: FixedBytes<16>,
+      ) => PalletExplorationRulesExplorationSkillDef | undefined,
+      FixedBytes<16>
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `TerrainRules`'s storage queries
+   **/
+  terrainRules: {
+    /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<PalletTerrainRulesTerrainCategory | undefined> =} callback
+     **/
+    categories: GenericStorageQuery<
+      (arg: FixedBytes<16>) => PalletTerrainRulesTerrainCategory | undefined,
+      FixedBytes<16>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<PalletTerrainRulesTerrainPiece | undefined> =} callback
+     **/
+    pieces: GenericStorageQuery<
+      (arg: FixedBytes<16>) => PalletTerrainRulesTerrainPiece | undefined,
+      FixedBytes<16>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<PalletTerrainRulesBattlefieldArchetype | undefined> =} callback
+     **/
+    archetypes: GenericStorageQuery<
+      (
+        arg: FixedBytes<16>,
+      ) => PalletTerrainRulesBattlefieldArchetype | undefined,
+      FixedBytes<16>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} arg
+     * @param {Callback<Array<FixedBytes<16>>> =} callback
+     **/
+    terrainBattlefields: GenericStorageQuery<
+      (arg: FixedBytes<16>) => Array<FixedBytes<16>>,
+      FixedBytes<16>
+    >;
+
+    /**
+     *
+     * @param {Callback<PalletTerrainRulesCombatModifierConfig | undefined> =} callback
+     **/
+    combatModifiers: GenericStorageQuery<
+      () => PalletTerrainRulesCombatModifierConfig | undefined
     >;
 
     /**

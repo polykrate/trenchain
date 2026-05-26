@@ -38,10 +38,26 @@ import type {
   TcPrimitivesAlignment,
   TcPrimitivesBattlekitType,
   TcPrimitivesWeaponRange,
+  TcPrimitivesCostType,
   TcPrimitivesStatProfile,
+  PalletEntryAbilityDef,
   PalletBattleBattleReport,
   TcPrimitivesExplorationTable,
   TcPrimitivesRegionControl,
+  PalletCampaignRulesThresholdRow,
+  PalletCampaignRulesVictoryConfig,
+  PalletCampaignRulesTraumaRow,
+  PalletCampaignRulesPhaseStep,
+  PalletCampaignRulesPromotionRules,
+  PalletCampaignRulesQuartermasterAction,
+  PalletExplorationRulesDiceProgressionRow,
+  PalletExplorationRulesTableProgressionRow,
+  PalletExplorationRulesExplorationEvent,
+  PalletExplorationRulesExplorationSkillDef,
+  PalletTerrainRulesTerrainCategory,
+  PalletTerrainRulesTerrainPiece,
+  PalletTerrainRulesBattlefieldArchetype,
+  PalletTerrainRulesCombatModifierConfig,
 } from "./types.js";
 
 export type ChainSubmittableExtrinsic<
@@ -2388,6 +2404,7 @@ export interface ChainTx<
      *
      * @param {FixedBytes<16>} code
      * @param {BytesLike} name
+     * @param {BytesLike} description
      * @param {TcPrimitivesAlignment} alignment
      * @param {Array<FixedBytes<32>>} keywords
      **/
@@ -2395,6 +2412,7 @@ export interface ChainTx<
       (
         code: FixedBytes<16>,
         name: BytesLike,
+        description: BytesLike,
         alignment: TcPrimitivesAlignment,
         keywords: Array<FixedBytes<32>>,
       ) => ChainSubmittableExtrinsic<
@@ -2405,6 +2423,7 @@ export interface ChainTx<
             params: {
               code: FixedBytes<16>;
               name: BytesLike;
+              description: BytesLike;
               alignment: TcPrimitivesAlignment;
               keywords: Array<FixedBytes<32>>;
             };
@@ -2419,6 +2438,7 @@ export interface ChainTx<
      * @param {FixedBytes<16>} variant
      * @param {FixedBytes<16>} parent
      * @param {BytesLike} name
+     * @param {BytesLike} description
      * @param {TcPrimitivesAlignment} alignment
      * @param {Array<FixedBytes<32>>} keywords
      **/
@@ -2427,6 +2447,7 @@ export interface ChainTx<
         variant: FixedBytes<16>,
         parent: FixedBytes<16>,
         name: BytesLike,
+        description: BytesLike,
         alignment: TcPrimitivesAlignment,
         keywords: Array<FixedBytes<32>>,
       ) => ChainSubmittableExtrinsic<
@@ -2438,6 +2459,7 @@ export interface ChainTx<
               variant: FixedBytes<16>;
               parent: FixedBytes<16>;
               name: BytesLike;
+              description: BytesLike;
               alignment: TcPrimitivesAlignment;
               keywords: Array<FixedBytes<32>>;
             };
@@ -2486,6 +2508,7 @@ export interface ChainTx<
      * @param {TcPrimitivesWeaponRange} range
      * @param {number} cost
      * @param {Array<FixedBytes<32>>} keywords
+     * @param {BytesLike} specialRules
      **/
     registerItem: GenericTxCall<
       (
@@ -2496,6 +2519,7 @@ export interface ChainTx<
         range: TcPrimitivesWeaponRange,
         cost: number,
         keywords: Array<FixedBytes<32>>,
+        specialRules: BytesLike,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Battlekit";
@@ -2509,6 +2533,7 @@ export interface ChainTx<
               range: TcPrimitivesWeaponRange;
               cost: number;
               keywords: Array<FixedBytes<32>>;
+              specialRules: BytesLike;
             };
           };
         },
@@ -2546,17 +2571,29 @@ export interface ChainTx<
      *
      * @param {FixedBytes<16>} faction
      * @param {FixedBytes<32>} item
+     * @param {number} cost
+     * @param {TcPrimitivesCostType} costType
+     * @param {Array<FixedBytes<32>>} tags
      **/
     addEntry: GenericTxCall<
       (
         faction: FixedBytes<16>,
         item: FixedBytes<32>,
+        cost: number,
+        costType: TcPrimitivesCostType,
+        tags: Array<FixedBytes<32>>,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Armoury";
           palletCall: {
             name: "AddEntry";
-            params: { faction: FixedBytes<16>; item: FixedBytes<32> };
+            params: {
+              faction: FixedBytes<16>;
+              item: FixedBytes<32>;
+              cost: number;
+              costType: TcPrimitivesCostType;
+              tags: Array<FixedBytes<32>>;
+            };
           };
         },
         ChainKnownTypes
@@ -2603,7 +2640,11 @@ export interface ChainTx<
      * @param {number} cost
      * @param {TcPrimitivesStatProfile} profile
      * @param {BytesLike} description
+     * @param {BytesLike} lore
+     * @param {BytesLike} battlekitRules
+     * @param {BytesLike} compositionNote
      * @param {Array<FixedBytes<32>>} keywords
+     * @param {Array<FixedBytes<32>>} includedBattlekit
      **/
     registerEntry: GenericTxCall<
       (
@@ -2615,7 +2656,11 @@ export interface ChainTx<
         cost: number,
         profile: TcPrimitivesStatProfile,
         description: BytesLike,
+        lore: BytesLike,
+        battlekitRules: BytesLike,
+        compositionNote: BytesLike,
         keywords: Array<FixedBytes<32>>,
+        includedBattlekit: Array<FixedBytes<32>>,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Entry";
@@ -2630,7 +2675,11 @@ export interface ChainTx<
               cost: number;
               profile: TcPrimitivesStatProfile;
               description: BytesLike;
+              lore: BytesLike;
+              battlekitRules: BytesLike;
+              compositionNote: BytesLike;
               keywords: Array<FixedBytes<32>>;
+              includedBattlekit: Array<FixedBytes<32>>;
             };
           };
         },
@@ -2649,6 +2698,30 @@ export interface ChainTx<
           palletCall: {
             name: "RemoveEntry";
             params: { code: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {Array<PalletEntryAbilityDef>} abilities
+     **/
+    setEntryAbilities: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        abilities: Array<PalletEntryAbilityDef>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Entry";
+          palletCall: {
+            name: "SetEntryAbilities";
+            params: {
+              code: FixedBytes<32>;
+              abilities: Array<PalletEntryAbilityDef>;
+            };
           };
         },
         ChainKnownTypes
@@ -3831,6 +3904,497 @@ export interface ChainTx<
           palletCall: {
             name: "RemoveRegion";
             params: { country: FixedBytes<32>; region: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Equiprules`'s transaction calls
+   **/
+  equiprules: {
+    /**
+     *
+     * @param {number} hands
+     **/
+    setHandSlots: GenericTxCall<
+      (hands: number) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Equiprules";
+          palletCall: {
+            name: "SetHandSlots";
+            params: { hands: number };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {TcPrimitivesBattlekitType} battlekitType
+     * @param {number} slots
+     * @param {number | undefined} maxPerModel
+     * @param {boolean} offHandOnly
+     **/
+    setSlotRule: GenericTxCall<
+      (
+        battlekitType: TcPrimitivesBattlekitType,
+        slots: number,
+        maxPerModel: number | undefined,
+        offHandOnly: boolean,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Equiprules";
+          palletCall: {
+            name: "SetSlotRule";
+            params: {
+              battlekitType: TcPrimitivesBattlekitType;
+              slots: number;
+              maxPerModel: number | undefined;
+              offHandOnly: boolean;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {BytesLike} name
+     * @param {BytesLike} description
+     * @param {FixedBytes<32> | undefined} requiresKeyword
+     * @param {FixedBytes<32> | undefined} requiresEntry
+     * @param {Array<FixedBytes<32>>} requiresEntryAny
+     * @param {FixedBytes<32> | undefined} requiresEquipment
+     * @param {FixedBytes<32> | undefined} excludesEntry
+     * @param {FixedBytes<32> | undefined} exclusiveSlot
+     * @param {number | undefined} warbandLimit
+     * @param {boolean} oneUse
+     * @param {boolean} movementPenalty
+     **/
+    registerTag: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        name: BytesLike,
+        description: BytesLike,
+        requiresKeyword: FixedBytes<32> | undefined,
+        requiresEntry: FixedBytes<32> | undefined,
+        requiresEntryAny: Array<FixedBytes<32>>,
+        requiresEquipment: FixedBytes<32> | undefined,
+        excludesEntry: FixedBytes<32> | undefined,
+        exclusiveSlot: FixedBytes<32> | undefined,
+        warbandLimit: number | undefined,
+        oneUse: boolean,
+        movementPenalty: boolean,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Equiprules";
+          palletCall: {
+            name: "RegisterTag";
+            params: {
+              code: FixedBytes<32>;
+              name: BytesLike;
+              description: BytesLike;
+              requiresKeyword: FixedBytes<32> | undefined;
+              requiresEntry: FixedBytes<32> | undefined;
+              requiresEntryAny: Array<FixedBytes<32>>;
+              requiresEquipment: FixedBytes<32> | undefined;
+              excludesEntry: FixedBytes<32> | undefined;
+              exclusiveSlot: FixedBytes<32> | undefined;
+              warbandLimit: number | undefined;
+              oneUse: boolean;
+              movementPenalty: boolean;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     **/
+    removeTag: GenericTxCall<
+      (code: FixedBytes<32>) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Equiprules";
+          palletCall: {
+            name: "RemoveTag";
+            params: { code: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `CampaignRules`'s transaction calls
+   **/
+  campaignRules: {
+    /**
+     *
+     * @param {Array<PalletCampaignRulesThresholdRow>} rows
+     **/
+    setThresholdTable: GenericTxCall<
+      (
+        rows: Array<PalletCampaignRulesThresholdRow>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetThresholdTable";
+            params: { rows: Array<PalletCampaignRulesThresholdRow> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {PalletCampaignRulesVictoryConfig} config
+     **/
+    setVictoryConfig: GenericTxCall<
+      (config: PalletCampaignRulesVictoryConfig) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetVictoryConfig";
+            params: { config: PalletCampaignRulesVictoryConfig };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {Array<PalletCampaignRulesTraumaRow>} rows
+     **/
+    setTraumaTable: GenericTxCall<
+      (rows: Array<PalletCampaignRulesTraumaRow>) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetTraumaTable";
+            params: { rows: Array<PalletCampaignRulesTraumaRow> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {Array<PalletCampaignRulesPhaseStep>} steps
+     **/
+    setPhaseSteps: GenericTxCall<
+      (steps: Array<PalletCampaignRulesPhaseStep>) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetPhaseSteps";
+            params: { steps: Array<PalletCampaignRulesPhaseStep> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {PalletCampaignRulesPromotionRules} rules
+     **/
+    setPromotionRules: GenericTxCall<
+      (rules: PalletCampaignRulesPromotionRules) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetPromotionRules";
+            params: { rules: PalletCampaignRulesPromotionRules };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {Array<PalletCampaignRulesQuartermasterAction>} actions
+     **/
+    setQuartermasterActions: GenericTxCall<
+      (
+        actions: Array<PalletCampaignRulesQuartermasterAction>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "CampaignRules";
+          palletCall: {
+            name: "SetQuartermasterActions";
+            params: { actions: Array<PalletCampaignRulesQuartermasterAction> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `ExplorationRules`'s transaction calls
+   **/
+  explorationRules: {
+    /**
+     *
+     * @param {Array<PalletExplorationRulesDiceProgressionRow>} rows
+     **/
+    setDiceProgression: GenericTxCall<
+      (
+        rows: Array<PalletExplorationRulesDiceProgressionRow>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "ExplorationRules";
+          palletCall: {
+            name: "SetDiceProgression";
+            params: { rows: Array<PalletExplorationRulesDiceProgressionRow> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {Array<PalletExplorationRulesTableProgressionRow>} rows
+     **/
+    setTableProgression: GenericTxCall<
+      (
+        rows: Array<PalletExplorationRulesTableProgressionRow>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "ExplorationRules";
+          palletCall: {
+            name: "SetTableProgression";
+            params: { rows: Array<PalletExplorationRulesTableProgressionRow> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {number} lootMultiplier
+     * @param {number} rerollsBase
+     * @param {number} rerollsBonusIfWon
+     **/
+    setLootAndRerolls: GenericTxCall<
+      (
+        lootMultiplier: number,
+        rerollsBase: number,
+        rerollsBonusIfWon: number,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "ExplorationRules";
+          palletCall: {
+            name: "SetLootAndRerolls";
+            params: {
+              lootMultiplier: number;
+              rerollsBase: number;
+              rerollsBonusIfWon: number;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {TcPrimitivesExplorationTable} table
+     * @param {number} roll
+     * @param {PalletExplorationRulesExplorationEvent} event
+     **/
+    setExplorationEvent: GenericTxCall<
+      (
+        table: TcPrimitivesExplorationTable,
+        roll: number,
+        event: PalletExplorationRulesExplorationEvent,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "ExplorationRules";
+          palletCall: {
+            name: "SetExplorationEvent";
+            params: {
+              table: TcPrimitivesExplorationTable;
+              roll: number;
+              event: PalletExplorationRulesExplorationEvent;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} code
+     * @param {PalletExplorationRulesExplorationSkillDef} skill
+     **/
+    setExplorationSkill: GenericTxCall<
+      (
+        code: FixedBytes<16>,
+        skill: PalletExplorationRulesExplorationSkillDef,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "ExplorationRules";
+          palletCall: {
+            name: "SetExplorationSkill";
+            params: {
+              code: FixedBytes<16>;
+              skill: PalletExplorationRulesExplorationSkillDef;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `TerrainRules`'s transaction calls
+   **/
+  terrainRules: {
+    /**
+     *
+     * @param {FixedBytes<16>} code
+     * @param {PalletTerrainRulesTerrainCategory} category
+     **/
+    setCategory: GenericTxCall<
+      (
+        code: FixedBytes<16>,
+        category: PalletTerrainRulesTerrainCategory,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "TerrainRules";
+          palletCall: {
+            name: "SetCategory";
+            params: {
+              code: FixedBytes<16>;
+              category: PalletTerrainRulesTerrainCategory;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} code
+     * @param {PalletTerrainRulesTerrainPiece} piece
+     **/
+    setPiece: GenericTxCall<
+      (
+        code: FixedBytes<16>,
+        piece: PalletTerrainRulesTerrainPiece,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "TerrainRules";
+          palletCall: {
+            name: "SetPiece";
+            params: {
+              code: FixedBytes<16>;
+              piece: PalletTerrainRulesTerrainPiece;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} code
+     * @param {PalletTerrainRulesBattlefieldArchetype} archetype
+     **/
+    setArchetype: GenericTxCall<
+      (
+        code: FixedBytes<16>,
+        archetype: PalletTerrainRulesBattlefieldArchetype,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "TerrainRules";
+          palletCall: {
+            name: "SetArchetype";
+            params: {
+              code: FixedBytes<16>;
+              archetype: PalletTerrainRulesBattlefieldArchetype;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<16>} terrain
+     * @param {Array<FixedBytes<16>>} archetypes
+     **/
+    setTerrainBattlefieldMapping: GenericTxCall<
+      (
+        terrain: FixedBytes<16>,
+        archetypes: Array<FixedBytes<16>>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "TerrainRules";
+          palletCall: {
+            name: "SetTerrainBattlefieldMapping";
+            params: {
+              terrain: FixedBytes<16>;
+              archetypes: Array<FixedBytes<16>>;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {PalletTerrainRulesCombatModifierConfig} config
+     **/
+    setCombatModifiers: GenericTxCall<
+      (
+        config: PalletTerrainRulesCombatModifierConfig,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "TerrainRules";
+          palletCall: {
+            name: "SetCombatModifiers";
+            params: { config: PalletTerrainRulesCombatModifierConfig };
           };
         },
         ChainKnownTypes

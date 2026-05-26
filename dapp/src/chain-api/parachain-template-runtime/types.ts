@@ -50,7 +50,11 @@ export type ParachainTemplateRuntimeRuntimeCall =
   | { pallet: "Exploration"; palletCall: PalletExplorationCall }
   | { pallet: "Tile"; palletCall: PalletTileCall }
   | { pallet: "Region"; palletCall: PalletRegionCall }
-  | { pallet: "Country"; palletCall: PalletCountryCall };
+  | { pallet: "Country"; palletCall: PalletCountryCall }
+  | { pallet: "Equiprules"; palletCall: PalletEquiprulesCall }
+  | { pallet: "CampaignRules"; palletCall: PalletCampaignRulesCall }
+  | { pallet: "ExplorationRules"; palletCall: PalletExplorationRulesCall }
+  | { pallet: "TerrainRules"; palletCall: PalletTerrainRulesCall };
 
 export type ParachainTemplateRuntimeRuntimeCallLike =
   | { pallet: "System"; palletCall: FrameSystemCallLike }
@@ -86,7 +90,11 @@ export type ParachainTemplateRuntimeRuntimeCallLike =
   | { pallet: "Exploration"; palletCall: PalletExplorationCallLike }
   | { pallet: "Tile"; palletCall: PalletTileCallLike }
   | { pallet: "Region"; palletCall: PalletRegionCallLike }
-  | { pallet: "Country"; palletCall: PalletCountryCallLike };
+  | { pallet: "Country"; palletCall: PalletCountryCallLike }
+  | { pallet: "Equiprules"; palletCall: PalletEquiprulesCallLike }
+  | { pallet: "CampaignRules"; palletCall: PalletCampaignRulesCallLike }
+  | { pallet: "ExplorationRules"; palletCall: PalletExplorationRulesCallLike }
+  | { pallet: "TerrainRules"; palletCall: PalletTerrainRulesCallLike };
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -3424,6 +3432,7 @@ export type PalletFactionCall =
       params: {
         code: FixedBytes<16>;
         name: Bytes;
+        description: Bytes;
         alignment: TcPrimitivesAlignment;
         keywords: Array<FixedBytes<32>>;
       };
@@ -3434,6 +3443,7 @@ export type PalletFactionCall =
         variant: FixedBytes<16>;
         parent: FixedBytes<16>;
         name: Bytes;
+        description: Bytes;
         alignment: TcPrimitivesAlignment;
         keywords: Array<FixedBytes<32>>;
       };
@@ -3449,6 +3459,7 @@ export type PalletFactionCallLike =
       params: {
         code: FixedBytes<16>;
         name: BytesLike;
+        description: BytesLike;
         alignment: TcPrimitivesAlignment;
         keywords: Array<FixedBytes<32>>;
       };
@@ -3459,6 +3470,7 @@ export type PalletFactionCallLike =
         variant: FixedBytes<16>;
         parent: FixedBytes<16>;
         name: BytesLike;
+        description: BytesLike;
         alignment: TcPrimitivesAlignment;
         keywords: Array<FixedBytes<32>>;
       };
@@ -3484,6 +3496,7 @@ export type PalletBattlekitCall =
         range: TcPrimitivesWeaponRange;
         cost: number;
         keywords: Array<FixedBytes<32>>;
+        specialRules: Bytes;
       };
     }
   | { name: "RemoveItem"; params: { code: FixedBytes<32> } };
@@ -3499,6 +3512,7 @@ export type PalletBattlekitCallLike =
         range: TcPrimitivesWeaponRange;
         cost: number;
         keywords: Array<FixedBytes<32>>;
+        specialRules: BytesLike;
       };
     }
   | { name: "RemoveItem"; params: { code: FixedBytes<32> } };
@@ -3524,7 +3538,13 @@ export type TcPrimitivesWeaponRange =
 export type PalletArmouryCall =
   | {
       name: "AddEntry";
-      params: { faction: FixedBytes<16>; item: FixedBytes<32> };
+      params: {
+        faction: FixedBytes<16>;
+        item: FixedBytes<32>;
+        cost: number;
+        costType: TcPrimitivesCostType;
+        tags: Array<FixedBytes<32>>;
+      };
     }
   | {
       name: "RemoveEntry";
@@ -3534,12 +3554,20 @@ export type PalletArmouryCall =
 export type PalletArmouryCallLike =
   | {
       name: "AddEntry";
-      params: { faction: FixedBytes<16>; item: FixedBytes<32> };
+      params: {
+        faction: FixedBytes<16>;
+        item: FixedBytes<32>;
+        cost: number;
+        costType: TcPrimitivesCostType;
+        tags: Array<FixedBytes<32>>;
+      };
     }
   | {
       name: "RemoveEntry";
       params: { faction: FixedBytes<16>; item: FixedBytes<32> };
     };
+
+export type TcPrimitivesCostType = "Ducats" | "Glory";
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -3556,10 +3584,18 @@ export type PalletEntryCall =
         cost: number;
         profile: TcPrimitivesStatProfile;
         description: Bytes;
+        lore: Bytes;
+        battlekitRules: Bytes;
+        compositionNote: Bytes;
         keywords: Array<FixedBytes<32>>;
+        includedBattlekit: Array<FixedBytes<32>>;
       };
     }
-  | { name: "RemoveEntry"; params: { code: FixedBytes<32> } };
+  | { name: "RemoveEntry"; params: { code: FixedBytes<32> } }
+  | {
+      name: "SetEntryAbilities";
+      params: { code: FixedBytes<32>; abilities: Array<PalletEntryAbilityDef> };
+    };
 
 export type PalletEntryCallLike =
   | {
@@ -3573,10 +3609,18 @@ export type PalletEntryCallLike =
         cost: number;
         profile: TcPrimitivesStatProfile;
         description: BytesLike;
+        lore: BytesLike;
+        battlekitRules: BytesLike;
+        compositionNote: BytesLike;
         keywords: Array<FixedBytes<32>>;
+        includedBattlekit: Array<FixedBytes<32>>;
       };
     }
-  | { name: "RemoveEntry"; params: { code: FixedBytes<32> } };
+  | { name: "RemoveEntry"; params: { code: FixedBytes<32> } }
+  | {
+      name: "SetEntryAbilities";
+      params: { code: FixedBytes<32>; abilities: Array<PalletEntryAbilityDef> };
+    };
 
 export type TcPrimitivesStatProfile = {
   movementInches: number;
@@ -3592,6 +3636,8 @@ export type TcPrimitivesMovementType = "Infantry" | "Flying";
 export type TcPrimitivesBaseSize =
   | { type: "Round"; value: { diameterMm: number } }
   | { type: "Oval"; value: { widthMm: number; lengthMm: number } };
+
+export type PalletEntryAbilityDef = { name: Bytes; description: Bytes };
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -4136,6 +4182,364 @@ export type PalletCountryCallLike =
       params: { country: FixedBytes<32>; region: FixedBytes<32> };
     };
 
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletEquiprulesCall =
+  | { name: "SetHandSlots"; params: { hands: number } }
+  | {
+      name: "SetSlotRule";
+      params: {
+        battlekitType: TcPrimitivesBattlekitType;
+        slots: number;
+        maxPerModel?: number | undefined;
+        offHandOnly: boolean;
+      };
+    }
+  | {
+      name: "RegisterTag";
+      params: {
+        code: FixedBytes<32>;
+        name: Bytes;
+        description: Bytes;
+        requiresKeyword?: FixedBytes<32> | undefined;
+        requiresEntry?: FixedBytes<32> | undefined;
+        requiresEntryAny: Array<FixedBytes<32>>;
+        requiresEquipment?: FixedBytes<32> | undefined;
+        excludesEntry?: FixedBytes<32> | undefined;
+        exclusiveSlot?: FixedBytes<32> | undefined;
+        warbandLimit?: number | undefined;
+        oneUse: boolean;
+        movementPenalty: boolean;
+      };
+    }
+  | { name: "RemoveTag"; params: { code: FixedBytes<32> } };
+
+export type PalletEquiprulesCallLike =
+  | { name: "SetHandSlots"; params: { hands: number } }
+  | {
+      name: "SetSlotRule";
+      params: {
+        battlekitType: TcPrimitivesBattlekitType;
+        slots: number;
+        maxPerModel?: number | undefined;
+        offHandOnly: boolean;
+      };
+    }
+  | {
+      name: "RegisterTag";
+      params: {
+        code: FixedBytes<32>;
+        name: BytesLike;
+        description: BytesLike;
+        requiresKeyword?: FixedBytes<32> | undefined;
+        requiresEntry?: FixedBytes<32> | undefined;
+        requiresEntryAny: Array<FixedBytes<32>>;
+        requiresEquipment?: FixedBytes<32> | undefined;
+        excludesEntry?: FixedBytes<32> | undefined;
+        exclusiveSlot?: FixedBytes<32> | undefined;
+        warbandLimit?: number | undefined;
+        oneUse: boolean;
+        movementPenalty: boolean;
+      };
+    }
+  | { name: "RemoveTag"; params: { code: FixedBytes<32> } };
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletCampaignRulesCall =
+  | {
+      name: "SetThresholdTable";
+      params: { rows: Array<PalletCampaignRulesThresholdRow> };
+    }
+  | {
+      name: "SetVictoryConfig";
+      params: { config: PalletCampaignRulesVictoryConfig };
+    }
+  | {
+      name: "SetTraumaTable";
+      params: { rows: Array<PalletCampaignRulesTraumaRow> };
+    }
+  | {
+      name: "SetPhaseSteps";
+      params: { steps: Array<PalletCampaignRulesPhaseStep> };
+    }
+  | {
+      name: "SetPromotionRules";
+      params: { rules: PalletCampaignRulesPromotionRules };
+    }
+  | {
+      name: "SetQuartermasterActions";
+      params: { actions: Array<PalletCampaignRulesQuartermasterAction> };
+    };
+
+export type PalletCampaignRulesCallLike =
+  | {
+      name: "SetThresholdTable";
+      params: { rows: Array<PalletCampaignRulesThresholdRow> };
+    }
+  | {
+      name: "SetVictoryConfig";
+      params: { config: PalletCampaignRulesVictoryConfig };
+    }
+  | {
+      name: "SetTraumaTable";
+      params: { rows: Array<PalletCampaignRulesTraumaRow> };
+    }
+  | {
+      name: "SetPhaseSteps";
+      params: { steps: Array<PalletCampaignRulesPhaseStep> };
+    }
+  | {
+      name: "SetPromotionRules";
+      params: { rules: PalletCampaignRulesPromotionRules };
+    }
+  | {
+      name: "SetQuartermasterActions";
+      params: { actions: Array<PalletCampaignRulesQuartermasterAction> };
+    };
+
+export type PalletCampaignRulesThresholdRow = {
+  game: number;
+  threshold: number;
+  fieldStrength: number;
+};
+
+export type PalletCampaignRulesVictoryConfig = {
+  winner: number;
+  loser: number;
+  draw: number;
+};
+
+export type PalletCampaignRulesTraumaRow = {
+  roll: Bytes;
+  name: Bytes;
+  effect: Bytes;
+  causesInjury: boolean;
+  causesBattleScar: boolean;
+};
+
+export type PalletCampaignRulesPhaseStep = {
+  order: number;
+  id: Bytes;
+  name: Bytes;
+  description: Bytes;
+  mandatory: boolean;
+  exclusiveWith: Array<Bytes>;
+};
+
+export type PalletCampaignRulesPromotionRules = {
+  baseDice: number;
+  successValue: number;
+  pityThreshold: number;
+  maxElites: number;
+};
+
+export type PalletCampaignRulesQuartermasterAction = {
+  id: Bytes;
+  name: Bytes;
+  description: Bytes;
+};
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletExplorationRulesCall =
+  | {
+      name: "SetDiceProgression";
+      params: { rows: Array<PalletExplorationRulesDiceProgressionRow> };
+    }
+  | {
+      name: "SetTableProgression";
+      params: { rows: Array<PalletExplorationRulesTableProgressionRow> };
+    }
+  | {
+      name: "SetLootAndRerolls";
+      params: {
+        lootMultiplier: number;
+        rerollsBase: number;
+        rerollsBonusIfWon: number;
+      };
+    }
+  | {
+      name: "SetExplorationEvent";
+      params: {
+        table: TcPrimitivesExplorationTable;
+        roll: number;
+        event: PalletExplorationRulesExplorationEvent;
+      };
+    }
+  | {
+      name: "SetExplorationSkill";
+      params: {
+        code: FixedBytes<16>;
+        skill: PalletExplorationRulesExplorationSkillDef;
+      };
+    };
+
+export type PalletExplorationRulesCallLike =
+  | {
+      name: "SetDiceProgression";
+      params: { rows: Array<PalletExplorationRulesDiceProgressionRow> };
+    }
+  | {
+      name: "SetTableProgression";
+      params: { rows: Array<PalletExplorationRulesTableProgressionRow> };
+    }
+  | {
+      name: "SetLootAndRerolls";
+      params: {
+        lootMultiplier: number;
+        rerollsBase: number;
+        rerollsBonusIfWon: number;
+      };
+    }
+  | {
+      name: "SetExplorationEvent";
+      params: {
+        table: TcPrimitivesExplorationTable;
+        roll: number;
+        event: PalletExplorationRulesExplorationEvent;
+      };
+    }
+  | {
+      name: "SetExplorationSkill";
+      params: {
+        code: FixedBytes<16>;
+        skill: PalletExplorationRulesExplorationSkillDef;
+      };
+    };
+
+export type PalletExplorationRulesDiceProgressionRow = {
+  gamesMin: number;
+  gamesMax: number;
+  dice: number;
+};
+
+export type PalletExplorationRulesTableProgressionRow = {
+  gamesMin: number;
+  gamesMax: number;
+  tables: Array<TcPrimitivesExplorationTable>;
+};
+
+export type PalletExplorationRulesExplorationEvent = {
+  name: Bytes;
+  description: Bytes;
+  options: Array<PalletExplorationRulesExplorationOption>;
+};
+
+export type PalletExplorationRulesExplorationOption = {
+  id: Bytes;
+  name: Bytes;
+  factions: Array<FixedBytes<16>>;
+  effect: Bytes;
+  grantsSkill?: FixedBytes<16> | undefined;
+};
+
+export type PalletExplorationRulesExplorationSkillDef = {
+  name: Bytes;
+  effect: Bytes;
+  timing: TcPrimitivesExplorationTiming;
+};
+
+export type TcPrimitivesExplorationTiming =
+  | "BeforeRoll"
+  | "AfterRoll"
+  | "AfterModify";
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletTerrainRulesCall =
+  | {
+      name: "SetCategory";
+      params: {
+        code: FixedBytes<16>;
+        category: PalletTerrainRulesTerrainCategory;
+      };
+    }
+  | {
+      name: "SetPiece";
+      params: { code: FixedBytes<16>; piece: PalletTerrainRulesTerrainPiece };
+    }
+  | {
+      name: "SetArchetype";
+      params: {
+        code: FixedBytes<16>;
+        archetype: PalletTerrainRulesBattlefieldArchetype;
+      };
+    }
+  | {
+      name: "SetTerrainBattlefieldMapping";
+      params: { terrain: FixedBytes<16>; archetypes: Array<FixedBytes<16>> };
+    }
+  | {
+      name: "SetCombatModifiers";
+      params: { config: PalletTerrainRulesCombatModifierConfig };
+    };
+
+export type PalletTerrainRulesCallLike =
+  | {
+      name: "SetCategory";
+      params: {
+        code: FixedBytes<16>;
+        category: PalletTerrainRulesTerrainCategory;
+      };
+    }
+  | {
+      name: "SetPiece";
+      params: { code: FixedBytes<16>; piece: PalletTerrainRulesTerrainPiece };
+    }
+  | {
+      name: "SetArchetype";
+      params: {
+        code: FixedBytes<16>;
+        archetype: PalletTerrainRulesBattlefieldArchetype;
+      };
+    }
+  | {
+      name: "SetTerrainBattlefieldMapping";
+      params: { terrain: FixedBytes<16>; archetypes: Array<FixedBytes<16>> };
+    }
+  | {
+      name: "SetCombatModifiers";
+      params: { config: PalletTerrainRulesCombatModifierConfig };
+    };
+
+export type PalletTerrainRulesTerrainCategory = {
+  name: Bytes;
+  description: Bytes;
+  movementEffect: Bytes;
+  providesCover: boolean;
+};
+
+export type PalletTerrainRulesTerrainPiece = {
+  name: Bytes;
+  category: FixedBytes<16>;
+  description: Bytes;
+  providesCover: boolean;
+  climbing: boolean;
+  special: Bytes;
+};
+
+export type PalletTerrainRulesBattlefieldArchetype = {
+  name: Bytes;
+  description: Bytes;
+  allowedTerrain: Array<FixedBytes<16>>;
+  minimumPieces: Bytes;
+  setupRules: Bytes;
+};
+
+export type PalletTerrainRulesCombatModifierConfig = {
+  coverRangedPenalty: Bytes;
+  coverMeleePenalty: Bytes;
+  elevationRangedBonus: Bytes;
+  climbingRiskyRoll: Bytes;
+  jumpingGap: Bytes;
+  jumpingDown: Bytes;
+};
+
 export type SpRuntimeMultiSignature =
   | { type: "Ed25519"; value: FixedBytes<64> }
   | { type: "Sr25519"; value: FixedBytes<64> }
@@ -4228,7 +4632,11 @@ export type ParachainTemplateRuntimeRuntimeEvent =
   | { pallet: "Exploration"; palletEvent: PalletExplorationEvent }
   | { pallet: "Tile"; palletEvent: PalletTileEvent }
   | { pallet: "Region"; palletEvent: PalletRegionEvent }
-  | { pallet: "Country"; palletEvent: PalletCountryEvent };
+  | { pallet: "Country"; palletEvent: PalletCountryEvent }
+  | { pallet: "Equiprules"; palletEvent: PalletEquiprulesEvent }
+  | { pallet: "CampaignRules"; palletEvent: PalletCampaignRulesEvent }
+  | { pallet: "ExplorationRules"; palletEvent: PalletExplorationRulesEvent }
+  | { pallet: "TerrainRules"; palletEvent: PalletTerrainRulesEvent };
 
 /**
  * Event for the System pallet.
@@ -5240,7 +5648,12 @@ export type PalletBattlekitEvent =
 export type PalletArmouryEvent =
   | {
       name: "EntryAdded";
-      data: { faction: FixedBytes<16>; item: FixedBytes<32> };
+      data: {
+        faction: FixedBytes<16>;
+        item: FixedBytes<32>;
+        cost: number;
+        costType: TcPrimitivesCostType;
+      };
     }
   | {
       name: "EntryRemoved";
@@ -5258,7 +5671,8 @@ export type PalletEntryEvent =
   | {
       name: "EntryRemoved";
       data: { code: FixedBytes<32>; faction: FixedBytes<16> };
-    };
+    }
+  | { name: "AbilitiesSet"; data: { code: FixedBytes<32>; count: number } };
 
 /**
  * The `Event` enum of this pallet
@@ -5465,6 +5879,50 @@ export type PalletCountryEvent =
       name: "RegionRemoved";
       data: { country: FixedBytes<32>; region: FixedBytes<32> };
     };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletEquiprulesEvent =
+  | { name: "SlotRuleSet"; data: { battlekitType: TcPrimitivesBattlekitType } }
+  | { name: "TagRegistered"; data: { code: FixedBytes<32> } }
+  | { name: "TagRemoved"; data: { code: FixedBytes<32> } }
+  | { name: "HandSlotsSet"; data: { hands: number } };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletCampaignRulesEvent =
+  | { name: "ThresholdTableSet"; data: { count: number } }
+  | { name: "VictoryConfigSet" }
+  | { name: "TraumaTableSet"; data: { count: number } }
+  | { name: "PhaseStepsSet"; data: { count: number } }
+  | { name: "PromotionRulesSet" }
+  | { name: "QuartermasterActionsSet"; data: { count: number } };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletExplorationRulesEvent =
+  | { name: "DiceProgressionSet"; data: { count: number } }
+  | { name: "TableProgressionSet"; data: { count: number } }
+  | { name: "LootMultiplierSet"; data: { value: number } }
+  | { name: "RerollsSet"; data: { base: number; bonusIfWon: number } }
+  | {
+      name: "ExplorationEventSet";
+      data: { table: TcPrimitivesExplorationTable; roll: number };
+    }
+  | { name: "ExplorationSkillSet"; data: { code: FixedBytes<16> } };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletTerrainRulesEvent =
+  | { name: "CategorySet"; data: { code: FixedBytes<16> } }
+  | { name: "PieceSet"; data: { code: FixedBytes<16> } }
+  | { name: "ArchetypeSet"; data: { code: FixedBytes<16> } }
+  | { name: "TerrainBattlefieldMappingSet"; data: { terrain: FixedBytes<16> } }
+  | { name: "CombatModifiersSet" };
 
 export type FrameSystemLastRuntimeUpgradeInfo = {
   specVersion: number;
@@ -6266,6 +6724,7 @@ export type PalletSkillError = "AlreadyRegistered" | "UnknownSkill";
 
 export type PalletFactionFactionRecord = {
   name: Bytes;
+  description: Bytes;
   alignment: TcPrimitivesAlignment;
   keywords: Array<FixedBytes<32>>;
 };
@@ -6285,6 +6744,7 @@ export type PalletBattlekitItemRecord = {
   range: TcPrimitivesWeaponRange;
   cost: number;
   keywords: Array<FixedBytes<32>>;
+  specialRules: Bytes;
 };
 
 /**
@@ -6294,6 +6754,12 @@ export type PalletBattlekitError =
   | "AlreadyRegistered"
   | "UnknownItem"
   | "UnknownKeyword";
+
+export type PalletArmouryArmouryEntryDef = {
+  cost: number;
+  costType: TcPrimitivesCostType;
+  tags: Array<FixedBytes<32>>;
+};
 
 /**
  * The `Error` enum of this pallet.
@@ -6313,7 +6779,11 @@ export type PalletEntryEntryRecord = {
   cost: number;
   profile: TcPrimitivesStatProfile;
   description: Bytes;
+  lore: Bytes;
+  battlekitRules: Bytes;
+  compositionNote: Bytes;
   keywords: Array<FixedBytes<32>>;
+  includedBattlekit: Array<FixedBytes<32>>;
 };
 
 /**
@@ -6323,7 +6793,8 @@ export type PalletEntryError =
   | "AlreadyRegistered"
   | "UnknownEntry"
   | "FactionNotFound"
-  | "TooManyEntriesForFaction";
+  | "TooManyEntriesForFaction"
+  | "TooManyAbilities";
 
 export type PalletPatronPatronRecord = {
   name: Bytes;
@@ -6562,6 +7033,53 @@ export type PalletCountryError =
   | "RegionNotInCountry"
   | "TooManyRegions";
 
+export type PalletEquiprulesSlotRule = {
+  battlekitType: TcPrimitivesBattlekitType;
+  slots: number;
+  maxPerModel?: number | undefined;
+  offHandOnly: boolean;
+};
+
+export type PalletEquiprulesTagDef = {
+  name: Bytes;
+  description: Bytes;
+  requiresKeyword?: FixedBytes<32> | undefined;
+  requiresEntry?: FixedBytes<32> | undefined;
+  requiresEntryAny: Array<FixedBytes<32>>;
+  requiresEquipment?: FixedBytes<32> | undefined;
+  excludesEntry?: FixedBytes<32> | undefined;
+  exclusiveSlot?: FixedBytes<32> | undefined;
+  warbandLimit?: number | undefined;
+  oneUse: boolean;
+  movementPenalty: boolean;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletEquiprulesError = "AlreadyRegistered" | "UnknownTag";
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletCampaignRulesError = "TableTooLarge";
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletExplorationRulesError =
+  | "AlreadyRegistered"
+  | "UnknownEvent"
+  | "UnknownSkill";
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletTerrainRulesError =
+  | "UnknownCategory"
+  | "UnknownPiece"
+  | "UnknownArchetype";
+
 export type SpConsensusSlotsSlotDuration = bigint;
 
 export type SpRuntimeBlockLazyBlock = {
@@ -6691,4 +7209,8 @@ export type ParachainTemplateRuntimeRuntimeError =
   | { pallet: "Exploration"; palletError: PalletExplorationError }
   | { pallet: "Tile"; palletError: PalletTileError }
   | { pallet: "Region"; palletError: PalletRegionError }
-  | { pallet: "Country"; palletError: PalletCountryError };
+  | { pallet: "Country"; palletError: PalletCountryError }
+  | { pallet: "Equiprules"; palletError: PalletEquiprulesError }
+  | { pallet: "CampaignRules"; palletError: PalletCampaignRulesError }
+  | { pallet: "ExplorationRules"; palletError: PalletExplorationRulesError }
+  | { pallet: "TerrainRules"; palletError: PalletTerrainRulesError };

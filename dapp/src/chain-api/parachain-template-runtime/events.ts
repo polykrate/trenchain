@@ -28,7 +28,9 @@ import type {
   TcPrimitivesKeywordKind,
   TcPrimitivesAlignment,
   TcPrimitivesBattlekitType,
+  TcPrimitivesCostType,
   TcPrimitivesRegionControl,
+  TcPrimitivesExplorationTable,
 } from "./types.js";
 
 export interface ChainEvents extends GenericChainEvents {
@@ -1410,7 +1412,12 @@ export interface ChainEvents extends GenericChainEvents {
     EntryAdded: GenericPalletEvent<
       "Armoury",
       "EntryAdded",
-      { faction: FixedBytes<16>; item: FixedBytes<32> }
+      {
+        faction: FixedBytes<16>;
+        item: FixedBytes<32>;
+        cost: number;
+        costType: TcPrimitivesCostType;
+      }
     >;
     EntryRemoved: GenericPalletEvent<
       "Armoury",
@@ -1436,6 +1443,11 @@ export interface ChainEvents extends GenericChainEvents {
       "Entry",
       "EntryRemoved",
       { code: FixedBytes<32>; faction: FixedBytes<16> }
+    >;
+    AbilitiesSet: GenericPalletEvent<
+      "Entry",
+      "AbilitiesSet",
+      { code: FixedBytes<32>; count: number }
     >;
 
     /**
@@ -1794,6 +1806,151 @@ export interface ChainEvents extends GenericChainEvents {
       "Country",
       "RegionRemoved",
       { country: FixedBytes<32>; region: FixedBytes<32> }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Equiprules`'s events
+   **/
+  equiprules: {
+    SlotRuleSet: GenericPalletEvent<
+      "Equiprules",
+      "SlotRuleSet",
+      { battlekitType: TcPrimitivesBattlekitType }
+    >;
+    TagRegistered: GenericPalletEvent<
+      "Equiprules",
+      "TagRegistered",
+      { code: FixedBytes<32> }
+    >;
+    TagRemoved: GenericPalletEvent<
+      "Equiprules",
+      "TagRemoved",
+      { code: FixedBytes<32> }
+    >;
+    HandSlotsSet: GenericPalletEvent<
+      "Equiprules",
+      "HandSlotsSet",
+      { hands: number }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `CampaignRules`'s events
+   **/
+  campaignRules: {
+    ThresholdTableSet: GenericPalletEvent<
+      "CampaignRules",
+      "ThresholdTableSet",
+      { count: number }
+    >;
+    VictoryConfigSet: GenericPalletEvent<
+      "CampaignRules",
+      "VictoryConfigSet",
+      null
+    >;
+    TraumaTableSet: GenericPalletEvent<
+      "CampaignRules",
+      "TraumaTableSet",
+      { count: number }
+    >;
+    PhaseStepsSet: GenericPalletEvent<
+      "CampaignRules",
+      "PhaseStepsSet",
+      { count: number }
+    >;
+    PromotionRulesSet: GenericPalletEvent<
+      "CampaignRules",
+      "PromotionRulesSet",
+      null
+    >;
+    QuartermasterActionsSet: GenericPalletEvent<
+      "CampaignRules",
+      "QuartermasterActionsSet",
+      { count: number }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `ExplorationRules`'s events
+   **/
+  explorationRules: {
+    DiceProgressionSet: GenericPalletEvent<
+      "ExplorationRules",
+      "DiceProgressionSet",
+      { count: number }
+    >;
+    TableProgressionSet: GenericPalletEvent<
+      "ExplorationRules",
+      "TableProgressionSet",
+      { count: number }
+    >;
+    LootMultiplierSet: GenericPalletEvent<
+      "ExplorationRules",
+      "LootMultiplierSet",
+      { value: number }
+    >;
+    RerollsSet: GenericPalletEvent<
+      "ExplorationRules",
+      "RerollsSet",
+      { base: number; bonusIfWon: number }
+    >;
+    ExplorationEventSet: GenericPalletEvent<
+      "ExplorationRules",
+      "ExplorationEventSet",
+      { table: TcPrimitivesExplorationTable; roll: number }
+    >;
+    ExplorationSkillSet: GenericPalletEvent<
+      "ExplorationRules",
+      "ExplorationSkillSet",
+      { code: FixedBytes<16> }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `TerrainRules`'s events
+   **/
+  terrainRules: {
+    CategorySet: GenericPalletEvent<
+      "TerrainRules",
+      "CategorySet",
+      { code: FixedBytes<16> }
+    >;
+    PieceSet: GenericPalletEvent<
+      "TerrainRules",
+      "PieceSet",
+      { code: FixedBytes<16> }
+    >;
+    ArchetypeSet: GenericPalletEvent<
+      "TerrainRules",
+      "ArchetypeSet",
+      { code: FixedBytes<16> }
+    >;
+    TerrainBattlefieldMappingSet: GenericPalletEvent<
+      "TerrainRules",
+      "TerrainBattlefieldMappingSet",
+      { terrain: FixedBytes<16> }
+    >;
+    CombatModifiersSet: GenericPalletEvent<
+      "TerrainRules",
+      "CombatModifiersSet",
+      null
     >;
 
     /**

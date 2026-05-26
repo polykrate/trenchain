@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { keywords, type Keyword } from '../data'
+import { useChainKeywords, type ChainKeyword } from '../hooks/useChainData'
 
 export function Keywords() {
+  const { keywords, loading, error } = useChainKeywords()
   const [search, setSearch] = useState('')
   const [kindFilter, setKindFilter] = useState<'all' | 'Tag' | 'Effect'>('all')
 
@@ -11,6 +12,15 @@ export function Keywords() {
     const matchKind = kindFilter === 'all' || kw.kind === kindFilter
     return matchSearch && matchKind
   })
+
+  if (error) {
+    return (
+      <div className="text-red-400 p-4">
+        <p className="font-bold">Chain error</p>
+        <p className="text-sm">{error}</p>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -44,21 +54,32 @@ export function Keywords() {
           ))}
         </div>
         <span className="text-[0.65rem] text-[var(--muted)] ml-auto">
-          {filtered.length} / {keywords.length} keywords
+          {loading ? '...' : `${filtered.length} / ${keywords.length} keywords`}
         </span>
       </div>
 
+      {/* Loading state */}
+      {loading && (
+        <div className="space-y-2">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="card-military animate-pulse h-12" />
+          ))}
+        </div>
+      )}
+
       {/* Keywords list */}
-      <div className="space-y-2">
-        {filtered.map(kw => (
-          <KeywordRow key={kw.id} keyword={kw} />
-        ))}
-      </div>
+      {!loading && (
+        <div className="space-y-2">
+          {filtered.map(kw => (
+            <KeywordRow key={kw.code} keyword={kw} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
-function KeywordRow({ keyword }: { keyword: Keyword }) {
+function KeywordRow({ keyword }: { keyword: ChainKeyword }) {
   const [expanded, setExpanded] = useState(false)
 
   return (

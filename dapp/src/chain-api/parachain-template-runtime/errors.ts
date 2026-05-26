@@ -667,6 +667,7 @@ export interface ChainErrors extends GenericChainErrors {
     UnknownEntry: GenericPalletError;
     FactionNotFound: GenericPalletError;
     TooManyEntriesForFaction: GenericPalletError;
+    TooManyAbilities: GenericPalletError;
 
     /**
      * Generic pallet error
@@ -851,6 +852,55 @@ export interface ChainErrors extends GenericChainErrors {
     RegionAlreadyInCountry: GenericPalletError;
     RegionNotInCountry: GenericPalletError;
     TooManyRegions: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Equiprules`'s errors
+   **/
+  equiprules: {
+    AlreadyRegistered: GenericPalletError;
+    UnknownTag: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `CampaignRules`'s errors
+   **/
+  campaignRules: {
+    TableTooLarge: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `ExplorationRules`'s errors
+   **/
+  explorationRules: {
+    AlreadyRegistered: GenericPalletError;
+    UnknownEvent: GenericPalletError;
+    UnknownSkill: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `TerrainRules`'s errors
+   **/
+  terrainRules: {
+    UnknownCategory: GenericPalletError;
+    UnknownPiece: GenericPalletError;
+    UnknownArchetype: GenericPalletError;
 
     /**
      * Generic pallet error

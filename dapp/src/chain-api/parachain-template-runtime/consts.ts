@@ -453,6 +453,7 @@ export interface ChainConsts extends GenericChainConsts {
    **/
   faction: {
     maxNameLen: number;
+    maxDescriptionLen: number;
     maxKeywordsPerFaction: number;
 
     /**
@@ -467,6 +468,7 @@ export interface ChainConsts extends GenericChainConsts {
     maxNameLen: number;
     maxDescriptionLen: number;
     maxKeywordsPerItem: number;
+    maxSpecialRulesLen: number;
 
     /**
      * Generic pallet constant
@@ -478,6 +480,7 @@ export interface ChainConsts extends GenericChainConsts {
    **/
   armoury: {
     maxItemsPerArmoury: number;
+    maxTagsPerItem: number;
 
     /**
      * Generic pallet constant
@@ -490,8 +493,15 @@ export interface ChainConsts extends GenericChainConsts {
   entry: {
     maxNameLen: number;
     maxDescriptionLen: number;
+    maxLoreLen: number;
+    maxBattlekitRulesLen: number;
+    maxCompositionNoteLen: number;
     maxKeywordsPerEntry: number;
     maxEntriesPerFaction: number;
+    maxIncludedBattlekit: number;
+    maxAbilitiesPerEntry: number;
+    maxAbilityNameLen: number;
+    maxAbilityDescLen: number;
 
     /**
      * Generic pallet constant
@@ -628,6 +638,73 @@ export interface ChainConsts extends GenericChainConsts {
   country: {
     maxNameLen: number;
     maxRegionsPerCountry: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Equiprules`'s constants
+   **/
+  equiprules: {
+    maxNameLen: number;
+    maxDescriptionLen: number;
+    maxRequiresEntryAny: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `CampaignRules`'s constants
+   **/
+  campaignRules: {
+    maxNameLen: number;
+    maxDescriptionLen: number;
+    maxEffectLen: number;
+    maxPhaseSteps: number;
+    maxExclusiveWith: number;
+    maxTraumaRows: number;
+    maxThresholdRows: number;
+    maxScenarios: number;
+    maxQuartermasterActions: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `ExplorationRules`'s constants
+   **/
+  explorationRules: {
+    maxNameLen: number;
+    maxDescriptionLen: number;
+    maxEffectLen: number;
+    maxOptionsPerEvent: number;
+    maxFactionsPerOption: number;
+    maxDiceProgressionRows: number;
+    maxTableProgressionRows: number;
+    maxTablesPerRow: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `TerrainRules`'s constants
+   **/
+  terrainRules: {
+    maxNameLen: number;
+    maxDescriptionLen: number;
+    maxSpecialLen: number;
+    maxTerrainPerArchetype: number;
+    maxSetupRulesLen: number;
+    maxArchetypesPerTerrain: number;
+    maxMovementEffectLen: number;
 
     /**
      * Generic pallet constant
