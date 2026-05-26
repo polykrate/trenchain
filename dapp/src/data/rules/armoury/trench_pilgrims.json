@@ -1,26 +1,33 @@
 {
-  "faction_id": 2,
   "faction_code": "PILGRIM",
   "items": [
     {
       "item_code": "AUTOMATIC_PISTOL",
       "cost": 20,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "BLUNDERBUSS",
       "cost": 5,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BOLT_ACTION_RIFLE",
       "cost": 10,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "FLAMETHROWER",
       "cost": 30,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "MACHINE_GUN",
@@ -30,7 +37,9 @@
     {
       "item_code": "MUSKET",
       "cost": 5,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "PISTOL",
@@ -39,17 +48,24 @@
     {
       "item_code": "PUNT_GUN",
       "cost": 20,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "SEMI_AUTOMATIC_RIFLE",
       "cost": 15,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "SHOTGUN",
       "cost": 10,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SNIPER_RIFLE",
@@ -60,17 +76,25 @@
       "item_code": "SUBMACHINE_GUN",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "ANTI_TANK_HAMMER",
       "cost": 35,
-      "tags": ["ELITE_ONLY", "LIMIT_3"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "BAYONET",
       "cost": 2,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "FLAIL_SCOURGE",
@@ -87,12 +111,16 @@
     {
       "item_code": "MISERICORDIA",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "POLEARM",
       "cost": 7,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SWORD_AXE",
@@ -122,17 +150,24 @@
       "item_code": "HOLY_ICON_SHIELD",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["ELITE_ONLY", "SHIELD_COMBO"]
+      "tags": [
+        "ELITE_ONLY",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "TRENCH_SHIELD",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "REINFORCED_ARMOUR",
       "cost": 40,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "STANDARD_ARMOUR",
@@ -141,7 +176,9 @@
     {
       "item_code": "BLESSED_ICON",
       "cost": 15,
-      "tags": ["CONSUMABLE"]
+      "tags": [
+        "CONSUMABLE"
+      ]
     },
     {
       "item_code": "FIELD_SHRINE",
@@ -156,22 +193,32 @@
       "item_code": "HOLY_RELIC",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "INCENDIARY_AMMUNITION",
       "cost": 15,
-      "tags": ["CONSUMABLE", "LIMIT_1"]
+      "tags": [
+        "CONSUMABLE",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "IRON_CAPIROTE",
       "cost": 7,
-      "tags": ["HEADGEAR"]
+      "tags": [
+        "HEADGEAR"
+      ]
     },
     {
       "item_code": "MARTYRDOM_PILLS",
       "cost": 20,
-      "tags": ["CONSUMABLE", "LIMIT_3"]
+      "tags": [
+        "CONSUMABLE",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "MEDI_KIT",
@@ -180,18 +227,24 @@
     {
       "item_code": "MOUNTAINEER_KIT",
       "cost": 3,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "MUSICAL_INSTRUMENT",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "TROOP_FLAG",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     }
   ]
 }

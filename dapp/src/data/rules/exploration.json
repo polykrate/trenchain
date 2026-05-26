@@ -1,0 +1,656 @@
+{
+  "dice_progression": [
+    { "games_min": 1, "games_max": 2, "dice": 3 },
+    { "games_min": 3, "games_max": 5, "dice": 4 },
+    { "games_min": 6, "games_max": 9, "dice": 5 },
+    { "games_min": 10, "games_max": 99, "dice": 6 }
+  ],
+  "table_progression": [
+    { "games_min": 1, "games_max": 2, "tables": ["common"] },
+    { "games_min": 3, "games_max": 5, "tables": ["common", "rare"] },
+    { "games_min": 6, "games_max": 9, "tables": ["rare"] },
+    { "games_min": 10, "games_max": 99, "tables": ["rare", "legendary"] }
+  ],
+  "rerolls": {
+    "base": 1,
+    "bonus_if_won": 1,
+    "note": "Cannot re-roll the same die twice."
+  },
+  "loot_formula": {
+    "multiplier": 10,
+    "currency": "ducats",
+    "description": "Loot = Exploration Roll × 10 ducats"
+  },
+  "exploration_skills": [
+    {
+      "id": "extra_dice",
+      "name": "Extra Dice",
+      "effect": "Roll 1 extra Exploration Die.",
+      "timing": "before_roll"
+    },
+    {
+      "id": "duplicate",
+      "name": "Duplicate",
+      "effect": "After rolling, select one die and add an extra die with an identical result.",
+      "timing": "after_roll"
+    },
+    {
+      "id": "reroll",
+      "name": "Re-roll",
+      "effect": "Re-roll up to 1 extra Exploration Die.",
+      "timing": "after_roll"
+    },
+    {
+      "id": "set_dice",
+      "name": "Set Dice",
+      "effect": "After rolling, select one die and change its result to any value (1-6).",
+      "timing": "after_roll"
+    },
+    {
+      "id": "seek",
+      "name": "Seek",
+      "effect": "Add 1 to your Exploration Roll total.",
+      "timing": "after_modify"
+    },
+    {
+      "id": "circle_back",
+      "name": "Circle Back",
+      "effect": "Subtract 1 from your Exploration Roll total.",
+      "timing": "after_modify"
+    },
+    {
+      "id": "lucky",
+      "name": "Lucky",
+      "effect": "After rolling, select one die, then roll an extra die. Keep the original or replace it with the new one.",
+      "timing": "after_roll"
+    }
+  ],
+  "tables": {
+    "common": [
+      {
+        "roll": 4,
+        "name": "Moonshine Stash",
+        "description": "You find a hidden stash of strong distilled alcohol, its origin uncertain and unsafe.",
+        "options": [
+          {
+            "id": "distribute",
+            "name": "Distribute",
+            "factions": ["new_antioch", "trench_pilgrims"],
+            "effect": "+2 DICE to Morale Checks in your next game."
+          },
+          {
+            "id": "destroy",
+            "name": "Destroy",
+            "factions": ["new_antioch", "trench_pilgrims", "iron_sultanate"],
+            "effect": "Up to two ELITE models earn +1 XP each. If entitled to Advancement Roll, make it immediately."
+          },
+          {
+            "id": "sell",
+            "name": "Sell",
+            "factions": ["any"],
+            "effect": "Add 30 ducats to Strongbox."
+          }
+        ]
+      },
+      {
+        "roll": 5,
+        "name": "Heavy Weapons Cache",
+        "description": "You find a hidden weapons cache.",
+        "options": [
+          {
+            "id": "surplus",
+            "name": "Surplus",
+            "factions": ["any"],
+            "effect": "Choose one piece of Battlekit with the HEAVY Keyword from your Armoury Tables and add it to Arsenal."
+          },
+          {
+            "id": "specialise",
+            "name": "Specialise",
+            "factions": ["any"],
+            "effect": "Choose one Glory Item with Cost up to 5 glory, add to Arsenal."
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "name": "Trench Shrine",
+        "description": "You find a crude shrine erected by the soldiers of the Great War.",
+        "options": [
+          {
+            "id": "standard",
+            "name": "Standard",
+            "factions": ["any"],
+            "effect": "Add a Troop Flag to Arsenal."
+          },
+          {
+            "id": "shrine",
+            "name": "Shrine",
+            "factions": ["any"],
+            "effect": "Add a Field Shrine to Arsenal."
+          },
+          {
+            "id": "return",
+            "name": "Return",
+            "factions": ["any"],
+            "effect": "Your Warband gains +2 glory."
+          }
+        ]
+      },
+      {
+        "roll": 8,
+        "name": "Ruined House",
+        "description": "This house has been obliterated by heavy weaponry, its inhabitants ripped apart.",
+        "options": [
+          {
+            "id": "rummage",
+            "name": "Rummage",
+            "factions": ["any"],
+            "effect": "Choose Equipment from Armoury Tables worth up to 30 ducats total, add to Arsenal."
+          },
+          {
+            "id": "relic",
+            "name": "Relic",
+            "factions": ["any"],
+            "effect": "Choose one Glory Item worth up to 7 glory, add to Arsenal."
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "name": "Survivor",
+        "description": "You find a soldier staggering in No Man's Land. Add the model listed below for your Faction to your Warband (no Battlekit).",
+        "options": [
+          { "id": "new_antioch", "name": "New Antioch", "factions": ["new_antioch"], "effect": "Add a Yeoman without Ranged Weapon." },
+          { "id": "trench_pilgrims", "name": "Trench Pilgrims", "factions": ["trench_pilgrims"], "effect": "Add an Ecclesiastical Prisoner." },
+          { "id": "iron_sultanate", "name": "Iron Sultanate", "factions": ["iron_sultanate"], "effect": "Add an Azeb." },
+          { "id": "heretic_legions", "name": "Heretic Legions", "factions": ["heretic_legions"], "effect": "Add a Wretched." },
+          { "id": "black_grail", "name": "Black Grail", "factions": ["black_grail"], "effect": "Add a Grail Thrall." },
+          { "id": "the_court", "name": "The Court", "factions": ["the_court"], "effect": "Add a Wretched." }
+        ]
+      },
+      {
+        "roll": 10,
+        "name": "Fallen Soldier",
+        "description": "You find the body of a fallen soldier.",
+        "options": [
+          {
+            "id": "loot",
+            "name": "Loot",
+            "factions": ["any"],
+            "effect": "Choose one Ranged Weapon from Armoury Tables worth up to 15 ducats, add to Arsenal along with Combat Helmet and Standard Armour. Roll D6: on 4+, add a Medi-kit, Mountaineer's Kit, or Shovel."
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "name": "Trench Merchant",
+        "description": "You establish contact with a Trench Merchant.",
+        "options": [
+          {
+            "id": "report",
+            "name": "Report",
+            "factions": ["any"],
+            "effect": "Your Warband gains +2 glory."
+          },
+          {
+            "id": "trade",
+            "name": "Trade",
+            "factions": ["any"],
+            "effect": "From now on, in the Quartermaster Step, you can purchase Glory Items costing 5 glory or less."
+          }
+        ]
+      },
+      {
+        "roll": 14,
+        "name": "Map & Document Bag",
+        "description": "Marked with carefully concealed signs, you find a hidden satchel containing maps and intelligence.",
+        "options": [
+          {
+            "id": "gain_skill",
+            "name": "Gain Skill",
+            "factions": ["any"],
+            "effect": "Your Warband gains the Re-roll Exploration Skill."
+          }
+        ],
+        "grants_skill": "reroll"
+      },
+      {
+        "roll": 16,
+        "name": "Sniper's Lair",
+        "description": "You find the well-camouflaged position of a sniper. Add the Battlekit listed for your Faction to Arsenal. If not allowed, add Cost in ducats to Strongbox instead.",
+        "options": [
+          { "id": "new_antioch", "name": "New Antioch / Trench Pilgrims", "factions": ["new_antioch", "trench_pilgrims"], "effect": "Sniper Rifle or Sniper Scope." },
+          { "id": "iron_sultanate", "name": "Iron Sultanate", "factions": ["iron_sultanate"], "effect": "Siege Jezzail, Alchemical Ammunition, and Cloak of Alamut." },
+          { "id": "heretic_legions", "name": "Heretic Legions", "factions": ["heretic_legions"], "effect": "Automatic Rifle." },
+          { "id": "black_grail", "name": "Black Grail", "factions": ["black_grail"], "effect": "Corruption Belcher and Field Shrine." },
+          { "id": "the_court", "name": "The Court", "factions": ["the_court"], "effect": "Ophidian Rifle." }
+        ]
+      },
+      {
+        "roll": 18,
+        "name": "Fallen Knight",
+        "description": "You find a fallen hero of past ages. Perhaps a baron from New Antioch, a great Faris of the Sultanate, or a Plague Knight of Beelzebub.",
+        "options": [
+          {
+            "id": "loot",
+            "name": "Loot",
+            "factions": ["any"],
+            "effect": "Add Reinforced Armour, Trench Shield, Combat Helmet, and either a Sword or Polearm to Arsenal."
+          },
+          {
+            "id": "memorialise",
+            "name": "Memorialise",
+            "factions": ["any"],
+            "effect": "Your Warband gains +2 glory."
+          }
+        ]
+      },
+      {
+        "roll": 20,
+        "name": "Warband Strongbox",
+        "description": "You find the hidden strongbox of a Warband lost in the Great War.",
+        "options": [
+          {
+            "id": "trove",
+            "name": "Trove",
+            "factions": ["any"],
+            "effect": "Choose Battlekit from Armoury Tables worth up to 120 ducats total, add to Arsenal."
+          },
+          {
+            "id": "panoply",
+            "name": "Panoply",
+            "factions": ["any"],
+            "effect": "Choose Glory Items worth up to 9 glory total. Weapons cost -1 glory (min 1)."
+          }
+        ]
+      }
+    ],
+    "rare": [
+      {
+        "roll": 5,
+        "name": "Angelic Instrument",
+        "description": "You discover an otherworldly instrument alongside the shattered remains of a lesser angel.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add an Angelic Instrument to Arsenal. Counts as Musical Instrument with 8\" range instead of 4\". Can replace existing Musical Instrument (no refund)."
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "name": "Abandoned Prophetic Radio Post",
+        "description": "You find a hastily-abandoned Synod of Strategic Prophecy station, with scribbled predictions and prophecies.",
+        "options": [
+          {
+            "id": "gain_skill",
+            "name": "Gain Skill",
+            "factions": ["any"],
+            "effect": "Your Warband gains the Extra Dice Exploration Skill."
+          }
+        ],
+        "grants_skill": "extra_dice"
+      },
+      {
+        "roll": 11,
+        "name": "Pot of Manna",
+        "description": "You find a cup blessed by God that provides endless nourishment.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add 10 ducats to the loot you receive each Exploration Step permanently (including this one)."
+          }
+        ],
+        "permanent_bonus": { "loot_bonus": 10 }
+      },
+      {
+        "roll": 12,
+        "name": "Ransacked Alchemist Workshop",
+        "description": "Amidst the rubble, you find a few intact life-giving potions.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add Curative Fluids to Arsenal. Once in any future Quartermaster Step, remove 1 Battle Scar (not Trauma effects) from a model. Single use."
+          }
+        ]
+      },
+      {
+        "roll": 15,
+        "name": "Black Market",
+        "description": "You discover a major underground trading post in No Man's Land.",
+        "options": [
+          {
+            "id": "contact",
+            "name": "Establish Contact",
+            "factions": ["any"],
+            "effect": "From now on, in Quartermaster Step, you can purchase Glory Items costing 8 glory or less."
+          }
+        ],
+        "permanent_bonus": { "glory_item_limit": 8 }
+      },
+      {
+        "roll": 17,
+        "name": "Book of Golems",
+        "description": "You find a Rabbinic manual on creating Golems.",
+        "options": [
+          {
+            "id": "create",
+            "name": "Create Golem",
+            "factions": ["any"],
+            "effect": "Add a Takwin Homunculus (from House of Wisdom) to Warband with Human Hands + up to 50 ducats of Alchemical Formulas free. Gains GOLEM Keyword, replaces SULTANATE with your Faction Keyword. Treated as Ally, cannot be Promoted."
+          }
+        ]
+      },
+      {
+        "roll": 19,
+        "name": "Ruined Church/Masjid/Synagogue",
+        "description": "You find a great shrine, temple or other religious building of faith. Upon its altar rests an object of great power.",
+        "options": [
+          {
+            "id": "report",
+            "name": "Report",
+            "factions": ["any"],
+            "effect": "Your Warband gains +4 glory."
+          },
+          {
+            "id": "keep",
+            "name": "Keep",
+            "factions": ["any"],
+            "effect": "Choose one Glory Item worth up to 10 glory, add to Arsenal."
+          }
+        ]
+      },
+      {
+        "roll": 21,
+        "name": "Stash of Drugs & Erotica",
+        "description": "You find a motherlode of forbidden objects and chemicals, highly sought after and in demand.",
+        "options": [
+          {
+            "id": "indulge",
+            "name": "Indulge",
+            "factions": ["any"],
+            "effect": "+1 DICE to Morale Checks for the rest of the campaign."
+          },
+          {
+            "id": "sell",
+            "name": "Sell",
+            "factions": ["any"],
+            "effect": "Your Warband gains 120 ducats."
+          },
+          {
+            "id": "confiscate",
+            "name": "Confiscate",
+            "factions": ["any"],
+            "effect": "Your Warband gains +4 glory. Trench Pilgrims must select this option."
+          }
+        ]
+      },
+      {
+        "roll": 23,
+        "name": "Saint's Reliquary",
+        "description": "You discover the well-hidden reliquary of a fallen saint.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add Saintly Relic to Arsenal (Equipment for ELITE models). Model gains TOUGH, loses INFILTRATOR. Opponent ignores Cover and Defended Obstacle modifiers vs this model."
+          }
+        ]
+      },
+      {
+        "roll": 25,
+        "name": "High-Ranking Captive",
+        "description": "You capture a high-ranking enemy — an officer, sheik, shard, prophet, merchant, or other important personage.",
+        "options": [
+          {
+            "id": "ransom",
+            "name": "Ransom",
+            "factions": ["any"],
+            "effect": "Your Warband gains 100 ducats."
+          },
+          {
+            "id": "execute",
+            "name": "Execute",
+            "factions": ["any"],
+            "effect": "Your Warband gains +4 glory."
+          },
+          {
+            "id": "imprison",
+            "name": "Imprison",
+            "factions": ["any"],
+            "effect": "Choose one Glory Item with Cost up to 8 glory, add to Arsenal."
+          },
+          {
+            "id": "indenture",
+            "name": "Indenture",
+            "factions": ["any"],
+            "effect": "Your Warband gains the Set Dice Exploration Skill."
+          }
+        ],
+        "grants_skill_option": "set_dice"
+      },
+      {
+        "roll": 32,
+        "name": "Abandoned Resurrection Machines",
+        "description": "You find remnants of machines from the Meta-Christ Programme. One of them works and can be dismantled.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add Salvaged Resurrection Machine to Arsenal. In any future Quartermaster Step, remove 1 Battle Scar and its Trauma from a model. Single use."
+          }
+        ]
+      }
+    ],
+    "legendary": [
+      {
+        "roll": 6,
+        "name": "Battlefield of Corpses",
+        "description": "You come across a scene of terrible slaughter. Remains of humans and Hellish creatures from 800 years of battles.",
+        "options": [
+          {
+            "id": "loot",
+            "name": "Loot",
+            "factions": ["any"],
+            "effect": "Choose up to 2 pieces of Battlekit from Armoury Tables worth up to 100 ducats total, add to Arsenal."
+          }
+        ]
+      },
+      {
+        "roll": 8,
+        "name": "Esoteric Library",
+        "description": "You find a concealed collection of works on Goetic Magic, blood sacrifice rites, and grimoires on demon summoning.",
+        "options": [
+          {
+            "id": "burn",
+            "name": "Burn",
+            "factions": ["new_antioch", "trench_pilgrims", "iron_sultanate"],
+            "effect": "Your Warband gains 3+D3 glory."
+          },
+          {
+            "id": "release_plague",
+            "name": "Release Plague",
+            "factions": ["black_grail"],
+            "effect": "At the start of each game, after deployment, place 1 INFECTION MARKER next to 1 model (friend or foe)."
+          },
+          {
+            "id": "sell",
+            "name": "Sell",
+            "factions": ["any"],
+            "effect": "Your Warband gains 6D6 × 10 ducats."
+          },
+          {
+            "id": "study",
+            "name": "Study",
+            "factions": ["the_court", "heretic_legions"],
+            "effect": "At the start of each game, after deployment, place 1 BLOOD MARKER next to 1 model (friend or foe)."
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "name": "Hidden Passages",
+        "description": "You uncover a hidden entrance to a vast underground network, perhaps dug by Heretics to infiltrate the Iron Wall.",
+        "options": [
+          {
+            "id": "gain_skill",
+            "name": "Gain Skill",
+            "factions": ["any"],
+            "effect": "Your Warband gains the Duplicate Exploration Skill."
+          }
+        ],
+        "grants_skill": "duplicate"
+      },
+      {
+        "roll": 12,
+        "name": "Jabirean Alchemical Book",
+        "description": "You find one of the fabled books of the Jabirean Corpus, filled with wondrous secrets.",
+        "options": [
+          {
+            "id": "keep",
+            "name": "Keep",
+            "factions": ["any"],
+            "effect": "From now on, in Quartermaster Step, you can purchase Fire Shields from the House of Wisdom Armoury Tables."
+          },
+          {
+            "id": "sell",
+            "name": "Sell",
+            "factions": ["any"],
+            "effect": "Your Warband gains 150 ducats or 5 glory (choose one)."
+          },
+          {
+            "id": "study",
+            "name": "Study",
+            "factions": ["iron_sultanate"],
+            "effect": "Alchemical Formulae now cost 5 ducats less (minimum 5 ducats)."
+          }
+        ]
+      },
+      {
+        "roll": 14,
+        "name": "Black Network Contact",
+        "description": "You make contact with one of the legendary Merchant Princes of the Black Network.",
+        "options": [
+          {
+            "id": "contact",
+            "name": "Establish Contact",
+            "factions": ["any"],
+            "effect": "From now on, in Quartermaster Step, you can purchase Glory Items costing 12 glory or less."
+          }
+        ],
+        "permanent_bonus": { "glory_item_limit": 12 }
+      },
+      {
+        "roll": 16,
+        "name": "Treasure of the Holies",
+        "description": "You find a legendary feretory — the Tabernacle, an altar to the Morning Star, a shrine of Saint Peter, or a place the Prophet visited.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Score D3 Campaign Victory Points. Add one Glory Item to Arsenal for free (can defer choice to any future Quartermaster Step)."
+          }
+        ]
+      },
+      {
+        "roll": 18,
+        "name": "Skull of a Saint",
+        "description": "You find the skull of a saint martyred in ages past. The power of communion lingers in its holy remains.",
+        "options": [
+          {
+            "id": "faithful",
+            "name": "Faithful Relic",
+            "factions": ["new_antioch", "trench_pilgrims", "iron_sultanate"],
+            "effect": "Add Skull Relic to Arsenal (HELD Equipment, any model). Model gains INFILTRATOR Keyword."
+          },
+          {
+            "id": "heretic",
+            "name": "Heretic Trophy",
+            "factions": ["heretic_legions", "black_grail", "the_court"],
+            "effect": "Add Screaming Skull to Arsenal (HELD Equipment, any model). +2 DICE to Morale Checks while bearer is on battlefield and not Down/OOA. Gain +1 glory at end of any game where bearer is on battlefield and not Down/OOA."
+          }
+        ]
+      },
+      {
+        "roll": 20,
+        "name": "Lock of Samson's Hair",
+        "description": "You discover a lock of the legendary Samson's hair, imbued with the essence of the strongest warrior to ever live.",
+        "options": [
+          {
+            "id": "take",
+            "name": "Take",
+            "factions": ["any"],
+            "effect": "Add Lock of Samson's Hair to Arsenal (Equipment, any model). Model gains STRONG Keyword and +1 INJURY DICE to Melee Attacks."
+          }
+        ]
+      },
+      {
+        "roll": 23,
+        "name": "Patron's Visit",
+        "description": "Your Patron or their representative makes a surprise visit to your Warband.",
+        "options": [
+          {
+            "id": "exchange",
+            "name": "Exchange",
+            "factions": ["any"],
+            "effect": "Immediately exchange up to 10 glory for an equal number of Campaign Victory Points."
+          }
+        ]
+      },
+      {
+        "roll": 26,
+        "name": "Sample of Holy DNA",
+        "description": "You find a sample of Holy DNA.",
+        "options": [
+          {
+            "id": "treat",
+            "name": "Treat Model",
+            "factions": ["any"],
+            "effect": "Pick 1 model — treated with Holy DNA. When Activated, before Actions, can remove 1 BLOOD or INFECTION MARKER and replace with BLESSING MARKER."
+          }
+        ]
+      },
+      {
+        "roll": 30,
+        "name": "Golgotha Tektites",
+        "description": "Golgotha Tektites are used to forge the armour of the mighty Paladins.",
+        "options": [
+          {
+            "id": "treat_armour",
+            "name": "Treat Armour",
+            "factions": ["any"],
+            "effect": "Pick up to 2 suits of Armour. They gain NEGATE FIRE, NEGATE GAS, and NEGATE SHRAPNEL Keywords."
+          },
+          {
+            "id": "donate",
+            "name": "Donate to Church",
+            "factions": ["new_antioch"],
+            "effect": "Hand over to the Church: gain +15 glory."
+          }
+        ]
+      },
+      {
+        "roll": 36,
+        "name": "Fruit from the Tree of Good and Evil Knowledge",
+        "description": "Amongst the bones of giant humans unearthed by war you discover a golden-hued fruit wrapped in spun cloth.",
+        "options": [
+          {
+            "id": "consume",
+            "name": "Consume",
+            "factions": ["any"],
+            "effect": "Pick 1 model — gains DEMONIC Keyword and one Skill of your choice from any Skill Table, Patron Skill, or Exploration Skill."
+          }
+        ]
+      }
+    ]
+  }
+}

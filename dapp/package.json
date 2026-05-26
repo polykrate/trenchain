@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seed": "npx tsx scripts/seed-chain.ts"
   },
   "dependencies": {
+    "@polkadot/keyring": "^14.0.3",
+    "@polkadot/util-crypto": "^14.0.3",
+    "dedot": "^1.3.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
@@ -27,6 +31,7 @@
     "globals": "^17.6.0",
     "react-router-dom": "^7.15.1",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.22.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12"

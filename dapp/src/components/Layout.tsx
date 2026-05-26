@@ -46,7 +46,7 @@ export function Layout() {
       <div className="flex-1 flex min-h-0">
         <Nav address={address} />
         <main className="flex-1 overflow-y-auto bg-[var(--bg)]">
-          <div className="max-w-[1100px] mx-auto px-10 py-8">
+          <div className="max-w-[1400px] mx-auto px-6 py-8">
             <Outlet />
           </div>
         </main>

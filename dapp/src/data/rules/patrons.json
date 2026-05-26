@@ -1,68 +1,136 @@
 {
   "patrons": [
     {
-      "id": 1,
       "code": "TEMPORAL_LORD",
       "name": "Temporal Lord",
       "description": "Your Patron is a powerful noble, perhaps a merchant prince, a high-ranking military officer, a minister, or even the mighty Duke of New Antioch himself. Such Patrons can help your warband's specialist training and procurement of expensive weapons.",
-      "factions": ["ANTIOCH"],
-      "skills": [1, 2, 3, 4, 5, 6]
+      "factions": [
+        "ANTIOCH"
+      ],
+      "skills": [
+        "ARMOUR_EQUIPMENT_PROCUREMENT",
+        "MELEE_WEAPON_PROCUREMENT",
+        "MENDELIST_CHEMICALS",
+        "RANGED_WEAPON_PROCUREMENT",
+        "SNIPER_SCHOOL",
+        "SPECIAL_ASSAULT_TRAINING"
+      ]
     },
     {
-      "id": 2,
       "code": "WARRIOR_SAINT",
       "name": "Warrior Saint",
       "description": "Your Patron is a mighty saint of soldiers and warriors such as Saint George the Dragonslayer, Saint John the Warrior, Saint Jeanne d'Arc, or even Saint Michael the Taxiarch himself. Such Patrons offer great power in personal combat and divine protection on the battlefield.",
-      "factions": ["PILGRIM", "ANTIOCH"],
-      "skills": [7, 8, 9, 10, 11, 12]
+      "factions": [
+        "PILGRIM",
+        "ANTIOCH"
+      ],
+      "skills": [
+        "BLESSINGS_OF_THE_WARRIOR_SAINT",
+        "DAVID_AND_GOLIATH",
+        "DRAGONSLAYER",
+        "ENDURE_THE_SUFFERING",
+        "ON_YOUR_KNEES",
+        "WARRIORS_PRAYER_ACTION"
+      ]
     },
     {
-      "id": 3,
       "code": "LEARNED_SAINT",
       "name": "Learned Saint",
       "description": "Your Patron is a great teacher, such as Saint Patrick, Saint Thomas Aquinas or Saint Methodius. Such Patrons illuminate the paths of planning, science, strategy and organisational skills.",
-      "factions": ["PILGRIM", "ANTIOCH"],
-      "skills": [13, 14, 15, 16, 17, 18]
+      "factions": [
+        "PILGRIM",
+        "ANTIOCH"
+      ],
+      "skills": [
+        "FAVOURED_BY_GOD",
+        "HEALING_ARTS",
+        "KNOWLEDGE_OF_SCIENCES",
+        "LOGISTICAL_SKILLS",
+        "PENNIES_FROM_HEAVEN",
+        "WALK_WITH_GOD"
+      ]
     },
     {
-      "id": 4,
       "code": "INFERNAL_NOBLE",
       "name": "Infernal Noble",
       "description": "Your Patron is one of the Fallen, a mighty devil noble such as Baal, Balam, Zepar, Astaroth or Gusion. Such Patrons bestow magical powers, reward evil deeds and enhance the power of sins.",
-      "factions": ["HERETIC", "COURT"],
-      "skills": [19, 20, 21, 22, 23, 24]
+      "factions": [
+        "HERETIC",
+        "COURT"
+      ],
+      "skills": [
+        "30_PIECES_OF_SILVER",
+        "BLESSED_MURDER",
+        "BLOOD_SACRIFICE_ACTION",
+        "HELLFIRE_ACTION",
+        "LASH_OF_ACHERON_ACTION",
+        "SADISTIC"
+      ]
     },
     {
-      "id": 5,
       "code": "SUBLIME_GATE",
       "name": "Sublime Gate",
       "description": "Your Patron is one of the high-ranking nobles of the Sultanate such as an emir, pasha, vizier or even the Sultan himself. Such Patrons bestow martial prowess, access to exotic weapons, armour, superior training and of course, the favour of the Sultan.",
-      "factions": ["SULTANATE"],
-      "skills": [25, 26, 27, 28, 29, 30]
+      "factions": [
+        "SULTANATE"
+      ],
+      "skills": [
+        "GURES",
+        "IMPORTED_WARES",
+        "JANISSARY_TRAINING",
+        "RIGHTLY_GUIDED",
+        "SULTANS_FAVOUR",
+        "SWORD_OF_ALLAH"
+      ]
     },
     {
-      "id": 6,
       "code": "THE_ORDER_OF_THE_FLY",
       "name": "The Order of the Fly",
       "description": "Your Patron is a powerful infernal noble of the Order of the Fly, such as Enlil, Prince Vassago or even Beelzebub the Lord of the Flies himself. Through you, these putrid and mighty devils unleash a tidal wave of corruption upon the mortal world.",
-      "factions": ["BLACK_GRAIL"],
-      "skills": [31, 32, 33, 34, 35, 36]
+      "factions": [
+        "BLACK_GRAIL"
+      ],
+      "skills": [
+        "COCKROACH_VITALITY",
+        "DECEIT_OF_BEELZEBUB_ACTION",
+        "EYES_OF_THE_FLY",
+        "GRAIL_PLAGUE",
+        "KNIGHT_OF_THE_FLIES",
+        "WINGS_OF_THE_FLY"
+      ]
     },
     {
-      "id": 7,
       "code": "MAMMON",
       "name": "Mammon",
       "description": "Your Patron is Mammon, the Prince of Greed, the Treasurer of Hell, and the King of Fools. He appears as a golden-skinned king on an opulent throne, with black scorch marks tarnishing his splendour. He is the most popular Patron amongst mortals.",
-      "factions": ["HERETIC", "COURT"],
-      "skills": [37, 38, 39, 40, 41, 42]
+      "factions": [
+        "HERETIC",
+        "COURT"
+      ],
+      "skills": [
+        "AUREATE_SKIN",
+        "CROOKED_DICE",
+        "ETERNAL_DEBT",
+        "MONEY_CAN_BUY_ANYTHING",
+        "PLUTOCRACY",
+        "UNSECURED_LOAN"
+      ]
     },
     {
-      "id": 8,
       "code": "THE_ANTIPOPE_OF_AVIGNON",
       "name": "The Antipope of Avignon",
       "description": "Your Patron is the Antipope of Avignon, the high priest of the Cult of the Black Grail. Whereas most strains of the Black Grail infect the body, the variant spread by Missionaries of Beelzebub targets the mind above all. This is why Apostles of the Fly are disturbingly effective at winning new converts to their cause despite the obvious ruin that follows devotion to the Lord of the Flies.",
-      "factions": ["BLACK_GRAIL"],
-      "skills": [43, 44, 45, 46, 47, 48]
+      "factions": [
+        "BLACK_GRAIL"
+      ],
+      "skills": [
+        "BEELZEBUBS_WISDOM",
+        "EYE_OF_BEELZEBUB_ACTION",
+        "FEAST_ON_DISEASE",
+        "INFECT_THE_MIND",
+        "SILVERED_TONGUE_ACTION",
+        "SWINE_HYBRID"
+      ]
     }
   ]
 }

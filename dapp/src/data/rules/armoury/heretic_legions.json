@@ -1,48 +1,65 @@
 {
-  "faction_id": 1,
   "faction_code": "HERETIC",
   "items": [
     {
       "item_code": "ANTI_MATERIEL_RIFLE",
       "cost": 3,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "AUTOMATIC_RIFLE",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["BAYONET_LUG", "LIMIT_2"]
+      "tags": [
+        "BAYONET_LUG",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "AUTOMATIC_SHOTGUN",
       "cost": 15,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BOLT_ACTION_RIFLE",
       "cost": 10,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "FLAMETHROWER",
       "cost": 30,
-      "tags": ["LIMIT_3"]
+      "tags": [
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "GRENADE_LAUNCHER",
       "cost": 30,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "HEAVY_FLAMETHROWER",
       "cost": 55,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "MACHINE_GUN",
       "cost": 50,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "PISTOL",
@@ -51,34 +68,48 @@
     {
       "item_code": "SEMI_AUTOMATIC_RIFLE",
       "cost": 15,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "SHOTGUN",
       "cost": 10,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SILENCED_PISTOL",
       "cost": 15,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "SUBMACHINE_GUN",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BAYONET",
       "cost": 2,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BLASPHEMOUS_STAFF",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "GREAT_HAMMER_MAUL",
@@ -92,17 +123,24 @@
       "item_code": "HELLBLADE",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "POLEARM",
       "cost": 7,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SACRIFICIAL_BLADE",
       "cost": 23,
-      "tags": ["ELITE_ONLY", "LIMIT_2"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "SWORD_AXE",
@@ -111,7 +149,9 @@
     {
       "item_code": "TARTARUS_CLAWS",
       "cost": 15,
-      "tags": ["DEATH_COMMANDO_ONLY"]
+      "tags": [
+        "DEATH_COMMANDO_ONLY"
+      ]
     },
     {
       "item_code": "TRENCH_CLUB",
@@ -136,12 +176,16 @@
     {
       "item_code": "TRENCH_SHIELD",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "REINFORCED_ARMOUR",
       "cost": 40,
-      "tags": ["ANOINTED_AND_ELITE"]
+      "tags": [
+        "ANOINTED_AND_ELITE"
+      ]
     },
     {
       "item_code": "STANDARD_ARMOUR",
@@ -150,12 +194,16 @@
     {
       "item_code": "BINOCULARS",
       "cost": 10,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "COMBAT_HELMET",
       "cost": 5,
-      "tags": ["HEADGEAR"]
+      "tags": [
+        "HEADGEAR"
+      ]
     },
     {
       "item_code": "GAS_MASK",
@@ -164,12 +212,18 @@
     {
       "item_code": "HELLBOUND_SOUL_CONTRACT",
       "cost": 5,
-      "tags": ["HERETIC_TROOPERS_ONLY", "LIMIT_3"]
+      "tags": [
+        "HERETIC_TROOPERS_ONLY",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "INCENDIARY_AMMUNITION",
       "cost": 15,
-      "tags": ["CONSUMABLE", "LIMIT_1"]
+      "tags": [
+        "CONSUMABLE",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "INFERNAL_BRAND",
@@ -178,12 +232,16 @@
     {
       "item_code": "MOUNTAINEER_KIT",
       "cost": 3,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "MUSICAL_INSTRUMENT",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "SHOVEL",
@@ -193,7 +251,9 @@
       "item_code": "TROOP_FLAG",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "UNHOLY_RELIC",
@@ -202,7 +262,9 @@
     {
       "item_code": "UNHOLY_TRINKET",
       "cost": 15,
-      "tags": ["CONSUMABLE"]
+      "tags": [
+        "CONSUMABLE"
+      ]
     }
   ]
 }

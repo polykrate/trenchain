@@ -1,21 +1,28 @@
 {
-  "faction_id": 4,
   "faction_code": "SULTANATE",
   "items": [
     {
       "item_code": "ALAYBOZAN",
       "cost": 9,
-      "tags": ["SULTANATE_SAPPERS_ONLY", "SHIELD_COMBO"]
+      "tags": [
+        "SULTANATE_SAPPERS_ONLY",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "FLAME_CANNON",
       "cost": 60,
-      "tags": ["BRAZEN_BULL_ONLY", "LIMIT_1"]
+      "tags": [
+        "BRAZEN_BULL_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "FLAMETHROWER",
       "cost": 30,
-      "tags": ["LIMIT_3"]
+      "tags": [
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "JEZZAIL",
@@ -24,17 +31,24 @@
     {
       "item_code": "MURAD_BOMBARD",
       "cost": 50,
-      "tags": ["BRAZEN_BULL_ONLY", "LIMIT_1"]
+      "tags": [
+        "BRAZEN_BULL_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "MACHINE_GUN",
       "cost": 50,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "MUSKET",
       "cost": 5,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "PISTOL",
@@ -43,7 +57,10 @@
     {
       "item_code": "SHOTGUN",
       "cost": 10,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SIEGE_JEZZAIL",
@@ -52,17 +69,24 @@
     {
       "item_code": "SNIPER_RIFLE",
       "cost": 35,
-      "tags": ["ELITE_AND_JANISSARIES", "LIMIT_2"]
+      "tags": [
+        "ELITE_AND_JANISSARIES",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "ASSASSINS_DAGGER",
       "cost": 15,
-      "tags": ["SULTANATE_ASSASSINS_ONLY"]
+      "tags": [
+        "SULTANATE_ASSASSINS_ONLY"
+      ]
     },
     {
       "item_code": "BAYONET",
       "cost": 2,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "GREAT_HAMMER_MAUL",
@@ -75,12 +99,16 @@
     {
       "item_code": "HALBERD_GUN",
       "cost": 20,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "POLEARM",
       "cost": 7,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SWORD_AXE",
@@ -89,7 +117,9 @@
     {
       "item_code": "TITAN_ZULFIQAR",
       "cost": 30,
-      "tags": ["BRAZEN_BULL_ONLY"]
+      "tags": [
+        "BRAZEN_BULL_ONLY"
+      ]
     },
     {
       "item_code": "TRENCH_CLUB",
@@ -106,22 +136,31 @@
     {
       "item_code": "INCENDIARY_GRENADES",
       "cost": 15,
-      "tags": ["JABIREAN_ALCHEMIST_ONLY"]
+      "tags": [
+        "JABIREAN_ALCHEMIST_ONLY"
+      ]
     },
     {
       "item_code": "TRENCH_SHIELD",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "ALCHEMIST_ARMOUR",
       "cost": 50,
-      "tags": ["ELITE_ONLY", "LIMIT_1"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "REINFORCED_ARMOUR",
       "cost": 40,
-      "tags": ["ELITE_AND_JANISSARIES"]
+      "tags": [
+        "ELITE_AND_JANISSARIES"
+      ]
     },
     {
       "item_code": "STANDARD_ARMOUR",
@@ -134,17 +173,24 @@
     {
       "item_code": "BINOCULARS",
       "cost": 10,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "CLOAK_OF_ALAMUT",
       "cost": 25,
-      "tags": ["ELITE_ONLY", "LIMIT_1"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "COMBAT_HELMET",
       "cost": 5,
-      "tags": ["HEADGEAR"]
+      "tags": [
+        "HEADGEAR"
+      ]
     },
     {
       "item_code": "GAS_MASK",
@@ -154,12 +200,16 @@
       "item_code": "HOLY_RELIC",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "MARID_SHOVEL",
       "cost": 15,
-      "tags": ["BRAZEN_BULL_ONLY"]
+      "tags": [
+        "BRAZEN_BULL_ONLY"
+      ]
     },
     {
       "item_code": "MEDI_KIT",
@@ -168,12 +218,16 @@
     {
       "item_code": "MOUNTAINEER_KIT",
       "cost": 3,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "MUSICAL_INSTRUMENT",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "SHOVEL",
@@ -183,18 +237,25 @@
       "item_code": "TAKWIN_ANQ_BIRD",
       "cost": 2,
       "cost_type": "glory",
-      "tags": ["ELITE_ONLY", "LIMIT_1"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "TROOP_FLAG",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "WIND_AMULET",
       "cost": 10,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     }
   ]
 }

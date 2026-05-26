@@ -1,525 +1,450 @@
 {
   "keywords": [
     {
-      "id": 1,
       "code": "ACTION",
       "name": "ACTION",
       "kind": "Tag",
       "description": "An activity a model can carry out when it is Activated. Common ACTIONS include Move, Dash, Shoot and Fight."
     },
     {
-      "id": 2,
       "code": "AMMUNITION_ARMOUR_PIERCING",
       "name": "AMMUNITION (ARMOUR PIERCING)",
       "kind": "Effect",
       "description": "If a model has a piece of Battlekit with this Keyword, it will use it in the next game that it takes part in. When the model is deployed, say which Ranged Weapon the Battlekit will be used for. It gains the ARMOUR PIERCING Keyword until the end of the game. The Ranged Weapon you choose cannot already have the BLAST, FIRE, GAS, or SHRAPNEL Keywords, and cannot have more than one type of AMMUNITION."
     },
     {
-      "id": 3,
       "code": "AMMUNITION_CRITICAL",
       "name": "AMMUNITION (CRITICAL)",
       "kind": "Effect",
       "description": "If a model has a piece of Battlekit with this Keyword, it will use it in the next game that it takes part in. When the model is deployed, say which Ranged Weapon the Battlekit will be used for. It gains the CRITICAL Keyword until the end of the game. The Ranged Weapon you choose cannot already have the BLAST, FIRE, GAS, or SHRAPNEL Keywords, and cannot have more than one type of AMMUNITION."
     },
     {
-      "id": 4,
       "code": "AMMUNITION_FIRE",
       "name": "AMMUNITION (FIRE)",
       "kind": "Effect",
       "description": "If a model has a piece of Battlekit with this Keyword, it will use it in the next game that it takes part in. When the model is deployed, say which Ranged Weapon the Battlekit will be used for. It gains the FIRE Keyword until the end of the game. The Ranged Weapon you choose cannot already have the BLAST, FIRE, GAS, or SHRAPNEL Keywords, and cannot have more than one type of AMMUNITION."
     },
     {
-      "id": 5,
       "code": "AMMUNITION_PLUS_1_DICE",
       "name": "AMMUNITION (+1 DICE)",
       "kind": "Effect",
       "description": "If a model has a piece of Battlekit with this Keyword, it will use it in the next game that it takes part in. When the model is deployed, say which Ranged Weapon the Battlekit will be used for. It gains the +1 DICE Keyword until the end of the game. The Ranged Weapon you choose cannot already have the BLAST, FIRE, GAS, or SHRAPNEL Keywords, and cannot have more than one type of AMMUNITION."
     },
     {
-      "id": 6,
       "code": "ARMOUR_PIERCING",
       "name": "ARMOUR PIERCING",
       "kind": "Effect",
       "description": "A Weapon with this Keyword reduces the target's total -INJURY MODIFIER from its Armour Characteristic, and/or any Armour or Shields it has by 1, to a minimum of 0. For example, if a target had Standard Armour and a Trench Shield, the -INJURY MODIFIER would be lowered from -2 to -1."
     },
     {
-      "id": 7,
       "code": "ARTIFICIAL",
       "name": "ARTIFICIAL",
       "kind": "Tag",
       "description": "This model is not of natural biological origin but is instead constructed from non-organic elements."
     },
     {
-      "id": 8,
       "code": "ASSAULT",
       "name": "ASSAULT",
       "kind": "Effect",
       "description": "Ranged Attacks made with Weapons that have this Keyword do not prevent a model from taking a Charge or Fight ACTION during the same Activation."
     },
     {
-      "id": 9,
       "code": "AUTOMATIC_2",
       "name": "AUTOMATIC 2",
       "kind": "Effect",
       "description": "When you take a Shoot ACTION and choose a Weapon with this Keyword to make a Ranged Attack, you can make 2 Ranged Attacks with this Weapon, one after another. The attacks can target different enemy models if desired, as long as they are all within 6\" of each other. Resolve each attack one at a time using steps 2 to 6 of the Ranged Attack Sequence. Any BLOOD MARKERS or BLESSING MARKERS that are spent only modify the Injury Roll for the Ranged Attack they are spent on."
     },
     {
-      "id": 10,
       "code": "AUTOMATIC_3",
       "name": "AUTOMATIC 3",
       "kind": "Effect",
       "description": "When you take a Shoot ACTION and choose a Weapon with this Keyword to make a Ranged Attack, you can make 3 Ranged Attacks with this Weapon, one after another. The attacks can target different enemy models if desired, as long as they are all within 6\" of each other. Resolve each attack one at a time using steps 2 to 6 of the Ranged Attack Sequence. Any BLOOD MARKERS or BLESSING MARKERS that are spent only modify the Injury Roll for the Ranged Attack they are spent on."
     },
     {
-      "id": 11,
       "code": "BLACK_GRAIL",
       "name": "BLACK GRAIL",
       "kind": "Tag",
       "description": "This model is part of the Cult of the Black Grail Faction."
     },
     {
-      "id": 12,
       "code": "BLAST_2",
       "name": "BLAST 2\"",
       "kind": "Effect",
       "description": "A Ranged Weapon with BLAST (2\") has a blast radius of 2 inches (including vertically). When you make an attack with the Weapon, you must pick a target for the attack. The target can either be an enemy model or a visible point on the battlefield or on a terrain piece; whichever you choose must be within the attacking model's Line of Sight and the Weapon's range. If the Success Roll for the attack is a Failure, the attack misses and nothing happens unless the weapon also has the SCATTER Keyword (see SCATTER). If the Success Roll for the attack is a Success or Critical Success, every model that has a Line of Sight to the target of the attack and which is within the Weapon's blast radius is hit. In addition, friendly models that are within 1\" of an enemy model that was hit by the blast radius are also hit. Measure the blast radius from the centre of the target model's base, or the centre of the visible point you picked, to the closest point on the other model's base. Make an Injury Roll for every model that was hit. If you roll a Critical Success, only add the extra INJURY DICE to the roll for a model if it was chosen as the target of the attack."
     },
     {
-      "id": 13,
       "code": "BLAST_3",
       "name": "BLAST 3",
       "kind": "Effect",
       "description": "A Ranged Weapon with BLAST (3\") has a blast radius of 3 inches (including vertically). When you make an attack with the Weapon, you must pick a target for the attack. The target can either be an enemy model or a visible point on the battlefield or on a terrain piece; whichever you choose must be within the attacking model's Line of Sight and the Weapon's range. If the Success Roll for the attack is a Failure, the attack misses and nothing happens unless the weapon also has the SCATTER Keyword (see SCATTER). If the Success Roll for the attack is a Success or Critical Success, every model that has a Line of Sight to the target of the attack and which is within the Weapon's blast radius is hit. In addition, friendly models that are within 1\" of an enemy model that was hit by the blast radius are also hit. Measure the blast radius from the centre of the target model's base, or the centre of the visible point you picked, to the closest point on the other model's base. Make an Injury Roll for every model that was hit. If you roll a Critical Success, only add the extra INJURY DICE to the roll for a model if it was chosen as the target of the attack."
     },
     {
-      "id": 14,
       "code": "BLESSED_1",
       "name": "BLESSED 1",
       "kind": "Effect",
       "description": "When you deploy a model with this Keyword for the first time in a game, place 1 BLESSING MARKER beside the model."
     },
     {
-      "id": 15,
       "code": "BLESSED_D3",
       "name": "BLESSED D3",
       "kind": "Effect",
       "description": "When you deploy a model with this Keyword for the first time in a game, place D3 BLESSING MARKERS beside the model."
     },
     {
-      "id": 16,
       "code": "BLESSING_MARKER",
       "name": "BLESSING MARKER",
       "kind": "Tag",
       "description": "The model is under the influence of a supernatural or chemical enhancement that provides temporary benefits. (see BLESSING MARKERS)."
     },
     {
-      "id": 17,
       "code": "BLOCK",
       "name": "BLOCK",
       "kind": "Effect",
       "description": "Add -1 DICE for Melee Attacks targeting a model with this Keyword, or that has a Weapon that has this Keyword, if the attacker made a Charge ACTION before making the attack this Turn."
     },
     {
-      "id": 18,
       "code": "BLOOD_MARKER",
       "name": "BLOOD MARKER",
       "kind": "Tag",
       "description": "BLOOD MARKERS are placed on models that suffer an injury. (see BLOOD MARKERS)."
     },
     {
-      "id": 19,
       "code": "CONSUMABLE",
       "name": "CONSUMABLE",
       "kind": "Effect",
       "description": "In a campaign (see Campaign Rules) Battlekit with this Keyword is lost at the end of a game in which it is used."
     },
     {
-      "id": 20,
       "code": "COVER",
       "name": "COVER",
       "kind": "Effect",
       "description": "A model with this Keyword has the Cover or Defended Obstacle attack modifiers (see Cover)."
     },
     {
-      "id": 21,
       "code": "CRITICAL",
       "name": "CRITICAL",
       "kind": "Effect",
       "description": "Add +2 INJURY DICE instead of +1 INJURY DICE when a Critical Success is rolled for an attack made by a Weapon with this Keyword."
     },
     {
-      "id": 22,
       "code": "CUMBERSOME",
       "name": "CUMBERSOME",
       "kind": "Effect",
       "description": "Weapons with this Keyword require two hands to use, even if the model has the STRONG Keyword. However, they can still be used alongside a Shield with the Shield Combo stipulation."
     },
     {
-      "id": 23,
       "code": "DANGEROUS_TERRAIN",
       "name": "DANGEROUS TERRAIN",
       "kind": "Effect",
       "description": "If you Activate a model that is in terrain with this Keyword, or if you move a model into terrain with this Keyword during a move, you must take a Risky Success Roll for the model. If the roll is a Success or Critical Success, you can carry on with the model's move, and you do not have to take any more Risky Success Rolls for the model if it moves into any more terrain with this Keyword as part of that move. If the roll is a Failure, you must make an Injury Roll for the model and its Activation ends. Sometimes DANGEROUS TERRAIN will have one or more Keywords in brackets directly after it. Any Injury Rolls caused by the DANGEROUS TERRAIN rule have those Keywords. For example, if a terrain piece had the DANGEROUS TERRAIN (FIRE) Keywords, then any Injury Rolls caused by it would count as having the FIRE Keyword."
     },
     {
-      "id": 24,
       "code": "DEADLY",
       "name": "DEADLY",
       "kind": "Effect",
       "description": "When you make an Injury Roll for an attack made with a weapon with this Keyword, roll 3D6 and add all 3 dice together. Any +INJURY DICE or -INJURY DICE are added to the roll normally, except that you pick the 3 highest or lowest dice in the roll instead of the 2 highest or lowest."
     },
     {
-      "id": 25,
       "code": "DEMONIC",
       "name": "DEMONIC",
       "kind": "Effect",
       "description": "A model with this Keyword has the NEGATE FIRE Keyword."
     },
     {
-      "id": 26,
       "code": "DEPLOYABLE",
       "name": "DEPLOYABLE",
       "kind": "Tag",
       "description": "Battlekit that is represented by a model or terrain piece that can be set up during the game."
     },
     {
-      "id": 27,
       "code": "DIFFICULT_TERRAIN",
       "name": "DIFFICULT TERRAIN",
       "kind": "Effect",
       "description": "Every 1\" a model is moved across terrain with this Keyword counts as 2\"."
     },
     {
-      "id": 28,
       "code": "ELITE",
       "name": "ELITE",
       "kind": "Tag",
       "description": "The most senior and heroic models in a Warband."
     },
     {
-      "id": 29,
       "code": "FEAR",
       "name": "FEAR",
       "kind": "Effect",
       "description": "Add -1 DICE to a Melee Attack that targets a model with this Keyword. Models that cause FEAR are immune to FEAR themselves."
     },
     {
-      "id": 30,
       "code": "FIRE",
       "name": "FIRE",
       "kind": "Effect",
       "description": "After making the Injury Roll for a Weapon with this Keyword, place 1 extra BLOOD MARKER next to the target model even if the result is No Effect."
     },
     {
-      "id": 31,
       "code": "FIRETEAM",
       "name": "FIRETEAM",
       "kind": "Effect",
       "description": "A model with this Keyword is part of a group of 2 models, both of which must have the FIRETEAM Keyword. You can create Fireteams when you recruit a Warband, and in the Quartermaster Step. Record which models are in Fireteams in your Warband on your Warband Roster. You can Activate friendly models that are part of the same Fireteam simultaneously. If you do so, you can take their ACTIONS in any order you wish, and you can switch between the two models freely. However, if the Activation of either member of the Fireteam ends during a simultaneous Activation, it immediately ends for the other model too. A model cannot be in more than 1 Fireteam."
     },
     {
-      "id": 32,
       "code": "FLAMETHROWER",
       "name": "FLAMETHROWER",
       "kind": "Effect",
       "description": "When a Weapon with this Keyword is used to make a Ranged Attack it is automatically a Success. Do not make a Success Roll for the attack. Note that this means that the attack cannot achieve a Critical Success."
     },
     {
-      "id": 33,
       "code": "FLYING",
       "name": "FLYING",
       "kind": "Effect",
       "description": "When you make a move, retreat move or charge move with a model with this Keyword, you can measure the path on which it travels 'through the air'. It must end the move on the battlefield or on a terrain piece. You must still take a Risky Success Roll for the model if it is Activated or ends its move on Dangerous terrain, and it cannot end its move on Impassable terrain. In addition do not make an Injury Roll if a model with this Keyword Falls."
     },
     {
-      "id": 34,
       "code": "GAS",
       "name": "GAS",
       "kind": "Effect",
       "description": "After making the Injury Roll for a Weapon with this Keyword, place 1 extra BLOOD MARKER next to the target model even if the result is No Effect."
     },
     {
-      "id": 35,
       "code": "GOLEM",
       "name": "GOLEM",
       "kind": "Effect",
       "description": "A model with this Keyword treats an Out of Action result from the Injury Roll Table as a Down result unless the result was caused by a Bloodbath Roll. In addition, you cannot remove BLOOD MARKERS from a friendly model with this Keyword (the opposing player can use them normally). Finally, a model with this Keyword has the NEGATE FEAR and NEGATE GAS Keywords, but cannot have the TOUGH Keyword."
     },
     {
-      "id": 36,
       "code": "HEAVY",
       "name": "HEAVY",
       "kind": "Effect",
       "description": "A model cannot be equipped with more than one piece of Battlekit with this Keyword and it does not receive a Charge Bonus when it makes a charge move. In addition, if a Ranged Weapon or Grenade has this Keyword, you cannot use the Weapon or Grenade to make a Ranged Attack and take a Move, Charge or Retreat, or Dash ACTION with the attacking model as part of the same Activation."
     },
     {
-      "id": 37,
       "code": "HELD",
       "name": "HELD",
       "kind": "Effect",
       "description": "A piece of Battlekit with this Keyword requires one hand to carry and cannot be put down. Because of this, a model that has this Keyword can only be equipped with or use either a 1-Handed Weapon or a Shield. It cannot be equipped with or use any 2-Handed Weapons, or both a Weapon and a Shield (even if the Shield has the Shield Combo rule). It may still carry Grenades."
     },
     {
-      "id": 38,
       "code": "HERETIC",
       "name": "HERETIC",
       "kind": "Tag",
       "description": "The model is a member of the Heretic Legions Faction."
     },
     {
-      "id": 39,
       "code": "IGNORE_ARMOUR",
       "name": "IGNORE ARMOUR",
       "kind": "Effect",
       "description": "Ignore -INJURY DICE and -INJURY MODIFIERS for a target's Armour Characteristic, and for any Armour or Shield pieces of Battlekit that it has, for attacks that have this Keyword."
     },
     {
-      "id": 40,
       "code": "IGNORE_COVER",
       "name": "IGNORE COVER",
       "kind": "Effect",
       "description": "Ignore the -1 DICE modifier for a target that is in Cover for attacks that have this Keyword."
     },
     {
-      "id": 41,
       "code": "IGNORE_LONG_RANGE",
       "name": "IGNORE LONG RANGE",
       "kind": "Effect",
       "description": "Ignore the Long Range modifier for attacks made with a Weapon that has this Keyword."
     },
     {
-      "id": 42,
       "code": "IGNORE_OFF_HAND_WEAPON",
       "name": "IGNORE OFF-HAND WEAPON",
       "kind": "Effect",
       "description": "Ignore the -1 DICE modifier for attacks made with an Off-Hand Weapon for a model that has this Keyword."
     },
     {
-      "id": 43,
       "code": "IMPASSABLE_TERRAIN",
       "name": "IMPASSABLE TERRAIN",
       "kind": "Effect",
       "description": "Models cannot be moved onto or across terrain with this Keyword."
     },
     {
-      "id": 44,
       "code": "IMPERVIOUS",
       "name": "IMPERVIOUS",
       "kind": "Effect",
       "description": "The ARMOUR PIERCING and IGNORE ARMOUR Effects do not affect any -INJURY DICE and -INJURY MODIFIERS that apply to Battlekit that has this Keyword. Any other Battlekit the target model has is affected normally."
     },
     {
-      "id": 45,
       "code": "INFECTION_MARKERS",
       "name": "INFECTION MARKERS",
       "kind": "Tag",
       "description": "The model is under the influence of a supernatural or chemical malady that provides temporary effects. (see Infection Markers in Warbands of Trench Crusade)."
     },
     {
-      "id": 46,
       "code": "INFILTRATOR",
       "name": "INFILTRATOR",
       "kind": "Effect",
       "description": "When a model with this Keyword is deployed for the first time in a game, it can be set up anywhere on the battlefield as long as it is out of the Line of Sight of all enemies and is at least 8\" away from the closest enemy. INFILTRATORS are deployed after models that do not have this Keyword. Any INFILTRATORS that cannot be deployed in this way are instead deployed normally in their deployment zone."
     },
     {
-      "id": 47,
       "code": "LEADER",
       "name": "LEADER",
       "kind": "Effect",
       "description": "Add +1 DICE to Morale Checks if your Warband has at least 1 model with this Keyword on the battlefield that is not Down or Out of Action."
     },
     {
-      "id": 48,
       "code": "MINED",
       "name": "MINED",
       "kind": "Effect",
       "description": "When a model moves into contact with a Marker or terrain piece with the MINED Keyword, the mine will detonate unless the model has the NEGATE MINED Keyword. Make an Injury Roll with the SHRAPNEL Keyword for the model that detonated the mine, and then the Marker or terrain piece loses the MINED Keyword. If the model that detonated the mine wasn't taken Down or Out of Action, it can then continue its move. Models with the FLYING Keyword only detonate a mine if they finish a move in contact with a MINED Marker or terrain piece (they can fly across it without setting it off)."
     },
     {
-      "id": 49,
       "code": "MINUS_1_DICE",
       "name": "-1 DICE",
       "kind": "Effect",
       "description": "Remove 1 die from Success Rolls. If the Keyword applies to a Weapon, the die is only removed from Success Rolls for Attacks made with it."
     },
     {
-      "id": 50,
       "code": "MINUS_1_INJURY_DICE",
       "name": "-1 INJURY DICE",
       "kind": "Effect",
       "description": "Remove 1 die from Injury Rolls. If the Keyword applies to a Weapon, the die is only removed from Injury Rolls for Attacks made with it."
     },
     {
-      "id": 51,
       "code": "MINUS_1_INJURY_MODIFIER",
       "name": "-1 INJURY MODIFIER",
       "kind": "Effect",
       "description": "Subtract 1 from the result of Injury Rolls. If the Keyword applies to a Weapon, the modifier is only applied to Injury Rolls for Attacks made with it."
     },
     {
-      "id": 52,
       "code": "MINUS_2_INJURY_MODIFIER",
       "name": "-2 INJURY MODIFIER",
       "kind": "Effect",
       "description": "Subtract 2 from the result of Injury Rolls. If the Keyword applies to a Weapon, the modifier is only applied to Injury Rolls for Attacks made with it."
     },
     {
-      "id": 53,
       "code": "NEGATE_FEAR",
       "name": "NEGATE FEAR",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the FEAR Keyword's Effect."
     },
     {
-      "id": 54,
       "code": "NEGATE_FIRE",
       "name": "NEGATE FIRE",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the FIRE Keyword's Effect."
     },
     {
-      "id": 55,
       "code": "NEGATE_GAS",
       "name": "NEGATE GAS",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the GAS Keyword's Effect."
     },
     {
-      "id": 56,
       "code": "NEGATE_HEAVY",
       "name": "NEGATE HEAVY",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the HEAVY Keyword's Effect."
     },
     {
-      "id": 57,
       "code": "NEGATE_MINED",
       "name": "NEGATE MINED",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the MINED Keyword's Effect."
     },
     {
-      "id": 58,
       "code": "NEGATE_SHRAPNEL",
       "name": "NEGATE SHRAPNEL",
       "kind": "Effect",
       "description": "A model with this Keyword is not affected by the SHRAPNEL Keyword's Effect."
     },
     {
-      "id": 59,
       "code": "NEW_ANTIOCH",
       "name": "NEW ANTIOCH",
       "kind": "Tag",
       "description": "This model is part of the Principality of New Antioch Faction."
     },
     {
-      "id": 60,
       "code": "PILGRIM",
       "name": "PILGRIM",
       "kind": "Tag",
       "description": "This model is part of the Trench Pilgrim Faction."
     },
     {
-      "id": 61,
       "code": "PISTOL",
       "name": "PISTOL",
       "kind": "Effect",
       "description": "A pistol can be used as a Melee Weapon or a Ranged Weapon, and can be used as both in the same Activation. When it is used as a Ranged Weapon it has the Range shown on its Profile and uses the attacking model's Ranged Characteristic. When used as a Melee Weapon it can use the attacking model's Ranged or Melee Characteristic and can be used as an Off-Hand Weapon if desired."
     },
     {
-      "id": 62,
       "code": "PLUS_1_DICE",
       "name": "+1 DICE",
       "kind": "Effect",
       "description": "Add +1 die to Success Rolls. If the Keyword applies to a Weapon, the die is only added to Success Rolls for Attacks made with it."
     },
     {
-      "id": 63,
       "code": "PLUS_1_INJURY_DICE",
       "name": "+1 INJURY DICE",
       "kind": "Effect",
       "description": "Add +1 die to Injury Rolls. If the Keyword applies to a Weapon, the die is only added to Injury Rolls for Attacks made with it."
     },
     {
-      "id": 64,
       "code": "PLUS_1_INJURY_MODIFIER",
       "name": "+1 INJURY MODIFIER",
       "kind": "Effect",
       "description": "Add +1 to the result of Injury Rolls. If the Keyword applies to a Weapon, the modifier is only added to Injury Rolls for Attacks made with it."
     },
     {
-      "id": 65,
       "code": "REGENERATE_1",
       "name": "REGENERATE 1",
       "kind": "Effect",
       "description": "When you Activate a model with this Keyword, before carrying out any ACTIONS, you can remove up to 1 BLOOD MARKER from the model."
     },
     {
-      "id": 66,
       "code": "RELOAD",
       "name": "RELOAD",
       "kind": "Effect",
       "description": "If a model makes an attack with a Weapon that has this Keyword then its Activation ends after the ACTION that allowed the attack is completed."
     },
     {
-      "id": 67,
       "code": "RISKY",
       "name": "RISKY",
       "kind": "Effect",
       "description": "If you must make a Success Roll for a model that is using a piece of Battlekit that has this Keyword, then the Success Roll becomes a Risky Success Roll (the model's Activation or ACTION will end if the Risky Success Roll is a Failure). For example, the Success Roll for an attack made with a Weapon that has the RISKY Keyword would become a Risky Success Roll. This Effect is ignored if the Success Roll is already a Risky Success Roll."
     },
     {
-      "id": 68,
       "code": "SCATTER",
       "name": "SCATTER",
       "kind": "Effect",
       "description": "Some Weapons with the BLAST Keyword also have the SCATTER Keyword. When you make an attack with the Weapon, pick a target and carry out the attack as described in the rules for BLAST. However, if the Success Roll for the attack was a Failure, the attack will scatter instead of missing. To see where it scatters to, subtract the Success Roll from 7. For example, if the Success Roll was 4, then the target point would scatter (7-4=) 3\". Your opponent must move the attack exactly that many inches in a direction of their choice, to a point on the battlefield, on a terrain piece, or on the base of a model. There must be Line of Sight between the point that is chosen and the original target for the attack. If this is impossible for any reason, then treat the attack as a miss. Then, determine who is hit as described in the rules for BLAST."
     },
     {
-      "id": 69,
       "code": "SHOTGUN",
       "name": "SHOTGUN",
       "kind": "Effect",
       "description": "Add -1 INJURY DICE to rolls for attacks made at Long Range with a Weapon that has this Keyword instead of the usual Long Range modifier (-1 DICE)."
     },
     {
-      "id": 70,
       "code": "SHRAPNEL",
       "name": "SHRAPNEL",
       "kind": "Effect",
       "description": "After making the Injury Roll for a Weapon with this Keyword, place 1 extra BLOOD MARKER next to the target model even if the result is No Effect."
     },
     {
-      "id": 71,
       "code": "SKIRMISHER",
       "name": "SKIRMISHER",
       "kind": "Effect",
       "description": "If an enemy selects a model with this Keyword as the target of a Charge, you can choose to evade with your model before the Charge is made, as long as your model is not within 1\" of an enemy. When a model evades, roll a D3 and move the model that many inches. It must finish this move more than 1\" away from all enemy models. If this move results in there being an interposing model between the evading model and the model that is making the charge, then the charging model must choose the interposing model as the target for its charge."
     },
     {
-      "id": 72,
       "code": "STRONG",
       "name": "STRONG",
       "kind": "Effect",
       "description": "A model with this Keyword has the NEGATE HEAVY Keyword. In addition, it can equip and use one 2-Handed Melee Weapon as if it were a 1-Handed Melee Weapon."
     },
     {
-      "id": 73,
       "code": "SULTANATE",
       "name": "SULTANATE",
       "kind": "Tag",
       "description": "This model is part of the Sultanate of the Iron Wall Faction."
     },
     {
-      "id": 74,
       "code": "THE_COURT",
       "name": "THE COURT",
       "kind": "Tag",
       "description": "This model is part of The Court of the Seven-Headed Serpent Faction."
     },
     {
-      "id": 75,
       "code": "TOUGH",
       "name": "TOUGH",
       "kind": "Effect",

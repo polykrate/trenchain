@@ -23,14 +23,61 @@
     "effects": [
       "+1 Victory Point toward winning the game",
       "ELITE models that carry out Glorious Deeds receive +1 Experience Point",
-      "+1 Glory Point (☼) for the Warband",
+      "+1 Glory Point (glory) for the Warband",
       "+1D6 to Promotion Pool after the game"
     ]
   },
   "glory_points": {
-    "description": "Earned by carrying out Glorious Deeds. Spent in Quartermaster Step to purchase Battlekit/models costed in ☼, Glory Items, or Mercenaries.",
+    "description": "Earned by carrying out Glorious Deeds. Spent in Quartermaster Step to purchase Battlekit/models costed in glory, Glory Items, or Mercenaries.",
     "can_save": true
   },
+  "campaign_phase_steps": [
+    {
+      "order": 1,
+      "id": "trauma",
+      "name": "Trauma Step",
+      "description": "Check what happened to models taken Out of Action.",
+      "mandatory": true
+    },
+    {
+      "order": 2,
+      "id": "promotions",
+      "name": "Promotions & Experience",
+      "description": "Promote Troops, record XP, learn Skills.",
+      "mandatory": true
+    },
+    {
+      "order": 3,
+      "id": "reinforcements",
+      "name": "Reinforcements",
+      "description": "Call for reinforcements if heavy losses. Forfeits Exploration and Quartermaster steps.",
+      "mandatory": false,
+      "exclusive_with": ["exploration", "quartermaster"]
+    },
+    {
+      "order": 4,
+      "id": "exploration",
+      "name": "Exploration",
+      "description": "Roll Exploration Dice to discover locations and collect loot.",
+      "mandatory": true,
+      "skipped_if": "reinforcements"
+    },
+    {
+      "order": 5,
+      "id": "quartermaster",
+      "name": "Quartermaster",
+      "description": "Recruit models, hire Mercenaries, buy/sell/reallocate Battlekit, purchase Glory Items.",
+      "mandatory": true,
+      "skipped_if": "reinforcements"
+    },
+    {
+      "order": 6,
+      "id": "roster_update",
+      "name": "Roster Update",
+      "description": "Final update to Warband Roster. Ready for next game.",
+      "mandatory": true
+    }
+  ],
   "trauma": {
     "troops": {
       "description": "Roll D6 for each Troop taken Out of Action.",
@@ -42,28 +89,28 @@
       "battle_scars": "Each OOA = +1 Battle Scar. At 3 Battle Scars = Unfit for Duty (removed)."
     },
     "trauma_table": [
-      { "roll": "11", "name": "Dead", "effect": "Remove model and Battlekit from roster." },
-      { "roll": "12", "name": "Captured", "effect": "Negotiate ransom in ducats. If not paid, executed. If paid, Full Recovery." },
-      { "roll": "13", "name": "Severe Nerve Damage", "effect": "All Success Rolls treated as Risky Success Rolls." },
-      { "roll": "14", "name": "Hand Wound", "effect": "-1 DICE to Melee attacks with weapon in injured hand." },
-      { "roll": "15", "name": "Lost an Eye", "effect": "-1 DICE to Ranged Attacks. Second time = blinded, removed." },
-      { "roll": "16", "name": "Chest Wound", "effect": "+1 INJURY DICE to Injury Rolls targeting this model." },
-      { "roll": "21", "name": "Insomniac", "effect": "Must be first deployed. Loses INFILTRATOR." },
-      { "roll": "22", "name": "Head Wound", "effect": "Cannot gain XP. Assign Promotion Dice as Troop. Roll of 6 regains XP." },
-      { "roll": "23", "name": "Shell-shocked", "effect": "First deployment: D6, on 1-2 = -1 DICE for rest of game." },
-      { "roll": "24", "name": "Dark Memory", "effect": "-1 DICE to Melee vs models from Warband that caused injury." },
-      { "roll": "25", "name": "Paranoid", "effect": "Cannot deploy within 8\" of friendly model." },
-      { "roll": "26", "name": "Lost Arm", "effect": "Cannot use 2-hand Battlekit. Only one 1-hand item." },
-      { "roll": "31", "name": "Leg Wound", "effect": "-2\" Movement. -1 DICE to Dash Risky Success Roll." },
-      { "roll": "32", "name": "Expensive Treatment", "effect": "Must deduct 10 ducats before deploying." },
-      { "roll": "33", "name": "Possessed", "effect": "First ACTION must be Dash away 3\" if >1\" from enemies." },
-      { "roll": "34", "name": "Muscle Damage", "effect": "Cannot have HEAVY Battlekit. Existing HEAVY items lost." },
-      { "roll": "35", "name": "Minor Wound", "effect": "Cannot be used in next game." },
-      { "roll": "36", "name": "Robbed", "effect": "All Battlekit lost. No Injury or Battle Scar." },
-      { "roll": "41-63", "name": "Full Recovery", "effect": "No ill effects. No Injury or Battle Scar." },
-      { "roll": "64", "name": "Hardened", "effect": "Gains NEGATE FEAR. No Injury or Battle Scar." },
-      { "roll": "65", "name": "Bitter Lessons", "effect": "Gains D3 extra Experience Points. No Injury or Battle Scar." },
-      { "roll": "66", "name": "Prominent Scar", "effect": "+1 DICE to Melee vs causing Warband. No Injury or Battle Scar." }
+      { "roll": "11", "name": "Dead", "effect": "Remove model and Battlekit from roster.", "injury": true, "battle_scar": true },
+      { "roll": "12", "name": "Captured", "effect": "Negotiate ransom in ducats. If not paid, executed. If paid, Full Recovery.", "injury": true, "battle_scar": true },
+      { "roll": "13", "name": "Severe Nerve Damage", "effect": "All Success Rolls treated as Risky Success Rolls.", "injury": true, "battle_scar": true },
+      { "roll": "14", "name": "Hand Wound", "effect": "-1 DICE to Melee attacks with weapon in injured hand.", "injury": true, "battle_scar": true },
+      { "roll": "15", "name": "Lost an Eye", "effect": "-1 DICE to Ranged Attacks. Second time = blinded, removed.", "injury": true, "battle_scar": true },
+      { "roll": "16", "name": "Chest Wound", "effect": "+1 INJURY DICE to Injury Rolls targeting this model.", "injury": true, "battle_scar": true },
+      { "roll": "21", "name": "Insomniac", "effect": "Must be first deployed. Loses INFILTRATOR.", "injury": true, "battle_scar": true },
+      { "roll": "22", "name": "Head Wound", "effect": "Cannot gain XP. Assign Promotion Dice as Troop. Roll of 6 regains XP.", "injury": true, "battle_scar": true },
+      { "roll": "23", "name": "Shell-shocked", "effect": "First deployment: D6, on 1-2 = -1 DICE for rest of game.", "injury": true, "battle_scar": true },
+      { "roll": "24", "name": "Dark Memory", "effect": "-1 DICE to Melee vs models from Warband that caused injury.", "injury": true, "battle_scar": true },
+      { "roll": "25", "name": "Paranoid", "effect": "Cannot deploy within 8\" of friendly model.", "injury": true, "battle_scar": true },
+      { "roll": "26", "name": "Lost Arm", "effect": "Cannot use 2-hand Battlekit. Only one 1-hand item.", "injury": true, "battle_scar": true },
+      { "roll": "31", "name": "Leg Wound", "effect": "-2\" Movement. -1 DICE to Dash Risky Success Roll.", "injury": true, "battle_scar": true },
+      { "roll": "32", "name": "Expensive Treatment", "effect": "Must deduct 10 ducats before deploying.", "injury": true, "battle_scar": true },
+      { "roll": "33", "name": "Possessed", "effect": "First ACTION must be Dash away 3\" if >1\" from enemies.", "injury": true, "battle_scar": true },
+      { "roll": "34", "name": "Muscle Damage", "effect": "Cannot have HEAVY Battlekit. Existing HEAVY items lost.", "injury": true, "battle_scar": true },
+      { "roll": "35", "name": "Minor Wound", "effect": "Cannot be used in next game.", "injury": true, "battle_scar": true },
+      { "roll": "36", "name": "Robbed", "effect": "All Battlekit lost. No Injury or Battle Scar.", "injury": false, "battle_scar": false },
+      { "roll": "41-63", "name": "Full Recovery", "effect": "No ill effects. No Injury or Battle Scar.", "injury": false, "battle_scar": false },
+      { "roll": "64", "name": "Hardened", "effect": "Gains NEGATE FEAR. No Injury or Battle Scar.", "injury": false, "battle_scar": false },
+      { "roll": "65", "name": "Bitter Lessons", "effect": "Gains D3 extra Experience Points. No Injury or Battle Scar.", "injury": false, "battle_scar": false },
+      { "roll": "66", "name": "Prominent Scar", "effect": "+1 DICE to Melee vs causing Warband. No Injury or Battle Scar.", "injury": false, "battle_scar": false }
     ]
   },
   "promotions": {
@@ -91,6 +138,24 @@
     },
     "skill_tables": ["Melee & Strength", "Ranged", "Stealth & Speed", "Wildcard"]
   },
+  "reinforcements": {
+    "description": "If your Warband took heavy losses, you may call for Reinforcements instead of Exploring and visiting the Quartermaster.",
+    "condition": "Optional — forfeits Exploration and Quartermaster steps for this phase.",
+    "effect": "Receive free Troop models to bring Warband back to minimum viable strength.",
+    "troops_received": "Up to 3 Troop models (no Battlekit) from your Faction's basic Troop options."
+  },
+  "quartermaster": {
+    "description": "Manage your Warband's equipment and recruitment.",
+    "actions": [
+      { "id": "recruit", "name": "Recruit Models", "description": "Recruit new Troop or ELITE models from your Faction list by paying their Cost in ducats." },
+      { "id": "hire_mercenaries", "name": "Hire Mercenaries", "description": "Hire Mercenaries by paying their Cost in glory." },
+      { "id": "buy_battlekit", "name": "Buy Battlekit", "description": "Purchase Equipment from your Armoury Tables." },
+      { "id": "sell_battlekit", "name": "Sell Battlekit", "description": "Sell Equipment for half its Cost (rounded down)." },
+      { "id": "reallocate", "name": "Reallocate Battlekit", "description": "Move Equipment between models in your Warband freely." },
+      { "id": "glory_items", "name": "Purchase Glory Items", "description": "Buy Glory Items using glory points, limited by your current unlock tier." },
+      { "id": "dismiss", "name": "Dismiss Models", "description": "Remove unwanted models from your Warband (no refund)." }
+    ]
+  },
   "campaign_scenarios": {
     "early": {
       "games": "1-3",
@@ -108,13 +173,5 @@
       "games": "12",
       "scenarios": ["The Great War"]
     }
-  },
-  "campaign_phase_steps": [
-    { "order": 1, "name": "Trauma Step", "description": "Check what happened to models taken Out of Action." },
-    { "order": 2, "name": "Promotions & Experience", "description": "Promote Troops, record XP, learn Skills." },
-    { "order": 3, "name": "Reinforcements (Optional)", "description": "Call for reinforcements if heavy losses. Forfeits Exploration and Quartermaster." },
-    { "order": 4, "name": "Exploration", "description": "Roll Exploration Dice to discover loot. Loot = Roll × 10 ducats." },
-    { "order": 5, "name": "Quartermaster", "description": "Recruit models, hire Mercenaries, buy/sell/reallocate Battlekit, purchase Glory Items." },
-    { "order": 6, "name": "Roster Update", "description": "Final update to Warband Roster. Ready for next game." }
-  ]
+  }
 }

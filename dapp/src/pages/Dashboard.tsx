@@ -15,23 +15,23 @@ interface FeatureCard {
 
 const FEATURES: FeatureCard[] = [
   {
-    title: 'Study the Compendium',
-    description: 'Six factions, dozens of unit entries, full weapon profiles, and every keyword catalogued. All rules data indexed and searchable, sourced directly from the chain. Whether you need the exact stats of a Bolt-Action Rifle or the abilities of a Heretic Priest, the Compendium is your field manual.',
-    cta: 'Open Compendium',
-    to: '/compendium/factions',
-    image: '/images/feature-compendium.png',
-  },
-  {
-    title: 'Muster your Warband',
-    description: 'Choose your faction, recruit troops, equip battlekit, and swear allegiance to a patron. Your warband roster is stored immutably on-chain — every model, every piece of equipment, every battle scar tracked transparently. Build your force within budget and deploy when ready.',
-    cta: 'Create Warband',
+    title: 'Your Roster, Always Up to Date',
+    description: 'Stop tracking ducats on sticky notes. Build your warband, equip battlekit, track injuries and promotions — all synced after every battle. Your campaign history lives here permanently.',
+    cta: 'Build my Warband',
     to: '/warband/new',
     image: '/images/feature-warband.png',
   },
   {
-    title: 'Join the Long War',
-    description: 'A persistent grand strategy layer where campaign battles shape the world map. Capture territories, build infrastructure to produce resources, and fight for control of theatres of operations. Every victory shifts the balance. The Long War never ends — it only moves to a new front.',
-    cta: 'View Theatre',
+    title: 'Every Rule, Instantly',
+    description: 'Full searchable compendium — factions, units, weapons, keywords. No more flipping through PDFs mid-game. Check stats, resolve disputes, plan your next recruit in seconds.',
+    cta: 'Browse the Compendium',
+    to: '/compendium/factions',
+    image: '/images/feature-compendium.png',
+  },
+  {
+    title: 'Campaigns That Last',
+    description: 'Join a theatre of war with real consequences. Your battles update the map, cut supply lines, and shift control. Win territory, build infrastructure, starve the enemy. A campaign that keeps going even when you skip a week.',
+    cta: 'Enter the Long War',
     to: '/longwar',
     image: '/images/feature-longwar.png',
   },
@@ -93,9 +93,10 @@ function LandingView() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl mb-3 uppercase tracking-wider">Command Headquarters</h1>
-        <p className="text-[var(--fg-secondary)] leading-relaxed text-justify">
-          Welcome to Trenchain — the decentralized theatre of war. Muster your forces, study the enemy, and carve your name into the annals of history.
+        <h1 className="text-2xl mb-2 uppercase tracking-wider">Trench Crusade Campaign Manager</h1>
+        <p className="text-[var(--fg)] font-medium mb-1">Track your warband. Fight for territory. Every battle counts.</p>
+        <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
+          A digital companion for Trench Crusade campaigns — roster management, persistent world-state, and automatic campaign tracking.
         </p>
       </div>
 

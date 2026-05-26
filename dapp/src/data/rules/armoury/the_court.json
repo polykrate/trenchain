@@ -1,5 +1,4 @@
 {
-  "faction_id": 6,
   "faction_code": "COURT",
   "items": [
     {
@@ -9,22 +8,31 @@
     {
       "item_code": "BLUNDERBUSS",
       "cost": 5,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "FLAMETHROWER",
       "cost": 30,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "HEAVY_FLAMETHROWER",
       "cost": 55,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "OPHIDIAN_RIFLE",
       "cost": 25,
-      "tags": ["ELITE_ONLY", "LIMIT_3"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "PISTOL",
@@ -33,12 +41,16 @@
     {
       "item_code": "SERPENT_ASSAULT_GUN",
       "cost": 50,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "SHOTGUN",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "GREAT_HAMMER_MAUL",
@@ -51,22 +63,30 @@
     {
       "item_code": "HEADTAKER",
       "cost": 15,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "HELLBLADE",
       "cost": 15,
-      "tags": ["LIMIT_3"]
+      "tags": [
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "MALEBRANCHE_SWORD",
       "cost": 50,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "POLEARM",
       "cost": 7,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SWORD_AXE",
@@ -91,22 +111,30 @@
     {
       "item_code": "INCENDIARY_GRENADES",
       "cost": 15,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "TRENCH_SHIELD",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "INFERNAL_IRON_ARMOUR",
       "cost": 50,
-      "tags": ["HELL_KNIGHT_ONLY"]
+      "tags": [
+        "HELL_KNIGHT_ONLY"
+      ]
     },
     {
       "item_code": "REINFORCED_ARMOUR",
       "cost": 40,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "STANDARD_ARMOUR",
@@ -115,12 +143,16 @@
     {
       "item_code": "COMBAT_HELMET",
       "cost": 5,
-      "tags": ["HEADGEAR"]
+      "tags": [
+        "HEADGEAR"
+      ]
     },
     {
       "item_code": "CROWN_OF_HELLFIRE",
       "cost": 15,
-      "tags": ["ELITE_AND_PIT_LOCUSTS"]
+      "tags": [
+        "ELITE_AND_PIT_LOCUSTS"
+      ]
     },
     {
       "item_code": "GAS_MASK",
@@ -129,28 +161,40 @@
     {
       "item_code": "INCENDIARY_AMMUNITION",
       "cost": 15,
-      "tags": ["CONSUMABLE", "LIMIT_1"]
+      "tags": [
+        "CONSUMABLE",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "MUSICAL_INSTRUMENT",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "RESTRAINING_MUZZLE",
       "cost": 10,
-      "tags": ["YOKE_FIEND_ONLY", "LIMIT_3"]
+      "tags": [
+        "YOKE_FIEND_ONLY",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "SHOVEL",
       "cost": 5,
-      "tags": ["WRETCHED_AND_YOKE_FIENDS_ONLY"]
+      "tags": [
+        "WRETCHED_AND_YOKE_FIENDS_ONLY"
+      ]
     },
     {
       "item_code": "TROOP_FLAG",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "UNHOLY_RELIC",
@@ -159,7 +203,9 @@
     {
       "item_code": "UNHOLY_TRINKET",
       "cost": 15,
-      "tags": ["CONSUMABLE"]
+      "tags": [
+        "CONSUMABLE"
+      ]
     }
   ]
 }

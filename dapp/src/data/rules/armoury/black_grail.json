@@ -1,36 +1,48 @@
 {
-  "faction_id": 5,
   "faction_code": "BLACK_GRAIL",
   "items": [
     {
       "item_code": "BLUNDERBUSS",
       "cost": 5,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BOLT_ACTION_RIFLE",
       "cost": 10,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "CORRUPTION_BELCHER",
       "cost": 30,
-      "tags": ["LIMIT_2"]
+      "tags": [
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "INFESTED_RIFLE",
       "cost": 15,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "MACHINE_GUN",
       "cost": 50,
-      "tags": ["AMALGAM_ONLY", "LIMIT_1"]
+      "tags": [
+        "AMALGAM_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "MUSKET",
       "cost": 5,
-      "tags": ["BAYONET_LUG"]
+      "tags": [
+        "BAYONET_LUG"
+      ]
     },
     {
       "item_code": "PISTOL",
@@ -39,27 +51,42 @@
     {
       "item_code": "PUTRID_SHOTGUN",
       "cost": 20,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO", "LIMIT_2"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "SHOTGUN",
       "cost": 10,
-      "tags": ["BAYONET_LUG", "SHIELD_COMBO"]
+      "tags": [
+        "BAYONET_LUG",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "VISCERA_CANNON",
       "cost": 50,
-      "tags": ["ELITE_ONLY", "LIMIT_2"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "BAYONET",
       "cost": 2,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "BEELZEBUBS_AXE",
       "cost": 30,
-      "tags": ["ELITE_ONLY", "LIMIT_1"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "GREAT_HAMMER_MAUL",
@@ -72,12 +99,17 @@
     {
       "item_code": "PLAGUE_BLADE",
       "cost": 7,
-      "tags": ["ELITE_ONLY", "LIMIT_3"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "POLEARM",
       "cost": 7,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "SWORD_AXE",
@@ -102,17 +134,24 @@
     {
       "item_code": "BLACK_GRAIL_SHIELD",
       "cost": 20,
-      "tags": ["ELITE_ONLY", "SHIELD_COMBO"]
+      "tags": [
+        "ELITE_ONLY",
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "TRENCH_SHIELD",
       "cost": 10,
-      "tags": ["SHIELD_COMBO"]
+      "tags": [
+        "SHIELD_COMBO"
+      ]
     },
     {
       "item_code": "REINFORCED_ARMOUR",
       "cost": 40,
-      "tags": ["ELITE_ONLY"]
+      "tags": [
+        "ELITE_ONLY"
+      ]
     },
     {
       "item_code": "STANDARD_ARMOUR",
@@ -121,12 +160,18 @@
     {
       "item_code": "COMBAT_HELMET",
       "cost": 5,
-      "tags": ["HEADGEAR"]
+      "tags": [
+        "HEADGEAR"
+      ]
     },
     {
       "item_code": "COMPOUND_EYES_HELMET",
       "cost": 10,
-      "tags": ["ELITE_AND_HERALDS", "HEADGEAR", "LIMIT_3"]
+      "tags": [
+        "ELITE_AND_HERALDS",
+        "HEADGEAR",
+        "LIMIT_3"
+      ]
     },
     {
       "item_code": "FIELD_SHRINE",
@@ -136,23 +181,32 @@
     {
       "item_code": "GRAIL_DEVOTEE",
       "cost": 15,
-      "tags": ["ELITE_ONLY", "LIMIT_2"]
+      "tags": [
+        "ELITE_ONLY",
+        "LIMIT_2"
+      ]
     },
     {
       "item_code": "MUSICAL_INSTRUMENT",
       "cost": 15,
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "TROOP_FLAG",
       "cost": 1,
       "cost_type": "glory",
-      "tags": ["LIMIT_1"]
+      "tags": [
+        "LIMIT_1"
+      ]
     },
     {
       "item_code": "UNHOLY_TRINKET",
       "cost": 15,
-      "tags": ["CONSUMABLE"]
+      "tags": [
+        "CONSUMABLE"
+      ]
     }
   ]
 }

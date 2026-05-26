@@ -1,289 +1,241 @@
 {
   "skills": [
     {
-      "id": 1,
       "code": "ARMOUR_EQUIPMENT_PROCUREMENT",
       "name": "Armour & Equipment Procurement",
       "description": "The cost of any Armour, Shields or Equipment worth 15 ducats or more is reduced by 5 ducats if a model with this Skill is part of the Warband when it is purchased. A Warband can have only one model with this Skill."
     },
     {
-      "id": 2,
       "code": "MELEE_WEAPON_PROCUREMENT",
       "name": "Melee Weapon Procurement",
       "description": "The cost of any Melee Weapon worth 10 ducats or more is reduced by 5 ducats if the model with this Skill is part of the Warband when it is purchased. A Warband can have only one model with this Skill."
     },
     {
-      "id": 3,
       "code": "MENDELIST_CHEMICALS",
       "name": "Mendelist Chemicals",
       "description": "The opposing player cannot spend BLOOD MARKERS next to a model with this skill to add +1 INJURY DICE (they can use the BLOOD MARKERS to convert the roll to a Bloodbath Roll normally)."
     },
     {
-      "id": 4,
       "code": "RANGED_WEAPON_PROCUREMENT",
       "name": "Ranged Weapon Procurement",
       "description": "The cost of any Ranged Weapon or Grenade worth 20 ducats or more is reduced by 5 ducats if a model with this Skill is part of the Warband when it is purchased. A Warband can have only one model with this Skill."
     },
     {
-      "id": 5,
       "code": "SNIPER_SCHOOL",
       "name": "Sniper School",
       "description": "Ranged Attacks made by a model with this Skill need 1 less BLOOD MARKER to convert an Injury Roll to a Bloodbath Roll."
     },
     {
-      "id": 6,
       "code": "SPECIAL_ASSAULT_TRAINING",
       "name": "Special Assault Training",
       "description": "Melee Attacks made by a model with this Skill need 1 less BLOOD MARKER to convert an Injury Roll to a Bloodbath Roll."
     },
     {
-      "id": 7,
       "code": "BLESSINGS_OF_THE_WARRIOR_SAINT",
       "name": "Blessings of the Warrior Saint",
       "description": "A model with this Skill gains the BLESSED D3 Keyword."
     },
     {
-      "id": 8,
       "code": "DAVID_AND_GOLIATH",
       "name": "David and Goliath",
       "description": "Add +1 DICE for a Melee Attack made by a model with this Skill if the target is mounted on a 40mm or larger base."
     },
     {
-      "id": 9,
       "code": "DRAGONSLAYER",
       "name": "Dragonslayer",
       "description": "When you make an Injury Roll for a Melee Attack made by a model with this Skill, you can change the roll of one of the D6s used for the Injury Roll to a 6."
     },
     {
-      "id": 10,
       "code": "ENDURE_THE_SUFFERING",
       "name": "Endure the Suffering",
       "description": "A model with this Skill can suffer 1 extra Battle Scar before they are unfit for duty."
     },
     {
-      "id": 11,
       "code": "ON_YOUR_KNEES",
       "name": "On your Knees!",
       "description": "Enemy models that are Down are not allowed to stand up if a model with this Skill is within 1\" of them (even if the model with this Skill is also Down)."
     },
     {
-      "id": 12,
       "code": "WARRIORS_PRAYER_ACTION",
       "name": "Warrior's Prayer ACTION",
       "description": "A model with this Skill can take a Warrior's Prayer ACTION. If it does so, take a Risky Success Roll for the model. If the roll is a Failure, nothing happens and the model's Activation ends. If the roll is a Success or Critical Success, the model has the FEAR Keyword until the end of the Turn, and you can remove up to 1 BLOOD MARKER from the model."
     },
     {
-      "id": 13,
       "code": "FAVOURED_BY_GOD",
       "name": "Favoured by God",
       "description": "At the end of each game, your Warband gains 1 additional Glory for each model with this Skill on the battlefield."
     },
     {
-      "id": 14,
       "code": "HEALING_ARTS",
       "name": "Healing Arts",
       "description": "You can re-roll the result on the Trauma Chart (see Trauma Step) for a model with this Skill."
     },
     {
-      "id": 15,
       "code": "KNOWLEDGE_OF_SCIENCES",
       "name": "Knowledge of Sciences",
       "description": "The limit of one item of Battlekit (excluding Glory Items) is increased by 1 if a model with this Skill is part of the Warband. Choose the Battlekit the bonus will apply to and write down your choice on your roster. A Warband can have only one model with this Skill."
     },
     {
-      "id": 16,
       "code": "LOGISTICAL_SKILLS",
       "name": "Logistical Skills",
       "description": "A Warband that includes a model with this Skill can increase any Limits on the number of models it can include by 1, as long as the model does not have the ELITE Keyword, is not mounted on a 50mm or larger base, and is not a Mercenary. If the model with this Skill is killed or otherwise removed from the Warband, models in excess of the normal limits can be kept, but new models cannot be added to the Warband in excess of the normal limits. A Warband can only have 1 model with this Skill."
     },
     {
-      "id": 17,
       "code": "PENNIES_FROM_HEAVEN",
       "name": "Pennies from Heaven",
       "description": "At the end of each game, your Warband gains D6x5 additional ducats for each model with this Skill that is on the Battlefield."
     },
     {
-      "id": 18,
       "code": "WALK_WITH_GOD",
       "name": "Walk with God",
       "description": "Pick one Skill from any Skill Table available to the model, including any Exploration Skill, and give it to this model."
     },
     {
-      "id": 19,
       "code": "30_PIECES_OF_SILVER",
       "name": "30 Pieces of Silver",
       "description": "At the end of each game, your Warband gains D6x5 ducats for each model with this Skill that is on the battlefield."
     },
     {
-      "id": 20,
       "code": "BLESSED_MURDER",
       "name": "Blessed Murder",
       "description": "If a Melee Attack made by a model with this Skill takes an enemy model Out of Action, place 1 BLESSING MARKER next to the model with this Skill."
     },
     {
-      "id": 21,
       "code": "BLOOD_SACRIFICE_ACTION",
       "name": "Blood Sacrifice ACTION",
       "description": "A model with this Skill can take a Blood Sacrifice ACTION. If it does so, take a Success Roll for the model. On a Success or Critical Success, you can remove 1 BLOOD MARKER from the model and place it next to any other model that is within 6\" of the model taking the Blood Sacrifice ACTION, in their line of sight, and which does not have the ARTIFICIAL, BLACK GRAIL or DEMONIC Keywords."
     },
     {
-      "id": 22,
       "code": "HELLFIRE_ACTION",
       "name": "Hellfire ACTION",
       "description": "A model with this Skill can take a Hellfire ACTION. If it does so, take a Risky Success Roll for the model. If the roll is a Failure, nothing happens and the model's Activation ends. If the roll is a Success or Critical Success, pick a friendly model that is within 18\" of the model carrying out the Hellfire ACTION and in their line of sight. Then draw a straight line 1mm wide between the closest points of the bases of the two models, and make an Injury Roll with the FIRE Keyword for each model (friend or foe) that is crossed or reached by the line, including the friendly model that you picked but not including the model taking the Hellfire ACTION."
     },
     {
-      "id": 23,
       "code": "LASH_OF_ACHERON_ACTION",
       "name": "Lash of Acheron ACTION",
       "description": "A model with this Skill can take a Lash of Acheron ACTION. If it does so, take a Risky Success Roll for the model. If the roll is a Failure, nothing happens and the model's Activation ends. If the roll is a Success or Critical Success, you can make an Injury Roll with the IGNORE ARMOUR Keyword for 1 enemy model that is within 6\" of the model taking the Lash of Acheron ACTION and in their line of sight."
     },
     {
-      "id": 24,
       "code": "SADISTIC",
       "name": "Sadistic",
       "description": "Add +1 DICE and +1 INJURY DICE to Melee Attacks made by a model with this Skill if the target model is Down."
     },
     {
-      "id": 25,
       "code": "GURES",
       "name": "Güreş",
       "description": "Add +1 DICE and +1 INJURY DICE to Melee Attacks made by a model with this Skill if the target model is Down. In addition, you can ignore the -1 DICE modifier to Success Rolls for a model that is Down if the model has this Skill."
     },
     {
-      "id": 26,
       "code": "IMPORTED_WARES",
       "name": "Imported Wares",
       "description": "You can purchase 1 Weapon or 1 suit of Armour from the New Antioch Armoury for a model with this Skill in the following Quartermaster Step. Choose the Weapon or suit of Armour and write down your choice on your Warband Roster. If this item is lost for any reason during the campaign, you can repurchase it."
     },
     {
-      "id": 27,
       "code": "JANISSARY_TRAINING",
       "name": "Janissary Training",
       "description": "If the first ACTION a model with this Skill makes during their Activation is a Charge, add +1 DICE to Melee Attacks made by the model for the rest of the Activation. Additionally, a model with this Skill has the IGNORE OFF-HAND WEAPON Keyword."
     },
     {
-      "id": 28,
       "code": "RIGHTLY_GUIDED",
       "name": "Rightly Guided",
       "description": "At the start of the game, after deployment, you can pick 1 ACTION apart from Charge, Shoot or Fight that requires that an enemy model is chosen as the target of the ACTION or is picked to be affected by the ACTION. For the rest of the game, the model with this Skill cannot be chosen as the target of that ACTION and cannot be picked to be affected by that ACTION."
     },
     {
-      "id": 29,
       "code": "SULTANS_FAVOUR",
       "name": "Sultan's Favour",
       "description": "A Warband that includes a model with this Skill can increase any limits on the number of models it can include by 1, as long as the model does not have the ELITE Keyword, is not mounted on a 50mm or larger base, and is not a Mercenary. If the model with this Skill is killed or otherwise removed from the Warband, models in excess of the normal limits can be kept, but new models cannot be added to the Warband in excess of the normal limits. A Warband can only have 1 model with this Skill."
     },
     {
-      "id": 30,
       "code": "SWORD_OF_ALLAH",
       "name": "Sword of Allah",
       "description": "You can choose 1 Skill from the Melee & Strength Skills Table for a model that has the Sword of Allah Skill."
     },
     {
-      "id": 31,
       "code": "COCKROACH_VITALITY",
       "name": "Cockroach Vitality",
       "description": "The opposing player cannot spend BLOOD MARKERS next to a model with this Skill to add +1 INJURY DICE for a Melee or Ranged Attack."
     },
     {
-      "id": 32,
       "code": "DECEIT_OF_BEELZEBUB_ACTION",
       "name": "Deceit of Beelzebub ACTION",
       "description": "A model with this Skill can take a Deceit of Beelzebub ACTION. If it does so, take a Risky Success Roll for the model. If the roll is a Failure, nothing happens and the model's Activation ends. If the roll is a Success or Critical Success, pick an enemy model within 8\" of the model taking the Deceit of Beelzebub ACTION, and then swap the position of the two models. You must place each model so that the centre of its base is at the location that was previously occupied by the centre of the base of the model they are swapping positions with. If this is impossible for any reason, the two models remain in their original locations."
     },
     {
-      "id": 33,
       "code": "EYES_OF_THE_FLY",
       "name": "Eyes of the Fly",
       "description": "A model with this Skill has the IGNORE COVER and IGNORE LONG RANGE Keywords."
     },
     {
-      "id": 34,
       "code": "GRAIL_PLAGUE",
       "name": "Grail Plague",
       "description": "At the start of each game, after deployment, for each model with this Skill that is on the battlefield, you can place 1 INFECTION MARKER next to an enemy model that does not have the BLACK GRAIL Keyword."
     },
     {
-      "id": 35,
       "code": "KNIGHT_OF_THE_FLIES",
       "name": "Knight of the Flies",
       "description": "Add -1 DICE to rolls for Ranged Attacks that target a model with this Skill."
     },
     {
-      "id": 36,
       "code": "WINGS_OF_THE_FLY",
       "name": "Wings of the Fly",
       "description": "A model with this Skill gains the FLYING Keyword if it doesn't already have it."
     },
     {
-      "id": 37,
       "code": "AUREATE_SKIN",
       "name": "Aureate Skin",
       "description": "The model with this Skill is granted the splendid (yet tarnished) golden skin of their Patron, and their blood turns into molten gold. Each time you place a BLOOD MARKER next to a model with this Skill, add 5 ducats to your treasury."
     },
     {
-      "id": 38,
       "code": "CROOKED_DICE",
       "name": "Crooked Dice",
       "description": "Once per game, you can re-roll all of the dice used for a Success Roll for a model with this Skill, or you can re-roll all of the dice used for an Injury Roll for an attack made by a model with this Skill."
     },
     {
-      "id": 39,
       "code": "ETERNAL_DEBT",
       "name": "Eternal Debt",
       "description": "The Wretched of this Warband are never lost as casualties, for their heads (kept as surety by Mammon) are used to regrow the lost bodies. All Wretched models in a Warband that includes a model with this Skill will automatically make a full recovery after the battle if they are taken Out of Action."
     },
     {
-      "id": 40,
       "code": "MONEY_CAN_BUY_ANYTHING",
       "name": "Money Can Buy Anything",
       "description": "The limit of one item of Battlekit (excluding Glory Items) is increased by 1 if a model with this Skill is part of the Warband. Choose the Battlekit the bonus will apply to and write down your choice on your roster. A Warband can have only one model with this Skill."
     },
     {
-      "id": 41,
       "code": "PLUTOCRACY",
       "name": "Plutocracy",
       "description": "When you take this Skill for a model, it can immediately form a FIRETEAM with 1 other model from your Warband that does not have the ELITE Keyword. Both of the models gain the FIRETEAM Keyword. In addition, if the two models take a simultaneous Activation, then you can treat all Risky Success Rolls they take during the Activation as normal Success Rolls."
     },
     {
-      "id": 42,
       "code": "UNSECURED_LOAN",
       "name": "Unsecured Loan",
       "description": "You can add 100 ducats to your Strongbox when you take this Skill for a model in your Warband. The ducats are only gained once, when the Skill is chosen."
     },
     {
-      "id": 43,
       "code": "BEELZEBUBS_WISDOM",
       "name": "Beelzebub's Wisdom",
       "description": "Infested with the Black Grail, the head of this warrior is distended and liquid matter oozes out of its many trepanned holes; it is such a disgusting sight that enemy warriors often hesitate to draw close to the foul creature. If a model with this Skill is chosen by an enemy model as the target of a charge, the enemy model does not receive a Charge Bonus and must make the charge using only its Movement Characteristic."
     },
     {
-      "id": 44,
       "code": "EYE_OF_BEELZEBUB_ACTION",
       "name": "Eye of Beelzebub ACTION",
       "description": "A model with this Skill can take an Eye of Beelzebub ACTION. If it does so, take a Success Roll for the model. If the roll is a Failure, nothing happens. If the roll is a Success or Critical Success, pick an enemy model that is within 24\" of the model taking the Eye of Beelzebub ACTION, in Cover, and which is not within 1\" of any models from your Warband. Your opponent must then move that model 1\", so that it is still in the line of sight of the model taking the ACTION but is no longer in Cover, and so that it is more than 1\" away from any models from your Warband. If this is impossible for any reason, the enemy model is not moved."
     },
     {
-      "id": 45,
       "code": "FEAST_ON_DISEASE",
       "name": "Feast on Disease",
       "description": "If the target of a Melee Attack made by a model with this Skill has 1 or more INFECTION MARKERS, then it costs 1 less BLOOD MARKER or INFECTION MARKER to convert an Injury Roll into a Bloodbath Roll."
     },
     {
-      "id": 46,
       "code": "INFECT_THE_MIND",
       "name": "Infect the Mind",
       "description": "At the start of each game, after deployment, for each model with this Skill that is on the battlefield, you can pick an enemy model and move it 6\" in the same way as if it were carrying out a Move ACTION (it cannot Charge)."
     },
     {
-      "id": 47,
       "code": "SILVERED_TONGUE_ACTION",
       "name": "Silvered Tongue ACTION",
       "description": "A model with this Skill can take a Silvered Tongue ACTION. If it does so, take a Success Roll for the model. If the roll is a Failure, nothing happens. If the roll is a Success or Critical Success, pick an enemy model that is within 1\" of the model taking the Silvered Tongue ACTION. The model you pick must make a Melee Attack against itself. If the enemy model has more than 1 Melee Weapon, you can choose which one it uses. The enemy model will only attack itself once, even if it is capable of attacking several times."
     },
     {
-      "id": 48,
       "code": "SWINE_HYBRID",
       "name": "Swine Hybrid",
       "description": "Add 2\" to the Movement Characteristic of a model with this Skill."

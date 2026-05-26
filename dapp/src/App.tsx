@@ -14,7 +14,9 @@ import { Tournaments } from './pages/Tournaments'
 import { TerritoryMap } from './pages/TerritoryMap'
 import { TheatreList } from './pages/TheatreList'
 import { TheatreCreate } from './pages/TheatreCreate'
+import { TheatreDetail } from './pages/TheatreDetail'
 import { FAQ } from './pages/FAQ'
+import { PostBattle } from './pages/PostBattle'
 
 export default function App() {
   return (
@@ -37,6 +39,7 @@ export default function App() {
         {/* Campaign */}
         <Route path="/campaign" element={<Campaign />} />
         <Route path="/campaign/join" element={<Campaign />} />
+        <Route path="/campaign/post-battle" element={<PostBattle />} />
         <Route path="/campaign/leaderboard" element={<Leaderboard />} />
         <Route path="/campaign/tournaments" element={<Tournaments />} />
 
@@ -44,7 +47,7 @@ export default function App() {
         <Route path="/longwar" element={<TerritoryMap />} />
         <Route path="/longwar/theatres" element={<TheatreList />} />
         <Route path="/longwar/theatres/new" element={<TheatreCreate />} />
-        <Route path="/longwar/theatre/:id" element={<TerritoryMap />} />
+        <Route path="/longwar/theatre/:id" element={<TheatreDetail />} />
 
         {/* FAQ */}
         <Route path="/faq" element={<FAQ />} />

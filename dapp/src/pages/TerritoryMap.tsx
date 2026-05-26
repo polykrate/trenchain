@@ -47,13 +47,13 @@ interface HexTile {
 interface HexRegion {
   name: string
   country: string
+  control: string
   tiles: number[][]
 }
 
 interface HexCountry {
   name: string
   faction: string
-  control: string
   label_tile: number[]
   regions: string[]
 }
@@ -126,15 +126,222 @@ function hexPoints(cx: number, cy: number): string {
 }
 
 
+type ColorMode = 'geography' | 'country'
+
+interface MapFilters {
+  colorMode: ColorMode
+  labels: boolean
+  pois: boolean
+  hoverHighlight: boolean
+}
+
+const DEFAULT_FILTERS: MapFilters = {
+  colorMode: 'country',
+  labels: true,
+  pois: true,
+  hoverHighlight: true,
+}
+
+const FILTER_LABELS: Record<Exclude<keyof MapFilters, 'colorMode'>, string> = {
+  labels: 'Country Labels',
+  pois: 'Points of Interest',
+  hoverHighlight: 'Hover Highlight',
+}
+
+// Faithful = cold (blues, greens, teals) | Heretic = warm (reds, oranges, crimsons) | Neutral = earthy grays
+const COUNTRY_COLORS: Record<string, string> = {
+  // Faithful (cold tones)
+  kalmar_union: '#3a6a9a',
+  crown_england: '#2a7a6a',
+  france: '#4a6aaa',
+  holy_roman_empire: '#3a7a8a',
+  iberia: '#4a8a7a',
+  papal_states: '#5a5aaa',
+  hungary: '#3a8a6a',
+  plc: '#4a6a8a',
+  kyiv: '#5a7a9a',
+  novgorod: '#2a6a8a',
+  new_antioch: '#2a9a7a',
+  iron_sultanate: '#3a7a5a',
+  numidia: '#4a8a6a',
+  // Heretic (warm tones)
+  anatolia: '#9a3a2a',
+  balkans: '#8a4a3a',
+  levant: '#aa3a2a',
+  libya: '#9a4a2a',
+  domain_mammon: '#7a3a3a',
+  arabia: '#aa5a2a',
+  caucasus: '#8a3a4a',
+  heretic_avignon: '#9a3a5a',
+  heretic_cordoba: '#8a3a2a',
+  heretic_finland: '#7a2a3a',
+  heretic_scotland: '#6a3a3a',
+  heretic_tanger: '#9a5a3a',
+  // Neutral (muted earth)
+  golden_khanate: '#7a7a5a',
+  morocco: '#8a7a5a',
+}
+
+function hashRegionId(regionId: string): number {
+  let h = 0
+  for (let i = 0; i < regionId.length; i++) {
+    h = ((h << 5) - h + regionId.charCodeAt(i)) | 0
+  }
+  return h
+}
+
+function variantColor(baseHex: string, regionId: string): string {
+  const seed = hashRegionId(regionId)
+  const shift = ((seed % 30) - 15)
+  const r = Math.min(255, Math.max(0, parseInt(baseHex.slice(1, 3), 16) + shift))
+  const g = Math.min(255, Math.max(0, parseInt(baseHex.slice(3, 5), 16) + shift * 0.7))
+  const b = Math.min(255, Math.max(0, parseInt(baseHex.slice(5, 7), 16) - shift * 0.3))
+  return `rgb(${Math.round(r)},${Math.round(g)},${Math.round(b)})`
+}
+
 function WorldMapGrid() {
-  const [showControl, setShowControl] = useState(true)
+  const [filters, setFilters] = useState<MapFilters>(DEFAULT_FILTERS)
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null)
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [selectedRegions, setSelectedRegions] = useState<Set<string>>(new Set())
+  const [zoom, setZoom] = useState(1)
+  const [pan, setPan] = useState({ x: 0, y: 0 })
+  const [isPanning, setIsPanning] = useState(false)
+  const [panStart, setPanStart] = useState({ x: 0, y: 0, panX: 0, panY: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
 
   const landTiles = useMemo(() => HEX_TILES.filter(h => h.t !== 'sea'), [])
+
+  // Compute base tight viewBox around land tiles
+
+  const [containerSize, setContainerSize] = useState({ width: 1600, height: 900 })
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const update = () => {
+      const { width, height } = el.getBoundingClientRect()
+      if (width > 0 && height > 0) setContainerSize({ width, height })
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const baseViewBox = useMemo(() => {
+    const ROW_MIN = 5
+    const ROW_MAX = 51
+    const COL_MAX = 86
+    const padW = HEX_META.hex_size * 3
+    const padH = HEX_META.hex_size * 0.5
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity
+    for (const tile of landTiles) {
+      if (tile.r < ROW_MIN || tile.r > ROW_MAX) continue
+      if (tile.q > COL_MAX) continue
+      const [cx, cy] = hexCenter(tile.q, tile.r)
+      if (cx < minX) minX = cx
+      if (cx > maxX) maxX = cx
+      if (cy < minY) minY = cy
+      if (cy > maxY) maxY = cy
+    }
+    const contentW = maxX - minX + padW * 2
+    const contentH = maxY - minY + padH * 2
+    const contentCx = minX - padW + contentW / 2
+    const contentCy = minY - padH + contentH / 2
+
+    const containerAR = containerSize.width / containerSize.height
+    const contentAR = contentW / contentH
+    let w: number, h: number
+    if (containerAR > contentAR) {
+      h = contentH
+      w = h * containerAR
+    } else {
+      w = contentW
+      h = w / containerAR
+    }
+    return { x: contentCx - w / 2, y: contentCy - h / 2, w, h }
+  }, [landTiles, containerSize])
+
+  const currentViewBox = useMemo(() => {
+    const w = baseViewBox.w / zoom
+    const h = baseViewBox.h / zoom
+    // Clamp pan so view stays within map bounds
+    const maxPanX = (baseViewBox.w - w) / 2
+    const maxPanY = (baseViewBox.h - h) / 2
+    const cx = baseViewBox.x + baseViewBox.w / 2 + Math.max(-maxPanX, Math.min(maxPanX, pan.x))
+    const cy = baseViewBox.y + baseViewBox.h / 2 + Math.max(-maxPanY, Math.min(maxPanY, pan.y))
+    return `${(cx - w / 2).toFixed(1)} ${(cy - h / 2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`
+  }, [baseViewBox, zoom, pan])
+
+  const zoomRef = useRef(zoom)
+  const panRef = useRef(pan)
+  zoomRef.current = zoom
+  panRef.current = pan
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    function onWheel(e: WheelEvent) {
+      e.preventDefault()
+      e.stopPropagation()
+      const rect = el!.getBoundingClientRect()
+      const cursorFracX = (e.clientX - rect.left) / rect.width
+      const cursorFracY = (e.clientY - rect.top) / rect.height
+
+      const oldZoom = zoomRef.current
+      const oldPan = panRef.current
+      const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15
+      const newZoom = Math.max(1, Math.min(8, oldZoom * factor))
+
+      const oldW = baseViewBox.w / oldZoom
+      const oldH = baseViewBox.h / oldZoom
+      const newW = baseViewBox.w / newZoom
+      const newH = baseViewBox.h / newZoom
+
+      const oldCx = baseViewBox.x + baseViewBox.w / 2 + oldPan.x
+      const oldCy = baseViewBox.y + baseViewBox.h / 2 + oldPan.y
+      const svgX = oldCx - oldW / 2 + cursorFracX * oldW
+      const svgY = oldCy - oldH / 2 + cursorFracY * oldH
+
+      const newCx = svgX - (cursorFracX - 0.5) * newW
+      const newCy = svgY - (cursorFracY - 0.5) * newH
+      const newPanX = newCx - (baseViewBox.x + baseViewBox.w / 2)
+      const newPanY = newCy - (baseViewBox.y + baseViewBox.h / 2)
+
+      setZoom(newZoom)
+      setPan({ x: newPanX, y: newPanY })
+    }
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [baseViewBox])
+
+  const dragDistRef = useRef(0)
+
+  function handlePanStart(e: React.MouseEvent) {
+    if (e.button === 0 || e.button === 1) {
+      e.preventDefault()
+      setIsPanning(true)
+      dragDistRef.current = 0
+      setPanStart({ x: e.clientX, y: e.clientY, panX: pan.x, panY: pan.y })
+    }
+  }
+
+  function handlePanMove(e: React.MouseEvent) {
+    if (!isPanning || !containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const scaleX = baseViewBox.w / zoom / rect.width
+    const scaleY = baseViewBox.h / zoom / rect.height
+    const dx = (e.clientX - panStart.x) * scaleX
+    const dy = (e.clientY - panStart.y) * scaleY
+    dragDistRef.current = Math.abs(e.clientX - panStart.x) + Math.abs(e.clientY - panStart.y)
+    setPan({ x: panStart.panX - dx, y: panStart.panY - dy })
+  }
+
+  function handlePanEnd() {
+    setIsPanning(false)
+  }
 
   // Map region -> country for quick lookups
   const regionToCountry = useMemo(() => {
@@ -146,19 +353,27 @@ function WorldMapGrid() {
   }, [])
 
 
-  // Country labels from label_tile field
+  // Country labels positioned at centroid of visible tiles
   const countryLabels = useMemo(() => {
+    const ROW_MIN = 5, ROW_MAX = 51, COL_MAX = 86
     return Object.entries(HEX_COUNTRIES).map(([cid, cdef]) => {
-      const [lq, lr] = cdef.label_tile
-      const [x, y] = hexCenter(lq, lr)
+      const visibleTiles = landTiles.filter(t =>
+        t.g && regionToCountry.get(t.g) === cid &&
+        t.r >= ROW_MIN && t.r <= ROW_MAX && t.q <= COL_MAX
+      )
+      if (visibleTiles.length === 0) return null
+      const avgQ = visibleTiles.reduce((s, t) => s + t.q, 0) / visibleTiles.length
+      const avgR = visibleTiles.reduce((s, t) => s + t.r, 0) / visibleTiles.length
+      const [x, y] = hexCenter(Math.round(avgQ), Math.round(avgR))
       return { id: cid, x, y, name: cdef.name, faction: cdef.faction }
-    })
-  }, [])
+    }).filter(Boolean) as { id: string; x: number; y: number; name: string; faction: string }[]
+  }, [landTiles, regionToCountry])
 
   function handleMouseMove(e: React.MouseEvent) {
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    handlePanMove(e)
   }
 
   function handleHexEnter(tile: HexTile) {
@@ -176,6 +391,7 @@ function WorldMapGrid() {
 
   function handleHexClick(tile: HexTile) {
     if (!tile.g) return
+    if (dragDistRef.current > 5) return
     setSelectedRegions(prev => {
       const next = new Set(prev)
       if (next.has(tile.g!)) next.delete(tile.g!)
@@ -184,36 +400,68 @@ function WorldMapGrid() {
     })
   }
 
-  return (
-    <div>
-      <div className="mb-4 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl">The Lands of the Great Powers</h1>
-          <p className="text-sm text-[var(--muted)] mt-1">Strategic overview — territories held and lost in the eternal war.</p>
-        </div>
-        <div className="flex items-center gap-4">
-          {selectedRegions.size > 0 && (
-            <span className="text-xs text-[var(--accent)] font-bold">{selectedRegions.size} regions selected</span>
-          )}
-          <label className="flex items-center gap-2 cursor-pointer select-none">
-            <span className="text-sm text-[var(--muted)] uppercase tracking-wider font-bold">War Status</span>
-            <div className="relative">
-              <input type="checkbox" checked={showControl} onChange={() => setShowControl(!showControl)} className="sr-only peer" />
-              <div className="w-10 h-5 rounded-full bg-[var(--border)] peer-checked:bg-[#7f1d1d] transition-colors" />
-              <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-[var(--parchment)] peer-checked:translate-x-5 transition-transform shadow" />
-            </div>
-          </label>
-        </div>
-      </div>
+  function toggleFilter(key: Exclude<keyof MapFilters, 'colorMode'>) {
+    setFilters(prev => ({ ...prev, [key]: !prev[key] }))
+  }
 
+  return (
+    <div className="-mx-10 -my-8 h-[calc(100vh-44px)] flex flex-col">
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        className="relative w-full border border-[var(--border)] rounded-sm overflow-hidden select-none"
-        style={{ aspectRatio: `${HEX_META.svg_width}/${HEX_META.svg_height}` }}
+        onMouseDown={handlePanStart}
+        onMouseUp={handlePanEnd}
+        onMouseLeave={() => { handlePanEnd(); handleHexLeave() }}
+        className="relative flex-1 w-full overflow-hidden select-none"
+        style={{ cursor: isPanning ? 'grabbing' : 'grab' }}
       >
+        {/* Controls overlay */}
+        <div className="absolute top-2 right-2 z-40 flex flex-col items-end gap-1.5">
+          {/* Geo/Country slider */}
+          <div className="flex items-center gap-0 bg-[var(--card)]/90 backdrop-blur-sm border border-[var(--border)] rounded-sm overflow-hidden">
+            <button
+              onClick={() => setFilters(p => ({ ...p, colorMode: 'geography' }))}
+              className={`text-[10px] font-bold px-2.5 py-1 transition-colors ${
+                filters.colorMode === 'geography' ? 'bg-[var(--accent)] text-[var(--parchment)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
+              }`}
+            >Geo</button>
+            <button
+              onClick={() => setFilters(p => ({ ...p, colorMode: 'country' }))}
+              className={`text-[10px] font-bold px-2.5 py-1 transition-colors ${
+                filters.colorMode === 'country' ? 'bg-[var(--accent)] text-[var(--parchment)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'
+              }`}
+            >Countries</button>
+          </div>
+          {/* Filter tags */}
+          <div className="flex items-center gap-1">
+            {(Object.keys(FILTER_LABELS) as (Exclude<keyof MapFilters, 'colorMode'>)[]).map(key => (
+              <button
+                key={key}
+                onClick={() => toggleFilter(key)}
+                className={`text-[9px] px-1.5 py-0.5 rounded-sm border backdrop-blur-sm transition-colors ${
+                  filters[key]
+                    ? 'border-[var(--accent)] bg-[var(--accent)]/20 text-[var(--fg)]'
+                    : 'border-[var(--border)] bg-[var(--card)]/70 text-[var(--muted)] hover:border-[var(--fg)]'
+                }`}
+              >
+                {FILTER_LABELS[key]}
+              </button>
+            ))}
+          </div>
+          {/* Zoom info */}
+          {zoom > 1 && (
+            <div className="flex items-center gap-1">
+              <span className="text-[9px] text-[var(--muted)] bg-[var(--card)]/90 backdrop-blur-sm border border-[var(--border)] rounded-sm px-1.5 py-0.5">{zoom.toFixed(1)}x</span>
+              <button
+                onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }) }}
+                className="text-[9px] px-1.5 py-0.5 rounded-sm border border-[var(--border)] bg-[var(--card)]/90 backdrop-blur-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+              >Reset</button>
+            </div>
+          )}
+        </div>
+
         <svg
-          viewBox={`0 0 ${HEX_META.svg_width} ${HEX_META.svg_height}`}
+          viewBox={currentViewBox}
           className="absolute inset-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -221,22 +469,30 @@ function WorldMapGrid() {
             <pattern id="heretic-pattern" patternUnits="userSpaceOnUse" width="5" height="5">
               <line x1="0" y1="5" x2="5" y2="0" stroke="rgba(160,0,0,0.4)" strokeWidth="1" />
             </pattern>
-            <pattern id="contested-pattern" patternUnits="userSpaceOnUse" width="6" height="6">
-              <line x1="0" y1="6" x2="6" y2="0" stroke="rgba(200,100,0,0.4)" strokeWidth="1.2" />
-            </pattern>
           </defs>
 
-          <rect x="0" y="0" width={HEX_META.svg_width} height={HEX_META.svg_height} fill={TERRAIN_COLORS.sea} />
+          <rect x="-9999" y="-9999" width="99999" height="99999" fill={TERRAIN_COLORS.sea} />
 
           {/* Hex tiles */}
           {HEX_TILES.map((tile, i) => {
             if (tile.t === 'sea') return null
             const [cx, cy] = hexCenter(tile.q, tile.r)
             const pts = hexPoints(cx, cy)
-            const color = TERRAIN_COLORS[tile.t] ?? '#555'
+            const isWallTile = tile.t === 'iron_wall'
             const tileCountry = tile.g ? regionToCountry.get(tile.g) : null
-            const isCountryHovered = tileCountry === hoveredCountry
-            const isRegionHovered = tile.g === hoveredRegion
+
+            let displayColor: string
+            if (isWallTile) {
+              displayColor = TERRAIN_COLORS['iron_wall']
+            } else if (filters.colorMode === 'country' && tileCountry) {
+              const base = COUNTRY_COLORS[tileCountry] ?? '#666'
+              displayColor = tile.g ? variantColor(base, tile.g) : base
+            } else {
+              displayColor = TERRAIN_COLORS[tile.t] ?? '#555'
+            }
+
+            const isCountryHovered = filters.hoverHighlight && tileCountry === hoveredCountry
+            const isRegionHovered = filters.hoverHighlight && tile.g === hoveredRegion
             const isSelected = tile.g ? selectedRegions.has(tile.g) : false
 
             let stroke = 'rgba(30,25,20,0.15)'
@@ -249,7 +505,7 @@ function WorldMapGrid() {
               <polygon
                 key={i}
                 points={pts}
-                fill={color}
+                fill={displayColor}
                 stroke={stroke}
                 strokeWidth={strokeW}
                 className="cursor-pointer"
@@ -260,24 +516,20 @@ function WorldMapGrid() {
             )
           })}
 
-          {/* Control overlay: stripes for heretic/contested countries */}
-          {showControl && landTiles.map((tile, i) => {
+          {/* Control overlay: stripes for heretic regions */}
+          {landTiles.map((tile, i) => {
             if (!tile.g || tile.w) return null
-            const country = regionToCountry.get(tile.g)
-            if (!country) return null
-            const countryDef = HEX_COUNTRIES[country]
-            if (!countryDef) return null
-            const control = countryDef.control
-            if (control !== 'heretic' && control !== 'contested') return null
+            const regionDef = HEX_REGIONS[tile.g]
+            if (!regionDef) return null
+            if (regionDef.control !== 'heretic') return null
             const [cx, cy] = hexCenter(tile.q, tile.r)
             const pts = hexPoints(cx, cy)
-            const patternId = control === 'heretic' ? 'heretic-pattern' : 'contested-pattern'
-            return <polygon key={`ctrl-${i}`} points={pts} fill={`url(#${patternId})`} className="pointer-events-none" />
+            return <polygon key={`ctrl-${i}`} points={pts} fill="url(#heretic-pattern)" className="pointer-events-none" />
           })}
 
 
           {/* Points of Interest */}
-          {HEX_POIS.map(poi => {
+          {filters.pois && HEX_POIS.map(poi => {
             if (!poi.tile) return null
             const [cx, cy] = hexCenter(poi.tile[0], poi.tile[1])
             const icon = POI_ICONS[poi.type] ?? '\u2738'
@@ -309,7 +561,7 @@ function WorldMapGrid() {
           })}
 
           {/* Country labels */}
-          {countryLabels.map(label => {
+          {filters.labels && countryLabels.map(label => {
             const faction = label.faction
             const isHeretic = faction === 'HERETIC'
             const isIslamic = faction === 'FAITHFUL_ISLAMIC'
@@ -358,45 +610,19 @@ function WorldMapGrid() {
             </div>
           )
         })()}
-      </div>
-
-      {/* Legend */}
-      <div className="mt-3 grid grid-cols-3 gap-4 text-xs">
-        <div>
-          <div className="font-bold text-[var(--fg)] uppercase tracking-wider text-[10px] mb-1 border-b border-blue-800/50 pb-0.5">The Faithful</div>
-          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction.startsWith('FAITHFUL')).map(([id, c]) => (
-            <div key={id} className="flex items-center gap-1.5 py-0.5">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.faction === 'FAITHFUL_ISLAMIC' ? '#e8c860' : '#86b6dc' }} />
-              <span className="text-[var(--muted)]">{c.name}</span>
+        {/* Legend overlay: always visible in geography mode */}
+        {filters.colorMode === 'geography' && (
+          <div className="absolute bottom-2 left-2 z-40 bg-[var(--card)]/90 backdrop-blur-sm border border-[var(--border)] rounded-sm p-2 max-w-[400px]">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[9px]">
+              {Object.entries(TERRAIN_COLORS).filter(([c]) => c !== 'sea' && c !== 'volcanic').map(([code, color]) => (
+                <div key={code} className="flex items-center gap-1">
+                  <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: color }} />
+                  <span className="text-[var(--muted)]">{TERRAIN_NAMES[code] ?? code}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div>
-          <div className="font-bold text-red-400 uppercase tracking-wider text-[10px] mb-1 border-b border-red-900/50 pb-0.5">Forces of Hell</div>
-          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction === 'HERETIC').map(([id, c]) => (
-            <div key={id} className="flex items-center gap-1.5 py-0.5">
-              <div className="w-2 h-2 rounded-full bg-red-700" />
-              <span className="text-[var(--muted)]">{c.name}</span>
-            </div>
-          ))}
-        </div>
-        <div>
-          <div className="font-bold text-[var(--muted)] uppercase tracking-wider text-[10px] mb-1 border-b border-[var(--border)] pb-0.5">Neutral / Independent</div>
-          {Object.entries(HEX_COUNTRIES).filter(([, c]) => c.faction === 'NEUTRAL').map(([id, c]) => (
-            <div key={id} className="flex items-center gap-1.5 py-0.5">
-              <div className="w-2 h-2 rounded-full bg-stone-500" />
-              <span className="text-[var(--muted)]">{c.name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
-        {Object.entries(TERRAIN_COLORS).filter(([c]) => c !== 'sea' && c !== 'volcanic').map(([code, color]) => (
-          <div key={code} className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm border border-[var(--border)]" style={{ backgroundColor: color }} />
-            <span className="text-[var(--muted)]">{TERRAIN_NAMES[code] ?? code}</span>
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
