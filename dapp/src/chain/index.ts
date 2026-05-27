@@ -1,9 +1,7 @@
-export * from './types'
-export * as warband from './warband'
-export * as roster from './roster'
-export * as entry from './entry'
-export * as faction from './faction'
-export * as territory from './territory'
-export * as campaign from './campaign'
-export * as theatre from './theatre'
-export * as storage from './storage'
+export * from './types';
+export * as warband from './warband';
+export * as roster from './roster';
+export * as campaign from './campaign';
+export * as territory from './territory';
+export * as theatre from './theatre';
+export * as storage from './storage';

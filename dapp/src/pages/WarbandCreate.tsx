@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { factions, getPatronsByFaction, getEntriesByFaction, getResolvedArmoury, getBattlekitByCode, canModelEquip, type WarbandEntry, type ResolvedArmouryItem } from '../data'
+import { useCompendium, type ChainEntry, type ChainPatron, type ChainBattlekitItem, type ChainArmouryItem } from '../hooks/useChainData'
 import { Stepper } from '../components/Stepper'
-import type { Patron } from '../data'
 
 const STEPS = [
   { label: 'Identity' },
@@ -12,27 +11,46 @@ const STEPS = [
 
 const STARTING_DUCATS = 700
 
+interface ResolvedEquip {
+  item: ChainBattlekitItem;
+  cost: number;
+}
+
 interface RecruitedModel {
-  entry: WarbandEntry
-  equipment: ResolvedArmouryItem[]
+  entry: ChainEntry;
+  equipment: ResolvedEquip[];
 }
 
 export function WarbandCreate() {
   const navigate = useNavigate()
+  const { compendium, loading, error } = useCompendium()
   const [step, setStep] = useState(0)
 
-  // Step 1 state
   const [name, setName] = useState('')
   const [selectedFaction, setSelectedFaction] = useState<string | null>(null)
-  const [selectedPatron, setSelectedPatron] = useState<number | null>(null)
+  const [selectedPatron, setSelectedPatron] = useState<string | null>(null)
 
-  // Step 2 state
   const [roster, setRoster] = useState<RecruitedModel[]>([])
   const [equipOpen, setEquipOpen] = useState<number | null>(null)
 
-  const factionPatrons: Patron[] = selectedFaction ? getPatronsByFaction(selectedFaction) : []
-  const factionEntries = selectedFaction ? getEntriesByFaction(selectedFaction) : []
-  const factionArmoury = selectedFaction ? getResolvedArmoury(selectedFaction) : []
+  if (loading) return <div className="text-center py-12 text-[var(--muted)]">Loading compendium...</div>
+  if (error || !compendium) return <div className="text-center py-12 text-[var(--accent)]">Error: {error}</div>
+
+  const { factions, patrons, entries, armoury, battlekit } = compendium
+
+  const factionPatrons: ChainPatron[] = selectedFaction
+    ? patrons.filter(p => p.factions.includes(selectedFaction!))
+    : []
+
+  const factionEntries: ChainEntry[] = selectedFaction
+    ? entries.filter(e => e.faction === selectedFaction)
+    : []
+
+  const factionArmoury: (ChainArmouryItem & { item: ChainBattlekitItem | undefined })[] = selectedFaction
+    ? armoury
+        .filter(a => a.faction === selectedFaction)
+        .map(a => ({ ...a, item: battlekit.find(b => b.code === a.itemCode) }))
+    : []
 
   const totalCost = roster.reduce(
     (sum, m) => sum + m.entry.cost + m.equipment.reduce((s, e) => s + e.cost, 0),
@@ -46,20 +64,20 @@ export function WarbandCreate() {
 
   function canProceedStep2() {
     if (!selectedFaction) return false
-    const required = getEntriesByFaction(selectedFaction).filter(e => e.min_count > 0)
+    const required = factionEntries.filter(e => e.minCount > 0)
     for (const req of required) {
-      const count = roster.filter(m => m.entry.id === req.id).length
-      if (count < req.min_count) return false
+      const count = roster.filter(m => m.entry.code === req.code).length
+      if (count < req.minCount) return false
     }
     return remainingBudget >= 0
   }
 
-  function getCountForEntry(entryId: string) {
-    return roster.filter(m => m.entry.id === entryId).length
+  function getCountForEntry(code: string) {
+    return roster.filter(m => m.entry.code === code).length
   }
 
-  function addModel(entry: WarbandEntry) {
-    if (entry.max_count !== null && getCountForEntry(entry.id) >= entry.max_count) return
+  function addModel(entry: ChainEntry) {
+    if (entry.maxCount !== undefined && getCountForEntry(entry.code) >= entry.maxCount) return
     if (entry.cost > remainingBudget) return
     setRoster([...roster, { entry, equipment: [] }])
   }
@@ -68,10 +86,10 @@ export function WarbandCreate() {
     setRoster(roster.filter((_, i) => i !== index))
   }
 
-  function addEquipment(modelIndex: number, item: ResolvedArmouryItem) {
-    if (item.cost > remainingBudget) return
+  function addEquipment(modelIndex: number, item: ChainBattlekitItem, cost: number) {
+    if (cost > remainingBudget) return
     const updated = [...roster]
-    updated[modelIndex] = { ...updated[modelIndex], equipment: [...updated[modelIndex].equipment, item] }
+    updated[modelIndex] = { ...updated[modelIndex], equipment: [...updated[modelIndex].equipment, { item, cost }] }
     setRoster(updated)
   }
 
@@ -93,7 +111,6 @@ export function WarbandCreate() {
       <h1 className="text-2xl mb-6">Muster Warband</h1>
       <Stepper steps={STEPS} currentStep={step} />
 
-      {/* Step 1: Identity */}
       {step === 0 && (
         <div className="space-y-6">
           <Field label="Warband Name">
@@ -133,10 +150,10 @@ export function WarbandCreate() {
                 <div className="space-y-3">
                   {factionPatrons.map(p => (
                     <button
-                      key={p.id}
-                      onClick={() => setSelectedPatron(p.id)}
+                      key={p.code}
+                      onClick={() => setSelectedPatron(p.code)}
                       className={`card-military w-full p-4 text-left cursor-pointer ${
-                        selectedPatron === p.id
+                        selectedPatron === p.code
                           ? 'border-[var(--accent)] bg-[var(--surface)]'
                           : 'hover:border-[var(--sepia)]'
                       }`}
@@ -160,10 +177,8 @@ export function WarbandCreate() {
         </div>
       )}
 
-      {/* Step 2: Muster */}
       {step === 1 && (
         <div className="space-y-6">
-          {/* Budget bar */}
           <div className="card-military p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="font-bold uppercase tracking-wider text-[var(--muted)]">Budget</span>
@@ -179,23 +194,22 @@ export function WarbandCreate() {
             </div>
           </div>
 
-          {/* Available entries */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-3">Available Units</h3>
             <div className="space-y-2">
               {factionEntries.map(entry => {
-                const count = getCountForEntry(entry.id)
-                const atMax = entry.max_count !== null && count >= entry.max_count
+                const count = getCountForEntry(entry.code)
+                const atMax = entry.maxCount !== undefined && count >= entry.maxCount
                 const tooExpensive = entry.cost > remainingBudget
                 return (
-                  <div key={entry.id} className="card-military px-4 py-3 flex items-center gap-4">
+                  <div key={entry.code} className="card-military px-4 py-3 flex items-center gap-4">
                     <div className="flex-1">
                       <span className="font-bold">{entry.name}</span>
-                      {entry.min_count > 0 && count < entry.min_count && (
+                      {entry.minCount > 0 && count < entry.minCount && (
                         <span className="text-[var(--accent)] text-xs font-bold ml-2">REQUIRED</span>
                       )}
-                      {entry.max_count !== null && (
-                        <span className="text-xs text-[var(--muted)] ml-2">({count}/{entry.max_count})</span>
+                      {entry.maxCount !== undefined && (
+                        <span className="text-xs text-[var(--muted)] ml-2">({count}/{entry.maxCount})</span>
                       )}
                     </div>
                     <span className="text-[var(--brass)] font-bold">{entry.cost}</span>
@@ -212,7 +226,6 @@ export function WarbandCreate() {
             </div>
           </div>
 
-          {/* Roster */}
           {roster.length > 0 && (
             <div>
               <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-3">
@@ -232,7 +245,6 @@ export function WarbandCreate() {
                       </button>
                     </div>
 
-                    {/* Equipment list */}
                     {model.equipment.length > 0 && (
                       <div className="flex flex-wrap gap-1 mb-2">
                         {model.equipment.map((eq, eIdx) => (
@@ -240,7 +252,7 @@ export function WarbandCreate() {
                             key={eIdx}
                             className="inline-flex items-center gap-1 bg-[var(--surface)] border border-[var(--border)] rounded-sm px-2 py-0.5 text-xs"
                           >
-                            {eq.battlekit?.name ?? eq.item_code} ({eq.cost})
+                            {eq.item.name} ({eq.cost})
                             <button
                               onClick={() => removeEquipment(idx, eIdx)}
                               className="text-[var(--accent)] font-bold cursor-pointer"
@@ -252,7 +264,6 @@ export function WarbandCreate() {
                       </div>
                     )}
 
-                    {/* Equip toggle */}
                     <button
                       onClick={() => setEquipOpen(equipOpen === idx ? null : idx)}
                       className="text-xs text-[var(--sepia)] font-bold uppercase tracking-wider cursor-pointer hover:underline"
@@ -263,20 +274,18 @@ export function WarbandCreate() {
                     {equipOpen === idx && (
                       <div className="mt-3 border-t border-[var(--border)] pt-3">
                         <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
-                          {factionArmoury
-                            .filter(item => canModelEquip(item, model.entry.keywords, model.entry.id))
-                            .map((item, aIdx) => (
+                          {factionArmoury.filter(a => a.item).map((a, aIdx) => (
                             <button
                               key={aIdx}
-                              onClick={() => addEquipment(idx, item)}
-                              disabled={item.cost > remainingBudget}
+                              onClick={() => addEquipment(idx, a.item!, a.cost)}
+                              disabled={a.cost > remainingBudget}
                               className="text-left bg-[var(--surface)] border border-[var(--border)] rounded-sm px-3 py-2 cursor-pointer hover:border-[var(--sepia)] disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                               <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold">{item.battlekit?.name ?? item.item_code}</span>
-                                <span className="text-xs text-[var(--brass)]">{item.cost}</span>
+                                <span className="text-xs font-bold">{a.item!.name}</span>
+                                <span className="text-xs text-[var(--brass)]">{a.cost}</span>
                               </div>
-                              <div className="text-xs text-[var(--muted)]">{item.battlekit?.battlekit_type ?? '—'}</div>
+                              <div className="text-xs text-[var(--muted)]">{a.item!.battlekitType}</div>
                             </button>
                           ))}
                         </div>
@@ -288,7 +297,6 @@ export function WarbandCreate() {
             </div>
           )}
 
-          {/* Navigation */}
           <div className="flex gap-4">
             <button
               onClick={() => setStep(0)}
@@ -307,13 +315,12 @@ export function WarbandCreate() {
         </div>
       )}
 
-      {/* Step 3: Summary */}
       {step === 2 && (
         <div className="space-y-6">
           <div className="card-military p-6">
             <h3 className="text-lg font-bold uppercase tracking-wider mb-1">{name}</h3>
             <p className="text-[var(--muted)] mb-4">
-              {factions.find(f => f.code === selectedFaction)?.name} — {factionPatrons.find(p => p.id === selectedPatron)?.name}
+              {factions.find(f => f.code === selectedFaction)?.name} — {factionPatrons.find(p => p.code === selectedPatron)?.name}
             </p>
 
             <div className="stat-block mb-6">
@@ -340,7 +347,7 @@ export function WarbandCreate() {
                     <span className="font-bold flex-1">{model.entry.name}</span>
                     {model.equipment.length > 0 && (
                       <span className="text-xs text-[var(--muted)]">
-                        {model.equipment.map(e => e.battlekit?.name ?? e.item_code).join(', ')}
+                        {model.equipment.map(e => e.item.name).join(', ')}
                       </span>
                     )}
                     <span className="text-[var(--brass)] font-bold">{model.entry.cost + eqCost}</span>

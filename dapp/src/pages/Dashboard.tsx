@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useWallet } from '../hooks/useWallet'
 import { warband, campaign } from '../chain'
-import type { Warband } from '../chain/types'
-import type { ActiveCampaign, CampaignWarband, PendingBattle } from '../chain/campaign'
+import type { WarbandMeta } from '../chain/warband'
+import type { CampaignMeta } from '../chain/campaign'
 
 interface FeatureCard {
   title: string
@@ -131,25 +131,13 @@ function LandingView() {
 }
 
 function ConnectedDashboard({ address }: { address: string }) {
-  const [warbands, setWarbands] = useState<Warband[]>([])
-  const [campaigns, setCampaigns] = useState<ActiveCampaign[]>([])
-  const [campaignWarbands, setCampaignWarbands] = useState<CampaignWarband[]>([])
-  const [pendingBattles, setPendingBattles] = useState<PendingBattle[]>([])
+  const [warbands, setWarbands] = useState<WarbandMeta[]>([])
+  const [campaigns, setCampaigns] = useState<CampaignMeta[]>([])
 
   useEffect(() => {
     warband.getOwnedWarbands(address).then(setWarbands)
-    campaign.getActiveCampaigns().then(c => {
-      setCampaigns(c)
-      if (c.length > 0) {
-        campaign.getMyWarbandsInCampaign(c[0].id, address).then(setCampaignWarbands)
-        campaign.getPendingBattles(c[0].id).then(setPendingBattles)
-      }
-    })
+    campaign.getAllCampaigns().then(setCampaigns)
   }, [address])
-
-  const lockedWarbands = campaignWarbands.filter(w => w.locked)
-  const availableWarbands = campaignWarbands.filter(w => !w.locked)
-  const myPendingBattles = pendingBattles.filter(b => b.status === 'awaiting_result')
 
   return (
     <div className="flex flex-col">
@@ -196,7 +184,7 @@ function ConnectedDashboard({ address }: { address: string }) {
                 <Link key={w.id} to={`/warband/${w.id}`} className="block p-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm hover:border-[var(--sepia)]">
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold">{w.name}</span>
-                    <span className="text-xs text-[var(--sepia)]">{w.roster.length} models</span>
+                    <span className="text-xs text-[var(--sepia)]">{w.gamesPlayed} games</span>
                   </div>
                   <div className="flex gap-3 text-xs text-[var(--muted)]">
                     <span>{w.ducats} ducats</span>
@@ -217,50 +205,22 @@ function ConnectedDashboard({ address }: { address: string }) {
           <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-4">Campaign Status</h2>
 
           {campaigns.length > 0 && (
-            <div className="mb-4 p-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
-              <div className="font-bold mb-1">{campaigns[0].name}</div>
-              <div className="text-xs text-[var(--muted)]">{campaigns[0].description}</div>
-              <div className="flex gap-3 mt-2 text-xs">
-                <span className="text-[var(--olive)]">{campaigns[0].enrolled_warbands}/{campaigns[0].max_warbands} warbands</span>
-              </div>
-            </div>
-          )}
-
-          {lockedWarbands.length > 0 && (
-            <div className="mb-3">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent)] mb-2">Locked (in battle / post-battle)</h3>
-              {lockedWarbands.map(w => (
-                <div key={w.id} className="flex items-center justify-between p-2 bg-[var(--surface)] border border-[var(--accent)]/30 rounded-sm mb-1">
-                  <span className="text-sm font-bold">{w.name}</span>
-                  <span className="text-[10px] uppercase font-bold text-[var(--accent)]">
-                    {w.post_battle_phase ?? 'Battle'}
-                  </span>
+            <div className="space-y-2 mb-4">
+              {campaigns.map(c => (
+                <div key={c.id} className="p-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
+                  <div className="font-bold mb-1">{c.name}</div>
+                  <div className="flex gap-3 text-xs text-[var(--muted)]">
+                    <span className="text-[var(--olive)]">{c.enrolledWarbands.length}/{c.maxWarbands} warbands</span>
+                    <span>Game #{c.currentGame}</span>
+                    <span className="uppercase">{c.status}</span>
+                  </div>
                 </div>
               ))}
             </div>
           )}
 
-          {availableWarbands.length > 0 && (
-            <div className="mb-3">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-[var(--olive)] mb-2">Available</h3>
-              {availableWarbands.map(w => (
-                <div key={w.id} className="flex items-center justify-between p-2 bg-[var(--surface)] border border-[var(--border)] rounded-sm mb-1">
-                  <span className="text-sm font-bold">{w.name}</span>
-                  <span className="text-[10px] uppercase text-[var(--olive)]">Ready</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {myPendingBattles.length > 0 && (
-            <div className="mt-auto pt-3 border-t border-[var(--border)]">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Awaiting Results</h3>
-              {myPendingBattles.map(b => (
-                <div key={b.id} className="text-xs text-[var(--fg-secondary)] mb-1">
-                  {b.location_name} — {b.challenger_name} vs {b.defender_name ?? '?'}
-                </div>
-              ))}
-            </div>
+          {campaigns.length === 0 && (
+            <p className="text-[var(--muted)] text-sm flex-1">No active campaigns.</p>
           )}
 
           <Link to="/campaign" className="text-xs font-bold uppercase text-[var(--accent)] mt-4 hover:underline">

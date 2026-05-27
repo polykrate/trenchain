@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { theatre, storage } from '../chain'
 import type { TheatreNode, TheatreGraph } from '../chain/theatre'
 import type { TerrainType, MapResource, ResourceType } from '../chain/types'
-import { terrain as terrainData } from '../data'
 import { Stepper } from '../components/Stepper'
 
 const STEPS = [

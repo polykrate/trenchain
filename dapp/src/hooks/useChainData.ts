@@ -1,33 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getChainClient } from './useChainClient';
-import type { FixedBytes } from 'dedot/codecs';
-
-// ─── Decoders ────────────────────────────────────────────────────────────────
-
-function hexToString(hex: string): string {
-  if (!hex || hex === '0x') return '';
-  const clean = hex.startsWith('0x') || hex.startsWith('0X') ? hex.slice(2) : hex;
-  if (clean.length === 0) return '';
-  const arr = new Uint8Array(clean.match(/.{2}/g)!.map(b => parseInt(b, 16)));
-  return new TextDecoder().decode(arr);
-}
-
-function decodeBytes(bytes: Uint8Array | string): string {
-  if (typeof bytes === 'string') return hexToString(bytes);
-  return new TextDecoder().decode(bytes);
-}
-
-function decodeCode(hex: FixedBytes<32> | FixedBytes<16> | Uint8Array): string {
-  let bytes: Uint8Array;
-  if (typeof hex === 'string') {
-    const clean = hex.startsWith('0x') ? hex.slice(2) : hex;
-    bytes = new Uint8Array(clean.match(/.{2}/g)!.map(b => parseInt(b, 16)));
-  } else {
-    bytes = hex;
-  }
-  const end = bytes.indexOf(0);
-  return new TextDecoder().decode(bytes.slice(0, end === -1 ? undefined : end));
-}
+import { decodeBytes, decodeCode, formatWeaponRange, formatBase } from '../lib/chainCodec';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -35,14 +8,14 @@ export interface ChainKeyword {
   code: string;
   name: string;
   description: string;
-  kind: 'Tag' | 'Effect';
+  kind: string;
 }
 
 export interface ChainFaction {
   code: string;
   name: string;
   description: string;
-  alignment: 'Faithful' | 'Fallen' | 'Neutral';
+  alignment: string;
 }
 
 export interface ChainBattlekitItem {
@@ -102,40 +75,149 @@ export interface ChainArmouryItem {
   tags: string[];
 }
 
-// ─── Range formatting ────────────────────────────────────────────────────────
+export interface Compendium {
+  keywords: ChainKeyword[];
+  factions: ChainFaction[];
+  battlekit: ChainBattlekitItem[];
+  patrons: ChainPatron[];
+  skills: ChainSkill[];
+  entries: ChainEntry[];
+  armoury: ChainArmouryItem[];
+}
 
-function formatWeaponRange(range: any): string {
-  if (!range) return '—';
-  if (typeof range === 'string') {
-    if (range === 'Melee') return 'Melee';
-    if (range === 'None') return '—';
-    return range;
+// ─── Cache ───────────────────────────────────────────────────────────────────
+
+let compendiumCache: { data: Compendium; timestamp: number } | null = null;
+const CACHE_TTL = 120_000;
+
+async function fetchCompendium(): Promise<Compendium> {
+  if (compendiumCache && Date.now() - compendiumCache.timestamp < CACHE_TTL) {
+    return compendiumCache.data;
   }
-  if (range.type === 'Melee') return 'Melee';
-  if (range.type === 'None') return '—';
-  if (range.type === 'Ranged') return `${range.value?.inches ?? 0}″`;
-  if (range.type === 'DualPurpose') return `${range.value?.inches ?? 0}″ / Melee`;
-  return '—';
+
+  const client = await getChainClient();
+
+  const [rawKeywords, rawFactions, rawBattlekit, rawPatrons, rawSkills, rawEntries, rawAbilities, rawArmoury] =
+    await Promise.all([
+      client.query.keyword.keywords.entries(),
+      client.query.faction.factions.entries(),
+      client.query.battlekit.items.entries(),
+      client.query.patron.patrons.entries(),
+      client.query.skill.skills.entries(),
+      client.query.entry.entries.entries(),
+      client.query.entry.entryAbilities.entries(),
+      client.query.armoury.entries.entries(),
+    ]);
+
+  const abilitiesMap = new Map<string, { name: string; description: string }[]>();
+  for (const [key, value] of rawAbilities) {
+    const code = decodeCode(key);
+    abilitiesMap.set(code, (value as any[]).map((a: any) => ({
+      name: decodeBytes(a.name),
+      description: decodeBytes(a.description),
+    })));
+  }
+
+  const data: Compendium = {
+    keywords: rawKeywords
+      .map(([key, value]): ChainKeyword => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        description: decodeBytes(value.description),
+        kind: (value as any).kind?.type ?? (value as any).kind ?? 'Tag',
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    factions: rawFactions
+      .map(([key, value]): ChainFaction => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        description: decodeBytes(value.description),
+        alignment: (value as any).alignment?.type ?? (value as any).alignment ?? 'Neutral',
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    battlekit: rawBattlekit
+      .map(([key, value]): ChainBattlekitItem => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        description: decodeBytes(value.description),
+        battlekitType: (value as any).battlekitType?.type ?? (value as any).battlekitType ?? 'Equipment',
+        range: formatWeaponRange((value as any).range),
+        cost: value.cost,
+        keywords: (value as any).keywords?.map((k: any) => decodeCode(k)) ?? [],
+        specialRules: decodeBytes((value as any).specialRules),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    patrons: rawPatrons
+      .map(([key, value]): ChainPatron => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        description: decodeBytes(value.description),
+        factions: (value as any).factions?.map((f: any) => decodeCode(f)) ?? [],
+        skills: (value as any).skills?.map((s: any) => decodeCode(s)) ?? [],
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    skills: rawSkills
+      .map(([key, value]): ChainSkill => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        description: decodeBytes(value.description),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    entries: rawEntries
+      .map(([key, value]): ChainEntry => {
+        const code = decodeCode(key);
+        const v = value as any;
+        return {
+          code,
+          name: decodeBytes(v.name),
+          faction: decodeCode(v.faction),
+          minCount: v.minCount,
+          maxCount: v.maxCount ?? undefined,
+          cost: v.cost,
+          profile: {
+            movementInches: v.profile?.movementInches ?? 0,
+            movementType: v.profile?.movementType?.type ?? v.profile?.movementType ?? 'Infantry',
+            ranged: v.profile?.ranged ?? undefined,
+            melee: v.profile?.melee ?? undefined,
+            armour: v.profile?.armour ?? 0,
+            base: formatBase(v.profile?.base),
+          },
+          description: decodeBytes(v.description),
+          lore: decodeBytes(v.lore),
+          battlekitRules: decodeBytes(v.battlekitRules),
+          compositionNote: decodeBytes(v.compositionNote),
+          keywords: v.keywords?.map((k: any) => decodeCode(k)) ?? [],
+          includedBattlekit: v.includedBattlekit?.map((b: any) => decodeCode(b)) ?? [],
+          abilities: abilitiesMap.get(code) ?? [],
+        };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name)),
+
+    armoury: rawArmoury.map(([key, value]): ChainArmouryItem => {
+      const v = value as any;
+      return {
+        faction: decodeCode((key as any)[0] ?? key),
+        itemCode: decodeCode((key as any)[1] ?? key),
+        cost: v.cost ?? 0,
+        costType: v.costType?.type ?? v.costType ?? 'Ducats',
+        tags: v.tags?.map((t: any) => decodeCode(t)) ?? [],
+      };
+    }),
+  };
+
+  compendiumCache = { data, timestamp: Date.now() };
+  return data;
 }
 
-function formatBase(base: any): string {
-  if (!base) return '32mm';
-  if (base.type === 'Round') return `${base.value?.diameterMm ?? 32}mm`;
-  if (base.type === 'Oval') return `${base.value?.widthMm ?? 25}x${base.value?.lengthMm ?? 50}mm`;
-  return '32mm';
-}
+// ─── Unified hook ────────────────────────────────────────────────────────────
 
-// ─── Generic hook factory ────────────────────────────────────────────────────
-
-type CacheEntry<T> = { data: T; timestamp: number };
-const cache = new Map<string, CacheEntry<any>>();
-const CACHE_TTL = 60_000;
-
-function useCachedQuery<T>(key: string, fetcher: () => Promise<T>) {
-  const [data, setData] = useState<T | null>(() => {
-    const c = cache.get(key);
-    return c && (Date.now() - c.timestamp < CACHE_TTL) ? c.data : null;
-  });
+export function useCompendium() {
+  const [data, setData] = useState<Compendium | null>(compendiumCache?.data ?? null);
   const [loading, setLoading] = useState(data === null);
   const [error, setError] = useState<string | null>(null);
 
@@ -143,10 +225,9 @@ function useCachedQuery<T>(key: string, fetcher: () => Promise<T>) {
     if (data !== null) return;
     let cancelled = false;
 
-    fetcher()
+    fetchCompendium()
       .then(result => {
         if (cancelled) return;
-        cache.set(key, { data: result, timestamp: Date.now() });
         setData(result);
         setLoading(false);
       })
@@ -157,155 +238,44 @@ function useCachedQuery<T>(key: string, fetcher: () => Promise<T>) {
       });
 
     return () => { cancelled = true; };
-  }, [key, data]);
+  }, [data]);
 
-  return { data, loading, error };
+  return { compendium: data, loading, error };
 }
 
-// ─── Hooks ───────────────────────────────────────────────────────────────────
+// ─── Convenience hooks (thin wrappers) ──────────────────────────────────────
 
 export function useChainKeywords() {
-  const { data, loading, error } = useCachedQuery('keywords', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.keyword.keywords.entries();
-    return entries
-      .map(([key, value]): ChainKeyword => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-        description: decodeBytes(value.description),
-        kind: value.kind,
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { keywords: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { keywords: compendium?.keywords ?? [], loading, error };
 }
 
 export function useChainFactions() {
-  const { data, loading, error } = useCachedQuery('factions', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.faction.factions.entries();
-    return entries
-      .map(([key, value]): ChainFaction => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-        description: decodeBytes(value.description),
-        alignment: value.alignment,
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { factions: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { factions: compendium?.factions ?? [], loading, error };
 }
 
 export function useChainBattlekit() {
-  const { data, loading, error } = useCachedQuery('battlekit', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.battlekit.items.entries();
-    return entries
-      .map(([key, value]): ChainBattlekitItem => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-        description: decodeBytes(value.description),
-        battlekitType: value.battlekitType,
-        range: formatWeaponRange(value.range),
-        cost: value.cost,
-        keywords: value.keywords.map(k => decodeCode(k)),
-        specialRules: decodeBytes(value.specialRules),
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { battlekit: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { battlekit: compendium?.battlekit ?? [], loading, error };
 }
 
 export function useChainPatrons() {
-  const { data, loading, error } = useCachedQuery('patrons', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.patron.patrons.entries();
-    return entries
-      .map(([key, value]): ChainPatron => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-        description: decodeBytes(value.description),
-        factions: value.factions.map(f => decodeCode(f)),
-        skills: value.skills.map(s => decodeCode(s)),
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { patrons: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { patrons: compendium?.patrons ?? [], loading, error };
 }
 
 export function useChainSkills() {
-  const { data, loading, error } = useCachedQuery('skills', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.skill.skills.entries();
-    return entries
-      .map(([key, value]): ChainSkill => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-        description: decodeBytes(value.description),
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { skills: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { skills: compendium?.skills ?? [], loading, error };
 }
 
 export function useChainEntries() {
-  const { data, loading, error } = useCachedQuery('entries', async () => {
-    const client = await getChainClient();
-    const rawEntries = await client.query.entry.entries.entries();
-    const rawAbilities = await client.query.entry.entryAbilities.entries();
-
-    const abilitiesMap = new Map<string, { name: string; description: string }[]>();
-    for (const [key, value] of rawAbilities) {
-      const code = decodeCode(key);
-      abilitiesMap.set(code, value.map((a: any) => ({
-        name: decodeBytes(a.name),
-        description: decodeBytes(a.description),
-      })));
-    }
-
-    return rawEntries
-      .map(([key, value]): ChainEntry => {
-        const code = decodeCode(key);
-        return {
-          code,
-          name: decodeBytes(value.name),
-          faction: decodeCode(value.faction),
-          minCount: value.minCount,
-          maxCount: value.maxCount,
-          cost: value.cost,
-          profile: {
-            movementInches: value.profile.movementInches,
-            movementType: value.profile.movementType,
-            ranged: value.profile.ranged,
-            melee: value.profile.melee,
-            armour: value.profile.armour,
-            base: formatBase(value.profile.base),
-          },
-          description: decodeBytes(value.description),
-          lore: decodeBytes(value.lore),
-          battlekitRules: decodeBytes(value.battlekitRules),
-          compositionNote: decodeBytes(value.compositionNote),
-          keywords: value.keywords.map((k: any) => decodeCode(k)),
-          includedBattlekit: value.includedBattlekit.map((b: any) => decodeCode(b)),
-          abilities: abilitiesMap.get(code) ?? [],
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
-  return { entries: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { entries: compendium?.entries ?? [], loading, error };
 }
 
 export function useChainArmoury() {
-  const { data, loading, error } = useCachedQuery('armoury', async () => {
-    const client = await getChainClient();
-    const entries = await client.query.armoury.entries.entries();
-    return entries.map(([key, value]): ChainArmouryItem => ({
-      faction: decodeCode(key[0]),
-      itemCode: decodeCode(key[1]),
-      cost: value.cost,
-      costType: value.costType,
-      tags: value.tags.map((t: any) => decodeCode(t)),
-    }));
-  });
-  return { armoury: data ?? [], loading, error };
+  const { compendium, loading, error } = useCompendium();
+  return { armoury: compendium?.armoury ?? [], loading, error };
 }

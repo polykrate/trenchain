@@ -1,54 +1,74 @@
-import type { AccountId, FactionId, PatronId, Warband, WarbandId } from './types'
+import { getChainClient } from '../hooks/useChainClient';
+import { decodeBytes, decodeCode, toCode16, toCode32 } from '../lib/chainCodec';
 
-/**
- * Stub blockchain calls for pallet-warband.
- * Replace with actual dedot/polkadot-api calls when chain is live.
- */
+export type WarbandId = number;
+
+export interface WarbandMeta {
+  id: WarbandId;
+  owner: string;
+  faction: string;
+  patron: string;
+  name: string;
+  ducats: number;
+  glory: number;
+  elites: number;
+  gamesPlayed: number;
+  campaignId: number | null;
+  locked: boolean;
+}
+
+export async function getWarband(id: WarbandId): Promise<WarbandMeta | null> {
+  const client = await getChainClient();
+  const raw = await client.query.warband.warbands(id);
+  if (!raw) return null;
+  const r = raw as any;
+  return {
+    id,
+    owner: r.owner?.toString?.() ?? r.owner,
+    faction: decodeCode(r.faction),
+    patron: decodeCode(r.patron),
+    name: decodeBytes(r.name),
+    ducats: r.ducats,
+    glory: r.glory,
+    elites: r.elites,
+    gamesPlayed: r.gamesPlayed ?? r.games_played ?? 0,
+    campaignId: r.campaignId ?? null,
+    locked: r.locked ?? false,
+  };
+}
+
+export async function getOwnedWarbandIds(owner: string): Promise<WarbandId[]> {
+  const client = await getChainClient();
+  const raw = await client.query.warband.ownerWarbands(owner);
+  return (raw as any) ?? [];
+}
+
+export async function getOwnedWarbands(owner: string): Promise<WarbandMeta[]> {
+  const ids = await getOwnedWarbandIds(owner);
+  const results: WarbandMeta[] = [];
+  for (const id of ids) {
+    const w = await getWarband(id);
+    if (w) results.push(w);
+  }
+  return results;
+}
 
 export async function createWarband(
-  _faction: FactionId,
-  _patron: PatronId,
-  _name: string,
-): Promise<WarbandId> {
-  console.log('[stub] createWarband', { _faction, _patron, _name })
-  return Math.floor(Math.random() * 10000)
+  signer: any,
+  faction: string,
+  patron: string,
+  name: string,
+): Promise<void> {
+  const client = await getChainClient();
+  const nameBytes = new TextEncoder().encode(name);
+  await client.tx.warband.createWarband(
+    toCode16(faction) as any,
+    toCode32(patron) as any,
+    Array.from(nameBytes) as any,
+  ).signAndSend(signer);
 }
 
-export async function disbandWarband(_warbandId: WarbandId): Promise<void> {
-  console.log('[stub] disbandWarband', _warbandId)
-}
-
-export async function getWarband(_id: WarbandId): Promise<Warband | null> {
-  console.log('[stub] getWarband', _id)
-  return {
-    id: _id,
-    owner: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
-    faction: 1,
-    patron: 1,
-    name: 'The Iron Crusaders',
-    ducats: 700,
-    glory: 0,
-    elites: 0,
-    roster: [],
-  }
-}
-
-export async function getOwnedWarbands(_owner: AccountId): Promise<Warband[]> {
-  console.log('[stub] getOwnedWarbands', _owner)
-  return [
-    {
-      id: 1,
-      owner: _owner,
-      faction: 1,
-      patron: 1,
-      name: 'The Iron Crusaders',
-      ducats: 520,
-      glory: 3,
-      elites: 2,
-      roster: [
-        { entry_id: 1, name: 'Brother Marcus', items: [1, 3], skills: [], xp: 4, battle_scars: 0 },
-        { entry_id: 2, name: 'Pilgrim Ezra', items: [2], skills: [1], xp: 7, battle_scars: 1 },
-      ],
-    },
-  ]
+export async function disbandWarband(signer: any, warbandId: WarbandId): Promise<void> {
+  const client = await getChainClient();
+  await client.tx.warband.disbandWarband(warbandId).signAndSend(signer);
 }

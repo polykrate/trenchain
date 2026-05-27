@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import type { MatchResult, Warband } from '../chain/types'
-import { warband as warbandApi, territory } from '../chain'
-import { RecruitCard } from '../components/RecruitCard'
-import { MatchReport } from '../components/MatchReport'
-import { factions } from '../data'
+import { warband as warbandApi, roster as rosterApi } from '../chain'
+import type { WarbandMeta } from '../chain/warband'
+import type { Recruit } from '../chain/roster'
+import { useChainFactions } from '../hooks/useChainData'
 
 export function WarbandView() {
   const { id } = useParams<{ id: string }>()
-  const [wb, setWb] = useState<Warband | null>(null)
-  const [matches, setMatches] = useState<MatchResult[]>([])
+  const [wb, setWb] = useState<WarbandMeta | null>(null)
+  const [rosterList, setRosterList] = useState<Recruit[]>([])
+  const { factions } = useChainFactions()
 
   useEffect(() => {
     if (!id) return
     warbandApi.getWarband(Number(id)).then(setWb)
-    territory.getMatchHistory(Number(id)).then(setMatches)
+    rosterApi.getRoster(Number(id)).then(setRosterList)
   }, [id])
 
   if (!wb) return <div className="text-center py-16 text-[var(--muted)]">Loading...</div>
 
-  const faction = factions.find(f => f.id === wb.faction)
+  const faction = factions.find(f => f.code === wb.faction)
 
   return (
     <div>
@@ -27,7 +27,7 @@ export function WarbandView() {
         <div>
           <h1 className="text-2xl">{wb.name}</h1>
           <p className="text-[var(--muted)]">
-            {faction?.name ?? `Faction #${wb.faction}`} — Owner: {wb.owner.slice(0, 8)}...
+            {faction?.name ?? wb.faction} — Owner: {wb.owner.slice(0, 8)}...
           </p>
         </div>
         <Link
@@ -53,31 +53,29 @@ export function WarbandView() {
         </div>
         <div className="stat-item">
           <div className="stat-label">Roster</div>
-          <div className="stat-value">{wb.roster.length}</div>
+          <div className="stat-value">{rosterList.length}</div>
         </div>
       </div>
 
       <section className="mb-8">
         <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-4">Roster</h2>
-        {wb.roster.length === 0 ? (
+        {rosterList.length === 0 ? (
           <p className="text-[var(--muted)] italic">No recruits yet. Add models to your roster.</p>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
-            {wb.roster.map((r, i) => (
-              <RecruitCard key={i} recruit={r} slot={i} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      <section>
-        <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-4">Match History</h2>
-        {matches.length === 0 ? (
-          <p className="text-[var(--muted)] italic">No battles fought yet.</p>
-        ) : (
-          <div className="space-y-2">
-            {matches.map(m => (
-              <MatchReport key={m.id} match={m} />
+            {rosterList.map((r, i) => (
+              <div key={i} className="card-military p-4">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold">{r.name}</span>
+                  {r.isElite && <span className="text-xs font-bold text-[var(--brass)]">ELITE</span>}
+                </div>
+                <div className="text-xs text-[var(--muted)]">{r.entryCode}</div>
+                <div className="flex gap-4 mt-2 text-xs">
+                  <span>XP: {r.xp}</span>
+                  <span>Scars: {r.battleScars}</span>
+                  {r.items.length > 0 && <span>Items: {r.items.join(', ')}</span>}
+                </div>
+              </div>
             ))}
           </div>
         )}
