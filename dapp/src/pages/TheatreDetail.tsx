@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import theatreCordoba from '../data/rules/theatre_cordoba.json'
 import { computeSupply, getDefenderMalus, getTileResources, getAllowedBuildings } from '../lib/supplyEngine'
 import type { TheatreTile } from '../lib/supplyEngine'
-import economy from '../data/rules/economy.json'
+import { useBuildingData } from '../hooks/useChainRules'
 
 const CONTROL_COLORS: Record<string, string> = {
   faithful: '#4a8acc',
@@ -37,6 +37,7 @@ const NODE_POSITIONS: Record<string, { x: number; y: number }> = {
 
 export function TheatreDetail() {
   const { id } = useParams<{ id: string }>()
+  const { data: buildingData } = useBuildingData()
   const [selectedNode, setSelectedNode] = useState<number | null>(null)
   const [hoveredNode, setHoveredNode] = useState<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -56,14 +57,15 @@ export function TheatreDetail() {
   const [viewFaction, setViewFaction] = useState<'faithful' | 'heretic'>('faithful')
 
   const supplyData = useMemo(() => {
-    if (!theatre) return null
+    if (!theatre || !buildingData) return null
     return computeSupply(
+      buildingData,
       theatre.tiles as TheatreTile[],
       theatre.edges as [number, number][],
       theatre.edge_capacity,
       viewFaction
     )
-  }, [theatre, viewFaction])
+  }, [theatre, viewFaction, buildingData])
 
   function svgPoint(clientX: number, clientY: number): { x: number; y: number } | null {
     const svg = svgRef.current
@@ -343,22 +345,22 @@ export function TheatreDetail() {
                 <h4 className="text-[9px] font-bold uppercase text-[var(--muted)] mb-1.5 tracking-wider">Buildings ({selTile.buildings.length}/4)</h4>
                 <div className="space-y-1">
                   {selTile.buildings.map((bid, i) => {
-                    const bData = economy.buildings.find(b => b.id === bid)
+                    const bData = buildingData?.buildings.find(b => b.code === bid)
                     if (!bData) return null
                     return (
                       <div key={i} className="flex items-center justify-between text-[10px] px-1.5 py-1 bg-[var(--bg)]/50 rounded-sm border border-[var(--border)]">
                         <span className="font-medium">{bData.name}</span>
                         <span className="text-[8px] text-[var(--muted)]">
-                          {bData.produces.map(p => `${p.resource} ×${p.output}`).join(', ')}
+                          {bData.resources.map(p => `${p.code} ×${p.output}`).join(', ')}
                         </span>
                       </div>
                     )
                   })}
                 </div>
                 {/* Resources total */}
-                {selTile.buildings.length > 0 && (
+                {selTile.buildings.length > 0 && buildingData && (
                   <div className="mt-2 flex flex-wrap gap-1.5">
-                    {getTileResources(selTile.buildings).map(r => (
+                    {getTileResources(buildingData, selTile.buildings).map(r => (
                       <span key={r.resource} className="text-[8px] px-1.5 py-0.5 rounded-sm bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)]">
                         {r.resource} ×{r.output}
                       </span>
@@ -366,14 +368,14 @@ export function TheatreDetail() {
                   </div>
                 )}
                 {/* Allowed buildings for construction */}
-                {selTile.buildings.length < 4 && (
+                {selTile.buildings.length < 4 && buildingData && (
                   <div className="mt-2">
                     <span className="text-[8px] text-[var(--muted)]">Can build:</span>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {getAllowedBuildings(selTile.node.type)
+                      {getAllowedBuildings(buildingData, selTile.node.type)
                         .filter(bid => !selTile.buildings.includes(bid))
                         .map(bid => {
-                          const bData = economy.buildings.find(b => b.id === bid)
+                          const bData = buildingData.buildings.find(b => b.code === bid)
                           return bData ? (
                             <span key={bid} className="text-[8px] px-1.5 py-0.5 rounded-sm border border-dashed border-[var(--border)] text-[var(--muted)]">
                               {bData.name}

@@ -1,4 +1,4 @@
-import economy from '../data/rules/economy.json'
+import type { BuildingData } from '../hooks/useChainRules';
 
 export interface TileLogistics {
   supply_source: boolean
@@ -35,66 +35,51 @@ const NODE_TYPE_TO_TERRAIN: Record<string, string> = {
   fortification: 'fortress',
 }
 
-/**
- * Derive total production score from buildings placed on a tile.
- */
-export function getTileProduction(buildings: string[]): number {
+export function getTileProduction(buildingData: BuildingData, buildings: string[]): number {
   let total = 0
   for (const bid of buildings) {
-    const building = economy.buildings.find(b => b.id === bid)
+    const building = buildingData.buildings.find(b => b.code === bid)
     if (building) {
-      total += building.produces.reduce((sum, p) => sum + p.output, 0)
+      total += building.resources.reduce((sum, p) => sum + p.output, 0)
     }
   }
   return total
 }
 
-/**
- * Get detailed resource production from buildings.
- */
-export function getTileResources(buildings: string[]): { resource: string; output: number }[] {
+export function getTileResources(buildingData: BuildingData, buildings: string[]): { resource: string; output: number }[] {
   const resourceMap: Record<string, number> = {}
   for (const bid of buildings) {
-    const building = economy.buildings.find(b => b.id === bid)
+    const building = buildingData.buildings.find(b => b.code === bid)
     if (building) {
-      for (const p of building.produces) {
-        resourceMap[p.resource] = (resourceMap[p.resource] || 0) + p.output
+      for (const p of building.resources) {
+        resourceMap[p.code] = (resourceMap[p.code] || 0) + p.output
       }
     }
   }
   return Object.entries(resourceMap).map(([resource, output]) => ({ resource, output }))
 }
 
-/**
- * Get allowed building IDs for a given node type.
- */
-export function getAllowedBuildings(nodeType: string): string[] {
+export function getAllowedBuildings(buildingData: BuildingData, nodeType: string): string[] {
   const terrainKey = NODE_TYPE_TO_TERRAIN[nodeType]
   if (!terrainKey) return []
-  const mappings = economy.terrain_buildings.mappings as Record<string, string[]>
-  return mappings[terrainKey] ?? []
+  return buildingData.buildings
+    .filter(b => b.terrains.includes(terrainKey))
+    .map(b => b.code)
 }
 
-/**
- * Check if a building can be added to a tile.
- */
-export function canBuild(tile: TheatreTile, buildingId: string): { ok: boolean; reason?: string } {
+export function canBuild(buildingData: BuildingData, tile: TheatreTile, buildingId: string): { ok: boolean; reason?: string } {
   if (tile.buildings.length >= MAX_BUILDINGS_PER_TILE) {
     return { ok: false, reason: 'Max buildings reached (4)' }
   }
-  const allowed = getAllowedBuildings(tile.node.type)
+  const allowed = getAllowedBuildings(buildingData, tile.node.type)
   if (!allowed.includes(buildingId)) {
     return { ok: false, reason: `Not allowed on ${tile.node.type} tiles` }
   }
   return { ok: true }
 }
 
-/**
- * Compute supply levels for all tiles in the theatre.
- * BFS from supply sources along edges filtered by control.
- * Enemy-controlled tiles block flow. Contested tiles pass at 50%.
- */
 export function computeSupply(
+  buildingData: BuildingData,
   tiles: TheatreTile[],
   edges: [number, number][],
   edgeCapacity: number[],
@@ -110,7 +95,7 @@ export function computeSupply(
     adj[b].push({ to: a, capacity: cap })
   }
 
-  const productions = tiles.map(t => getTileProduction(t.buildings))
+  const productions = tiles.map(t => getTileProduction(buildingData, t.buildings))
 
   const results: SupplyResult[] = tiles.map((_, i) => ({
     supply_level: 0,
@@ -190,9 +175,6 @@ function isBlocked(control: string, faction: Faction): boolean {
   return control === opposing
 }
 
-/**
- * Get the defender malus based on supply level.
- */
 export function getDefenderMalus(supplyLevel: number): { ducatPenalty: number; fieldStrengthPenalty: number; autoSurrender: boolean } {
   if (supplyLevel >= 80) return { ducatPenalty: 0, fieldStrengthPenalty: 0, autoSurrender: false }
   if (supplyLevel >= 40) return { ducatPenalty: 100, fieldStrengthPenalty: 0, autoSurrender: false }

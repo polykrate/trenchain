@@ -1,35 +1,12 @@
-import explorationData from '../data/rules/exploration.json'
+import type { ExplorationRulesData, ChainExplorationEvent, ChainExplorationSkill } from '../hooks/useChainRules';
 
 export type TableTier = 'common' | 'rare' | 'legendary'
-
-export interface ExplorationSkill {
-  id: string
-  name: string
-  effect: string
-  timing: 'before_roll' | 'after_roll' | 'after_modify'
-}
-
-export interface ExplorationOption {
-  id: string
-  name: string
-  factions: string[]
-  effect: string
-}
 
 export interface ExplorationLocation {
   roll: number
   name: string
   description: string
-  options: ExplorationOption[]
-  grants_skill?: string
-  permanent_bonus?: Record<string, number>
-}
-
-export interface DiceState {
-  values: number[]
-  locked: boolean[]
-  rerolls_used: number
-  max_rerolls: number
+  options: { id: string; name: string; factions: string[]; effect: string; grantsSkill?: string }[]
 }
 
 export interface ExplorationResult {
@@ -46,9 +23,9 @@ function rollD6(): number {
   return Math.floor(Math.random() * 6) + 1
 }
 
-export function getExplorationDiceCount(gamesPlayed: number, skills: string[]): number {
-  const progression = explorationData.dice_progression.find(
-    p => gamesPlayed >= p.games_min && gamesPlayed <= p.games_max
+export function getExplorationDiceCount(rules: ExplorationRulesData, gamesPlayed: number, skills: string[]): number {
+  const progression = rules.diceProgression.find(
+    p => gamesPlayed >= p.gamesMin && gamesPlayed <= p.gamesMax
   )
   let dice = progression?.dice ?? 3
   const extraDiceCount = skills.filter(s => s === 'extra_dice').length
@@ -56,17 +33,17 @@ export function getExplorationDiceCount(gamesPlayed: number, skills: string[]): 
   return dice
 }
 
-export function getMaxRerolls(wonGame: boolean, skills: string[]): number {
-  let rerolls = explorationData.rerolls.base
-  if (wonGame) rerolls += explorationData.rerolls.bonus_if_won
+export function getMaxRerolls(rules: ExplorationRulesData, wonGame: boolean, skills: string[]): number {
+  let rerolls = rules.rerollsBase
+  if (wonGame) rerolls += rules.rerollsBonusIfWon
   const extraRerolls = skills.filter(s => s === 'reroll').length
   rerolls += extraRerolls
   return rerolls
 }
 
-export function getAvailableTables(gamesPlayed: number): TableTier[] {
-  const progression = explorationData.table_progression.find(
-    p => gamesPlayed >= p.games_min && gamesPlayed <= p.games_max
+export function getAvailableTables(rules: ExplorationRulesData, gamesPlayed: number): TableTier[] {
+  const progression = rules.tableProgression.find(
+    p => gamesPlayed >= p.gamesMin && gamesPlayed <= p.gamesMax
   )
   return (progression?.tables ?? ['common']) as TableTier[]
 }
@@ -91,7 +68,7 @@ export function applySetDice(dice: number[], index: number, value: number): numb
   return result
 }
 
-export function applyLucky(dice: number[], targetIndex: number): { dice: number[]; newDie: number } {
+export function applyLucky(dice: number[], _targetIndex: number): { dice: number[]; newDie: number } {
   const newDie = rollD6()
   const result = [...dice]
   return { dice: result, newDie }
@@ -117,46 +94,33 @@ export function applyModifiers(total: number, skills: string[]): number {
   return mod
 }
 
-export function lookupDiscovery(total: number, table: TableTier): ExplorationLocation | null {
-  const tableEntries = explorationData.tables[table] as ExplorationLocation[]
-  if (!tableEntries) return null
-  const found = tableEntries.find(entry => entry.roll === total)
-  return found ?? null
-}
-
-export function computeLoot(total: number, permanentBonus: number = 0): number {
-  return total * explorationData.loot_formula.multiplier + permanentBonus
-}
-
-export function performFullExploration(
-  gamesPlayed: number,
-  wonGame: boolean,
-  skills: string[],
-  chosenTable: TableTier,
-  permanentLootBonus: number = 0
-): ExplorationResult {
-  const diceCount = getExplorationDiceCount(gamesPlayed, skills)
-  const dice = rollExplorationDice(diceCount)
-  const total = computeTotal(dice)
-  const modifiedTotal = applyModifiers(total, skills)
-  const discovery = lookupDiscovery(modifiedTotal, chosenTable)
-  const loot = computeLoot(modifiedTotal, permanentLootBonus)
-
+export function lookupDiscovery(rules: ExplorationRulesData, total: number, table: TableTier): ExplorationLocation | null {
+  const event = rules.events.find(e => e.table === table && e.roll === total)
+  if (!event) return null
   return {
-    dice,
-    total,
-    modifiers: modifiedTotal - total,
-    final_total: modifiedTotal,
-    table_used: chosenTable,
-    discovery,
-    loot,
+    roll: event.roll,
+    name: event.name,
+    description: event.description,
+    options: event.options,
   }
 }
 
-export function getExplorationSkills(): ExplorationSkill[] {
-  return explorationData.exploration_skills as ExplorationSkill[]
+export function computeLoot(rules: ExplorationRulesData, total: number, permanentBonus: number = 0): number {
+  return total * rules.lootMultiplier + permanentBonus
 }
 
-export function getTableEntries(table: TableTier): ExplorationLocation[] {
-  return (explorationData.tables[table] ?? []) as ExplorationLocation[]
+export function getExplorationSkills(rules: ExplorationRulesData): ChainExplorationSkill[] {
+  return rules.skills
+}
+
+export function getTableEntries(rules: ExplorationRulesData, table: TableTier): ExplorationLocation[] {
+  return rules.events
+    .filter(e => e.table === table)
+    .map(e => ({
+      roll: e.roll,
+      name: e.name,
+      description: e.description,
+      options: e.options,
+    }))
+    .sort((a, b) => a.roll - b.roll)
 }

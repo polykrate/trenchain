@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Stepper } from '../components/Stepper'
-import campaignRules from '../data/rules/campaign_rules.json'
+import { useCampaignRules, useExplorationRules } from '../hooks/useChainRules'
 import {
   getExplorationDiceCount,
   getMaxRerolls,
@@ -23,16 +23,19 @@ import type { TableTier, ExplorationLocation } from '../lib/explorationEngine'
 
 type Phase = 'trauma' | 'promotions' | 'reinforcements' | 'exploration' | 'quartermaster' | 'roster_update'
 
-const PHASE_STEPS = campaignRules.campaign_phase_steps.map(s => ({
-  label: s.name,
-  description: s.description,
-}))
+interface TraumaResult {
+  roll: string
+  name: string
+  effect: string
+  causesInjury: boolean
+  causesBattleScar: boolean
+}
 
 interface TraumaRoll {
   name: string
   type: 'troop' | 'elite'
   roll: number | string
-  result: typeof campaignRules.trauma.trauma_table[number] | null
+  result: TraumaResult | null
   survived: boolean
 }
 
@@ -51,6 +54,8 @@ interface DiceRollState {
 export function PostBattle() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
+  const { data: campaignRules, loading: crLoading } = useCampaignRules()
+  const { data: explorationRules, loading: erLoading } = useExplorationRules()
 
   const gamesPlayed = parseInt(searchParams.get('games') ?? '3', 10)
   const wonGame = searchParams.get('won') === 'true'
@@ -80,15 +85,25 @@ export function PostBattle() {
   } | null>(null)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
 
-  const availableTables = useMemo(() => getAvailableTables(gamesPlayed), [gamesPlayed])
-  const allSkills = useMemo(() => getExplorationSkills(), [])
+  const availableTables = useMemo(() => explorationRules ? getAvailableTables(explorationRules, gamesPlayed) : ['common'] as TableTier[], [explorationRules, gamesPlayed])
+  const allSkills = useMemo(() => explorationRules ? getExplorationSkills(explorationRules) : [], [explorationRules])
   const hasSkill = useCallback((id: string) => explorationSkills.includes(id), [explorationSkills])
 
-  const phaseIndex = campaignRules.campaign_phase_steps.findIndex(s => s.id === currentPhase)
+  const PHASE_STEPS = useMemo(() => (campaignRules?.phaseSteps ?? []).map(s => ({
+    label: s.name,
+    description: s.description,
+  })), [campaignRules])
+
+  const phaseIndex = (campaignRules?.phaseSteps ?? []).findIndex(s => s.id === currentPhase)
+
+  if (crLoading || erLoading) {
+    return <div className="max-w-4xl mx-auto py-12 text-center text-[var(--muted)]">Loading campaign rules...</div>
+  }
 
   // ─── Trauma Logic ─────────────────────────────────────────────────
 
   function rollTrauma() {
+    const traumaTable = campaignRules?.traumaTable ?? []
     const results: TraumaRoll[] = casualtyNames.map(c => {
       if (c.type === 'troop') {
         const roll = Math.floor(Math.random() * 6) + 1
@@ -99,10 +114,10 @@ export function PostBattle() {
         const d2 = Math.floor(Math.random() * 6) + 1
         const rollStr = `${d1}${d2}`
         const rollNum = d1 * 10 + d2
-        let tableResult = campaignRules.trauma.trauma_table.find(t => t.roll === rollStr)
+        let tableResult = traumaTable.find(t => t.roll === rollStr)
         if (!tableResult) {
           if (rollNum >= 41 && rollNum <= 63) {
-            tableResult = campaignRules.trauma.trauma_table.find(t => t.roll === '41-63')!
+            tableResult = traumaTable.find(t => t.roll === '41-63')!
           }
         }
         const survived = tableResult?.name !== 'Dead'
@@ -116,9 +131,9 @@ export function PostBattle() {
   // ─── Exploration Logic ────────────────────────────────────────────
 
   function startExploration() {
-    if (!chosenTable) return
-    const diceCount = getExplorationDiceCount(gamesPlayed, explorationSkills)
-    const maxRerolls = getMaxRerolls(wonGame, explorationSkills)
+    if (!chosenTable || !explorationRules) return
+    const diceCount = getExplorationDiceCount(explorationRules, gamesPlayed, explorationSkills)
+    const maxRerolls = getMaxRerolls(explorationRules, wonGame, explorationSkills)
     const dice = rollExplorationDice(diceCount)
     setDiceState({
       dice,
@@ -174,11 +189,11 @@ export function PostBattle() {
   }
 
   function finalizeRoll() {
-    if (!diceState || !chosenTable) return
+    if (!diceState || !chosenTable || !explorationRules) return
     const total = computeTotal(diceState.dice)
     const finalTotal = applyModifiers(total, explorationSkills)
-    const discovery = lookupDiscovery(finalTotal, chosenTable)
-    const loot = computeLoot(finalTotal, permanentLootBonus)
+    const discovery = lookupDiscovery(explorationRules, finalTotal, chosenTable)
+    const loot = computeLoot(explorationRules, finalTotal, permanentLootBonus)
     setDiceState({ ...diceState, finalized: true })
     setExplorationResult({ total: finalTotal, discovery, loot })
   }
@@ -305,30 +320,13 @@ export function PostBattle() {
             </p>
 
             <div className="space-y-3 mb-4">
-              <div className="px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
-                <div className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">Promotion Pool</div>
-                <p className="text-sm">{campaignRules.promotions.dice_pool}</p>
-                <p className="text-xs text-[var(--muted)] mt-1">{campaignRules.promotions.success}</p>
-              </div>
-
-              <div className="px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
-                <div className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">Experience Sources</div>
-                {campaignRules.experience.sources.map((s, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm mb-1">
-                    <span className="text-[var(--brass)] font-bold">+{s.xp} XP</span>
-                    <span className="text-[var(--fg-secondary)]">{s.condition}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
-                <div className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">Advancement Roll</div>
-                <ol className="list-decimal list-inside text-sm text-[var(--fg-secondary)] space-y-0.5">
-                  {campaignRules.experience.advancement_roll.steps.map((s, i) => (
-                    <li key={i}>{s}</li>
-                  ))}
-                </ol>
-              </div>
+              {campaignRules?.promotions && (
+                <div className="px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">Promotion Pool</div>
+                  <p className="text-sm">Roll {campaignRules.promotions.baseDice}d6 — success on {campaignRules.promotions.successValue}+</p>
+                  <p className="text-xs text-[var(--muted)] mt-1">Pity threshold: {campaignRules.promotions.pityThreshold} games. Max elites: {campaignRules.promotions.maxElites}.</p>
+                </div>
+              )}
             </div>
 
             <button onClick={completePhase} className="w-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--parchment)] px-4 py-2.5 rounded-sm font-bold uppercase tracking-wider cursor-pointer">
@@ -344,7 +342,7 @@ export function PostBattle() {
           <div className="card-military p-5">
             <h2 className="text-sm font-bold uppercase tracking-wider mb-1">Reinforcements</h2>
             <p className="text-[var(--muted)] text-sm mb-4">
-              {campaignRules.reinforcements.description}
+              If your warband is severely depleted, you may take emergency reinforcements instead of exploring.
             </p>
 
             <div className="card-military p-4 bg-[var(--surface)] mb-4 border-[var(--accent)]/30">
@@ -381,8 +379,8 @@ export function PostBattle() {
             <p className="text-[var(--muted)] text-sm mb-4">
               Roll Exploration Dice to discover locations and collect loot.
               Games played: <strong>{gamesPlayed}</strong> — 
-              Dice: <strong>{getExplorationDiceCount(gamesPlayed, explorationSkills)}d6</strong> — 
-              Rerolls: <strong>{getMaxRerolls(wonGame, explorationSkills)}</strong>
+              Dice: <strong>{explorationRules ? getExplorationDiceCount(explorationRules, gamesPlayed, explorationSkills) : '?'}d6</strong> — 
+              Rerolls: <strong>{explorationRules ? getMaxRerolls(explorationRules, wonGame, explorationSkills) : '?'}</strong>
               {wonGame && <span className="text-[var(--olive)]"> (bonus for winning)</span>}
             </p>
 
@@ -391,7 +389,7 @@ export function PostBattle() {
               <div className="mb-4 px-3 py-2 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
                 <span className="text-xs font-bold uppercase text-[var(--muted)]">Active Skills: </span>
                 {explorationSkills.map((s, i) => {
-                  const skill = allSkills.find(sk => sk.id === s)
+                  const skill = allSkills.find(sk => sk.code === s)
                   return (
                     <span key={i} className="text-xs text-[var(--brass)] mr-2">{skill?.name ?? s}</span>
                   )
@@ -618,11 +616,11 @@ export function PostBattle() {
           <div className="card-military p-5">
             <h2 className="text-sm font-bold uppercase tracking-wider mb-1">Quartermaster</h2>
             <p className="text-[var(--muted)] text-sm mb-4">
-              {campaignRules.quartermaster.description}
+              Manage equipment and resources between battles.
             </p>
 
             <div className="grid grid-cols-2 gap-3 mb-4">
-              {campaignRules.quartermaster.actions.map(action => (
+              {(campaignRules?.quartermasterActions ?? []).map(action => (
                 <div key={action.id} className="px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-sm">
                   <div className="font-bold text-sm mb-0.5">{action.name}</div>
                   <p className="text-xs text-[var(--muted)]">{action.description}</p>
