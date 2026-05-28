@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react'
 import type { Tournament } from '../chain/types'
 import { territory } from '../chain'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function Tournaments() {
   const [tournaments, setTournaments] = useState<Tournament[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    territory.getTournaments().then(setTournaments)
+    territory.getTournaments().then(t => { setTournaments(t); setLoading(false) })
   }, [])
+
+  if (loading) {
+    return <ChainLoader title="Tournaments" skeletonCount={2} steps={[
+      { label: 'Tournament data', status: 'loading' },
+    ]} />
+  }
 
   return (
     <div>

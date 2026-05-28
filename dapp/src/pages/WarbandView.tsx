@@ -4,6 +4,7 @@ import { warband as warbandApi, roster as rosterApi } from '../chain'
 import type { WarbandMeta } from '../chain/warband'
 import type { Recruit } from '../chain/roster'
 import { useChainFactions } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function WarbandView() {
   const { id } = useParams<{ id: string }>()
@@ -17,7 +18,10 @@ export function WarbandView() {
     rosterApi.getRoster(Number(id)).then(setRosterList)
   }, [id])
 
-  if (!wb) return <div className="text-center py-16 text-[var(--muted)]">Loading...</div>
+  if (!wb) return <ChainLoader title="Warband" skeletonCount={3} steps={[
+    { label: 'Warband data', status: 'loading' },
+    { label: 'Roster', status: rosterList.length ? 'done' : 'pending', current: rosterList.length || undefined },
+  ]} />
 
   const faction = factions.find(f => f.code === wb.faction)
 

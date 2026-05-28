@@ -3,12 +3,13 @@ import {
   useChainFactions, useChainPatrons, useChainSkills, useChainEntries, useChainArmoury, useChainBattlekit,
   type ChainFaction, type ChainPatron, type ChainSkill,
 } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function Factions() {
-  const { factions, loading: loadingF } = useChainFactions()
-  const { patrons } = useChainPatrons()
-  const { skills } = useChainSkills()
-  const { entries } = useChainEntries()
+  const { factions, loading: loadingF, count: fCount } = useChainFactions()
+  const { patrons, count: pCount } = useChainPatrons()
+  const { skills, count: sCount } = useChainSkills()
+  const { entries, count: eCount } = useChainEntries()
   const { armoury } = useChainArmoury()
   const { battlekit } = useChainBattlekit()
 
@@ -18,11 +19,12 @@ export function Factions() {
   const bkMap = new Map(battlekit.map(b => [b.code, b]))
 
   if (loadingF) {
-    return (
-      <div className="space-y-3">
-        {[...Array(4)].map((_, i) => <div key={i} className="card-military animate-pulse h-28" />)}
-      </div>
-    )
+    return <ChainLoader title="Factions" skeletonCount={4} steps={[
+      { label: 'Factions', status: fCount ? 'done' : 'loading', current: fCount || undefined },
+      { label: 'Patrons', status: pCount ? 'done' : 'loading', current: pCount || undefined },
+      { label: 'Skills', status: sCount ? 'done' : 'loading', current: sCount || undefined },
+      { label: 'Entries', status: eCount ? 'done' : 'loading', current: eCount || undefined },
+    ]} />
   }
 
   return (

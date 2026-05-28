@@ -3,6 +3,7 @@ import { territory, warband as warbandApi } from '../chain'
 import { useChainFactions } from '../hooks/useChainData'
 import { decodeBytes, decodeCode } from '../lib/chainCodec'
 import { getChainClient } from '../hooks/useChainClient'
+import { ChainLoader } from '../components/ChainLoader'
 
 interface LeaderboardRow {
   warbandId: number;
@@ -14,7 +15,8 @@ interface LeaderboardRow {
 
 export function Leaderboard() {
   const [entries, setEntries] = useState<LeaderboardRow[]>([])
-  const { factions } = useChainFactions()
+  const [loading, setLoading] = useState(true)
+  const { factions, loading: loadingF } = useChainFactions()
 
   useEffect(() => {
     (async () => {
@@ -32,8 +34,16 @@ export function Leaderboard() {
       });
       rows.sort((a, b) => b.glory - a.glory);
       setEntries(rows.slice(0, 20));
+      setLoading(false);
     })();
   }, [])
+
+  if (loading || loadingF) {
+    return <ChainLoader title="Leaderboard" skeletonCount={5} steps={[
+      { label: 'Factions', status: !loadingF ? 'done' : 'loading', current: factions.length || undefined },
+      { label: 'Warbands', status: !loading ? 'done' : 'loading' },
+    ]} />
+  }
 
   return (
     <div>

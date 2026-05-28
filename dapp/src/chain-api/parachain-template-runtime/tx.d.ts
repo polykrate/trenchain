@@ -43,7 +43,12 @@ import type {
   PalletEntryAbilityDef,
   PalletBattleBattleReport,
   TcPrimitivesExplorationTable,
+  PalletTileMapConfig,
   TcPrimitivesRegionControl,
+  TcPrimitivesPoiType,
+  TcPrimitivesNodeControl,
+  PalletTheatreTheatreEdge,
+  PalletTheatreContextTile,
   PalletCampaignRulesThresholdRow,
   PalletCampaignRulesVictoryConfig,
   PalletCampaignRulesTraumaRow,
@@ -3653,16 +3658,14 @@ export interface ChainTx<
     /**
      *
      * @param {[number, number]} coord
-     * @param {FixedBytes<16>} terrain
-     * @param {BytesLike | undefined} name
-     * @param {FixedBytes<32> | undefined} region
+     * @param {number} terrain
+     * @param {boolean} water
      **/
     registerTile: GenericTxCall<
       (
         coord: [number, number],
-        terrain: FixedBytes<16>,
-        name: BytesLike | undefined,
-        region: FixedBytes<32> | undefined,
+        terrain: number,
+        water: boolean,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Tile";
@@ -3670,9 +3673,8 @@ export interface ChainTx<
             name: "RegisterTile";
             params: {
               coord: [number, number];
-              terrain: FixedBytes<16>;
-              name: BytesLike | undefined;
-              region: FixedBytes<32> | undefined;
+              terrain: number;
+              water: boolean;
             };
           };
         },
@@ -3682,33 +3684,17 @@ export interface ChainTx<
 
     /**
      *
-     * @param {Array<[[number, number], FixedBytes<16>, BytesLike | undefined, FixedBytes<32> | undefined]>} tiles
+     * @param {Array<[[number, number], number, boolean]>} tiles
      **/
     registerTilesBatch: GenericTxCall<
       (
-        tiles: Array<
-          [
-            [number, number],
-            FixedBytes<16>,
-            BytesLike | undefined,
-            FixedBytes<32> | undefined,
-          ]
-        >,
+        tiles: Array<[[number, number], number, boolean]>,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Tile";
           palletCall: {
             name: "RegisterTilesBatch";
-            params: {
-              tiles: Array<
-                [
-                  [number, number],
-                  FixedBytes<16>,
-                  BytesLike | undefined,
-                  FixedBytes<32> | undefined,
-                ]
-              >;
-            };
+            params: { tiles: Array<[[number, number], number, boolean]> };
           };
         },
         ChainKnownTypes
@@ -3717,22 +3703,38 @@ export interface ChainTx<
 
     /**
      *
-     * @param {[number, number]} coord
-     * @param {FixedBytes<32> | undefined} region
+     * @param {number} id
+     * @param {FixedBytes<16>} code
+     * @param {BytesLike} name
      **/
-    setTileRegion: GenericTxCall<
+    registerTerrain: GenericTxCall<
       (
-        coord: [number, number],
-        region: FixedBytes<32> | undefined,
+        id: number,
+        code: FixedBytes<16>,
+        name: BytesLike,
       ) => ChainSubmittableExtrinsic<
         {
           pallet: "Tile";
           palletCall: {
-            name: "SetTileRegion";
-            params: {
-              coord: [number, number];
-              region: FixedBytes<32> | undefined;
-            };
+            name: "RegisterTerrain";
+            params: { id: number; code: FixedBytes<16>; name: BytesLike };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {PalletTileMapConfig} config
+     **/
+    setMapConfig: GenericTxCall<
+      (config: PalletTileMapConfig) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Tile";
+          palletCall: {
+            name: "SetMapConfig";
+            params: { config: PalletTileMapConfig };
           };
         },
         ChainKnownTypes
@@ -3830,6 +3832,27 @@ export interface ChainTx<
     >;
 
     /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {Array<[number, number]>} tiles
+     **/
+    setRegionTiles: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        tiles: Array<[number, number]>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Region";
+          palletCall: {
+            name: "SetRegionTiles";
+            params: { code: FixedBytes<32>; tiles: Array<[number, number]> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
      * Generic pallet tx call
      **/
     [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
@@ -3904,6 +3927,183 @@ export interface ChainTx<
           palletCall: {
             name: "RemoveRegion";
             params: { country: FixedBytes<32>; region: FixedBytes<32> };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Poi`'s transaction calls
+   **/
+  poi: {
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {BytesLike} name
+     * @param {[number, number] | undefined} tile
+     * @param {TcPrimitivesPoiType} poiType
+     * @param {BytesLike} lore
+     **/
+    registerPoi: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        name: BytesLike,
+        tile: [number, number] | undefined,
+        poiType: TcPrimitivesPoiType,
+        lore: BytesLike,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Poi";
+          palletCall: {
+            name: "RegisterPoi";
+            params: {
+              code: FixedBytes<32>;
+              name: BytesLike;
+              tile: [number, number] | undefined;
+              poiType: TcPrimitivesPoiType;
+              lore: BytesLike;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     * Generic pallet tx call
+     **/
+    [callName: string]: GenericTxCall<TxCall<ChainKnownTypes>>;
+  };
+  /**
+   * Pallet `Theatre`'s transaction calls
+   **/
+  theatre: {
+    /**
+     *
+     * @param {FixedBytes<32>} code
+     * @param {BytesLike} name
+     * @param {BytesLike} description
+     * @param {BytesLike} lore
+     **/
+    registerTheatre: GenericTxCall<
+      (
+        code: FixedBytes<32>,
+        name: BytesLike,
+        description: BytesLike,
+        lore: BytesLike,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Theatre";
+          palletCall: {
+            name: "RegisterTheatre";
+            params: {
+              code: FixedBytes<32>;
+              name: BytesLike;
+              description: BytesLike;
+              lore: BytesLike;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} theatre
+     * @param {[number, number]} coord
+     * @param {FixedBytes<16>} terrain
+     * @param {BytesLike} name
+     * @param {BytesLike} nodeType
+     * @param {TcPrimitivesNodeControl} control
+     * @param {BytesLike} desc
+     * @param {boolean} supplySource
+     * @param {number} demand
+     * @param {Array<FixedBytes<32>>} buildings
+     **/
+    addNode: GenericTxCall<
+      (
+        theatre: FixedBytes<32>,
+        coord: [number, number],
+        terrain: FixedBytes<16>,
+        name: BytesLike,
+        nodeType: BytesLike,
+        control: TcPrimitivesNodeControl,
+        desc: BytesLike,
+        supplySource: boolean,
+        demand: number,
+        buildings: Array<FixedBytes<32>>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Theatre";
+          palletCall: {
+            name: "AddNode";
+            params: {
+              theatre: FixedBytes<32>;
+              coord: [number, number];
+              terrain: FixedBytes<16>;
+              name: BytesLike;
+              nodeType: BytesLike;
+              control: TcPrimitivesNodeControl;
+              desc: BytesLike;
+              supplySource: boolean;
+              demand: number;
+              buildings: Array<FixedBytes<32>>;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} theatre
+     * @param {Array<PalletTheatreTheatreEdge>} edges
+     **/
+    setEdges: GenericTxCall<
+      (
+        theatre: FixedBytes<32>,
+        edges: Array<PalletTheatreTheatreEdge>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Theatre";
+          palletCall: {
+            name: "SetEdges";
+            params: {
+              theatre: FixedBytes<32>;
+              edges: Array<PalletTheatreTheatreEdge>;
+            };
+          };
+        },
+        ChainKnownTypes
+      >
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} theatre
+     * @param {Array<PalletTheatreContextTile>} tiles
+     **/
+    setContextTiles: GenericTxCall<
+      (
+        theatre: FixedBytes<32>,
+        tiles: Array<PalletTheatreContextTile>,
+      ) => ChainSubmittableExtrinsic<
+        {
+          pallet: "Theatre";
+          palletCall: {
+            name: "SetContextTiles";
+            params: {
+              theatre: FixedBytes<32>;
+              tiles: Array<PalletTheatreContextTile>;
+            };
           };
         },
         ChainKnownTypes

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ChainLoader } from '../components/ChainLoader'
 import { campaign } from '../chain'
 import type {
   ActiveCampaign,
@@ -58,8 +59,10 @@ export function Campaign() {
   const [postBattleState, setPostBattleState] = useState<PostBattleState | null>(null)
   const [battleResult, setBattleResult] = useState<BattleResult | null>(null)
 
+  const [loadingCampaigns, setLoadingCampaigns] = useState(true)
+
   useEffect(() => {
-    campaign.getActiveCampaigns().then(setCampaigns)
+    campaign.getActiveCampaigns().then(c => { setCampaigns(c); setLoadingCampaigns(false) })
   }, [])
 
   useEffect(() => {
@@ -148,6 +151,12 @@ export function Campaign() {
   const lockedInPostBattle = myWarbands.filter(w => w.locked && w.post_battle_phase !== null)
   const battlesAwaitingResult = pendingBattles.filter(b => b.status === 'awaiting_result')
   const battlesPendingOpponent = pendingBattles.filter(b => b.status === 'pending_opponent')
+
+  if (loadingCampaigns) {
+    return <ChainLoader title="Campaign" skeletonCount={3} steps={[
+      { label: 'Active campaigns', status: 'loading' },
+    ]} />
+  }
 
   // ─── Select Campaign ────────────────────────────────────────────
   if (view === 'select_campaign') {

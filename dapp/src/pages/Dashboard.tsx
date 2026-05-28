@@ -4,6 +4,7 @@ import { useWallet } from '../hooks/useWallet'
 import { warband, campaign } from '../chain'
 import type { WarbandMeta } from '../chain/warband'
 import type { CampaignMeta } from '../chain/campaign'
+import { ChainLoader } from '../components/ChainLoader'
 
 interface FeatureCard {
   title: string
@@ -133,11 +134,21 @@ function LandingView() {
 function ConnectedDashboard({ address }: { address: string }) {
   const [warbands, setWarbands] = useState<WarbandMeta[]>([])
   const [campaigns, setCampaigns] = useState<CampaignMeta[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    warband.getOwnedWarbands(address).then(setWarbands)
-    campaign.getAllCampaigns().then(setCampaigns)
+    Promise.all([
+      warband.getOwnedWarbands(address).then(setWarbands),
+      campaign.getAllCampaigns().then(setCampaigns),
+    ]).then(() => setLoading(false))
   }, [address])
+
+  if (loading) {
+    return <ChainLoader title="Dashboard" skeletonCount={3} steps={[
+      { label: 'Your warbands', status: warbands.length ? 'done' : 'loading', current: warbands.length || undefined },
+      { label: 'Campaigns', status: campaigns.length ? 'done' : 'loading', current: campaigns.length || undefined },
+    ]} />
+  }
 
   return (
     <div className="flex flex-col">

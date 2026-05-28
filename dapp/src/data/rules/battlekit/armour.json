@@ -2,38 +2,38 @@
   "items": [
     {
       "name": "Alchemist Armour",
-      "description": "Faction-specific item.",
+      "description": "A suit of armour that protects against almost all harm. An essential tool of the Alchemists' craft, festooned with the Seals of Solomon, it grants mastery over the elements of Creation and shields the wearer from the devices of Hell.",
       "battlekit_type": "Armour",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["-2 INJURY MODIFIER", "NEGATE FIRE", "NEGATE GAS"],
+      "special_rules": "Protection From Harm: Add -1 INJURY DICE to Injury Rolls for attacks made by Weapons with the FIRE or GAS Keywords that target a model that has Alchemist Armour, even if the attacking weapon has the IGNORE ARMOUR Keyword.",
       "code": "ALCHEMIST_ARMOUR"
     },
     {
       "name": "Engineer Body Armour",
-      "description": "Faction-specific item.",
+      "description": "New Antioch Combat Engineers are clad in specially designed reinforced armour.",
       "battlekit_type": "Armour",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["-2 INJURY MODIFIER", "NEGATE SHRAPNEL"],
+      "special_rules": "Ballistic Box Armour: Add -1 INJURY DICE to Injury Rolls for a model that has Engineer Body Armour that has been hit by an attack with the SHRAPNEL Keyword even if the attacking weapon has the IGNORE ARMOUR Keyword.",
       "code": "ENGINEER_BODY_ARMOUR"
     },
     {
       "name": "Infernal Iron Armour",
-      "description": "Faction-specific item.",
+      "description": "This armour is forged simultaneously in Hell and on Earth, so that no weapon, whether Infernal or man-made, can overcome its protection.",
       "battlekit_type": "Armour",
       "range": "None",
-      "keywords": [],
+      "keywords": ["-2 INJURY MODIFIER", "IMPERVIOUS"],
       "special_rules": null,
       "code": "INFERNAL_IRON_ARMOUR"
     },
     {
       "name": "Machine Armour",
-      "description": "Faction-specific item.",
+      "description": "Combining the rarest of divine metal alloys and the latest technology of New Antioch, machine armour makes its wearer a virtual tank.",
       "battlekit_type": "Armour",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["-3 INJURY MODIFIER"],
+      "special_rules": "Bulky: Change the base size of a model that has Machine Armour to 40mm unless it is already 40mm or larger. In addition, a model with Machine Armour cannot be equipped with a Trench Shield and has a Charge Bonus of D3\" instead of D6\". Standfast: When a model that has Machine Armour suffers a Down result on the Injury table, it is treated as a Minor Hit result instead.",
       "code": "MACHINE_ARMOUR"
     },
     {

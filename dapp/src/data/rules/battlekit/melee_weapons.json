@@ -16,11 +16,11 @@
     },
     {
       "name": "Assassin's Dagger",
-      "description": "Faction-specific item.",
+      "description": "The blades of the Assassins are imbued with deadly venom. In chambers deep below the surface, generations of young assassins are raised in the dark, fed a diet of scorpions, frogs, deadly mushrooms and even stranger, more noxious things. Generation by generation their tolerance grows. The corrupted blood of these willing vessels is drawn and smelted into toxic iron. The iron is forged into blades, with deadly spells of slaying layered into each fold of the envenomed metal. Thus the blood of the first generation of Assassins lives on, growing more potent with each generation.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["+1 INJURY MODIFIER", "CRITICAL"],
+      "special_rules": "Slashing Attack: If an Assassin's Dagger causes at least one BLOOD MARKER to be placed next to the target model, the Assassin can use a Dash ACTION to Retreat in the same Activation. In addition, if the Assassin Retreats (by Dashing or using the normal Retreat ACTION) during the same Activation, enemy models within 1\" cannot make a Melee Attack against it before it is moved as they would normally be able to do.",
       "code": "ASSASSINS_DAGGER"
     },
     {
@@ -36,20 +36,20 @@
     },
     {
       "name": "Beelzebub's Axe",
-      "description": "Faction-specific item.",
+      "description": "With blades crafted in the form of a fly spreading its wings, this enormous axe is eternally covered with corruption and filth of Beelzebub.",
       "battlekit_type": "TwoHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["+2 INJURY DICE", "HEAVY", "INFECTION MARKERS"],
       "special_rules": null,
       "code": "BEELZEBUBS_AXE"
     },
     {
       "name": "Blasphemous Staff",
-      "description": "Faction-specific item.",
+      "description": "Crafted in mockery of the rod carried by the prophet Aaron, this evil staff unleashes searing hellfire, causing excruciating pain with the slightest touch.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["CRITICAL", "FIRE"],
+      "special_rules": "Evil Power: Add +1 DICE to Success Rolls or Risky Success Rolls for a model with a Blasphemous Staff, apart from the Success Rolls for a Ranged or Melee Attack, or the Risky Success Roll to take a Dash ACTION.",
       "code": "BLASPHEMOUS_STAFF"
     },
     {
@@ -90,37 +90,37 @@
     },
     {
       "name": "Halberd-Gun",
-      "description": "Faction-specific item.",
+      "description": "An invention of the House of Wisdom, this weapon acts both as a symbol of high rank and an excellent weapon in combat.",
       "battlekit_type": "TwoHanded",
-      "range": "Melee",
-      "keywords": [],
+      "range": {"DualPurpose": 24},
+      "keywords": ["ASSAULT", "BLOCK", "CUMBERSOME"],
       "special_rules": null,
       "code": "HALBERD_GUN"
     },
     {
       "name": "Headtaker",
-      "description": "Faction-specific item.",
+      "description": "Said to contain a tiny sliver of the stone that Cain used to murder Abel, this weapon allows its wielder to identify any point in the body of their enemy that would bring it instant and agonising death. This makes it a superb ambush weapon much favoured by the Hunters of the Left-Hand Path.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Ambush Weapon: Add a +2 INJURY MODIFIER to rolls made for this weapon if the target has not yet been Activated this Turn.",
       "code": "HEADTAKER"
     },
     {
       "name": "Hellblade",
-      "description": "Faction-specific item.",
+      "description": "Crafted from iron ore from the mines of Dis in Inferno, this weapon burns with the unquenchable fires of Hell.",
       "battlekit_type": "TwoHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["+1 INJURY DICE", "FIRE"],
       "special_rules": null,
       "code": "HELLBLADE"
     },
     {
       "name": "Malebranche Sword",
-      "description": "Faction-specific item.",
+      "description": "These forked Abyssal swords are terrible weapons as well as symbols of prestige. They are given to demons who have performed great deeds in the service of the Court and were once carried by fallen seraphim in battles against Heaven.",
       "battlekit_type": "TwoHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["DEADLY", "HEAVY"],
       "special_rules": null,
       "code": "MALEBRANCHE_SWORD"
     },
@@ -135,10 +135,10 @@
     },
     {
       "name": "Plague Blade",
-      "description": "Faction-specific item.",
+      "description": "Carrying the viral strain of Beelzebub himself, these weapons are the terror of all mortals. Even the tiniest nick or scratch usually leads to an agonising death and eternal servitude to the Lord of Flies as a ghastly walking corpse.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["INFECTION MARKERS"],
       "special_rules": null,
       "code": "PLAGUE_BLADE"
     },
@@ -156,10 +156,10 @@
     },
     {
       "name": "Sacrificial Blade",
-      "description": "Faction-specific item.",
+      "description": "Terrifying blades blessed by the hand of a greater devil, these knives are used in Heretic rituals to sacrifice captives to the dark powers of Hell. They simply need to touch their opponents to cause indescribable pain, and even the most minor wound often proves fatal from the agony alone. They are risky even to their wielders, as the merest scratch wounds friend and foe alike.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["+2 INJURY MODIFIER", "RISKY"],
       "special_rules": null,
       "code": "SACRIFICIAL_BLADE"
     },
@@ -176,29 +176,29 @@
     },
     {
       "name": "Tartarus Claws",
-      "description": "Faction-specific item.",
+      "description": "Made from severed hands of Malebranche, the Tartarus claws are granted by archdevils only to those whose hearts are blackened with the sin of Wrath.",
       "battlekit_type": "TwoHanded",
       "range": "Melee",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["CLEAVE 2", "CRITICAL", "CUMBERSOME"],
+      "special_rules": "Harrowing Assault: If the target is taken Down or Out of Action by a Melee Attack made with Tartarus Claws, you can immediately move the model up to 3\". You can use this move to move within 1\" another enemy model, and if you do so, this model can take another Fight ACTION. However, it cannot make the 3\" move if the second attack takes the target Down or Out of Action.",
       "code": "TARTARUS_CLAWS"
     },
     {
       "name": "Titan Zulfiqar",
-      "description": "Faction-specific item.",
+      "description": "This twin-tongued great sword can weigh up to 300 pounds, only the mighty Brazen Bulls can even lift this monstrous blade, let alone wield it in combat. Its sheer weight and mono-molecule sharpness cuts through even the thickest armour when swung by the superhuman strength of the Takwin monstrosities.",
       "battlekit_type": "OneHanded",
       "range": "Melee",
-      "keywords": [],
+      "keywords": ["+2 INJURY MODIFIER", "CRITICAL", "HEAVY"],
       "special_rules": null,
       "code": "TITAN_ZULFIQAR"
     },
     {
       "name": "Torture Instrument",
-      "description": "Faction-specific item.",
+      "description": "Great scourges made from living spines, red-hot rods, man-catchers, and other tools of torment fashioned by the sadistic smiths of Dis are widely used by the Court's warbands. Their main function is not to kill, but to cause as much agonising pain as possible. Forged in hellfire and quenched in the black waters of the River Styx, their wounds cause suffering that lasts for days.",
       "battlekit_type": "TwoHanded",
       "range": "Melee",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Agonising Injuries: When you make an Injury Roll for an attack made with a Torture Instrument, roll 1D6 instead of 2D6, but then double the number of BLOOD MARKERS that are caused by the roll (if there are any). Any +INJURY DICE or -INJURY DICE that applied to the Injury Roll will apply normally, except that you pick the single highest or lowest dice in the roll instead of the 2 highest or lowest. Note that when you make a Bloodbath Roll for an attack made with a Torture Instrument, you only roll 2D6 instead of 3D6, but you can then double the number of BLOOD MARKERS that are caused by the roll.",
       "code": "TORTURE_INSTRUMENT"
     },
     {

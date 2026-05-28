@@ -694,6 +694,7 @@ export interface ChainErrors extends GenericChainErrors {
   warband: {
     FactionNotFound: GenericPalletError;
     PatronNotFound: GenericPalletError;
+    PatronFactionMismatch: GenericPalletError;
     NotOwner: GenericPalletError;
     WarbandNotFound: GenericPalletError;
     TooManyWarbands: GenericPalletError;
@@ -701,6 +702,8 @@ export interface ChainErrors extends GenericChainErrors {
     NotInCampaign: GenericPalletError;
     WarbandLocked: GenericPalletError;
     CampaignNotFound: GenericPalletError;
+    CampaignEnrollFailed: GenericPalletError;
+    CampaignWithdrawFailed: GenericPalletError;
     TooManyExplorationSkills: GenericPalletError;
 
     /**
@@ -726,6 +729,7 @@ export interface ChainErrors extends GenericChainErrors {
     MaxBattleScars: GenericPalletError;
     AlreadyElite: GenericPalletError;
     SkillSlotFull: GenericPalletError;
+    SlotLimitExceeded: GenericPalletError;
 
     /**
      * Generic pallet error
@@ -825,6 +829,7 @@ export interface ChainErrors extends GenericChainErrors {
     AlreadyRegistered: GenericPalletError;
     TileNotFound: GenericPalletError;
     BatchTooLarge: GenericPalletError;
+    TerrainAlreadyRegistered: GenericPalletError;
 
     /**
      * Generic pallet error
@@ -852,6 +857,33 @@ export interface ChainErrors extends GenericChainErrors {
     RegionAlreadyInCountry: GenericPalletError;
     RegionNotInCountry: GenericPalletError;
     TooManyRegions: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Poi`'s errors
+   **/
+  poi: {
+    AlreadyRegistered: GenericPalletError;
+    PoiNotFound: GenericPalletError;
+
+    /**
+     * Generic pallet error
+     **/
+    [error: string]: GenericPalletError;
+  };
+  /**
+   * Pallet `Theatre`'s errors
+   **/
+  theatre: {
+    TheatreAlreadyExists: GenericPalletError;
+    TheatreNotFound: GenericPalletError;
+    TooManyNodes: GenericPalletError;
+    TooManyEdges: GenericPalletError;
+    TooManyContextTiles: GenericPalletError;
 
     /**
      * Generic pallet error

@@ -71,11 +71,13 @@
     },
     {
       "name": "Parasite Grenades",
-      "description": "Faction-specific item.",
+      "description": "Gifted from the Lord of the Flies, these grenades are filled with parasitic mind worms whose bites cause fever dreams and terrifying hallucinations. They are used to force the mortals away from the safety of defended bunkers and trenches.",
       "battlekit_type": "Grenade",
-      "range": null,
-      "keywords": [],
-      "special_rules": null,
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": ["ASSAULT", "IGNORE COVER", "IGNORE LONG RANGE"],
+      "special_rules": "Terrifying Hallucinations: If a Parasite Grenade hits a target, after resolving the Injury Roll, you can move the target model 3\". The move must be in a straight line, but can be in any direction, and can be used to make the model move within 1\" of an enemy, make a retreat move, Climb, Jump, or Jump Down. The model cannot make a Diving Charge and does not count as charging if it finishes the move within 1\" of an enemy model.",
       "code": "PARASITE_GRENADES"
     },
     {
@@ -99,10 +101,12 @@
     },
     {
       "name": "Warcross",
-      "description": "Faction-specific item.",
+      "description": "A warcross (also known as a wurfkreuz in the Holy Roman Empire) is a four-pronged throwing weapon in the shape of a cross. It is engraved with prayers and psalms that guide it on an unerring path.",
       "battlekit_type": "Grenade",
-      "range": null,
-      "keywords": [],
+      "range": {
+        "Ranged": 8
+      },
+      "keywords": ["ASSAULT", "IGNORE LONG RANGE"],
       "special_rules": null,
       "code": "WARCROSS"
     }

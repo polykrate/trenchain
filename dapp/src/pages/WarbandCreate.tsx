@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCompendium, type ChainEntry, type ChainPatron, type ChainBattlekitItem, type ChainArmouryItem } from '../hooks/useChainData'
 import { Stepper } from '../components/Stepper'
+import { ChainLoader } from '../components/ChainLoader'
+import { createWarband, recruitModel, getNextWarbandId } from '../chain/warband'
+import { Keyring } from '@polkadot/keyring'
+import { cryptoWaitReady } from '@polkadot/util-crypto'
 
 const STEPS = [
   { label: 'Identity' },
@@ -10,6 +14,8 @@ const STEPS = [
 ]
 
 const STARTING_DUCATS = 700
+const HAND_SLOTS = 2
+const HAND_TYPES = new Set(['MeleeWeapon', 'RangedWeapon'])
 
 interface ResolvedEquip {
   item: ChainBattlekitItem;
@@ -23,7 +29,7 @@ interface RecruitedModel {
 
 export function WarbandCreate() {
   const navigate = useNavigate()
-  const { compendium, loading, error } = useCompendium()
+  const { compendium, loading, error, progress } = useCompendium()
   const [step, setStep] = useState(0)
 
   const [name, setName] = useState('')
@@ -33,7 +39,16 @@ export function WarbandCreate() {
   const [roster, setRoster] = useState<RecruitedModel[]>([])
   const [equipOpen, setEquipOpen] = useState<number | null>(null)
 
-  if (loading) return <div className="text-center py-12 text-[var(--muted)]">Loading compendium...</div>
+  if (loading) {
+    const done = (n: number) => n > 0 ? 'done' as const : 'loading' as const
+    return <ChainLoader title="Warband Creator" skeletonCount={3} steps={[
+      { label: 'Factions', status: done(progress.factions), current: progress.factions || undefined },
+      { label: 'Entries', status: done(progress.entries), current: progress.entries || undefined },
+      { label: 'Battlekit', status: done(progress.battlekit), current: progress.battlekit || undefined },
+      { label: 'Armoury', status: done(progress.armoury), current: progress.armoury || undefined },
+      { label: 'Patrons', status: done(progress.patrons), current: progress.patrons || undefined },
+    ]} />
+  }
   if (error || !compendium) return <div className="text-center py-12 text-[var(--accent)]">Error: {error}</div>
 
   const { factions, patrons, entries, armoury, battlekit } = compendium
@@ -86,8 +101,14 @@ export function WarbandCreate() {
     setRoster(roster.filter((_, i) => i !== index))
   }
 
+  function handSlotsUsed(model: RecruitedModel): number {
+    return model.equipment.filter(e => HAND_TYPES.has(e.item.battlekitType)).length
+  }
+
   function addEquipment(modelIndex: number, item: ChainBattlekitItem, cost: number) {
     if (cost > remainingBudget) return
+    const model = roster[modelIndex]
+    if (HAND_TYPES.has(item.battlekitType) && handSlotsUsed(model) >= HAND_SLOTS) return
     const updated = [...roster]
     updated[modelIndex] = { ...updated[modelIndex], equipment: [...updated[modelIndex].equipment, { item, cost }] }
     setRoster(updated)
@@ -102,8 +123,33 @@ export function WarbandCreate() {
     setRoster(updated)
   }
 
-  function handleConfirm() {
-    navigate('/warbands')
+  const [deploying, setDeploying] = useState(false)
+  const [deployError, setDeployError] = useState<string | null>(null)
+
+  async function handleConfirm() {
+    if (!selectedFaction || !selectedPatron || !name.trim()) return
+    setDeploying(true)
+    setDeployError(null)
+    try {
+      await cryptoWaitReady()
+      const keyring = new Keyring({ type: 'sr25519' })
+      const alice = keyring.addFromUri('//Alice')
+
+      const warbandId = await getNextWarbandId()
+      await createWarband(alice, selectedFaction, selectedPatron, name.trim())
+
+      for (const model of roster) {
+        const itemCodes = model.equipment.map(e => e.item.code)
+        await recruitModel(alice, warbandId, model.entry.code, model.entry.name, itemCodes)
+      }
+
+      navigate(`/warband/${warbandId}`)
+    } catch (e: any) {
+      console.error('Deploy failed:', e)
+      setDeployError(e.message?.slice(0, 200) || 'Transaction failed')
+    } finally {
+      setDeploying(false)
+    }
   }
 
   return (
@@ -271,26 +317,36 @@ export function WarbandCreate() {
                       {equipOpen === idx ? '— Close Armoury' : '+ Equip'}
                     </button>
 
-                    {equipOpen === idx && (
-                      <div className="mt-3 border-t border-[var(--border)] pt-3">
-                        <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
-                          {factionArmoury.filter(a => a.item).map((a, aIdx) => (
-                            <button
-                              key={aIdx}
-                              onClick={() => addEquipment(idx, a.item!, a.cost)}
-                              disabled={a.cost > remainingBudget}
-                              className="text-left bg-[var(--surface)] border border-[var(--border)] rounded-sm px-3 py-2 cursor-pointer hover:border-[var(--sepia)] disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                              <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold">{a.item!.name}</span>
-                                <span className="text-xs text-[var(--brass)]">{a.cost}</span>
-                              </div>
-                              <div className="text-xs text-[var(--muted)]">{a.item!.battlekitType}</div>
-                            </button>
-                          ))}
+                    {equipOpen === idx && (() => {
+                      const hands = handSlotsUsed(model)
+                      return (
+                        <div className="mt-3 border-t border-[var(--border)] pt-3">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-[var(--muted)]">Hand slots: {hands}/{HAND_SLOTS}</span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+                            {factionArmoury.filter(a => a.item).map((a, aIdx) => {
+                              const isHand = HAND_TYPES.has(a.item!.battlekitType)
+                              const disabled = a.cost > remainingBudget || (isHand && hands >= HAND_SLOTS)
+                              return (
+                                <button
+                                  key={aIdx}
+                                  onClick={() => addEquipment(idx, a.item!, a.cost)}
+                                  disabled={disabled}
+                                  className="text-left bg-[var(--surface)] border border-[var(--border)] rounded-sm px-3 py-2 cursor-pointer hover:border-[var(--sepia)] disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-xs font-bold">{a.item!.name}</span>
+                                    <span className="text-xs text-[var(--brass)]">{a.cost}</span>
+                                  </div>
+                                  <div className="text-xs text-[var(--muted)]">{a.item!.battlekitType}</div>
+                                </button>
+                              )
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )
+                    })()}
                   </div>
                 ))}
               </div>
@@ -366,10 +422,14 @@ export function WarbandCreate() {
             </button>
             <button
               onClick={handleConfirm}
-              className="flex-1 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--parchment)] px-4 py-3 rounded-sm font-bold uppercase tracking-wider cursor-pointer"
+              disabled={deploying}
+              className="flex-1 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--parchment)] px-4 py-3 rounded-sm font-bold uppercase tracking-wider cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Confirm & Deploy
+              {deploying ? 'Deploying...' : 'Confirm & Deploy'}
             </button>
+            {deployError && (
+              <p className="text-xs text-red-400 mt-2">{deployError}</p>
+            )}
           </div>
         </div>
       )}

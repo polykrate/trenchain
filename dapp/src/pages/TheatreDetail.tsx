@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import theatreCordoba from '../data/rules/theatre_cordoba.json'
 import { computeSupply, getDefenderMalus, getTileResources, getAllowedBuildings } from '../lib/supplyEngine'
 import type { TheatreTile } from '../lib/supplyEngine'
-import { useBuildingData } from '../hooks/useChainRules'
+import { useTheatreDetail } from '../hooks/useChainStore'
+import { ChainLoader } from '../components/ChainLoader'
 
 const CONTROL_COLORS: Record<string, string> = {
   faithful: '#4a8acc',
@@ -37,7 +37,7 @@ const NODE_POSITIONS: Record<string, { x: number; y: number }> = {
 
 export function TheatreDetail() {
   const { id } = useParams<{ id: string }>()
-  const { data: buildingData } = useBuildingData()
+  const { theatre: chainTheatreResult, buildingData, loading: theatreLoading } = useTheatreDetail(id)
   const [selectedNode, setSelectedNode] = useState<number | null>(null)
   const [hoveredNode, setHoveredNode] = useState<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -52,7 +52,26 @@ export function TheatreDetail() {
   const [positions, setPositions] = useState<Record<string, { x: number; y: number }>>(NODE_POSITIONS)
   const [draggingNode, setDraggingNode] = useState<string | null>(null)
 
-  const theatre = id === 'theatre_cordoba' ? theatreCordoba : null
+  const chainTheatre = chainTheatreResult ?? null
+
+  const theatre = useMemo(() => {
+    if (!chainTheatre) return null
+    return {
+      id: chainTheatre.code,
+      name: chainTheatre.name,
+      description: chainTheatre.description,
+      lore: chainTheatre.lore,
+      tiles: chainTheatre.nodes.map(n => ({
+        q: n.coord[0], r: n.coord[1], terrain: n.terrain,
+        node: { name: n.name, type: n.nodeType, control: n.control.toLowerCase(), desc: n.desc },
+        logistics: { supply_source: n.supplySource, demand: n.demand },
+        buildings: n.buildings,
+      })),
+      edges: chainTheatre.edges.map(e => [e.from, e.to] as [number, number]),
+      edge_capacity: chainTheatre.edges.map(e => e.capacity),
+      context_tiles: chainTheatre.contextTiles.map(ct => ({ q: ct.coord[0], r: ct.coord[1], terrain: ct.terrain })),
+    }
+  }, [chainTheatre])
 
   const [viewFaction, setViewFaction] = useState<'faithful' | 'heretic'>('faithful')
 
@@ -114,6 +133,14 @@ export function TheatreDetail() {
     setIsPanning(false)
     setDraggingNode(null)
   }, [])
+
+  if (theatreLoading || !theatre) {
+    return <ChainLoader title="Theatre of War" skeletonCount={3} steps={[
+      { label: 'Theatre graph', status: chainTheatre ? 'done' : theatreLoading ? 'loading' : 'pending', current: chainTheatre?.nodes?.length || undefined },
+      { label: 'Building definitions', status: buildingData ? 'done' : 'loading', current: buildingData?.buildings?.length || undefined },
+      { label: 'Supply calculations', status: theatre && buildingData ? 'done' : 'pending' },
+    ]} />
+  }
 
   if (!theatre) {
     return (

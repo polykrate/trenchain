@@ -78,10 +78,17 @@ import type {
   PalletBuildingBuildingDef,
   PalletBuildingResourceDef,
   PalletExplorationExplorationOutcome,
-  PalletTileTileDef,
+  PalletTileTileCompact,
+  PalletTileTerrainMeta,
+  PalletTileMapConfig,
   PalletRegionRegionDef,
   TcPrimitivesAlignment,
   PalletCountryCountryDef,
+  PalletPoiPoiDef,
+  PalletTheatreTheatreDef,
+  PalletTheatreTheatreNode,
+  PalletTheatreTheatreEdge,
+  PalletTheatreContextTile,
   PalletEquiprulesSlotRule,
   TcPrimitivesBattlekitType,
   PalletEquiprulesTagDef,
@@ -1731,10 +1738,10 @@ export interface ChainStorage extends GenericChainStorage {
     /**
      *
      * @param {[number, number]} arg
-     * @param {Callback<PalletTileTileDef | undefined> =} callback
+     * @param {Callback<PalletTileTileCompact | undefined> =} callback
      **/
     tiles: GenericStorageQuery<
-      (arg: [number, number]) => PalletTileTileDef | undefined,
+      (arg: [number, number]) => PalletTileTileCompact | undefined,
       [number, number]
     >;
 
@@ -1743,6 +1750,22 @@ export interface ChainStorage extends GenericChainStorage {
      * @param {Callback<number> =} callback
      **/
     tileCount: GenericStorageQuery<() => number>;
+
+    /**
+     *
+     * @param {number} arg
+     * @param {Callback<PalletTileTerrainMeta | undefined> =} callback
+     **/
+    terrainRegistry: GenericStorageQuery<
+      (arg: number) => PalletTileTerrainMeta | undefined,
+      number
+    >;
+
+    /**
+     *
+     * @param {Callback<PalletTileMapConfig | undefined> =} callback
+     **/
+    config: GenericStorageQuery<() => PalletTileMapConfig | undefined>;
 
     /**
      * Generic pallet storage query
@@ -1760,6 +1783,16 @@ export interface ChainStorage extends GenericChainStorage {
      **/
     regions: GenericStorageQuery<
       (arg: FixedBytes<32>) => PalletRegionRegionDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<Array<[number, number]> | undefined> =} callback
+     **/
+    regionTiles: GenericStorageQuery<
+      (arg: FixedBytes<32>) => Array<[number, number]> | undefined,
       FixedBytes<32>
     >;
 
@@ -1791,6 +1824,80 @@ export interface ChainStorage extends GenericChainStorage {
      **/
     countries: GenericStorageQuery<
       (arg: FixedBytes<32>) => PalletCountryCountryDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Poi`'s storage queries
+   **/
+  poi: {
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<PalletPoiPoiDef | undefined> =} callback
+     **/
+    pois: GenericStorageQuery<
+      (arg: FixedBytes<32>) => PalletPoiPoiDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     *
+     * @param {Callback<number> =} callback
+     **/
+    poiCount: GenericStorageQuery<() => number>;
+
+    /**
+     * Generic pallet storage query
+     **/
+    [storage: string]: GenericStorageQuery;
+  };
+  /**
+   * Pallet `Theatre`'s storage queries
+   **/
+  theatre: {
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<PalletTheatreTheatreDef | undefined> =} callback
+     **/
+    theatres: GenericStorageQuery<
+      (arg: FixedBytes<32>) => PalletTheatreTheatreDef | undefined,
+      FixedBytes<32>
+    >;
+
+    /**
+     *
+     * @param {[FixedBytes<32>, number]} arg
+     * @param {Callback<PalletTheatreTheatreNode | undefined> =} callback
+     **/
+    nodes: GenericStorageQuery<
+      (arg: [FixedBytes<32>, number]) => PalletTheatreTheatreNode | undefined,
+      [FixedBytes<32>, number]
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<Array<PalletTheatreTheatreEdge>> =} callback
+     **/
+    edges: GenericStorageQuery<
+      (arg: FixedBytes<32>) => Array<PalletTheatreTheatreEdge>,
+      FixedBytes<32>
+    >;
+
+    /**
+     *
+     * @param {FixedBytes<32>} arg
+     * @param {Callback<Array<PalletTheatreContextTile>> =} callback
+     **/
+    contextTiles: GenericStorageQuery<
+      (arg: FixedBytes<32>) => Array<PalletTheatreContextTile>,
       FixedBytes<32>
     >;
 

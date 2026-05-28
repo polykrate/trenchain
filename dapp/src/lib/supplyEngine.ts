@@ -1,4 +1,4 @@
-import type { BuildingData } from '../hooks/useChainRules';
+import type { BuildingData } from '../hooks/useChainStore';
 
 export interface TileLogistics {
   supply_source: boolean

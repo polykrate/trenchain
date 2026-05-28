@@ -65,10 +65,46 @@ export async function createWarband(
     toCode16(faction) as any,
     toCode32(patron) as any,
     Array.from(nameBytes) as any,
-  ).signAndSend(signer);
+  ).signAndSend(signer).untilBestChainBlockIncluded();
 }
 
 export async function disbandWarband(signer: any, warbandId: WarbandId): Promise<void> {
   const client = await getChainClient();
   await client.tx.warband.disbandWarband(warbandId).signAndSend(signer);
+}
+
+export async function recruitModel(
+  signer: any,
+  warbandId: WarbandId,
+  entryCode: string,
+  modelName: string,
+  itemCodes: string[],
+): Promise<void> {
+  const client = await getChainClient();
+  const nameBytes = new TextEncoder().encode(modelName);
+  await client.tx.roster.recruit(
+    warbandId,
+    toCode32(entryCode) as any,
+    Array.from(nameBytes) as any,
+    itemCodes.map(c => toCode32(c)) as any,
+  ).signAndSend(signer).untilBestChainBlockIncluded();
+}
+
+export async function equipItem(
+  signer: any,
+  warbandId: WarbandId,
+  slot: number,
+  itemCode: string,
+): Promise<void> {
+  const client = await getChainClient();
+  await client.tx.roster.equipItem(
+    warbandId,
+    slot,
+    toCode32(itemCode) as any,
+  ).signAndSend(signer).untilBestChainBlockIncluded();
+}
+
+export async function getNextWarbandId(): Promise<WarbandId> {
+  const client = await getChainClient();
+  return await client.query.warband.nextWarbandId() as number;
 }

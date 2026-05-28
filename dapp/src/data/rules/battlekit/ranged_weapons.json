@@ -2,12 +2,12 @@
   "items": [
     {
       "name": "Alaybozan",
-      "description": "Faction-specific item.",
+      "description": "This blunderbuss is based on the traditional design of tribal warriors and modernised by the foundries of the Sultanate. It has proven its worth as the preferred weapon of the Sapper Corps, who often fight in close quarters. It shoots a hail of lead bullets and iron shrapnel.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 12
       },
-      "keywords": [],
+      "keywords": ["SHRAPNEL"],
       "special_rules": null,
       "code": "ALAYBOZAN"
     },
@@ -29,13 +29,13 @@
     },
     {
       "name": "Arquebus",
-      "description": "Faction-specific item.",
+      "description": "A primitive matchlock weapon, simple enough that even a Yoke Fiend is capable of operating it and sturdy enough to be used as a club with which to batter an opponent in a melee.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 18
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["CUMBERSOME"],
+      "special_rules": "Batter: A model that has an Arquebus can use it as a 2-Handed Melee Weapon.",
       "code": "ARQUEBUS"
     },
     {
@@ -108,24 +108,24 @@
     },
     {
       "name": "Corruption Belcher",
-      "description": "Faction-specific item.",
+      "description": "Corruption belchers spew forth noxious gas and corrosive fumes captured from the Bolgias that divide the putrid swamps of the Eighth Circle of Hell.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 8
       },
-      "keywords": [],
+      "keywords": ["FLAMETHROWER", "GAS", "IGNORE ARMOUR"],
       "special_rules": null,
       "code": "CORRUPTION_BELCHER"
     },
     {
       "name": "Flame Cannon",
-      "description": "Faction-specific item.",
+      "description": "A great cannon that shoots a stream of alchemical fire with tremendous force. It has a tendency to overheat and ignite the skin of its artillery crew, but the mighty Brazen Bulls use them as mere handguns. The secret formula used for the fuel of the flame cannons was gleaned from the ruins of lost Constantinople, and is commonly known as Greek fire.",
       "battlekit_type": "OneHanded",
       "range": {
         "Ranged": 12
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["FIRE", "HEAVY", "IGNORE ARMOUR"],
+      "special_rules": "Greek Fire: When a Flame Cannon is used to make a Ranged Attack, do not make a Success Roll for the attack. Instead, measure a straight line 1mm wide and up to 12\" long from the attacking model to a point on the ground or a model's base. The line stops if it reaches a terrain piece that is taller than the model making the Attack. Make an Injury Roll for every model (friend or foe) that is touched by the line, apart from the attacking model itself.",
       "code": "FLAME_CANNON"
     },
     {
@@ -196,18 +196,18 @@
     },
     {
       "name": "Infested Rifle",
-      "description": "Faction-specific item.",
+      "description": "Armour offers little protection against the horrid, tainted bullets of this rifle, polluted by the power of Beelzebub himself. The bullets are semi-sentient, flying through the tiniest chinks in any armour.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 18
       },
-      "keywords": [],
+      "keywords": ["ARMOUR-PIERCING"],
       "special_rules": null,
       "code": "INFESTED_RIFLE"
     },
     {
       "name": "Jezzail",
-      "description": "Faction-specific item.",
+      "description": "These long arms are by far the most common weapons carried by the soldiers of the Sultanate of the Great Iron Wall. Their barrels are smoothbore, which limits their accurate range, but this is more than made up for by the fact that this allows them to be loaded with different types of alchemical ammunition made by the Jabirean Alchemists.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 18
@@ -233,13 +233,13 @@
     },
     {
       "name": "M.U.R.A.D. Bombard",
-      "description": "Faction-specific item.",
+      "description": "Named after the great Sultan who commissioned the first of these weapons to defend the Iron Wall, this mighty bombard is used to disrupt advancing enemy formations. The echo of its blast recites the 99 names of Allah, throwing even the greatest of warriors to ground like chaff.",
       "battlekit_type": "OneHanded",
       "range": {
         "Ranged": 36
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["BLAST 3\"", "HEAVY", "SCATTER"],
+      "special_rules": "Echoing Blast: If the Success Roll for a Ranged Attack with an M.U.R.A.D Bombard that targets an enemy model is a Success or a Critical Success, or if the attack is a Failure and the target point scatters onto a model's base, apply the effect of the DEADLY Keyword to the Injury Roll for that model. All other models caught in the M.U.R.A.D. Bombard's blast radius, or that are in the M.U.R.A.D. Bombard's blast radius if it did not hit the target model or scatter onto a model's base, are taken Down (do not make an Injury Roll for them).",
       "code": "MURAD_BOMBARD"
     },
     {
@@ -257,13 +257,13 @@
     },
     {
       "name": "Ophidian Rifle",
-      "description": "Faction-specific item.",
+      "description": "This wheel-lock hunting rifle is produced in the forges of the demon Sabnock, the great marquis of war. Made of both Infernal and Earthly metals and materials, it exists simultaneously in the twisted dimension of Hell as well as on Earth. A thing that should not be, the shots of this firearm pervert the laws of God, so targets taking cover are easier to hit, and firing over great distances aids the user of this Hell-made rifle instead of hindering their aim.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 30
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["HEAVY"],
+      "special_rules": "Unnatural Inversion: Add +1 DICE to roll for attacks made with this weapon if the Cover or Long Range modifiers apply to the attack, instead of adding -1 DICE. Note that this means you add +2 DICE to the roll if both modifiers apply to the attack.",
       "code": "OPHIDIAN_RIFLE"
     },
     {
@@ -281,23 +281,23 @@
     },
     {
       "name": "Punt Gun",
-      "description": "Faction-specific item.",
+      "description": "A Punt Gun is an enormous shotgun loaded with up to 25 ounces of shot. It can be loaded with a risky amount of powder and square shot, which causes widespread damage and destruction. It is a very popular weapon among Trench Pilgrims who lack access to conventional heavy weapons.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 18
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["+1 DICE", "+1 INJURY DICE", "HEAVY", "SHOTGUN", "SHRAPNEL"],
+      "special_rules": "Overcharge: Before making a Ranged Attack with a model armed with a Punt Gun, you can say that the model will Overcharge the weapon. To do so, the model has to either have the STRONG Keyword or be in contact with a friendly model. An Overcharged Ranged Attack gains the BLAST 3\" and RELOAD Keywords. After an Overcharged attack has been carried out, place 1 BLOOD MARKER next to the model that made the attack, and its activation immediately ends.",
       "code": "PUNT_GUN"
     },
     {
       "name": "Putrid Shotgun",
-      "description": "Faction-specific item.",
+      "description": "Each a corroded, winged and demon-possessed cartridge filled with infected parasitic larvae, the rounds of putrid shotguns are almost impossible to avoid. This repulsive weapon is nicknamed \"blunderpus\" by the New Antioch troops.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 12
       },
-      "keywords": [],
+      "keywords": ["+1 DICE", "ASSAULT", "INFECTION MARKERS", "SHOTGUN"],
       "special_rules": null,
       "code": "PUTRID_SHOTGUN"
     },
@@ -316,12 +316,12 @@
     },
     {
       "name": "Serpent Assault Gun",
-      "description": "Faction-specific item.",
+      "description": "This terrifying and enormous hand cannon contains a portal to the foetid swamps and bogs of the Fifth Circle of Hell. Each bullet it fires is enveloped with an awful gas.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 36
       },
-      "keywords": [],
+      "keywords": ["ASSAULT", "AUTOMATIC 2", "GAS", "HEAVY"],
       "special_rules": null,
       "code": "SERPENT_ASSAULT_GUN"
     },
@@ -341,57 +341,57 @@
     },
     {
       "name": "Siege Jezzail",
-      "description": "Faction-specific item.",
+      "description": "Heavier version of the standard jezzail. It is a large weapon with a shot of lead or iron weighing as much as four pounds, designed to take out even the most powerful enemies with a single shot. Azebs armed with these weapons use tripod stakes when firing them, but the mighty Janissaries often use them as their standard service gun.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 30
       },
-      "keywords": [],
+      "keywords": ["+1 INJURY DICE", "HEAVY"],
       "special_rules": null,
       "code": "SIEGE_JEZZAIL"
     },
     {
       "name": "Silenced Pistol",
-      "description": "Faction-specific item.",
+      "description": "A sophisticated sidearm made of orichalcum or other holy metals, or from Infernal iron taken from the very prisons of Hell to muffle the wails of the damned. It is virtually silent and is excellent for ambushes or for shooting from behind cover.",
       "battlekit_type": "OneHanded",
       "range": {
-        "Ranged": 12
+        "DualPurpose": 12
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["ASSAULT", "PISTOL"],
+      "special_rules": "Silent: Add +1 DICE to the roll if the attacker is in contact with a terrain piece that is at least 1/2\" tall and that lies in between it and the target model.",
       "code": "SILENCED_PISTOL"
     },
     {
       "name": "Sniper Rifle",
-      "description": "Faction-specific item.",
+      "description": "A sniper rifle is a high-precision, long-range rifle, widely used in the trenches to pick off high value targets such as officers, sappers and artillery crews. Expensive and rare, they are commonly given to the best marksmen and sharpshooters of the warband.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 48
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["+1 DICE", "CRITICAL", "RISKY"],
+      "special_rules": "Bull's Eye: If the Success Roll for a Ranged Attack made with a Sniper Rifle is a Critical Success then the Injury Roll for the attack has the IGNORE ARMOUR Keyword.",
       "code": "SNIPER_RIFLE"
     },
     {
       "name": "Submachine Gun",
-      "description": "Faction-specific item.",
+      "description": "The submachine gun (or SMG) is a fully automatic firearm, trading lower penetration power and range for a much higher rate of fire. Ideal for short-range engagements, it is much sought-after by warbands despite its scarcity and high cost.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 16
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["ASSAULT"],
+      "special_rules": "Quick Bursts: A model armed with a Submachine Gun can take two Shoot ACTIONS during the same Activation, as long as the Submachine Gun is used to make both attacks. The Shoot ACTIONS can be taken one after the other, or other ACTIONS can be taken between the Shoot ACTIONS.",
       "code": "SUBMACHINE_GUN"
     },
     {
       "name": "Viscera Cannon",
-      "description": "Faction-specific item.",
+      "description": "This heavy firearm is the most loathsome and repulsive of all the weapons in the arsenal of the Cult of the Black Grail \u2013 and that is saying something. A warrior armed with this pride of Beelzebub inserts its tubes into their own abdomen and then shoots their own corrosive fluids and innards at the enemy. It is operated by a hand crank that first builds pressure inside the user until they are at the point of bursting, and then releases the spray of viscera at their foe.",
       "battlekit_type": "TwoHanded",
       "range": {
         "Ranged": 24
       },
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["+2 DICE", "HEAVY"],
+      "special_rules": "Self Sacrifice: If a Viscera Cannon hits a target, after resolving the Injury Roll, you can place up to 3 BLOOD MARKERS next to model that made the Attack (until it has a maximum of 6 markers). Then place 1 INFECTION MARKER next to the target for each BLOOD MARKER that you placed on the attacking model.",
       "code": "VISCERA_CANNON"
     }
   ]

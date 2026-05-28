@@ -626,6 +626,7 @@ export interface ChainConsts extends GenericChainConsts {
    **/
   region: {
     maxNameLen: number;
+    maxTilesPerRegion: number;
 
     /**
      * Generic pallet constant
@@ -638,6 +639,34 @@ export interface ChainConsts extends GenericChainConsts {
   country: {
     maxNameLen: number;
     maxRegionsPerCountry: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Poi`'s constants
+   **/
+  poi: {
+    maxNameLen: number;
+    maxLoreLen: number;
+
+    /**
+     * Generic pallet constant
+     **/
+    [name: string]: any;
+  };
+  /**
+   * Pallet `Theatre`'s constants
+   **/
+  theatre: {
+    maxNameLen: number;
+    maxDescLen: number;
+    maxNodesPerTheatre: number;
+    maxEdgesPerTheatre: number;
+    maxBuildingsPerNode: number;
+    maxContextTiles: number;
 
     /**
      * Generic pallet constant

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useChainBattlekit, useChainFactions, useChainKeywords, useChainArmoury, type ChainBattlekitItem, type ChainKeyword } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 const CATEGORIES = [
   { key: 'OneHanded', label: 'One-Handed' },
@@ -12,10 +13,10 @@ const CATEGORIES = [
 ]
 
 export function Battlekits() {
-  const { battlekit, loading: loadingBk } = useChainBattlekit()
-  const { factions, loading: loadingF } = useChainFactions()
-  const { keywords } = useChainKeywords()
-  const { armoury } = useChainArmoury()
+  const { battlekit, loading: loadingBk, count: bkCount } = useChainBattlekit()
+  const { factions, loading: loadingF, count: fCount } = useChainFactions()
+  const { keywords, count: kwCount } = useChainKeywords()
+  const { armoury, count: armCount } = useChainArmoury()
 
   const [category, setCategory] = useState('OneHanded')
   const [factionFilter, setFactionFilter] = useState<string | null>(null)
@@ -42,11 +43,12 @@ export function Battlekits() {
   const showingArmoury = factionFilter !== null
 
   if (loading) {
-    return (
-      <div className="space-y-2">
-        {[...Array(5)].map((_, i) => <div key={i} className="card-military animate-pulse h-14" />)}
-      </div>
-    )
+    return <ChainLoader title="Battlekits" skeletonCount={5} steps={[
+      { label: 'Battlekit items', status: bkCount ? 'done' : 'loading', current: bkCount || undefined },
+      { label: 'Factions', status: fCount ? 'done' : 'loading', current: fCount || undefined },
+      { label: 'Keywords', status: kwCount ? 'done' : 'loading', current: kwCount || undefined },
+      { label: 'Armoury', status: armCount ? 'done' : 'loading', current: armCount || undefined },
+    ]} />
   }
 
   return (

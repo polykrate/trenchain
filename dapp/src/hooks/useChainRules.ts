@@ -125,12 +125,30 @@ export interface BuildingData {
 
 export interface ChainTile {
   coord: [number, number];
-  terrain: string;
-  name: string;
+  terrain: number;
+  terrainName: string;
+  water: boolean;
   region: string;
 }
 
+export interface ChainMapConfig {
+  cols: number;
+  rows: number;
+  hexSize: number;
+  svgWidth: number;
+  svgHeight: number;
+}
+
 export interface ChainRegion {
+  code: string;
+  name: string;
+  country: string;
+  control: string;
+  tiles: [number, number][];
+}
+
+export interface ChainTerrainEntry {
+  id: number;
   code: string;
   name: string;
 }
@@ -138,13 +156,63 @@ export interface ChainRegion {
 export interface ChainCountry {
   code: string;
   name: string;
+  alignment: string;
   regions: string[];
 }
 
+export interface ChainPoi {
+  code: string;
+  name: string;
+  tile: [number, number] | null;
+  poiType: string;
+  lore: string;
+}
+
 export interface MapData {
+  config: ChainMapConfig | null;
   tiles: ChainTile[];
   regions: ChainRegion[];
   countries: ChainCountry[];
+  pois: ChainPoi[];
+}
+
+// ─── Theatre Types ───────────────────────────────────────────────────────────
+
+export interface ChainTheatreNode {
+  coord: [number, number];
+  terrain: string;
+  name: string;
+  nodeType: string;
+  control: string;
+  desc: string;
+  supplySource: boolean;
+  demand: number;
+  buildings: string[];
+}
+
+export interface ChainTheatreEdge {
+  from: number;
+  to: number;
+  capacity: number;
+}
+
+export interface ChainContextTile {
+  coord: [number, number];
+  terrain: string;
+}
+
+export interface ChainTheatre {
+  code: string;
+  name: string;
+  description: string;
+  lore: string;
+  nodes: ChainTheatreNode[];
+  edges: ChainTheatreEdge[];
+  contextTiles: ChainContextTile[];
+}
+
+export interface TheatreData {
+  theatres: ChainTheatre[];
 }
 
 // ─── Cache ───────────────────────────────────────────────────────────────────
@@ -317,28 +385,131 @@ export function useBuildingData() {
 export function useMapData() {
   return useCached<MapData>('mapData', async () => {
     const client = await getChainClient();
-    const [tilesRaw, regionsRaw, countriesRaw] = await Promise.all([
+    const [configRaw, tilesRaw, terrainsRaw, regionsRaw, regionTilesRaw, countriesRaw, poisRaw] = await Promise.all([
+      client.query.tile.config(),
       client.query.tile.tiles.entries(),
+      client.query.tile.terrainRegistry.entries(),
       client.query.region.regions.entries(),
+      client.query.region.regionTiles.entries(),
       client.query.country.countries.entries(),
+      client.query.poi.pois.entries(),
     ]);
 
+    const config = configRaw ? {
+      cols: (configRaw as any).cols,
+      rows: (configRaw as any).rows,
+      hexSize: (configRaw as any).hexSizeX100 / 100,
+      svgWidth: (configRaw as any).svgWidth,
+      svgHeight: (configRaw as any).svgHeight,
+    } : null;
+
+    const terrainMap = new Map<number, string>();
+    for (const [key, value] of terrainsRaw as any[]) {
+      terrainMap.set(key as number, decodeCode(value.code));
+    }
+
+    const regionTilesMap = new Map<string, [number, number][]>();
+    for (const [key, value] of regionTilesRaw as any[]) {
+      regionTilesMap.set(decodeCode(key), (value as any[]).map((c: any) => [c[0], c[1]]));
+    }
+
+    const regionByTile = new Map<string, string>();
+    for (const [code, coords] of regionTilesMap) {
+      for (const [q, r] of coords) regionByTile.set(`${q},${r}`, code);
+    }
+
     return {
-      tiles: tilesRaw.map(([key, value]: any) => ({
-        coord: key as [number, number],
-        terrain: decodeCode(value.terrain ?? value.terrainCode ?? ''),
-        name: decodeBytes(value.name),
-        region: decodeCode(value.region ?? value.regionCode ?? ''),
-      })),
-      regions: regionsRaw.map(([key, value]: any) => ({
-        code: decodeCode(key),
-        name: decodeBytes(value.name),
-      })),
+      config,
+      tiles: tilesRaw.map(([key, value]: any) => {
+        const coord = key as [number, number];
+        const terrainId = (value as any).terrain as number;
+        return {
+          coord,
+          terrain: terrainId,
+          terrainName: terrainMap.get(terrainId) ?? `terrain_${terrainId}`,
+          water: (value as any).water ?? false,
+          region: regionByTile.get(`${coord[0]},${coord[1]}`) ?? '',
+        };
+      }),
+      regions: regionsRaw.map(([key, value]: any) => {
+        const code = decodeCode(key);
+        return {
+          code,
+          name: decodeBytes(value.name),
+          country: decodeCode(value.country ?? ''),
+          control: value.control?.type ?? 'Sovereign',
+          tiles: regionTilesMap.get(code) ?? [],
+        };
+      }),
       countries: countriesRaw.map(([key, value]: any) => ({
         code: decodeCode(key),
         name: decodeBytes(value.name),
+        alignment: value.alignment ?? 'Neutral',
         regions: (value.regions ?? []).map((r: any) => decodeCode(r)),
       })),
+      pois: poisRaw.map(([key, value]: any) => ({
+        code: decodeCode(key),
+        name: decodeBytes(value.name),
+        tile: value.tile ?? null,
+        poiType: value.poiType ?? 'Battlefield',
+        lore: decodeBytes(value.lore),
+      })),
     };
+  });
+}
+
+export function useTheatreData() {
+  return useCached<TheatreData>('theatreData', async () => {
+    const client = await getChainClient();
+    const theatresRaw = await client.query.theatre.theatres.entries();
+
+    const theatres: ChainTheatre[] = [];
+    for (const [key, value] of theatresRaw as any[]) {
+      const code = decodeCode(key);
+      const def = value as any;
+      const nodeCount = def.nodeCount ?? 0;
+
+      const nodes: ChainTheatreNode[] = [];
+      for (let i = 0; i < nodeCount; i++) {
+        const node = await client.query.theatre.nodes(key, i);
+        if (node) {
+          const n = node as any;
+          nodes.push({
+            coord: n.coord as [number, number],
+            terrain: decodeCode(n.terrain ?? ''),
+            name: decodeBytes(n.name),
+            nodeType: decodeBytes(n.nodeType),
+            control: n.control?.type ?? n.control ?? 'Neutral',
+            desc: decodeBytes(n.desc),
+            supplySource: n.supplySource ?? false,
+            demand: n.demand ?? 2,
+            buildings: (n.buildings ?? []).map((b: any) => decodeCode(b)),
+          });
+        }
+      }
+
+      const edgesRaw = await client.query.theatre.edges(key) as any[];
+      const edges: ChainTheatreEdge[] = (edgesRaw ?? []).map((e: any) => ({
+        from: e.from, to: e.to, capacity: e.capacity,
+      }));
+
+      const ctxRaw = await client.query.theatre.contextTiles(key) as any[];
+      const contextTiles: ChainContextTile[] = (ctxRaw ?? []).map((ct: any) => ({
+        coord: ct.coord as [number, number],
+        terrain: decodeCode(ct.terrain ?? ''),
+      }));
+
+      theatres.push({
+        code,
+        name: decodeBytes(def.name),
+        description: decodeBytes(def.description),
+        lore: decodeBytes(def.lore),
+        nodes,
+        edges,
+        contextTiles,
+      });
+    }
+
+    return { theatres };
   });
 }

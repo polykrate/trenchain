@@ -1748,11 +1748,12 @@ export interface ChainEvents extends GenericChainEvents {
       "TilesBatchRegistered",
       { count: number }
     >;
-    TileRegionUpdated: GenericPalletEvent<
+    TerrainRegistered: GenericPalletEvent<
       "Tile",
-      "TileRegionUpdated",
-      { coord: [number, number]; region?: FixedBytes<32> | undefined }
+      "TerrainRegistered",
+      { id: number }
     >;
+    MapConfigSet: GenericPalletEvent<"Tile", "MapConfigSet", null>;
 
     /**
      * Generic pallet event
@@ -1782,6 +1783,11 @@ export interface ChainEvents extends GenericChainEvents {
         alignment: TcPrimitivesAlignment;
       }
     >;
+    RegionTilesSet: GenericPalletEvent<
+      "Region",
+      "RegionTilesSet",
+      { code: FixedBytes<32>; count: number }
+    >;
 
     /**
      * Generic pallet event
@@ -1806,6 +1812,51 @@ export interface ChainEvents extends GenericChainEvents {
       "Country",
       "RegionRemoved",
       { country: FixedBytes<32>; region: FixedBytes<32> }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Poi`'s events
+   **/
+  poi: {
+    PoiRegistered: GenericPalletEvent<
+      "Poi",
+      "PoiRegistered",
+      { code: FixedBytes<32> }
+    >;
+
+    /**
+     * Generic pallet event
+     **/
+    [prop: string]: GenericPalletEvent;
+  };
+  /**
+   * Pallet `Theatre`'s events
+   **/
+  theatre: {
+    TheatreRegistered: GenericPalletEvent<
+      "Theatre",
+      "TheatreRegistered",
+      { code: FixedBytes<32> }
+    >;
+    NodeAdded: GenericPalletEvent<
+      "Theatre",
+      "NodeAdded",
+      { theatre: FixedBytes<32>; index: number }
+    >;
+    EdgesSet: GenericPalletEvent<
+      "Theatre",
+      "EdgesSet",
+      { theatre: FixedBytes<32>; count: number }
+    >;
+    ContextTilesSet: GenericPalletEvent<
+      "Theatre",
+      "ContextTilesSet",
+      { theatre: FixedBytes<32>; count: number }
     >;
 
     /**

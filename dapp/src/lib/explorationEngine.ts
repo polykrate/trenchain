@@ -1,4 +1,4 @@
-import type { ExplorationRulesData, ChainExplorationEvent, ChainExplorationSkill } from '../hooks/useChainRules';
+import type { ExplorationRulesData, ChainExplorationEvent, ChainExplorationSkill } from '../hooks/useChainStore';
 
 export type TableTier = 'common' | 'rare' | 'legendary'
 

@@ -51,6 +51,8 @@ export type ParachainTemplateRuntimeRuntimeCall =
   | { pallet: "Tile"; palletCall: PalletTileCall }
   | { pallet: "Region"; palletCall: PalletRegionCall }
   | { pallet: "Country"; palletCall: PalletCountryCall }
+  | { pallet: "Poi"; palletCall: PalletPoiCall }
+  | { pallet: "Theatre"; palletCall: PalletTheatreCall }
   | { pallet: "Equiprules"; palletCall: PalletEquiprulesCall }
   | { pallet: "CampaignRules"; palletCall: PalletCampaignRulesCall }
   | { pallet: "ExplorationRules"; palletCall: PalletExplorationRulesCall }
@@ -91,6 +93,8 @@ export type ParachainTemplateRuntimeRuntimeCallLike =
   | { pallet: "Tile"; palletCall: PalletTileCallLike }
   | { pallet: "Region"; palletCall: PalletRegionCallLike }
   | { pallet: "Country"; palletCall: PalletCountryCallLike }
+  | { pallet: "Poi"; palletCall: PalletPoiCallLike }
+  | { pallet: "Theatre"; palletCall: PalletTheatreCallLike }
   | { pallet: "Equiprules"; palletCall: PalletEquiprulesCallLike }
   | { pallet: "CampaignRules"; palletCall: PalletCampaignRulesCallLike }
   | { pallet: "ExplorationRules"; palletCall: PalletExplorationRulesCallLike }
@@ -4032,58 +4036,40 @@ export type TcPrimitivesExplorationTable = "Common" | "Rare" | "Legendary";
 export type PalletTileCall =
   | {
       name: "RegisterTile";
-      params: {
-        coord: [number, number];
-        terrain: FixedBytes<16>;
-        name?: Bytes | undefined;
-        region?: FixedBytes<32> | undefined;
-      };
+      params: { coord: [number, number]; terrain: number; water: boolean };
     }
   | {
       name: "RegisterTilesBatch";
-      params: {
-        tiles: Array<
-          [
-            [number, number],
-            FixedBytes<16>,
-            Bytes | undefined,
-            FixedBytes<32> | undefined,
-          ]
-        >;
-      };
+      params: { tiles: Array<[[number, number], number, boolean]> };
     }
   | {
-      name: "SetTileRegion";
-      params: { coord: [number, number]; region?: FixedBytes<32> | undefined };
-    };
+      name: "RegisterTerrain";
+      params: { id: number; code: FixedBytes<16>; name: Bytes };
+    }
+  | { name: "SetMapConfig"; params: { config: PalletTileMapConfig } };
 
 export type PalletTileCallLike =
   | {
       name: "RegisterTile";
-      params: {
-        coord: [number, number];
-        terrain: FixedBytes<16>;
-        name?: BytesLike | undefined;
-        region?: FixedBytes<32> | undefined;
-      };
+      params: { coord: [number, number]; terrain: number; water: boolean };
     }
   | {
       name: "RegisterTilesBatch";
-      params: {
-        tiles: Array<
-          [
-            [number, number],
-            FixedBytes<16>,
-            BytesLike | undefined,
-            FixedBytes<32> | undefined,
-          ]
-        >;
-      };
+      params: { tiles: Array<[[number, number], number, boolean]> };
     }
   | {
-      name: "SetTileRegion";
-      params: { coord: [number, number]; region?: FixedBytes<32> | undefined };
-    };
+      name: "RegisterTerrain";
+      params: { id: number; code: FixedBytes<16>; name: BytesLike };
+    }
+  | { name: "SetMapConfig"; params: { config: PalletTileMapConfig } };
+
+export type PalletTileMapConfig = {
+  cols: number;
+  rows: number;
+  hexSizeX100: number;
+  svgWidth: number;
+  svgHeight: number;
+};
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -4109,6 +4095,10 @@ export type PalletRegionCall =
         coord: [number, number];
         alignment: TcPrimitivesAlignment;
       };
+    }
+  | {
+      name: "SetRegionTiles";
+      params: { code: FixedBytes<32>; tiles: Array<[number, number]> };
     };
 
 export type PalletRegionCallLike =
@@ -4132,6 +4122,10 @@ export type PalletRegionCallLike =
         coord: [number, number];
         alignment: TcPrimitivesAlignment;
       };
+    }
+  | {
+      name: "SetRegionTiles";
+      params: { code: FixedBytes<32>; tiles: Array<[number, number]> };
     };
 
 export type TcPrimitivesRegionControl =
@@ -4181,6 +4175,142 @@ export type PalletCountryCallLike =
       name: "RemoveRegion";
       params: { country: FixedBytes<32>; region: FixedBytes<32> };
     };
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletPoiCall = {
+  name: "RegisterPoi";
+  params: {
+    code: FixedBytes<32>;
+    name: Bytes;
+    tile?: [number, number] | undefined;
+    poiType: TcPrimitivesPoiType;
+    lore: Bytes;
+  };
+};
+
+export type PalletPoiCallLike = {
+  name: "RegisterPoi";
+  params: {
+    code: FixedBytes<32>;
+    name: BytesLike;
+    tile?: [number, number] | undefined;
+    poiType: TcPrimitivesPoiType;
+    lore: BytesLike;
+  };
+};
+
+export type TcPrimitivesPoiType =
+  | "HereticLandmark"
+  | "FaithfulFortress"
+  | "HereticFortress"
+  | "HereticOutpost"
+  | "NeutralFortress"
+  | "Battlefield"
+  | "WallGate"
+  | "FaithfulCity"
+  | "DivineSite";
+
+/**
+ * Contains a variant per dispatchable extrinsic that this pallet has.
+ **/
+export type PalletTheatreCall =
+  | {
+      name: "RegisterTheatre";
+      params: {
+        code: FixedBytes<32>;
+        name: Bytes;
+        description: Bytes;
+        lore: Bytes;
+      };
+    }
+  | {
+      name: "AddNode";
+      params: {
+        theatre: FixedBytes<32>;
+        coord: [number, number];
+        terrain: FixedBytes<16>;
+        name: Bytes;
+        nodeType: Bytes;
+        control: TcPrimitivesNodeControl;
+        desc: Bytes;
+        supplySource: boolean;
+        demand: number;
+        buildings: Array<FixedBytes<32>>;
+      };
+    }
+  | {
+      name: "SetEdges";
+      params: {
+        theatre: FixedBytes<32>;
+        edges: Array<PalletTheatreTheatreEdge>;
+      };
+    }
+  | {
+      name: "SetContextTiles";
+      params: {
+        theatre: FixedBytes<32>;
+        tiles: Array<PalletTheatreContextTile>;
+      };
+    };
+
+export type PalletTheatreCallLike =
+  | {
+      name: "RegisterTheatre";
+      params: {
+        code: FixedBytes<32>;
+        name: BytesLike;
+        description: BytesLike;
+        lore: BytesLike;
+      };
+    }
+  | {
+      name: "AddNode";
+      params: {
+        theatre: FixedBytes<32>;
+        coord: [number, number];
+        terrain: FixedBytes<16>;
+        name: BytesLike;
+        nodeType: BytesLike;
+        control: TcPrimitivesNodeControl;
+        desc: BytesLike;
+        supplySource: boolean;
+        demand: number;
+        buildings: Array<FixedBytes<32>>;
+      };
+    }
+  | {
+      name: "SetEdges";
+      params: {
+        theatre: FixedBytes<32>;
+        edges: Array<PalletTheatreTheatreEdge>;
+      };
+    }
+  | {
+      name: "SetContextTiles";
+      params: {
+        theatre: FixedBytes<32>;
+        tiles: Array<PalletTheatreContextTile>;
+      };
+    };
+
+export type TcPrimitivesNodeControl =
+  | "Faithful"
+  | "Heretic"
+  | "Contested"
+  | "Neutral";
+
+export type PalletTheatreTheatreEdge = {
+  from: number;
+  to: number;
+  capacity: number;
+};
+
+export type PalletTheatreContextTile = {
+  coord: [number, number];
+  terrain: FixedBytes<16>;
+};
 
 /**
  * Contains a variant per dispatchable extrinsic that this pallet has.
@@ -4633,6 +4763,8 @@ export type ParachainTemplateRuntimeRuntimeEvent =
   | { pallet: "Tile"; palletEvent: PalletTileEvent }
   | { pallet: "Region"; palletEvent: PalletRegionEvent }
   | { pallet: "Country"; palletEvent: PalletCountryEvent }
+  | { pallet: "Poi"; palletEvent: PalletPoiEvent }
+  | { pallet: "Theatre"; palletEvent: PalletTheatreEvent }
   | { pallet: "Equiprules"; palletEvent: PalletEquiprulesEvent }
   | { pallet: "CampaignRules"; palletEvent: PalletCampaignRulesEvent }
   | { pallet: "ExplorationRules"; palletEvent: PalletExplorationRulesEvent }
@@ -5843,10 +5975,8 @@ export type PalletExplorationEvent =
 export type PalletTileEvent =
   | { name: "TileRegistered"; data: { coord: [number, number] } }
   | { name: "TilesBatchRegistered"; data: { count: number } }
-  | {
-      name: "TileRegionUpdated";
-      data: { coord: [number, number]; region?: FixedBytes<32> | undefined };
-    };
+  | { name: "TerrainRegistered"; data: { id: number } }
+  | { name: "MapConfigSet" };
 
 /**
  * The `Event` enum of this pallet
@@ -5864,7 +5994,8 @@ export type PalletRegionEvent =
         coord: [number, number];
         alignment: TcPrimitivesAlignment;
       };
-    };
+    }
+  | { name: "RegionTilesSet"; data: { code: FixedBytes<32>; count: number } };
 
 /**
  * The `Event` enum of this pallet
@@ -5878,6 +6009,26 @@ export type PalletCountryEvent =
   | {
       name: "RegionRemoved";
       data: { country: FixedBytes<32>; region: FixedBytes<32> };
+    };
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletPoiEvent = {
+  name: "PoiRegistered";
+  data: { code: FixedBytes<32> };
+};
+
+/**
+ * The `Event` enum of this pallet
+ **/
+export type PalletTheatreEvent =
+  | { name: "TheatreRegistered"; data: { code: FixedBytes<32> } }
+  | { name: "NodeAdded"; data: { theatre: FixedBytes<32>; index: number } }
+  | { name: "EdgesSet"; data: { theatre: FixedBytes<32>; count: number } }
+  | {
+      name: "ContextTilesSet";
+      data: { theatre: FixedBytes<32>; count: number };
     };
 
 /**
@@ -6834,6 +6985,7 @@ export type PalletWarbandWarbandMeta = {
 export type PalletWarbandError =
   | "FactionNotFound"
   | "PatronNotFound"
+  | "PatronFactionMismatch"
   | "NotOwner"
   | "WarbandNotFound"
   | "TooManyWarbands"
@@ -6841,6 +6993,8 @@ export type PalletWarbandError =
   | "NotInCampaign"
   | "WarbandLocked"
   | "CampaignNotFound"
+  | "CampaignEnrollFailed"
+  | "CampaignWithdrawFailed"
   | "TooManyExplorationSkills";
 
 export type PalletRosterRecruit = {
@@ -6870,7 +7024,8 @@ export type PalletRosterError =
   | "ItemNotEquipped"
   | "MaxBattleScars"
   | "AlreadyElite"
-  | "SkillSlotFull";
+  | "SkillSlotFull"
+  | "SlotLimitExceeded";
 
 export type PalletCampaignCampaignMeta = {
   creator: AccountId32;
@@ -6992,11 +7147,9 @@ export type PalletExplorationError =
   | "OptionAlreadyChosen"
   | "InvalidOption";
 
-export type PalletTileTileDef = {
-  terrain: FixedBytes<16>;
-  name?: Bytes | undefined;
-  region?: FixedBytes<32> | undefined;
-};
+export type PalletTileTileCompact = { terrain: number; water: boolean };
+
+export type PalletTileTerrainMeta = { code: FixedBytes<16>; name: Bytes };
 
 /**
  * The `Error` enum of this pallet.
@@ -7004,7 +7157,8 @@ export type PalletTileTileDef = {
 export type PalletTileError =
   | "AlreadyRegistered"
   | "TileNotFound"
-  | "BatchTooLarge";
+  | "BatchTooLarge"
+  | "TerrainAlreadyRegistered";
 
 export type PalletRegionRegionDef = {
   name: Bytes;
@@ -7032,6 +7186,48 @@ export type PalletCountryError =
   | "RegionAlreadyInCountry"
   | "RegionNotInCountry"
   | "TooManyRegions";
+
+export type PalletPoiPoiDef = {
+  name: Bytes;
+  tile?: [number, number] | undefined;
+  poiType: TcPrimitivesPoiType;
+  lore: Bytes;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletPoiError = "AlreadyRegistered" | "PoiNotFound";
+
+export type PalletTheatreTheatreDef = {
+  name: Bytes;
+  description: Bytes;
+  lore: Bytes;
+  nodeCount: number;
+  edgeCount: number;
+};
+
+export type PalletTheatreTheatreNode = {
+  coord: [number, number];
+  terrain: FixedBytes<16>;
+  name: Bytes;
+  nodeType: Bytes;
+  control: TcPrimitivesNodeControl;
+  desc: Bytes;
+  supplySource: boolean;
+  demand: number;
+  buildings: Array<FixedBytes<32>>;
+};
+
+/**
+ * The `Error` enum of this pallet.
+ **/
+export type PalletTheatreError =
+  | "TheatreAlreadyExists"
+  | "TheatreNotFound"
+  | "TooManyNodes"
+  | "TooManyEdges"
+  | "TooManyContextTiles";
 
 export type PalletEquiprulesSlotRule = {
   battlekitType: TcPrimitivesBattlekitType;
@@ -7210,6 +7406,8 @@ export type ParachainTemplateRuntimeRuntimeError =
   | { pallet: "Tile"; palletError: PalletTileError }
   | { pallet: "Region"; palletError: PalletRegionError }
   | { pallet: "Country"; palletError: PalletCountryError }
+  | { pallet: "Poi"; palletError: PalletPoiError }
+  | { pallet: "Theatre"; palletError: PalletTheatreError }
   | { pallet: "Equiprules"; palletError: PalletEquiprulesError }
   | { pallet: "CampaignRules"; palletError: PalletCampaignRulesError }
   | { pallet: "ExplorationRules"; palletError: PalletExplorationRulesError }

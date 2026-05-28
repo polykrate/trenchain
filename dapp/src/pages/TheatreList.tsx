@@ -2,13 +2,21 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { theatre } from '../chain'
 import type { Theatre } from '../chain/theatre'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function TheatreList() {
   const [theatres, setTheatres] = useState<Theatre[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    theatre.getTheatres().then(setTheatres)
+    theatre.getTheatres().then(t => { setTheatres(t); setLoading(false) })
   }, [])
+
+  if (loading) {
+    return <ChainLoader title="Theatres" skeletonCount={3} steps={[
+      { label: 'Theatre list', status: 'loading' },
+    ]} />
+  }
 
   return (
     <div className="max-w-3xl mx-auto">

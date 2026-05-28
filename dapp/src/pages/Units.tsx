@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useChainFactions, useChainEntries, type ChainEntry } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function Units() {
-  const { factions, loading: loadingF } = useChainFactions()
-  const { entries, loading: loadingE } = useChainEntries()
+  const { factions, loading: loadingF, count: fCount } = useChainFactions()
+  const { entries, loading: loadingE, count: eCount } = useChainEntries()
 
   const [filter, setFilter] = useState<string | null>(null)
   const [expanded, setExpanded] = useState<string | null>(null)
@@ -12,11 +13,10 @@ export function Units() {
   const filtered = filter ? entries.filter(e => e.faction === filter) : entries
 
   if (loading) {
-    return (
-      <div className="space-y-4">
-        {[...Array(4)].map((_, i) => <div key={i} className="card-military animate-pulse h-32" />)}
-      </div>
-    )
+    return <ChainLoader title="Units" skeletonCount={4} steps={[
+      { label: 'Factions', status: fCount ? 'done' : 'loading', current: fCount || undefined },
+      { label: 'Unit entries', status: eCount ? 'done' : 'loading', current: eCount || undefined },
+    ]} />
   }
 
   return (

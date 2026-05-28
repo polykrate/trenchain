@@ -90,24 +90,41 @@ export interface Compendium {
 let compendiumCache: { data: Compendium; timestamp: number } | null = null;
 const CACHE_TTL = 120_000;
 
-async function fetchCompendium(): Promise<Compendium> {
+export interface CompendiumProgress {
+  keywords: number
+  factions: number
+  battlekit: number
+  patrons: number
+  skills: number
+  entries: number
+  armoury: number
+}
+
+type ProgressCallback = (progress: CompendiumProgress) => void;
+
+async function fetchCompendium(onProgress?: ProgressCallback): Promise<Compendium> {
   if (compendiumCache && Date.now() - compendiumCache.timestamp < CACHE_TTL) {
     return compendiumCache.data;
   }
 
   const client = await getChainClient();
 
+  const progress: CompendiumProgress = { keywords: 0, factions: 0, battlekit: 0, patrons: 0, skills: 0, entries: 0, armoury: 0 };
+  const report = () => onProgress?.({ ...progress });
+
+  const fetchers = [
+    client.query.keyword.keywords.entries().then(r => { progress.keywords = r.length; report(); return r; }),
+    client.query.faction.factions.entries().then(r => { progress.factions = r.length; report(); return r; }),
+    client.query.battlekit.items.entries().then(r => { progress.battlekit = r.length; report(); return r; }),
+    client.query.patron.patrons.entries().then(r => { progress.patrons = r.length; report(); return r; }),
+    client.query.skill.skills.entries().then(r => { progress.skills = r.length; report(); return r; }),
+    client.query.entry.entries.entries().then(r => { progress.entries = r.length; report(); return r; }),
+    client.query.entry.entryAbilities.entries(),
+    client.query.armoury.entries.entries().then(r => { progress.armoury = r.length; report(); return r; }),
+  ];
+
   const [rawKeywords, rawFactions, rawBattlekit, rawPatrons, rawSkills, rawEntries, rawAbilities, rawArmoury] =
-    await Promise.all([
-      client.query.keyword.keywords.entries(),
-      client.query.faction.factions.entries(),
-      client.query.battlekit.items.entries(),
-      client.query.patron.patrons.entries(),
-      client.query.skill.skills.entries(),
-      client.query.entry.entries.entries(),
-      client.query.entry.entryAbilities.entries(),
-      client.query.armoury.entries.entries(),
-    ]);
+    await Promise.all(fetchers);
 
   const abilitiesMap = new Map<string, { name: string; description: string }[]>();
   for (const [key, value] of rawAbilities) {
@@ -214,18 +231,19 @@ async function fetchCompendium(): Promise<Compendium> {
   return data;
 }
 
-// ─── Unified hook ────────────────────────────────────────────────────────────
+// ─── Unified hook with progress ──────────────────────────────────────────────
 
 export function useCompendium() {
   const [data, setData] = useState<Compendium | null>(compendiumCache?.data ?? null);
   const [loading, setLoading] = useState(data === null);
   const [error, setError] = useState<string | null>(null);
+  const [progress, setProgress] = useState<CompendiumProgress>({ keywords: 0, factions: 0, battlekit: 0, patrons: 0, skills: 0, entries: 0, armoury: 0 });
 
   useEffect(() => {
     if (data !== null) return;
     let cancelled = false;
 
-    fetchCompendium()
+    fetchCompendium((p) => { if (!cancelled) setProgress(p); })
       .then(result => {
         if (cancelled) return;
         setData(result);
@@ -240,42 +258,42 @@ export function useCompendium() {
     return () => { cancelled = true; };
   }, [data]);
 
-  return { compendium: data, loading, error };
+  return { compendium: data, loading, error, progress };
 }
 
 // ─── Convenience hooks (thin wrappers) ──────────────────────────────────────
 
 export function useChainKeywords() {
-  const { compendium, loading, error } = useCompendium();
-  return { keywords: compendium?.keywords ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { keywords: compendium?.keywords ?? [], loading, error, count: progress.keywords };
 }
 
 export function useChainFactions() {
-  const { compendium, loading, error } = useCompendium();
-  return { factions: compendium?.factions ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { factions: compendium?.factions ?? [], loading, error, count: progress.factions };
 }
 
 export function useChainBattlekit() {
-  const { compendium, loading, error } = useCompendium();
-  return { battlekit: compendium?.battlekit ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { battlekit: compendium?.battlekit ?? [], loading, error, count: progress.battlekit };
 }
 
 export function useChainPatrons() {
-  const { compendium, loading, error } = useCompendium();
-  return { patrons: compendium?.patrons ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { patrons: compendium?.patrons ?? [], loading, error, count: progress.patrons };
 }
 
 export function useChainSkills() {
-  const { compendium, loading, error } = useCompendium();
-  return { skills: compendium?.skills ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { skills: compendium?.skills ?? [], loading, error, count: progress.skills };
 }
 
 export function useChainEntries() {
-  const { compendium, loading, error } = useCompendium();
-  return { entries: compendium?.entries ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { entries: compendium?.entries ?? [], loading, error, count: progress.entries };
 }
 
 export function useChainArmoury() {
-  const { compendium, loading, error } = useCompendium();
-  return { armoury: compendium?.armoury ?? [], loading, error };
+  const { compendium, loading, error, progress } = useCompendium();
+  return { armoury: compendium?.armoury ?? [], loading, error, count: progress.armoury };
 }

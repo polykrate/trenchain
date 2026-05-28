@@ -1,0 +1,293 @@
+Initializing...
+⚡ SEED_FAST=1 — using inBlock confirmation + parallel sends
+Connected!
+
+📖 Seeding compendium...
+  [Keywords] 87 calls (1.6s)
+  [Skills] 48 calls (1.0s)
+  [Factions] 6 calls (1.0s)
+  [Battlekit] 100 calls (2.0s)
+  [Armoury] 230 calls (5.0s)
+  [Entries] 46 calls (4.9s)
+  [Abilities] 43 calls (1.1s)
+  [Patrons] 8 calls (0.9s)
+💰 Seeding economy...
+  [Buildings] 17 calls (1.0s)
+  [Resources] 7 calls (1.0s)
+🗺️  Seeding geography...
+  [TerrainRegistry] 10 calls (1.0s)
+  [Countries] 27 calls (1.0s)
+  [Regions] 162 calls (4.0s)
+  [RegionTiles] 162 calls (9.0s)
+  [Tiles] 20 calls (4.0s)
+  [MapConfig] set
+  [POIs] 34 calls (4.0s)
+🎭 Seeding theatre...
+  [Theatre Nodes] 15/15 (14.9s)
+  [Theatre Edges] 21 edges
+  [Theatre Context] 38 tiles
+⚖️  Seeding rules...
+  [Equiprules] 40/40 (40.0s)
+  [CampaignRules] 6/6 (6.0s)
+  [ExplorationRules] 44/44 (44.0s)
+  [TerrainRules] 52/52 (52.0s)
+
+🚚 Seeding logistics...
+  Computing adjacency...
+  Found 162 regions, computing distances...
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Logistics...
+
+This 
+  [Logistics] Registered 162 regions
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Logistics...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [Adjacency] 158 calls (0.2s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [Distances] 48 calls (0.3s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [Recipes] 6 calls (0.0s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [TerrainYields] 12 calls (0.0s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [Buildings] 7 calls (0.0s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [Demand] 4 calls (0.0s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [MinStock] 3 calls (0.0s)
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+    ⚠ API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This 
+  [BaseProduction] 4 calls (0.0s)
+  ✓ Logistics seeding complete
+
+⏱  Total: 204.6s
+
+📋 Verification (expected → on-chain):
+
+⚠ Unhandled rejection: API Compatibility Error: sudo.sudo
+
+Parameters:
+  [0] call: ✗ invalid input type - value: {"pallet":"Utility",...
+
+This may indicate your chaintypes definitions are outdated.
+Consider regenerating cha
+  ✓ Keywords: 87/87
+  ✓ Factions: 6/6
+  ✓ Battlekit: 100/100
+  ✓ Entries: 46/46
+  ✓ Armoury: 230/230
+  ✓ Patrons: 8/8
+  ✓ Buildings: 17/17
+  ✓ Countries: 27/27
+  ✓ Regions: 162/162
+  ✓ Tiles: 3876
+  ✓ POIs: 34
+  ✓ Theatre: 1
+  ✓ Equiprules: handSlots=2
+  ✓ CampaignRules: w=15 l=7 d=10
+  ✓ ExplorationRules: loot×10
+  ✓ TerrainRules: 4 categories
+
+✅ SEED COMPLETE

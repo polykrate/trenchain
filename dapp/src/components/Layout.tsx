@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { Nav } from './Nav'
+import { ChainStatus } from './ChainStatus'
 import { useWallet } from '../hooks/useWallet'
 
 export function Layout() {
@@ -21,6 +22,7 @@ export function Layout() {
         </div>
 
         <div className="flex-1 flex items-center justify-end px-6 gap-4">
+          <ChainStatus />
           <span className="text-[0.65rem] text-[var(--muted)] font-bold tracking-widest uppercase border border-[var(--border)] px-2 py-0.5 rounded-sm">testnet</span>
           <div className="w-px h-5 bg-[var(--border)]" />
           {address ? (

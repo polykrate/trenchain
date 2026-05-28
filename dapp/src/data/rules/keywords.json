@@ -449,6 +449,78 @@
       "name": "TOUGH",
       "kind": "Effect",
       "description": "The first time a model with this Keyword suffers an Out of Action result on the Injury Table, it is treated as a Down result instead."
+    },
+    {
+      "code": "PLUS_2_DICE",
+      "name": "+2 DICE",
+      "kind": "Effect",
+      "description": "Roll 4 dice and pick the 2 highest results."
+    },
+    {
+      "code": "PLUS_2_INJURY_DICE",
+      "name": "+2 INJURY DICE",
+      "kind": "Effect",
+      "description": "Add 2 extra dice to the Injury roll; use the 2 highest results."
+    },
+    {
+      "code": "PLUS_2_INJURY_MODIFIER",
+      "name": "+2 INJURY MODIFIER",
+      "kind": "Effect",
+      "description": "Add +2 to the Injury roll result."
+    },
+    {
+      "code": "MINUS_3_INJURY_MODIFIER",
+      "name": "-3 INJURY MODIFIER",
+      "kind": "Effect",
+      "description": "Subtract 3 from the Injury roll result."
+    },
+    {
+      "code": "CLEAVE_2",
+      "name": "CLEAVE 2",
+      "kind": "Effect",
+      "description": "On a successful melee hit, this weapon strikes 2 additional targets within engagement range."
+    },
+    {
+      "code": "CLEAVE_4",
+      "name": "CLEAVE 4",
+      "kind": "Effect",
+      "description": "On a successful melee hit, this weapon strikes 4 additional targets within engagement range."
+    },
+    {
+      "code": "PLUS_3_DICE",
+      "name": "+3 DICE",
+      "kind": "Effect",
+      "description": "Roll 5 dice and pick the 2 highest results."
+    },
+    {
+      "code": "PLUS_4_DICE",
+      "name": "+4 DICE",
+      "kind": "Effect",
+      "description": "Roll 6 dice and pick the 2 highest results."
+    },
+    {
+      "code": "MINUS_2_DICE",
+      "name": "-2 DICE",
+      "kind": "Effect",
+      "description": "Roll 2 fewer dice (minimum 1 die)."
+    },
+    {
+      "code": "MINUS_3_DICE",
+      "name": "-3 DICE",
+      "kind": "Effect",
+      "description": "Roll 3 fewer dice (minimum 1 die)."
+    },
+    {
+      "code": "MINUS_2_INJURY_DICE",
+      "name": "-2 INJURY DICE",
+      "kind": "Effect",
+      "description": "Remove 2 dice from the Injury roll; use the remaining highest results."
+    },
+    {
+      "code": "AUTOMATIC_5",
+      "name": "AUTOMATIC 5",
+      "kind": "Effect",
+      "description": "This weapon fires 5 shots per attack action."
     }
   ]
 }

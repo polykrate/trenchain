@@ -2,28 +2,28 @@
   "items": [
     {
       "name": "Black Grail Shield",
-      "description": "Faction-specific item.",
+      "description": "This device of the Cult of the Black Grail carries the blessing of the Lord of Flies. It has a will of its own, moving to intercept any bullets or other projectiles that might impede the work of Beelzebub.",
       "battlekit_type": "Shield",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["-1 INJURY MODIFIER"],
+      "special_rules": "Power of the Cult of the Black Grail: When a model with a Black Grail Shield is chosen as the target for a Ranged Attack, it will draw on the Power of the Black Grail before the Success Roll is made for the attack. Take a Success Roll for the model with the Black Grail Shield. If the roll is a Failure, nothing happens and the attack is carried out as normal. If the roll is a Success, add -2 DICE to the roll for the Ranged Attack. If the roll is a Critical Success, the attack is automatically a Failure (do not make a Success Roll for the attack).",
       "code": "BLACK_GRAIL_SHIELD"
     },
     {
       "name": "Heavy Ballistic Shield",
-      "description": "Faction-specific item.",
+      "description": "These massive shields are made of aramid fibre mesh and orichalcum steel alloy. They are so heavy that they can only be carried by Heavy Mechanized Infantry, and even then, they are too cumbersome to be used in fast-paced melee. They are mainly used for protection during their ponderous advance towards the enemy.",
       "battlekit_type": "Shield",
       "range": "None",
-      "keywords": [],
+      "keywords": ["COVER"],
       "special_rules": null,
       "code": "HEAVY_BALLISTIC_SHIELD"
     },
     {
       "name": "Holy Icon Shield",
-      "description": "Faction-specific item.",
+      "description": "These shields are made from icons that have performed miracles. Mounted on blessed wood, they are harder than any steel and virtually indestructible. Only the most revered fighters in the service of the Church carry one.",
       "battlekit_type": "Shield",
       "range": "None",
-      "keywords": [],
+      "keywords": ["-1 INJURY MODIFIER", "IMPERVIOUS"],
       "special_rules": null,
       "code": "HOLY_ICON_SHIELD"
     },

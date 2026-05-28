@@ -2,11 +2,11 @@
   "items": [
     {
       "name": "Alchemical Ammunition",
-      "description": "Faction-specific item.",
+      "description": "Jabirean Alchemists craft these jezzail bullets from the slivers of the Iron Wall. Each such shot is carved with the Seal of Solomon, guiding it with divine aim to its target.",
       "battlekit_type": "Equipment",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["AMMUNITION (+1 DICE)"],
+      "special_rules": "Guiding Path: Alchemical Ammunition can only be used with an Alaybozan, Halberd-Gun, Jezzail or Siege Jezzail (even though the Alaybozan has the SHRAPNEL Keyword). In a campaign, you cannot reallocate Alchemical Ammunition to another model.",
       "code": "ALCHEMICAL_AMMUNITION"
     },
     {
@@ -43,11 +43,11 @@
     },
     {
       "name": "Cloak of Alamut",
-      "description": "Faction-specific item.",
+      "description": "Created by the secret arts of the Assassin sect aeons ago, this cloak bends the light so that its wearer looks almost indistinguishable against any surface when they are still. It is this masterwork of Alamut that has led to tales of a fabled Cloak of Invisibility in the legends of the Sultanate.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Blend In: The Ranged Attack Modifier for a target being in Cover is -2 DICE instead of -1 DICE if the target has a Cloak of Alamut.",
       "code": "CLOAK_OF_ALAMUT"
     },
     {
@@ -63,20 +63,20 @@
     },
     {
       "name": "Compound Eyes Helmet",
-      "description": "Faction-specific item.",
+      "description": "This ancient helmet fuses with its wearer, linking their nerves to its compound eyes, granting enhanced vision.",
       "battlekit_type": "Equipment",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["NEGATE SHRAPNEL"],
+      "special_rules": "Enhanced Vision: Add +1 DICE to the Success Roll of Ranged Attacks taken for a model that has a Compound Eyes Helmet.",
       "code": "COMPOUND_EYES_HELMET"
     },
     {
       "name": "Crown of Hellfire",
-      "description": "Faction-specific item.",
+      "description": "This burning crown is held aloft by the pain-seared hands of an invisible damned soul, whose weeping cries can still be heard. It is a reward that an elite member of the Court can earn through some extraordinary act in the service of the Serpent Head they are pledged to. Of the slave soldiers of the Court, only the Pit Locusts are allowed to wear this symbol of prestige due the fundamental role they played at the start of the Great War.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Searing Flames: When a model with a Crown of Hellfire ends an Activation, place 1 BLOOD MARKER next to each enemy model within 1\" of the model with a Crown of Hellfire, except for enemy models that have the NEGATE FIRE Keyword.",
       "code": "CROWN_OF_HELLFIRE"
     },
     {
@@ -115,11 +115,11 @@
     },
     {
       "name": "Grail Devotee",
-      "description": "Faction-specific item.",
+      "description": "Given birth by Matagot Hags after devouring living victims whole, these diminutive thralls are driven by an unspeakable thirst for fluids tainted by the Cult of the Black Grail. They attach themselves to the nobles of the Order of the Fly, endlessly grovelling and begging for any secretion or discharge of fluid their master might be able to spare.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Grovelling Followers: Up to 2 models can have up to 2 Grail Devotees each. Add +1 INJURY MODIFIER to Injury Rolls for Melee attacks made by the model for each Grail Devotee that it has. Each Grail Devotee can be represented by a model if you wish. Place them adjacent to the model that they are following but note that Grail Devotees are not treated as models for any rules purposes, just move them out of the way if they get in the way of a \"proper\" model. Jealous Obsession: The Limit of 2 is the number of models that can have Grail Devotees; each model can have up to 2 Grail Devotees. The cost of the second Grail Devotee taken for a model is paid in \u2609 instead of \ud83d\udc51. Grail Devotees cannot be reallocated unless the model that had them is removed from the Warband Roster.",
       "code": "GRAIL_DEVOTEE"
     },
     {
@@ -167,20 +167,20 @@
     },
     {
       "name": "Iron Capirote",
-      "description": "Faction-specific item.",
+      "description": "A conical helmet blessed by the Church and often containing a fragment of a relic. Iron capirotes shield their wearers from the psychological horror of war and allow them to face creatures from the pits of Hell unflinchingly.",
       "battlekit_type": "Equipment",
       "range": "None",
-      "keywords": [],
+      "keywords": ["NEGATE FEAR", "NEGATE SHRAPNEL"],
       "special_rules": null,
       "code": "IRON_CAPIROTE"
     },
     {
       "name": "Marid Shovel",
-      "description": "Faction-specific item.",
+      "description": "This enormous shovel is made from alchemical bronze which makes it almost indestructible. Brazen Bulls use it for public works (such as digging canals, foundations of buildings and mining) during peacetime, while at war it is used for digging trenches, ditches and bunkers.",
       "battlekit_type": "Equipment",
       "range": "None",
-      "keywords": [],
-      "special_rules": null,
+      "keywords": ["HEAVY"],
+      "special_rules": "Industrial Tool: A Brazen Bull equipped with a Marid Shovel that starts the game on Open terrain has the COVER Keyword until it moves away from its starting position. In addition, a Brazen Bull equipped with a Marid Shovel can use it as if it were a Trench Club.",
       "code": "MARID_SHOVEL"
     },
     {
@@ -225,11 +225,11 @@
     },
     {
       "name": "Restraining Muzzle",
-      "description": "Faction-specific item.",
+      "description": "Yoke Fiends are unruly beasts, and almost impossible to control when they smell mortal blood. Court nobles use these cruel, barbed muzzles to bring them to heel. Each is attuned to the will of its master, who can constrict them with a command word, until the pain becomes so unbearable that even the most bestial Yoke Fiend is made to obey.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Brought to Heel: Add +1 DICE to rolls made for a Ranged Attack made by a Yoke Fiend that has a Restraining Muzzle. In addition, the Hateful ability does not apply to a Yoke Fiend that has a Restraining Muzzle.",
       "code": "RESTRAINING_MUZZLE"
     },
     {
@@ -243,11 +243,11 @@
     },
     {
       "name": "Takwin Anqā Bird",
-      "description": "Faction-specific item.",
+      "description": "This Takwin creation is popular with the Sultanate's nobility. It is used for hunting, and also valued for its ability to recite the Surah with a resonating sound that is painful to hear for the enemies of Allah, and for its hypnotic eyes that confuse and disorient foes.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Cause Confusion: Success Rolls taken for Melee Attacks that target a model with a Takwin Anqa Bird become Risky Success Rolls (there is no additional effect if they are Risky Success Rolls already). In addition, before an enemy model within 1\" of a model with Takwin Anqa Bird makes a retreat, the opposing player must take a Risky Success Roll for the model. If the Roll is a Failure the enemy model cannot retreat and its Activation ends. If the Roll is a Success or a Critical Success, the enemy model can retreat normally.",
       "code": "TAKWIN_ANQ_BIRD"
     },
     {
@@ -298,11 +298,11 @@
     },
     {
       "name": "Wind Amulet",
-      "description": "Faction-specific item.",
+      "description": "An amulet created by the Jabirean Alchemists, capturing the essence of the Element of Wind within it.",
       "battlekit_type": "Equipment",
       "range": "None",
       "keywords": [],
-      "special_rules": null,
+      "special_rules": "Gusts of Wind: Once per game, when you Activate a model that has a Wind Amulet you may declare that it will use the amulet before it takes any ACTIONS. Using the Wind Amulet adds 3\" to the model's Movement Characteristic for the rest of the Activation.",
       "code": "WIND_AMULET"
     }
   ]

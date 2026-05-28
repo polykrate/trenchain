@@ -64,6 +64,33 @@ export async function getCountries(): Promise<CountryData[]> {
   });
 }
 
+export interface CampaignLocation {
+  id: number;
+  name: string;
+  subtitle: string;
+  description: string;
+  terrain: string;
+  resources: { type: string; output: number }[];
+  connections: number[];
+  position: { x: number; y: number };
+}
+
+export interface Tournament {
+  id: number;
+  name: string;
+  status: 'registration' | 'in_progress' | 'completed';
+  participants: number[];
+  rounds: { round_number: number; matches: { warband_a: number; warband_b: number; winner: number | null }[] }[];
+}
+
+export async function getTournaments(): Promise<Tournament[]> {
+  return [];
+}
+
+export async function getCampaignMap(): Promise<CampaignLocation[]> {
+  return [];
+}
+
 export async function getLeaderboard(): Promise<{ warbandId: WarbandId; glory: number }[]> {
   const client = await getChainClient();
   const entries = await client.query.warband.warbands.entries();

@@ -1,7 +1,8 @@
 import { useState, useMemo, useCallback } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Stepper } from '../components/Stepper'
-import { useCampaignRules, useExplorationRules } from '../hooks/useChainRules'
+import { ChainLoader } from '../components/ChainLoader'
+import { usePostBattleData } from '../hooks/useChainStore'
 import {
   getExplorationDiceCount,
   getMaxRerolls,
@@ -54,8 +55,7 @@ interface DiceRollState {
 export function PostBattle() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { data: campaignRules, loading: crLoading } = useCampaignRules()
-  const { data: explorationRules, loading: erLoading } = useExplorationRules()
+  const { campaignRules, explorationRules, loading: rulesLoading } = usePostBattleData()
 
   const gamesPlayed = parseInt(searchParams.get('games') ?? '3', 10)
   const wonGame = searchParams.get('won') === 'true'
@@ -96,8 +96,11 @@ export function PostBattle() {
 
   const phaseIndex = (campaignRules?.phaseSteps ?? []).findIndex(s => s.id === currentPhase)
 
-  if (crLoading || erLoading) {
-    return <div className="max-w-4xl mx-auto py-12 text-center text-[var(--muted)]">Loading campaign rules...</div>
+  if (rulesLoading) {
+    return <ChainLoader title="Post-Battle" skeletonCount={4} steps={[
+      { label: 'Campaign rules', status: campaignRules ? 'done' : 'loading' },
+      { label: 'Exploration tables', status: explorationRules ? 'done' : 'loading' },
+    ]} />
   }
 
   // ─── Trauma Logic ─────────────────────────────────────────────────

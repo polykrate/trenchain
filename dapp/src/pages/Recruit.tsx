@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { warband as warbandApi } from '../chain'
 import { useChainEntries, type ChainEntry } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function Recruit() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { entries: allEntries } = useChainEntries()
+  const { entries: allEntries, loading: loadingEntries, count: eCount } = useChainEntries()
   const [faction, setFaction] = useState<string | null>(null)
+  const [factionLoading, setFactionLoading] = useState(true)
   const [selected, setSelected] = useState<ChainEntry | null>(null)
   const [recruitName, setRecruitName] = useState('')
 
@@ -15,6 +17,7 @@ export function Recruit() {
     if (!id) return
     warbandApi.getWarband(Number(id)).then(wb => {
       if (wb) setFaction(wb.faction)
+      setFactionLoading(false)
     })
   }, [id])
 
@@ -23,6 +26,13 @@ export function Recruit() {
   const handleRecruit = async () => {
     if (!id || !selected || !recruitName.trim()) return
     navigate(`/warband/${id}`)
+  }
+
+  if (loadingEntries || factionLoading) {
+    return <ChainLoader title="Recruit" skeletonCount={3} steps={[
+      { label: 'Warband faction', status: faction ? 'done' : factionLoading ? 'loading' : 'pending' },
+      { label: 'Unit entries', status: eCount ? 'done' : loadingEntries ? 'loading' : 'pending', current: eCount || undefined },
+    ]} />
   }
 
   return (

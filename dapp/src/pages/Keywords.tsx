@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useChainKeywords, type ChainKeyword } from '../hooks/useChainData'
+import { ChainLoader } from '../components/ChainLoader'
 
 export function Keywords() {
-  const { keywords, loading, error } = useChainKeywords()
+  const { keywords, loading, error, count: kwCount } = useChainKeywords()
   const [search, setSearch] = useState('')
   const [kindFilter, setKindFilter] = useState<'all' | 'Tag' | 'Effect'>('all')
 
@@ -60,11 +61,9 @@ export function Keywords() {
 
       {/* Loading state */}
       {loading && (
-        <div className="space-y-2">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="card-military animate-pulse h-12" />
-          ))}
-        </div>
+        <ChainLoader title="Keywords" skeletonCount={5} steps={[
+          { label: 'Keywords', status: kwCount ? 'done' : 'loading', current: kwCount || undefined },
+        ]} />
       )}
 
       {/* Keywords list */}
