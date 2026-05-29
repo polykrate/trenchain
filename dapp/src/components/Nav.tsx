@@ -83,6 +83,7 @@ const menu: MenuSection[] = [
     label: 'The Long War',
     icon: <IconGlobe />,
     items: [
+      { to: '/longwar/rules', label: 'Rules' },
       { to: '/longwar', label: 'World Map' },
       { to: '/longwar/logistics', label: 'Logistics' },
       { to: '/longwar/theatres', label: 'Theatres' },

@@ -17,6 +17,7 @@ import { TheatreList } from './pages/TheatreList'
 import { TheatreCreate } from './pages/TheatreCreate'
 import { TheatreDetail } from './pages/TheatreDetail'
 import { LogisticsTracker } from './pages/LogisticsTracker'
+import { LongWarRules } from './pages/LongWarRules'
 import { FAQ } from './pages/FAQ'
 import { PostBattle } from './pages/PostBattle'
 
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/campaign/tournaments" element={<Tournaments />} />
 
         {/* The Long War */}
+        <Route path="/longwar/rules" element={<LongWarRules />} />
         <Route path="/longwar" element={<TerritoryMap />} />
         <Route path="/longwar/logistics" element={<LogisticsTracker />} />
         <Route path="/longwar/theatres" element={<TheatreList />} />
