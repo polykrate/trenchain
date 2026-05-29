@@ -8,37 +8,97 @@ Trenchain brings the Trench Crusade tabletop wargame into a persistent, season-b
 
 ```mermaid
 flowchart TB
-    subgraph parachain [Parachain Runtime]
-        direction TB
-        campaign[pallet-campaign]
-        battle[pallet-battle]
-        warband[pallet-warband]
-        roster[pallet-roster]
-        theatre[pallet-theatre]
-        territory[pallet-territory]
-        logistics[pallet-logistics]
-        production[pallet-production]
-        demand[pallet-demand]
-        exploration[pallet-exploration]
-        compendium[pallet-compendium]
-        tile[pallet-tile]
-        region[pallet-region]
-    end
-
     subgraph dapp [React DApp]
         direction TB
         ui[Vite + React + TailwindCSS]
         dedot[dedot chain client]
     end
 
-    dapp -->|RPC / WebSocket| parachain
+    dapp -->|RPC / WebSocket| runtime
+
+    subgraph runtime [Parachain Runtime]
+        direction TB
+
+        subgraph foundations [Layer 1 - Foundations]
+            keyword[keyword]
+            skill[skill]
+            faction[faction]
+            equiprules[equiprules]
+            building[building]
+        end
+
+        subgraph compendium [Layer 2 - Compendium]
+            battlekit[battlekit]
+            entry[entry]
+            patron[patron]
+            armoury[armoury]
+        end
+
+        subgraph player [Layer 3 - Player]
+            warband[warband]
+            roster[roster]
+        end
+
+        subgraph campaignLayer [Layer 4 - Campaign]
+            campaign[campaign]
+            battle[battle]
+            territory[territory]
+            exploration[exploration]
+        end
+
+        subgraph strategy [Layer 5 - Grand Strategy]
+            tile[tile]
+            region[region]
+            country[country]
+            theatre[theatre]
+        end
+
+        subgraph economy [Layer 6 - Economy]
+            production[production]
+            demand[demand]
+            logistics[logistics]
+        end
+    end
+
+    faction --> battlekit
+    faction --> entry
+    faction --> armoury
+    skill --> patron
+    keyword --> battlekit
+
+    battlekit --> armoury
+    battlekit --> roster
+    entry --> roster
+    entry --> warband
+    armoury --> roster
+    patron --> warband
+    equiprules --> roster
+
+    warband <-->|"mutual"| roster
+    warband <-->|"mutual"| campaign
+
     campaign --> battle
-    campaign --> warband
-    battle --> roster
-    logistics --> production
-    logistics --> demand
-    theatre --> region
+    theatre --> campaign
+    warband --> battle
+    warband --> territory
+    warband --> exploration
+    building --> territory
+
+    production --> logistics
+    demand --> logistics
 ```
+
+### Dependency layers
+
+| Layer | Pallets | Role |
+|-------|---------|------|
+| 1 - Foundations | keyword, skill, faction, equiprules, building | Base definitions, no dependencies |
+| 2 - Compendium | battlekit, entry, patron, armoury | Game content (units, items, patrons) |
+| 3 - Player | warband, roster | Player-owned state (mutual cycle) |
+| 4 - Campaign | campaign, battle, territory, exploration | Active gameplay (mutual cycle with warband) |
+| 5 - Grand Strategy | tile, region, country, theatre | World map and theatre definitions |
+| 6 - Economy | production, demand, logistics | Resource flows between regions |
+| Rules | campaign-rules, exploration-rules, terrain-rules | Config data stores (isolated) |
 
 ## Monorepo Layout
 
