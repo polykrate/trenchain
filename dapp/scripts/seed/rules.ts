@@ -17,7 +17,7 @@ import type {
   PalletTerrainRulesBattlefieldArchetype,
   PalletTerrainRulesCombatModifierConfig,
 } from '../../src/chain-api/parachain-template-runtime/types';
-import { loadJson, toBytes, toCode32, toCode16, sudoSendAll } from './shared';
+import { loadJson, toBytes, toCode32, toCode16, sudoSendAll, sudoBatch } from './shared';
 import type { ChainClient, CallLike } from './shared';
 
 function mapBattlekitType(raw: string): TcPrimitivesBattlekitType {
@@ -66,7 +66,7 @@ export async function seedEquiprules(client: ChainClient, alice: any) {
       movementPenalty: tag.movement_penalty || false,
     }}});
   }
-  await sudoSendAll(client, alice, 'Equiprules', equipCalls);
+  await sudoBatch(client, alice, 'Equiprules', equipCalls);
 }
 
 export async function seedCampaignRules(client: ChainClient, alice: any) {
@@ -103,7 +103,7 @@ export async function seedCampaignRules(client: ChainClient, alice: any) {
     })) as PalletCampaignRulesQuartermasterAction[],
   }}});
 
-  await sudoSendAll(client, alice, 'CampaignRules', campCalls);
+  await sudoBatch(client, alice, 'CampaignRules', campCalls);
 }
 
 export async function seedExplorationRules(client: ChainClient, alice: any) {
@@ -149,7 +149,7 @@ export async function seedExplorationRules(client: ChainClient, alice: any) {
     }}});
   }
 
-  await sudoSendAll(client, alice, 'ExplorationRules', exploCalls);
+  await sudoBatch(client, alice, 'ExplorationRules', exploCalls);
 }
 
 export async function seedTerrainRules(client: ChainClient, alice: any) {
@@ -196,7 +196,7 @@ export async function seedTerrainRules(client: ChainClient, alice: any) {
     } as PalletTerrainRulesCombatModifierConfig,
   }}});
 
-  await sudoSendAll(client, alice, 'TerrainRules', terrainCalls);
+  await sudoBatch(client, alice, 'TerrainRules', terrainCalls);
 }
 
 export async function seedRules(client: ChainClient, alice: any) {

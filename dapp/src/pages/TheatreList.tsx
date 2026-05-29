@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { theatre } from '../chain'
-import type { Theatre } from '../chain/theatre'
+import { getTheatres, type Theatre } from '../chain/theatre'
 import { ChainLoader } from '../components/ChainLoader'
 
 export function TheatreList() {
@@ -9,7 +8,7 @@ export function TheatreList() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    theatre.getTheatres().then(t => { setTheatres(t); setLoading(false) })
+    getTheatres().then(t => { setTheatres(t); setLoading(false) }).catch(() => setLoading(false))
   }, [])
 
   if (loading) {
@@ -45,18 +44,15 @@ export function TheatreList() {
               <span className={`text-xs font-bold uppercase px-2 py-0.5 border rounded-sm ${
                 t.status === 'active'
                   ? 'border-[var(--olive)] text-[var(--olive)]'
-                  : t.status === 'draft'
-                    ? 'border-[var(--sepia)] text-[var(--sepia)]'
-                    : 'border-[var(--muted)] text-[var(--muted)]'
+                  : 'border-[var(--sepia)] text-[var(--sepia)]'
               }`}>
                 {t.status}
               </span>
             </div>
             <p className="text-[var(--fg-secondary)] mb-2">{t.description}</p>
             <div className="flex gap-4 text-xs text-[var(--muted)]">
-              <span>Region: {t.region}</span>
-              <span>Nodes: {t.graph.nodes.length}</span>
-              <span>Map: {t.map_cid ? 'Uploaded' : 'Pending'}</span>
+              <span>Regions: {t.regions.length}</span>
+              {t.objectives && <span>Objectives: {t.objectives.secondaries.length + 1}</span>}
             </div>
           </Link>
         ))}

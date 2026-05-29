@@ -38,6 +38,8 @@ export function WarbandCreate() {
 
   const [roster, setRoster] = useState<RecruitedModel[]>([])
   const [equipOpen, setEquipOpen] = useState<number | null>(null)
+  const [deploying, setDeploying] = useState(false)
+  const [deployError, setDeployError] = useState<string | null>(null)
 
   if (loading) {
     const done = (n: number) => n > 0 ? 'done' as const : 'loading' as const
@@ -122,9 +124,6 @@ export function WarbandCreate() {
     }
     setRoster(updated)
   }
-
-  const [deploying, setDeploying] = useState(false)
-  const [deployError, setDeployError] = useState<string | null>(null)
 
   async function handleConfirm() {
     if (!selectedFaction || !selectedPatron || !name.trim()) return

@@ -1,6 +1,10 @@
 import { getChainClient } from '../hooks/useChainClient';
 import { decodeBytes, decodeCode, toCode16, toCode32 } from '../lib/chainCodec';
 
+function bytesToHex(bytes: Uint8Array): `0x${string}` {
+  return ('0x' + Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('')) as `0x${string}`;
+}
+
 export type WarbandId = number;
 
 export interface WarbandMeta {
@@ -60,11 +64,11 @@ export async function createWarband(
   name: string,
 ): Promise<void> {
   const client = await getChainClient();
-  const nameBytes = new TextEncoder().encode(name);
+  const nameHex = bytesToHex(new TextEncoder().encode(name));
   await client.tx.warband.createWarband(
     toCode16(faction) as any,
     toCode32(patron) as any,
-    Array.from(nameBytes) as any,
+    nameHex as any,
   ).signAndSend(signer).untilBestChainBlockIncluded();
 }
 
@@ -81,11 +85,11 @@ export async function recruitModel(
   itemCodes: string[],
 ): Promise<void> {
   const client = await getChainClient();
-  const nameBytes = new TextEncoder().encode(modelName);
+  const nameHex = bytesToHex(new TextEncoder().encode(modelName));
   await client.tx.roster.recruit(
     warbandId,
     toCode32(entryCode) as any,
-    Array.from(nameBytes) as any,
+    nameHex as any,
     itemCodes.map(c => toCode32(c)) as any,
   ).signAndSend(signer).untilBestChainBlockIncluded();
 }

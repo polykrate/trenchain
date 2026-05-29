@@ -1,55 +1,55 @@
-import { loadJson, toCode32, toCode16, sudoSend } from './shared';
+import { loadJson, toCode32, toCode16, toBytes, sudoSend } from './shared';
 import type { ChainClient } from './shared';
+
+interface TheatreJson {
+  id: string;
+  name: string;
+  description: string;
+  lore: string;
+  regions: string[];
+  objectives: {
+    primary: string;
+    secondaries: {
+      kind: string;
+      target_tile?: [number, number];
+      target_resource?: string;
+      vp_reward: number;
+    }[];
+  };
+}
 
 export async function seedTheatre(client: ChainClient, alice: any) {
   console.log('🎭 Seeding theatre...');
-  const theatreData = loadJson('theatre_cordoba.json');
-  const theatreCode = toCode32('theatre_cordoba');
+  const theatreData: TheatreJson = loadJson('theatre_cordoba.json');
+  const theatreCode = toCode32(theatreData.id);
 
-  await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'RegisterTheatre', params: {
+  const regions = theatreData.regions.map(r => toCode32(r));
+
+  await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'CreateTheatre', params: {
     code: theatreCode,
-    name: theatreData.name.slice(0, 128),
-    description: theatreData.description.slice(0, 512),
-    lore: (theatreData.lore || '').slice(0, 512),
+    name: toBytes(theatreData.name.slice(0, 128)),
+    description: toBytes(theatreData.description.slice(0, 512)),
+    lore: toBytes(theatreData.lore.slice(0, 512)),
+    regions,
   }}});
+  console.log(`  [Theatre] Created "${theatreData.name}" with ${regions.length} regions`);
 
-  const controlMap: Record<string, string> = {
-    faithful: 'Faithful', heretic: 'Heretic', contested: 'Contested', neutral: 'Neutral',
-  };
-  const t0 = Date.now();
-  let ok = 0;
-  for (const tile of theatreData.tiles) {
-    const success = await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'AddNode', params: {
-      theatre: theatreCode,
-      coord: [tile.q, tile.r],
-      terrain: toCode16(tile.terrain),
-      name: tile.node.name.slice(0, 128),
-      nodeType: (tile.node.type || 'terrain').slice(0, 32),
-      control: controlMap[tile.node.control] || 'Neutral',
-      desc: (tile.node.desc || '').slice(0, 512),
-      supplySource: tile.logistics?.supply_source || false,
-      demand: tile.logistics?.demand || 2,
-      buildings: (tile.buildings || []).slice(0, 8).map((b: string) => toCode32(b)),
-    }}});
-    if (success) ok++;
-  }
-  console.log(`  [Theatre Nodes] ${ok}/${theatreData.tiles.length} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
+  const primaryMap: Record<string, string> = { elimination: 'Elimination' };
+  const kindMap: Record<string, string> = { kill_leader: 'KillLeader', loot_resource: 'LootResource' };
 
-  const edgesVec = theatreData.edges.map((e: [number, number], i: number) => ({
-    from: e[0], to: e[1], capacity: theatreData.edge_capacity[i] ?? 3,
+  const EMPTY_RESOURCE = toCode16('');
+  const secondaries = theatreData.objectives.secondaries.map(s => ({
+    kind: kindMap[s.kind] || 'KillLeader' as any,
+    targetTileQ: s.target_tile != null ? s.target_tile[0] : -1,
+    targetTileR: s.target_tile != null ? s.target_tile[1] : -1,
+    targetResource: s.target_resource != null ? toCode16(s.target_resource) : EMPTY_RESOURCE,
+    vpReward: s.vp_reward,
   }));
-  await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'SetEdges', params: {
-    theatre: theatreCode, edges: edgesVec,
-  }}});
-  console.log(`  [Theatre Edges] ${edgesVec.length} edges`);
 
-  if (theatreData.context_tiles?.length) {
-    const ctxTiles = theatreData.context_tiles.map((ct: any) => ({
-      coord: [ct.q, ct.r], terrain: toCode16(ct.terrain),
-    }));
-    await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'SetContextTiles', params: {
-      theatre: theatreCode, tiles: ctxTiles,
-    }}});
-    console.log(`  [Theatre Context] ${ctxTiles.length} tiles`);
-  }
+  await sudoSend(client, alice, { pallet: 'Theatre', palletCall: { name: 'SetObjectives', params: {
+    theatre: theatreCode,
+    primary: primaryMap[theatreData.objectives.primary] || 'Elimination',
+    secondaries,
+  }}});
+  console.log(`  [Theatre Objectives] primary=${theatreData.objectives.primary}, ${secondaries.length} secondaries`);
 }

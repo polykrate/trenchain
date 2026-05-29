@@ -178,6 +178,28 @@ export interface MapData {
 
 // ─── Theatre Types ───────────────────────────────────────────────────────────
 
+export interface ChainSecondaryObjective {
+  kind: 'KillLeader' | 'LootResource';
+  targetTile: [number, number] | null;
+  targetResource: string | null;
+  vpReward: number;
+}
+
+export interface ChainTheatreObjectives {
+  primary: 'Elimination';
+  secondaries: ChainSecondaryObjective[];
+}
+
+export interface ChainTheatre {
+  code: string;
+  name: string;
+  description: string;
+  lore: string;
+  regions: string[];
+  objectives: ChainTheatreObjectives | null;
+}
+
+// Legacy aliases for backward compatibility with components still referencing old types
 export interface ChainTheatreNode {
   coord: [number, number];
   terrain: string;
@@ -189,27 +211,8 @@ export interface ChainTheatreNode {
   demand: number;
   buildings: string[];
 }
-
-export interface ChainTheatreEdge {
-  from: number;
-  to: number;
-  capacity: number;
-}
-
-export interface ChainContextTile {
-  coord: [number, number];
-  terrain: string;
-}
-
-export interface ChainTheatre {
-  code: string;
-  name: string;
-  description: string;
-  lore: string;
-  nodes: ChainTheatreNode[];
-  edges: ChainTheatreEdge[];
-  contextTiles: ChainContextTile[];
-}
+export interface ChainTheatreEdge { from: number; to: number; capacity: number; }
+export interface ChainContextTile { coord: [number, number]; terrain: string; }
 
 export interface TheatreData {
   theatres: ChainTheatre[];
@@ -461,52 +464,41 @@ export function useMapData() {
 export function useTheatreData() {
   return useCached<TheatreData>('theatreData', async () => {
     const client = await getChainClient();
-    const theatresRaw = await client.query.theatre.theatres.entries();
+    const q = client.query as any;
+    const theatresRaw = await q.theatre.theatres.entries();
 
     const theatres: ChainTheatre[] = [];
     for (const [key, value] of theatresRaw as any[]) {
       const code = decodeCode(key);
       const def = value as any;
-      const nodeCount = def.nodeCount ?? 0;
 
-      const nodes: ChainTheatreNode[] = [];
-      for (let i = 0; i < nodeCount; i++) {
-        const node = await client.query.theatre.nodes(key, i);
-        if (node) {
-          const n = node as any;
-          nodes.push({
-            coord: n.coord as [number, number],
-            terrain: decodeCode(n.terrain ?? ''),
-            name: decodeBytes(n.name),
-            nodeType: decodeBytes(n.nodeType),
-            control: n.control?.type ?? n.control ?? 'Neutral',
-            desc: decodeBytes(n.desc),
-            supplySource: n.supplySource ?? false,
-            demand: n.demand ?? 2,
-            buildings: (n.buildings ?? []).map((b: any) => decodeCode(b)),
-          });
+      const regionsRaw = await q.theatre.theatreRegions(key) as any[];
+      const regions = (regionsRaw ?? []).map((r: any) => decodeCode(r));
+
+      let objectives: ChainTheatreObjectives | null = null;
+      try {
+        const objRaw = await q.theatre.theatreObjectives(key);
+        if (objRaw) {
+          const obj = objRaw as any;
+          objectives = {
+            primary: obj.primary?.type ?? 'Elimination',
+            secondaries: (obj.secondaries ?? []).map((s: any) => ({
+              kind: s.kind?.type ?? 'KillLeader',
+              targetTile: (s.targetTileQ >= 0 && s.targetTileR >= 0) ? [s.targetTileQ, s.targetTileR] as [number, number] : null,
+              targetResource: s.targetResource ? decodeCode(s.targetResource) : null,
+              vpReward: s.vpReward ?? 0,
+            })),
+          };
         }
-      }
-
-      const edgesRaw = await client.query.theatre.edges(key) as any[];
-      const edges: ChainTheatreEdge[] = (edgesRaw ?? []).map((e: any) => ({
-        from: e.from, to: e.to, capacity: e.capacity,
-      }));
-
-      const ctxRaw = await client.query.theatre.contextTiles(key) as any[];
-      const contextTiles: ChainContextTile[] = (ctxRaw ?? []).map((ct: any) => ({
-        coord: ct.coord as [number, number],
-        terrain: decodeCode(ct.terrain ?? ''),
-      }));
+      } catch { /* objectives not set yet */ }
 
       theatres.push({
         code,
         name: decodeBytes(def.name),
         description: decodeBytes(def.description),
         lore: decodeBytes(def.lore),
-        nodes,
-        edges,
-        contextTiles,
+        regions,
+        objectives,
       });
     }
 

@@ -181,44 +181,38 @@ async function loadTiles(): Promise<ChainTile[]> {
 
 async function loadTheatre(theatreCode: string): Promise<ChainTheatre | null> {
   const client = await getChainClient();
+  const q = client.query as any;
   const code32 = toFixedCode(theatreCode, 32);
-  const def = await client.query.theatre.theatres(code32) as any;
+  const def = await q.theatre.theatres(code32) as any;
   if (!def) return null;
 
-  const nodeCount = def.nodeCount ?? 0;
-  const [nodesResult, edgesRaw, ctxRaw] = await Promise.all([
-    Promise.all(Array.from({ length: nodeCount }, (_, i) => client.query.theatre.nodes(code32, i))),
-    client.query.theatre.edges(code32),
-    client.query.theatre.contextTiles(code32),
-  ]);
+  const regionsRaw = await q.theatre.theatreRegions(code32) as any[];
+  const regions = (regionsRaw ?? []).map((r: any) => decodeCode(r));
 
-  const nodes: ChainTheatreNode[] = nodesResult.filter(Boolean).map((n: any) => ({
-    coord: n.coord as [number, number],
-    terrain: decodeCode(n.terrain ?? ''),
-    name: decodeBytes(n.name),
-    nodeType: decodeBytes(n.nodeType),
-    control: n.control?.type ?? n.control ?? 'Neutral',
-    desc: decodeBytes(n.desc),
-    supplySource: n.supplySource ?? false,
-    demand: n.demand ?? 2,
-    buildings: (n.buildings ?? []).map((b: any) => decodeCode(b)),
-  }));
-
-  const edges: ChainTheatreEdge[] = ((edgesRaw as any[]) ?? []).map((e: any) => ({
-    from: e.from, to: e.to, capacity: e.capacity,
-  }));
-
-  const contextTiles: ChainContextTile[] = ((ctxRaw as any[]) ?? []).map((ct: any) => ({
-    coord: ct.coord as [number, number],
-    terrain: decodeCode(ct.terrain ?? ''),
-  }));
+  let objectives: import('./useChainRules').ChainTheatreObjectives | null = null;
+  try {
+    const objRaw = await q.theatre.theatreObjectives(code32);
+    if (objRaw) {
+      const obj = objRaw as any;
+      objectives = {
+        primary: obj.primary?.type ?? 'Elimination',
+        secondaries: (obj.secondaries ?? []).map((s: any) => ({
+          kind: s.kind?.type ?? 'KillLeader',
+          targetTile: (s.targetTileQ >= 0 && s.targetTileR >= 0) ? [s.targetTileQ, s.targetTileR] as [number, number] : null,
+          targetResource: s.targetResource ? decodeCode(s.targetResource) : null,
+          vpReward: s.vpReward ?? 0,
+        })),
+      };
+    }
+  } catch { /* objectives not set yet */ }
 
   return {
     code: theatreCode,
     name: decodeBytes(def.name),
     description: decodeBytes(def.description),
     lore: decodeBytes(def.lore),
-    nodes, edges, contextTiles,
+    regions,
+    objectives,
   };
 }
 

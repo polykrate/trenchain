@@ -1,0 +1,4064 @@
+{
+  "ie_ireland": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        0,
+        20
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        0,
+        21
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        0,
+        22
+      ]
+    }
+  ],
+  "es_galicia": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        0,
+        35
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        0,
+        36
+      ]
+    }
+  ],
+  "pt_portugal": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        0,
+        37
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        0,
+        38
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        0,
+        39
+      ]
+    }
+  ],
+  "ma_central_morocco": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        0,
+        48
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        0,
+        49
+      ]
+    }
+  ],
+  "ma_southern_morocco": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        0,
+        50
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        0,
+        51
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        1,
+        49
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        1,
+        50
+      ]
+    }
+  ],
+  "dz_sahara": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        0,
+        52
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        0,
+        53
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        1,
+        51
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        1,
+        52
+      ]
+    }
+  ],
+  "gb_northern_ireland": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        2,
+        18
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        2,
+        19
+      ]
+    }
+  ],
+  "es_extremadura": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        2,
+        40
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        2,
+        41
+      ]
+    }
+  ],
+  "es_andalucia": [
+    {
+      "tile": [
+        6,
+        42
+      ],
+      "building": "foundry",
+      "level": 2
+    },
+    {
+      "tile": [
+        6,
+        43
+      ],
+      "building": "barracks",
+      "level": 2,
+      "tileName": "Sevilla"
+    },
+    {
+      "tile": [
+        7,
+        42
+      ],
+      "building": "trade_post",
+      "level": 2,
+      "tileName": "C\u00f3rdoba"
+    }
+  ],
+  "gb_highlands_and_islands": [
+    {
+      "tile": [
+        6,
+        13
+      ],
+      "building": "foundry",
+      "level": 2
+    },
+    {
+      "tile": [
+        3,
+        12
+      ],
+      "building": "market",
+      "level": 1
+    },
+    {
+      "tile": [
+        6,
+        15
+      ],
+      "building": "iron_mine",
+      "level": 1
+    }
+  ],
+  "es_castilla_y_leon": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        3,
+        35
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        3,
+        36
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        3,
+        37
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        3,
+        38
+      ]
+    }
+  ],
+  "es_northern_coast": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        4,
+        35
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        6,
+        35
+      ]
+    }
+  ],
+  "ma_tanger_tetouan": [
+    {
+      "tile": [
+        4,
+        45
+      ],
+      "building": "harbor_dock",
+      "level": 1
+    }
+  ],
+  "gb_southern_england": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        5,
+        25
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        6,
+        25
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        7,
+        24
+      ]
+    }
+  ],
+  "es_castilla_la_mancha": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        5,
+        39
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        6,
+        39
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        6,
+        40
+      ]
+    }
+  ],
+  "ma_northern_morocco": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        5,
+        45
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        6,
+        45
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        6,
+        46
+      ]
+    }
+  ],
+  "gb_scottish_lowlands": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        6,
+        16
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        6,
+        17
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        6,
+        18
+      ]
+    }
+  ],
+  "gb_wales": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        6,
+        23
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        7,
+        21
+      ]
+    }
+  ],
+  "fr_bretagne": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        6,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        7,
+        28
+      ]
+    }
+  ],
+  "gb_northern_england": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        8,
+        19
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        8,
+        22
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        9,
+        17
+      ]
+    }
+  ],
+  "fr_anjou": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        9,
+        29
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        10,
+        29
+      ]
+    }
+  ],
+  "gb_eastern_england": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        10,
+        21
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        11,
+        20
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        11,
+        21
+      ]
+    }
+  ],
+  "es_aragon": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        10,
+        37
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        11,
+        36
+      ]
+    }
+  ],
+  "es_valenciana": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        10,
+        42
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        11,
+        39
+      ]
+    }
+  ],
+  "dz_tell_atlas": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        10,
+        45
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        10,
+        46
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        11,
+        44
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        11,
+        45
+      ]
+    }
+  ],
+  "dz_highlands": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        10,
+        47
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        11,
+        46
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        11,
+        47
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        12,
+        45
+      ]
+    }
+  ],
+  "fr_normandie": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        11,
+        27
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        12,
+        27
+      ]
+    }
+  ],
+  "fr_aquitaine": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        11,
+        31
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        11,
+        32
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        11,
+        33
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        11,
+        34
+      ]
+    }
+  ],
+  "fr_touraine": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        13,
+        29
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        14,
+        28
+      ]
+    }
+  ],
+  "fr_languedoc": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        13,
+        34
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        13,
+        35
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        14,
+        34
+      ]
+    }
+  ],
+  "es_cataluna": [
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        13,
+        37
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        14,
+        36
+      ]
+    }
+  ],
+  "fr_picardie": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        15,
+        25
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        15,
+        26
+      ]
+    }
+  ],
+  "fr_ile_de_france": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        15,
+        27
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        16,
+        28
+      ]
+    }
+  ],
+  "fr_dauphine": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        16,
+        31
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        16,
+        32
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        16,
+        33
+      ]
+    }
+  ],
+  "be_flanders": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        17,
+        24
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        18,
+        24
+      ]
+    }
+  ],
+  "fr_bourgogne": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        17,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        17,
+        29
+      ]
+    }
+  ],
+  "nl_netherlands": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        18,
+        23
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        19,
+        22
+      ]
+    }
+  ],
+  "fr_lorraine": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        18,
+        27
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        18,
+        28
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        19,
+        26
+      ]
+    }
+  ],
+  "no_vestlandet": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        20,
+        6
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        20,
+        7
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        20,
+        10
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        21,
+        5
+      ]
+    }
+  ],
+  "no_stlandet": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        21,
+        10
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        21,
+        11
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        22,
+        10
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        22,
+        11
+      ]
+    }
+  ],
+  "de_rhineland": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        21,
+        24
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        22,
+        23
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        22,
+        24
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        22,
+        25
+      ]
+    }
+  ],
+  "lu_luxembourg": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        21,
+        26
+      ]
+    }
+  ],
+  "de_saxony": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        22,
+        22
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        23,
+        20
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        23,
+        21
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        24,
+        21
+      ]
+    }
+  ],
+  "ch_switzerland": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        22,
+        30
+      ]
+    }
+  ],
+  "no_trndelag": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        23,
+        5
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        24,
+        5
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        24,
+        6
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        24,
+        7
+      ]
+    }
+  ],
+  "it_piedmont": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        23,
+        31
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        23,
+        32
+      ]
+    }
+  ],
+  "dk_denmark": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        24,
+        16
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        24,
+        17
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        25,
+        14
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        25,
+        15
+      ]
+    }
+  ],
+  "de_hesse": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        24,
+        25
+      ]
+    }
+  ],
+  "de_swabia": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        24,
+        28
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        24,
+        29
+      ]
+    }
+  ],
+  "tn_tunisia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        24,
+        46
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        24,
+        47
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        25,
+        43
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        25,
+        44
+      ]
+    }
+  ],
+  "de_lower_saxony": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        25,
+        18
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        26,
+        19
+      ]
+    }
+  ],
+  "it_lombardia": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        25,
+        31
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        25,
+        32
+      ]
+    }
+  ],
+  "fr_corse": [
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        25,
+        36
+      ]
+    }
+  ],
+  "it_sardegna": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        25,
+        38
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        25,
+        39
+      ]
+    }
+  ],
+  "de_bavaria": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        26,
+        26
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        27,
+        25
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        27,
+        26
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        27,
+        28
+      ]
+    }
+  ],
+  "it_emilia_romagna": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        26,
+        33
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        27,
+        33
+      ]
+    }
+  ],
+  "ly_tripolitania": [
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        27,
+        50
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        27,
+        51
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        28,
+        49
+      ]
+    },
+    {
+      "building": "refugee_camp",
+      "level": 1,
+      "tile": [
+        28,
+        50
+      ]
+    }
+  ],
+  "ly_fezzan": [
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        27,
+        52
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        27,
+        53
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        27,
+        54
+      ]
+    },
+    {
+      "building": "refugee_camp",
+      "level": 1,
+      "tile": [
+        27,
+        55
+      ]
+    }
+  ],
+  "de_brandenburg": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        28,
+        20
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        29,
+        19
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        29,
+        20
+      ]
+    }
+  ],
+  "at_austria": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        28,
+        30
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        29,
+        29
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        30,
+        30
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        31,
+        28
+      ]
+    }
+  ],
+  "it_veneto": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        28,
+        32
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        29,
+        31
+      ]
+    }
+  ],
+  "it_toscana": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        28,
+        34
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        28,
+        35
+      ]
+    }
+  ],
+  "se_gotaland": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        29,
+        11
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        29,
+        12
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        30,
+        11
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        30,
+        12
+      ]
+    }
+  ],
+  "se_norrland": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        30,
+        2
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        30,
+        3
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        30,
+        4
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        31,
+        1
+      ]
+    }
+  ],
+  "se_svealand": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        30,
+        5
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        30,
+        6
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        30,
+        10
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        31,
+        5
+      ]
+    }
+  ],
+  "it_friuli_venezia_giulia": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        30,
+        31
+      ]
+    }
+  ],
+  "it_lazio": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        30,
+        36
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        31,
+        37
+      ]
+    }
+  ],
+  "cz_bohemia": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        31,
+        25
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        31,
+        26
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        32,
+        25
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        32,
+        26
+      ]
+    }
+  ],
+  "it_southern_italy": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        31,
+        36
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        32,
+        36
+      ]
+    }
+  ],
+  "it_sicily": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        31,
+        41
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        32,
+        42
+      ]
+    }
+  ],
+  "si_slovenia": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        32,
+        31
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        32,
+        32
+      ]
+    }
+  ],
+  "pl_pomerania": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        33,
+        20
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        33,
+        21
+      ]
+    }
+  ],
+  "pl_greater_poland": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        34,
+        22
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        34,
+        23
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        35,
+        21
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        35,
+        22
+      ]
+    }
+  ],
+  "pl_silesia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        34,
+        24
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        35,
+        23
+      ]
+    }
+  ],
+  "hr_croatia": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        34,
+        33
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        35,
+        31
+      ]
+    }
+  ],
+  "it_mezzogiorno": [
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        34,
+        37
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        35,
+        37
+      ]
+    }
+  ],
+  "ba_bosnia": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        35,
+        32
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        36,
+        33
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        36,
+        34
+      ]
+    }
+  ],
+  "hu_hungary": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        36,
+        29
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        36,
+        30
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        37,
+        29
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        37,
+        30
+      ]
+    }
+  ],
+  "sk_slovakia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        37,
+        27
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        37,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        38,
+        28
+      ]
+    }
+  ],
+  "me_montenegro": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        39,
+        35
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        40,
+        35
+      ]
+    }
+  ],
+  "ly_cyrenaica": [
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        39,
+        51
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        40,
+        51
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        40,
+        52
+      ]
+    },
+    {
+      "building": "refugee_camp",
+      "level": 1,
+      "tile": [
+        40,
+        53
+      ]
+    }
+  ],
+  "pl_prussia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        40,
+        26
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        41,
+        19
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        41,
+        20
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        41,
+        25
+      ]
+    }
+  ],
+  "rs_serbia": [
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        40,
+        32
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        40,
+        33
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        41,
+        31
+      ]
+    }
+  ],
+  "ru_novgorod": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        41,
+        18
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        43,
+        18
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        44,
+        18
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        44,
+        19
+      ]
+    }
+  ],
+  "pl_masovia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        41,
+        21
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        41,
+        24
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        42,
+        21
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        42,
+        22
+      ]
+    }
+  ],
+  "al_albania": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        41,
+        36
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        41,
+        37
+      ]
+    }
+  ],
+  "xk_kosovo": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        42,
+        35
+      ]
+    }
+  ],
+  "mk_north_macedonia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        42,
+        37
+      ]
+    }
+  ],
+  "gr_greece": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        42,
+        39
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        42,
+        40
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        43,
+        38
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        43,
+        39
+      ]
+    }
+  ],
+  "fi_ostrobothnia": [
+    {
+      "tile": [
+        46,
+        2
+      ],
+      "building": "alchemy_workshop",
+      "level": 2
+    },
+    {
+      "tile": [
+        43,
+        3
+      ],
+      "building": "harbor_dock",
+      "level": 1
+    },
+    {
+      "tile": [
+        44,
+        4
+      ],
+      "building": "field_hospital",
+      "level": 1
+    },
+    {
+      "tile": [
+        44,
+        5
+      ],
+      "building": "apothecary",
+      "level": 1
+    },
+    {
+      "tile": [
+        45,
+        3
+      ],
+      "building": "lumber_mill",
+      "level": 1
+    }
+  ],
+  "fi_southern_finland": [
+    {
+      "tile": [
+        47,
+        7
+      ],
+      "building": "barracks",
+      "level": 2
+    },
+    {
+      "tile": [
+        45,
+        8
+      ],
+      "building": "harbor_dock",
+      "level": 1
+    },
+    {
+      "tile": [
+        46,
+        6
+      ],
+      "building": "field_hospital",
+      "level": 1
+    },
+    {
+      "tile": [
+        49,
+        7
+      ],
+      "building": "trade_post",
+      "level": 1
+    },
+    {
+      "tile": [
+        45,
+        5
+      ],
+      "building": "alchemy_workshop",
+      "level": 1
+    },
+    {
+      "tile": [
+        45,
+        6
+      ],
+      "building": "apothecary",
+      "level": 1
+    }
+  ],
+  "lv_latvia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        43,
+        14
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        43,
+        15
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        44,
+        14
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        44,
+        15
+      ]
+    }
+  ],
+  "lt_lithuania": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        43,
+        16
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        43,
+        17
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        44,
+        16
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        44,
+        17
+      ]
+    }
+  ],
+  "ro_transylvania": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        43,
+        30
+      ]
+    },
+    {
+      "building": "munitions_factory",
+      "level": 1,
+      "tile": [
+        43,
+        31
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        44,
+        30
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        44,
+        31
+      ]
+    }
+  ],
+  "ee_estonia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        44,
+        12
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        45,
+        11
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        46,
+        11
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        47,
+        10
+      ]
+    }
+  ],
+  "ua_galicia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        44,
+        28
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        45,
+        26
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        45,
+        27
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        45,
+        28
+      ]
+    }
+  ],
+  "ro_oltenia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        45,
+        32
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        45,
+        33
+      ]
+    }
+  ],
+  "bg_bulgaria": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        45,
+        34
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        45,
+        35
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        45,
+        36
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        46,
+        35
+      ]
+    }
+  ],
+  "by_grodno": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        46,
+        20
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        46,
+        22
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        47,
+        20
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        47,
+        21
+      ]
+    }
+  ],
+  "fi_savonia": [
+    {
+      "tile": [
+        52,
+        3
+      ],
+      "building": "market",
+      "level": 2
+    },
+    {
+      "tile": [
+        51,
+        0
+      ],
+      "building": "munitions_factory",
+      "level": 1
+    },
+    {
+      "tile": [
+        47,
+        4
+      ],
+      "building": "iron_mine",
+      "level": 1
+    },
+    {
+      "tile": [
+        51,
+        4
+      ],
+      "building": "field_hospital",
+      "level": 1
+    },
+    {
+      "tile": [
+        48,
+        3
+      ],
+      "building": "alchemy_workshop",
+      "level": 1
+    },
+    {
+      "tile": [
+        48,
+        5
+      ],
+      "building": "apothecary",
+      "level": 1
+    }
+  ],
+  "ua_volhynia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        47,
+        23
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        47,
+        24
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        48,
+        23
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        48,
+        24
+      ]
+    }
+  ],
+  "ro_wallachia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        47,
+        32
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        48,
+        32
+      ]
+    }
+  ],
+  "ro_moldova": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        48,
+        29
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        49,
+        29
+      ]
+    }
+  ],
+  "eg_sinai_desert": [
+    {
+      "building": "dark_altar",
+      "level": 1,
+      "tile": [
+        48,
+        49
+      ]
+    },
+    {
+      "building": "market",
+      "level": 1,
+      "tile": [
+        48,
+        50
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        48,
+        51
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        49,
+        49
+      ]
+    }
+  ],
+  "eg_sudan": [
+    {
+      "building": "dark_altar",
+      "level": 1,
+      "tile": [
+        49,
+        59
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        50,
+        59
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        51,
+        59
+      ]
+    }
+  ],
+  "by_minsk": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        50,
+        20
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        51,
+        18
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        51,
+        19
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        51,
+        20
+      ]
+    }
+  ],
+  "tr_marmara": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        50,
+        38
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        51,
+        36
+      ]
+    }
+  ],
+  "md_moldova": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        51,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        52,
+        28
+      ]
+    }
+  ],
+  "ro_muntenia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        51,
+        31
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        52,
+        32
+      ]
+    }
+  ],
+  "tr_aegean": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        51,
+        40
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        52,
+        40
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        52,
+        41
+      ]
+    }
+  ],
+  "ua_kyiv": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        52,
+        24
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        52,
+        25
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        52,
+        26
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        53,
+        23
+      ]
+    }
+  ],
+  "eg_lower_egypt": [
+    {
+      "building": "dark_altar",
+      "level": 1,
+      "tile": [
+        52,
+        53
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        53,
+        52
+      ]
+    }
+  ],
+  "ua_podolia": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        53,
+        26
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        53,
+        27
+      ]
+    }
+  ],
+  "ua_novorossiya": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        54,
+        31
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        54,
+        32
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        55,
+        28
+      ]
+    }
+  ],
+  "tr_central_anatolia": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        54,
+        40
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        55,
+        39
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        56,
+        39
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        56,
+        40
+      ]
+    }
+  ],
+  "eg_upper_egypt": [
+    {
+      "building": "dark_altar",
+      "level": 1,
+      "tile": [
+        54,
+        53
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        55,
+        52
+      ]
+    }
+  ],
+  "ru_karelia": [
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        55,
+        6
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        56,
+        0
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        56,
+        2
+      ]
+    }
+  ],
+  "tr_mediterranean": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        55,
+        42
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        55,
+        43
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        56,
+        42
+      ]
+    }
+  ],
+  "ua_chernigov": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        56,
+        24
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        57,
+        23
+      ]
+    }
+  ],
+  "ua_poltava": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        56,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        58,
+        28
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        59,
+        25
+      ]
+    }
+  ],
+  "ru_muscovy": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        57,
+        15
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        58,
+        15
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        58,
+        16
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        59,
+        14
+      ]
+    }
+  ],
+  "ru_smolensk": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        57,
+        17
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        57,
+        18
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        58,
+        17
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        58,
+        18
+      ]
+    }
+  ],
+  "tr_black_sea": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        57,
+        38
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        58,
+        38
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        60,
+        37
+      ]
+    }
+  ],
+  "ua_sloboda": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        60,
+        23
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        60,
+        24
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        60,
+        29
+      ]
+    }
+  ],
+  "ru_don": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        60,
+        32
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        61,
+        31
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        61,
+        32
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        62,
+        32
+      ]
+    }
+  ],
+  "cy_cyprus": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        60,
+        45
+      ]
+    },
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        60,
+        45
+      ]
+    }
+  ],
+  "ru_archangel": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        62,
+        11
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        63,
+        8
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        63,
+        9
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        63,
+        10
+      ]
+    }
+  ],
+  "ru_voronezh": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        62,
+        23
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        62,
+        24
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        63,
+        21
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        63,
+        22
+      ]
+    }
+  ],
+  "il_holy_land": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        62,
+        49
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        62,
+        50
+      ]
+    }
+  ],
+  "lb_mount_lebanon": [
+    {
+      "tile": [
+        63,
+        46
+      ],
+      "building": "barracks",
+      "level": 1
+    }
+  ],
+  "jo_jordan": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        63,
+        49
+      ]
+    },
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        63,
+        50
+      ]
+    }
+  ],
+  "sa_northern_arabia": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        63,
+        51
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        63,
+        52
+      ]
+    },
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        64,
+        52
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        64,
+        53
+      ]
+    }
+  ],
+  "sy_southern_syria": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        64,
+        45
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        64,
+        47
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        65,
+        45
+      ]
+    },
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        65,
+        46
+      ]
+    }
+  ],
+  "lb_beqaa": [
+    {
+      "tile": [
+        64,
+        46
+      ],
+      "building": "barracks",
+      "level": 1
+    }
+  ],
+  "ua_donbass": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        65,
+        27
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        66,
+        28
+      ]
+    }
+  ],
+  "tr_southeastern": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        65,
+        42
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        66,
+        42
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        66,
+        43
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        67,
+        41
+      ]
+    }
+  ],
+  "sy_northern_syria": [
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        65,
+        43
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        65,
+        44
+      ]
+    }
+  ],
+  "sa_central_arabia": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        65,
+        53
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        66,
+        54
+      ]
+    },
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        67,
+        54
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        67,
+        55
+      ]
+    }
+  ],
+  "ru_vladimir": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        66,
+        13
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        67,
+        12
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        67,
+        13
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        68,
+        12
+      ]
+    }
+  ],
+  "tr_eastern_anatolia": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        67,
+        40
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        68,
+        39
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        68,
+        40
+      ]
+    },
+    {
+      "building": "harbor_dock",
+      "level": 1,
+      "tile": [
+        68,
+        41
+      ]
+    }
+  ],
+  "iq_iraq": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        68,
+        47
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        69,
+        46
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        69,
+        47
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        70,
+        46
+      ]
+    }
+  ],
+  "ge_georgia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        70,
+        35
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        72,
+        36
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        72,
+        37
+      ]
+    }
+  ],
+  "ru_nizhny_novgorod": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        73,
+        17
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        74,
+        15
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        74,
+        16
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        74,
+        17
+      ]
+    }
+  ],
+  "ru_kazan": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        73,
+        19
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        74,
+        19
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        75,
+        18
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        75,
+        19
+      ]
+    }
+  ],
+  "ru_samara": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        73,
+        20
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        74,
+        20
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        74,
+        21
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        74,
+        22
+      ]
+    }
+  ],
+  "am_armenia": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        75,
+        38
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        76,
+        38
+      ]
+    }
+  ],
+  "ir_tehran": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        76,
+        40
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        76,
+        41
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        77,
+        40
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        77,
+        41
+      ]
+    }
+  ],
+  "sa_eastern_arabia": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        77,
+        53
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        78,
+        52
+      ]
+    },
+    {
+      "building": "shrine",
+      "level": 1,
+      "tile": [
+        78,
+        53
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        79,
+        52
+      ]
+    }
+  ],
+  "ir_western_iran": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        78,
+        45
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        78,
+        46
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        79,
+        45
+      ]
+    }
+  ],
+  "kz_west_kazakhstan": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        80,
+        26
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        80,
+        27
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        80,
+        28
+      ]
+    }
+  ],
+  "kz_atyrau": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        80,
+        29
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        81,
+        28
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        82,
+        29
+      ]
+    }
+  ],
+  "ir_azerbaijan": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        80,
+        43
+      ]
+    }
+  ],
+  "ir_khorasan": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        82,
+        41
+      ]
+    }
+  ],
+  "kz_mangghystau": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        85,
+        33
+      ]
+    },
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        86,
+        33
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        86,
+        34
+      ]
+    }
+  ],
+  "ir_fars": [
+    {
+      "building": "powder_mill",
+      "level": 1,
+      "tile": [
+        85,
+        50
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        85,
+        51
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        86,
+        50
+      ]
+    }
+  ],
+  "ru_ural": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        86,
+        22
+      ]
+    },
+    {
+      "building": "lumber_mill",
+      "level": 1,
+      "tile": [
+        86,
+        23
+      ]
+    },
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        87,
+        20
+      ]
+    },
+    {
+      "building": "trade_post",
+      "level": 1,
+      "tile": [
+        87,
+        21
+      ]
+    }
+  ],
+  "tm_balkan": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        88,
+        38
+      ]
+    }
+  ],
+  "ir_isfahan": [
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        88,
+        48
+      ]
+    }
+  ],
+  "fr_cote_dazur": [
+    {
+      "building": "farm",
+      "level": 1,
+      "tile": [
+        19,
+        34
+      ]
+    },
+    {
+      "building": "barracks",
+      "level": 1,
+      "tile": [
+        20,
+        34
+      ]
+    }
+  ],
+  "fr_avignon": [
+    {
+      "tile": [
+        19,
+        33
+      ],
+      "building": "barracks",
+      "level": 2
+    }
+  ],
+  "az_northern_azerbaijan": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        77,
+        37
+      ]
+    },
+    {
+      "building": "alchemy_workshop",
+      "level": 1,
+      "tile": [
+        78,
+        38
+      ]
+    }
+  ],
+  "az_southern_azerbaijan": [
+    {
+      "building": "iron_mine",
+      "level": 1,
+      "tile": [
+        78,
+        40
+      ]
+    },
+    {
+      "building": "foundry",
+      "level": 1,
+      "tile": [
+        79,
+        39
+      ]
+    }
+  ]
+}

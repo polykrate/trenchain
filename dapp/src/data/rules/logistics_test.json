@@ -1,52 +1,360 @@
 {
   "terrain_yields": {
-    "plains": [["flesh", 2]],
-    "temperate_forest": [["flesh", 1]],
-    "mountain": [["iron", 1]],
+    "plains": [
+      [
+        "flesh",
+        2
+      ]
+    ],
+    "temperate_forest": [
+      [
+        "flesh",
+        1
+      ]
+    ],
+    "mountain": [
+      [
+        "iron",
+        1
+      ]
+    ],
     "marsh": [],
-    "mediterranean": [["flesh", 1]],
-    "steppe": [["flesh", 1]],
+    "mediterranean": [
+      [
+        "flesh",
+        1
+      ]
+    ],
+    "steppe": [
+      [
+        "flesh",
+        1
+      ]
+    ],
     "tundra": [],
     "desert": [],
     "semi_arid": [],
-    "taiga": [["flesh", 1]],
+    "taiga": [
+      [
+        "flesh",
+        1
+      ]
+    ],
     "snow": [],
-    "volcanic": [["iron", 2]]
+    "volcanic": [
+      [
+        "iron",
+        2
+      ]
+    ]
   },
   "recipes": {
-    "iron_mine": { "inputs": [], "outputs": [["iron", 3]] },
-    "farm": { "inputs": [], "outputs": [["flesh", 4]] },
-    "powder_mill": { "inputs": [], "outputs": [["powder", 3]] },
-    "barracks": { "inputs": [["powder", 2], ["flesh", 3]], "outputs": [["soldiers", 1]] },
-    "foundry": { "inputs": [["iron", 3]], "outputs": [["weapons", 2]] },
-    "trade_post": { "inputs": [], "outputs": [["ducats", 3]] }
+    "iron_mine": {
+      "inputs": [],
+      "outputs": [
+        [
+          "iron",
+          2
+        ]
+      ]
+    },
+    "farm": {
+      "inputs": [],
+      "outputs": [
+        [
+          "flesh",
+          2
+        ]
+      ]
+    },
+    "powder_mill": {
+      "inputs": [],
+      "outputs": [
+        [
+          "powder",
+          2
+        ]
+      ]
+    },
+    "trade_post": {
+      "inputs": [
+        [
+          "flesh",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "ducats",
+          2
+        ]
+      ]
+    },
+    "lumber_mill": {
+      "inputs": [],
+      "outputs": [
+        [
+          "flesh",
+          1
+        ]
+      ]
+    },
+    "harbor_dock": {
+      "inputs": [
+        [
+          "ducats",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "iron",
+          1
+        ],
+        [
+          "powder",
+          1
+        ]
+      ]
+    },
+    "market": {
+      "inputs": [
+        [
+          "flesh",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "ducats",
+          1
+        ]
+      ]
+    },
+    "foundry": {
+      "inputs": [
+        [
+          "iron",
+          2
+        ]
+      ],
+      "outputs": [
+        [
+          "powder",
+          1
+        ]
+      ]
+    },
+    "munitions_factory": {
+      "inputs": [
+        [
+          "iron",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "powder",
+          2
+        ]
+      ]
+    },
+    "barracks": {
+      "inputs": [
+        [
+          "flesh",
+          1
+        ],
+        [
+          "iron",
+          1
+        ],
+        [
+          "powder",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "soldiers",
+          1
+        ]
+      ]
+    },
+    "alchemy_workshop": {
+      "inputs": [
+        [
+          "iron",
+          1
+        ]
+      ],
+      "outputs": [
+        [
+          "powder",
+          1
+        ]
+      ]
+    },
+    "field_hospital": {
+      "inputs": [
+        [
+          "flesh",
+          1
+        ]
+      ],
+      "outputs": []
+    },
+    "apothecary": {
+      "inputs": [
+        [
+          "flesh",
+          1
+        ]
+      ],
+      "outputs": []
+    },
+    "shrine": {
+      "inputs": [],
+      "outputs": [
+        [
+          "ducats",
+          1
+        ]
+      ]
+    }
   },
   "test_region": "gb_northern_england",
   "test_buildings": {
     "gb_northern_england": [
-      { "tile": [9, 17], "building": "farm", "level": 2 },
-      { "tile": [9, 18], "building": "powder_mill", "level": 1 }
+      {
+        "tile": [
+          9,
+          17
+        ],
+        "building": "munitions_factory",
+        "level": 2
+      },
+      {
+        "tile": [
+          9,
+          20
+        ],
+        "building": "alchemy_workshop",
+        "level": 2
+      },
+      {
+        "tile": [
+          10,
+          19
+        ],
+        "building": "trade_post",
+        "level": 2
+      }
     ],
     "gb_eastern_england": [
-      { "tile": [11, 20], "building": "barracks", "level": 1 },
-      { "tile": [11, 21], "building": "trade_post", "level": 1 }
+      {
+        "tile": [
+          11,
+          21
+        ],
+        "building": "field_hospital",
+        "level": 2
+      },
+      {
+        "tile": [
+          12,
+          22
+        ],
+        "building": "trade_post",
+        "level": 2
+      },
+      {
+        "tile": [
+          13,
+          22
+        ],
+        "building": "barracks",
+        "level": 2
+      }
     ],
     "gb_wales": [
-      { "tile": [7, 21], "building": "iron_mine", "level": 2 },
-      { "tile": [7, 22], "building": "farm", "level": 1 }
+      {
+        "tile": [
+          7,
+          22
+        ],
+        "building": "foundry",
+        "level": 2
+      }
     ],
     "gb_southern_england": [
-      { "tile": [9, 23], "building": "foundry", "level": 1 }
+      {
+        "tile": [
+          9,
+          23
+        ],
+        "building": "barracks",
+        "level": 2
+      },
+      {
+        "tile": [
+          9,
+          24
+        ],
+        "building": "field_hospital",
+        "level": 2
+      },
+      {
+        "tile": [
+          10,
+          23
+        ],
+        "building": "trade_post",
+        "level": 2
+      }
     ]
   },
   "test_demand": {
-    "gb_eastern_england": [["soldiers", 2], ["weapons", 1]],
-    "gb_southern_england": [["iron", 5], ["soldiers", 1]],
-    "gb_northern_england": [["weapons", 1]],
-    "gb_wales": [["powder", 2]]
+    "gb_eastern_england": [
+      [
+        "soldiers",
+        2
+      ],
+      [
+        "weapons",
+        1
+      ]
+    ],
+    "gb_southern_england": [
+      [
+        "iron",
+        5
+      ],
+      [
+        "soldiers",
+        1
+      ]
+    ],
+    "gb_northern_england": [
+      [
+        "weapons",
+        1
+      ]
+    ],
+    "gb_wales": [
+      [
+        "powder",
+        2
+      ]
+    ]
   },
   "test_min_stock": {
-    "gb_northern_england": { "flesh": 5, "powder": 3 },
-    "gb_wales": { "iron": 3 }
+    "gb_northern_england": {
+      "flesh": 5,
+      "powder": 3
+    },
+    "gb_wales": {
+      "iron": 3
+    }
   }
 }

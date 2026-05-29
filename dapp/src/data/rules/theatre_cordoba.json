@@ -1,79 +1,32 @@
 {
   "id": "theatre_cordoba",
   "name": "The Breach of Córdoba",
-  "description": "Southern Spain, 1914. The Battle of Córdoba (1910) left the ancient city in ruins.",
-  "lore": "The Heretics hold Gibraltar and push north through the Guadalquivir valley. The Faithful defend from Castille through the Sierra Morena passes.",
-  "node_terrain_map": {
-    "coastal": "coastal",
-    "port": "port",
-    "city": "city",
-    "town": "village",
-    "battlefield": "ruins",
-    "strategic": "crossroads",
-    "terrain": "plains",
-    "fortification": "fortress"
-  },
-  "context_tiles": [
-    {"q": 0, "r": 41, "terrain": "sea"},
-    {"q": 0, "r": 42, "terrain": "sea"},
-    {"q": 0, "r": 43, "terrain": "sea"},
-    {"q": 0, "r": 44, "terrain": "sea"},
-    {"q": 1, "r": 41, "terrain": "sea"},
-    {"q": 1, "r": 42, "terrain": "sea"},
-    {"q": 1, "r": 43, "terrain": "sea"},
-    {"q": 1, "r": 44, "terrain": "sea"},
-    {"q": 2, "r": 41, "terrain": "sea"},
-    {"q": 2, "r": 43, "terrain": "sea"},
-    {"q": 2, "r": 44, "terrain": "sea"},
-    {"q": 3, "r": 43, "terrain": "sea"},
-    {"q": 3, "r": 44, "terrain": "sea"},
-    {"q": 4, "r": 44, "terrain": "sea"},
-    {"q": 5, "r": 43, "terrain": "sea"},
-    {"q": 5, "r": 44, "terrain": "sea"},
-    {"q": 6, "r": 44, "terrain": "sea"},
-    {"q": 7, "r": 43, "terrain": "sea"},
-    {"q": 7, "r": 44, "terrain": "sea"},
-    {"q": 8, "r": 43, "terrain": "sea"},
-    {"q": 8, "r": 44, "terrain": "sea"},
-    {"q": 9, "r": 43, "terrain": "sea"},
-    {"q": 9, "r": 44, "terrain": "sea"},
-    {"q": 10, "r": 41, "terrain": "sea"},
-    {"q": 10, "r": 42, "terrain": "sea"},
-    {"q": 10, "r": 43, "terrain": "sea"},
-    {"q": 10, "r": 44, "terrain": "sea"},
-    {"q": 2, "r": 40, "terrain": "plains", "label": "Extremadura"},
-    {"q": 3, "r": 40, "terrain": "plains", "label": "La Mancha"},
-    {"q": 4, "r": 40, "terrain": "plains"},
-    {"q": 4, "r": 41, "terrain": "mountain", "label": "Sierra Morena"},
-    {"q": 5, "r": 40, "terrain": "semi_arid"},
-    {"q": 6, "r": 40, "terrain": "mountain"},
-    {"q": 6, "r": 41, "terrain": "mountain"},
-    {"q": 7, "r": 40, "terrain": "mountain"},
-    {"q": 8, "r": 40, "terrain": "semi_arid", "label": "Murcia"},
-    {"q": 9, "r": 40, "terrain": "semi_arid"},
-    {"q": 10, "r": 40, "terrain": "semi_arid"}
+  "description": "Southern Spain, 1914. The Battle of Córdoba (1910) left the ancient city in ruins. The Heretics hold Gibraltar and push north through the Guadalquivir valley.",
+  "lore": "The Heretics hold Gibraltar and push north through the Guadalquivir valley. The Faithful defend from Castille through the Sierra Morena passes. Three years of trench warfare have turned Andalucía into a blasted wasteland.",
+  "regions": [
+    "es_andalucia",
+    "es_extremadura",
+    "es_castilla_la_mancha"
   ],
-  "tiles": [
-    {"q": 2, "r": 42, "terrain": "mediterranean", "node": {"name": "Cape Trafalgar", "type": "coastal", "control": "heretic", "desc": "Heretic naval staging ground. Coastal fortifications guard the Atlantic approach."}, "logistics": {"supply_source": true, "demand": 2}, "buildings": ["harbor_dock", "barracks"]},
-    {"q": 3, "r": 41, "terrain": "mediterranean", "node": {"name": "Huelva Marshes", "type": "terrain", "control": "contested", "desc": "Treacherous marshlands along the Río Tinto. Natural barrier between the lines."}, "logistics": {"supply_source": false, "demand": 2}, "buildings": ["alchemy_workshop", "apothecary"]},
-    {"q": 3, "r": 42, "terrain": "mediterranean", "node": {"name": "Cádiz", "type": "port", "control": "heretic", "desc": "Ancient port city. Heretic supply line from Gibraltar runs through here."}, "logistics": {"supply_source": true, "demand": 3}, "buildings": ["harbor_dock", "trade_post", "barracks"]},
-    {"q": 4, "r": 42, "terrain": "plains", "node": {"name": "Sevilla", "type": "city", "control": "contested", "desc": "Once the jewel of Andalucía. Now a blasted no-man's-land on the Guadalquivir."}, "logistics": {"supply_source": false, "demand": 4}, "buildings": ["market", "barracks", "foundry", "field_hospital"]},
-    {"q": 4, "r": 43, "terrain": "mediterranean", "node": {"name": "Jerez", "type": "town", "control": "heretic", "desc": "Fortified town controlling the road between Gibraltar and Sevilla."}, "logistics": {"supply_source": false, "demand": 3}, "buildings": ["trade_post", "barracks", "refugee_camp"]},
-    {"q": 5, "r": 41, "terrain": "semi_arid", "node": {"name": "Breach of Córdoba", "type": "battlefield", "control": "contested", "desc": "1910: Heretic artillery devastates the city. Bloody stalemate. The walls still stand."}, "logistics": {"supply_source": false, "demand": 5}, "buildings": ["archaeological_dig", "refugee_camp"]},
-    {"q": 5, "r": 42, "terrain": "plains", "node": {"name": "Guadalquivir Crossing", "type": "strategic", "control": "contested", "desc": "Key river crossing. Bridges destroyed and rebuilt a dozen times."}, "logistics": {"supply_source": false, "demand": 3}, "buildings": ["trade_post", "barracks"]},
-    {"q": 6, "r": 42, "terrain": "semi_arid", "node": {"name": "Jaén Highlands", "type": "terrain", "control": "faithful", "desc": "Olive groves turned killing fields. Faithful picket lines along the ridges."}, "logistics": {"supply_source": false, "demand": 2}, "buildings": ["barracks", "refugee_camp"]},
-    {"q": 6, "r": 43, "terrain": "mediterranean", "node": {"name": "Málaga", "type": "port", "control": "heretic", "desc": "Heretic-held coastal city. Supplies flow from North Africa via Tanger."}, "logistics": {"supply_source": true, "demand": 3}, "buildings": ["harbor_dock", "market", "barracks"]},
-    {"q": 7, "r": 41, "terrain": "semi_arid", "node": {"name": "Sierra Morena Pass", "type": "fortification", "control": "faithful", "desc": "Desfiladero de Despeñaperros. The Faithful's main defensive line into Castille."}, "logistics": {"supply_source": true, "demand": 5}, "buildings": ["barracks", "iron_mine", "munitions_factory"]},
-    {"q": 7, "r": 42, "terrain": "mountain", "node": {"name": "Granada", "type": "city", "control": "heretic", "desc": "The Alhambra turned fortress. Heretic command post for the eastern front."}, "logistics": {"supply_source": false, "demand": 4}, "buildings": ["market", "barracks", "foundry", "alchemy_workshop"]},
-    {"q": 8, "r": 41, "terrain": "semi_arid", "node": {"name": "Linares", "type": "town", "control": "faithful", "desc": "Mining town. Faithful munitions depot and rear-line staging area."}, "logistics": {"supply_source": true, "demand": 3}, "buildings": ["iron_mine", "foundry", "barracks"]},
-    {"q": 8, "r": 42, "terrain": "mountain", "node": {"name": "Sierra Nevada", "type": "terrain", "control": "neutral", "desc": "Impassable peaks. Neither side can hold the high passes in winter."}, "logistics": {"supply_source": false, "demand": 2}, "buildings": ["iron_mine"]},
-    {"q": 9, "r": 41, "terrain": "mountain", "node": {"name": "Úbeda", "type": "town", "control": "faithful", "desc": "Faithful forward base. Renaissance city untouched by war — so far."}, "logistics": {"supply_source": true, "demand": 3}, "buildings": ["trade_post", "barracks", "shrine"]},
-    {"q": 9, "r": 42, "terrain": "desert", "node": {"name": "Almería Wastes", "type": "terrain", "control": "heretic", "desc": "Blasted semi-desert. Heretic patrols roam the badlands east of Granada."}, "logistics": {"supply_source": false, "demand": 2}, "buildings": ["refugee_camp"]}
-  ],
-  "edges": [
-    [0, 4], [1, 2], [2, 3], [2, 4], [1, 3], [3, 4], [3, 5], [3, 6],
-    [4, 8], [5, 6], [5, 9], [6, 7], [6, 8], [7, 9], [7, 10],
-    [8, 10], [9, 11], [10, 12], [11, 13], [11, 14], [12, 14]
-  ],
-  "edge_capacity": [3, 3, 5, 3, 5, 5, 5, 5, 3, 3, 2, 3, 3, 3, 3, 5, 5, 2, 3, 2, 2]
+  "objectives": {
+    "primary": "elimination",
+    "secondaries": [
+      {
+        "kind": "kill_leader",
+        "vp_reward": 5
+      },
+      {
+        "kind": "loot_resource",
+        "target_tile": [5, 41],
+        "target_resource": "iron",
+        "vp_reward": 3
+      },
+      {
+        "kind": "loot_resource",
+        "target_tile": [7, 42],
+        "target_resource": "powder",
+        "vp_reward": 3
+      }
+    ]
+  }
 }

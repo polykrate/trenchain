@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import type { CampaignLocation, ResourceType } from '../chain/types'
 import { useWorldMap, useTheatre } from '../hooks/useChainStore'
 import { ChainLoader } from '../components/ChainLoader'
-import { useLogistics } from '../hooks/useLogistics'
+import { useLogistics, useGlobalTransit } from '../hooks/useLogistics'
 
 const RES: Record<ResourceType, { code: string; color: string; label: string }> = {
   ducats: { code: 'DUC', color: '#b45309', label: 'Ducats' },
@@ -193,6 +193,8 @@ function WorldMapGrid() {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
   const logistics = useLogistics(selectedRegion)
+  const globalTransit = useGlobalTransit(filters.colorMode === 'logistics')
+  const [hoveredPacket, setHoveredPacket] = useState<number | null>(null)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [isPanning, setIsPanning] = useState(false)
@@ -512,7 +514,7 @@ function WorldMapGrid() {
             </pattern>
           </defs>
 
-          <rect x="-9999" y="-9999" width="99999" height="99999" fill={TERRAIN_COLORS.sea} />
+          <rect x="-9999" y="-9999" width="99999" height="99999" fill={filters.colorMode === 'logistics' ? '#c8dbe8' : TERRAIN_COLORS.sea} />
 
           {/* Hex tiles — precomputed geometry */}
           {tileGeometry.map(({ tile, pts }, i) => {
@@ -523,7 +525,7 @@ function WorldMapGrid() {
             if (isWallTile) {
               displayColor = TERRAIN_COLORS['iron_wall']
             } else if (filters.colorMode === 'logistics') {
-              displayColor = tile.g ? 'rgba(30, 40, 50, 0.85)' : '#1a1a2e'
+              displayColor = tile.g ? '#e8e4dc' : '#f5f2ec'
             } else if (filters.colorMode === 'country' && tile.g) {
               displayColor = regionColors.get(tile.g) ?? COUNTRY_COLORS[tileCountry ?? ''] ?? '#666'
             } else {
@@ -534,11 +536,11 @@ function WorldMapGrid() {
             const isRegionHovered = filters.hoverHighlight && tile.g === hoveredRegion
             const isSelected = tile.g === selectedRegion
 
-            let stroke = filters.colorMode === 'logistics' ? 'rgba(50,60,80,0.4)' : 'rgba(30,25,20,0.15)'
+            let stroke = filters.colorMode === 'logistics' ? 'rgba(180,170,150,0.5)' : 'rgba(30,25,20,0.15)'
             let strokeW = filters.colorMode === 'logistics' ? 0.3 : 0.2
             if (isSelected) {
               stroke = '#d4a017'; strokeW = 1.5
-              if (filters.colorMode === 'logistics') displayColor = 'rgba(212, 160, 23, 0.2)'
+              if (filters.colorMode === 'logistics') displayColor = '#fef3c7'
             }
             else if (isRegionHovered) { stroke = 'rgba(255,255,255,0.9)'; strokeW = 1.2 }
             else if (isCountryHovered) { stroke = 'rgba(255,255,255,0.45)'; strokeW = 0.8 }
@@ -623,41 +625,115 @@ function WorldMapGrid() {
             )
           })}
 
-          {/* Transit arrows (animated) */}
-          {logistics.inTransit.length > 0 && logistics.inTransit.map((pkt, i) => {
-            const originRegion = HEX_REGIONS[pkt.origin]
+          {/* Global caravan icons in logistics mode */}
+          {filters.colorMode === 'logistics' && globalTransit.packets.map((pkt, i) => {
+            const currentRegion = HEX_REGIONS[pkt.currentRegion]
             const destRegion = HEX_REGIONS[pkt.destination]
-            if (!originRegion || !destRegion) return null
-            const oTiles = originRegion.tiles
+            if (!currentRegion || !destRegion) return null
+            const cTiles = currentRegion.tiles
             const dTiles = destRegion.tiles
-            if (oTiles.length === 0 || dTiles.length === 0) return null
-            const oAvgQ = oTiles.reduce((s, t) => s + t[0], 0) / oTiles.length
-            const oAvgR = oTiles.reduce((s, t) => s + t[1], 0) / oTiles.length
+            if (cTiles.length === 0 || dTiles.length === 0) return null
+
+            const cAvgQ = cTiles.reduce((s, t) => s + t[0], 0) / cTiles.length
+            const cAvgR = cTiles.reduce((s, t) => s + t[1], 0) / cTiles.length
             const dAvgQ = dTiles.reduce((s, t) => s + t[0], 0) / dTiles.length
             const dAvgR = dTiles.reduce((s, t) => s + t[1], 0) / dTiles.length
-            const [ox, oy] = hexCenter(HEX_META, Math.round(oAvgQ), Math.round(oAvgR))
+
+            const [cx, cy] = hexCenter(HEX_META, Math.round(cAvgQ), Math.round(cAvgR))
             const [dx, dy] = hexCenter(HEX_META, Math.round(dAvgQ), Math.round(dAvgR))
-            const color = RES[pkt.resource as ResourceType]?.color ?? '#ffffff'
+
+            // Offset position slightly along the direction to spread overlapping caravans
+            const spreadAngle = (i % 7) * 0.9
+            const offsetX = Math.cos(spreadAngle) * HEX_META.hex_size * 0.4
+            const offsetY = Math.sin(spreadAngle) * HEX_META.hex_size * 0.4
+            const px = cx + offsetX
+            const py = cy + offsetY
+
+            const color = RES[pkt.resource as ResourceType]?.color ?? '#555'
+            const isHovered = hoveredPacket === i
+
+            // Arrow direction angle
+            const angle = Math.atan2(dy - cy, dx - cx)
+
             return (
-              <g key={`transit-${i}`} className="pointer-events-none">
-                <line
-                  x1={ox} y1={oy} x2={dx} y2={dy}
-                  stroke={color} strokeWidth={1.5} strokeOpacity={0.7}
-                  strokeDasharray="3 2"
-                >
-                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite" />
-                </line>
-                <circle cx={(ox + dx) / 2} cy={(oy + dy) / 2} r={2} fill={color} fillOpacity={0.9}>
-                  <animate attributeName="cx" from={ox} to={dx} dur="2s" repeatCount="indefinite" />
-                  <animate attributeName="cy" from={oy} to={dy} dur="2s" repeatCount="indefinite" />
+              <g key={`caravan-${i}`} style={{ cursor: 'pointer' }}
+                onMouseEnter={() => setHoveredPacket(i)}
+                onMouseLeave={() => setHoveredPacket(null)}
+              >
+                {/* Direction arrow (visible on hover) */}
+                {isHovered && (
+                  <line
+                    x1={px} y1={py}
+                    x2={px + Math.cos(angle) * HEX_META.hex_size * 2.5}
+                    y2={py + Math.sin(angle) * HEX_META.hex_size * 2.5}
+                    stroke={color} strokeWidth={1.2} strokeOpacity={0.8}
+                    markerEnd="none"
+                    strokeDasharray="2 1.5"
+                  />
+                )}
+                {/* Caravan dot */}
+                <circle cx={px} cy={py} r={isHovered ? 3.5 : 2.2} fill={color} fillOpacity={0.9} stroke={isHovered ? '#000' : 'none'} strokeWidth={0.5}>
+                  <animate attributeName="r" values={isHovered ? '3.5;4;3.5' : '2.2;2.8;2.2'} dur="2s" repeatCount="indefinite" />
                 </circle>
+                {/* Qty label (visible at high zoom or hover) */}
+                {(isHovered || zoom > 3) && (
+                  <text x={px} y={py - 4} textAnchor="middle" style={{ fontSize: '3.5px', fontWeight: 700, fill: color, stroke: '#fff', strokeWidth: 1.5, paintOrder: 'stroke' }}>
+                    {pkt.qty}
+                  </text>
+                )}
+                {/* Arrowhead on hover */}
+                {isHovered && (
+                  <polygon
+                    points={(() => {
+                      const ax = px + Math.cos(angle) * HEX_META.hex_size * 2.5
+                      const ay = py + Math.sin(angle) * HEX_META.hex_size * 2.5
+                      const s = 2
+                      const p1x = ax + Math.cos(angle) * s
+                      const p1y = ay + Math.sin(angle) * s
+                      const p2x = ax + Math.cos(angle + 2.5) * s
+                      const p2y = ay + Math.sin(angle + 2.5) * s
+                      const p3x = ax + Math.cos(angle - 2.5) * s
+                      const p3y = ay + Math.sin(angle - 2.5) * s
+                      return `${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y}`
+                    })()}
+                    fill={color}
+                  />
+                )}
               </g>
             )
           })}
         </svg>
 
+        {/* Caravan tooltip */}
+        {hoveredPacket !== null && globalTransit.packets[hoveredPacket] && (() => {
+          const pkt = globalTransit.packets[hoveredPacket]
+          const originName = HEX_REGIONS[pkt.origin]?.name || pkt.origin
+          const destName = HEX_REGIONS[pkt.destination]?.name || pkt.destination
+          const currentName = HEX_REGIONS[pkt.currentRegion]?.name || pkt.currentRegion
+          const color = RES[pkt.resource as ResourceType]?.color ?? '#555'
+          const label = RES[pkt.resource as ResourceType]?.label ?? pkt.resource
+          return (
+            <div
+              className="absolute z-50 pointer-events-none w-52 bg-white border border-gray-300 rounded px-3 py-2 shadow-lg"
+              style={{ left: mouseRef.current.x + 16, top: mouseRef.current.y - 10 }}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
+                <span className="font-bold text-sm" style={{ color }}>{label}</span>
+                <span className="text-xs text-gray-500 ml-auto">x{pkt.qty}</span>
+              </div>
+              <div className="text-[10px] text-gray-600 space-y-0.5">
+                <div><span className="text-gray-400">From:</span> {originName}</div>
+                <div><span className="text-gray-400">To:</span> <span className="font-bold">{destName}</span></div>
+                <div><span className="text-gray-400">Now at:</span> {currentName}</div>
+                <div><span className="text-gray-400">ETA:</span> {pkt.ttmRemaining} tick{pkt.ttmRemaining > 1 ? 's' : ''}</div>
+              </div>
+            </div>
+          )
+        })()}
+
         {/* Hover tooltip — positioned via ref, not state */}
-        {hoveredCountry && hoveredRegion && (() => {
+        {hoveredCountry && hoveredRegion && !hoveredPacket && (() => {
           const countryDef = HEX_COUNTRIES[hoveredCountry] as HexCountry | undefined
           const regionDef = HEX_REGIONS[hoveredRegion] as HexRegion | undefined
           if (!countryDef || !regionDef) return null
@@ -785,12 +861,24 @@ function WorldMapGrid() {
 
         {/* Logistics mode hint when no region selected */}
         {!selectedRegion && filters.colorMode === 'logistics' && (
-          <div className="bg-[var(--card)] border border-[#0891b2] rounded-sm px-2 py-2 shadow-md w-[180px]">
+          <div className="bg-white border border-[#0891b2] rounded px-2 py-2 shadow-md w-[180px]">
             <div className="text-[10px] font-bold text-[#0891b2]">Logistics View</div>
-            <div className="text-[9px] text-[var(--muted)] mt-1">Click a region to see stock, production, demand and transit flows.</div>
-            <div className="text-[8px] text-[var(--muted)] mt-2 border-t border-[var(--border)] pt-1.5">
-              <div className="flex items-center gap-1 mb-0.5"><span className="w-2 h-0.5 bg-[#0891b2] inline-block"></span> Transit flows</div>
-              <div className="flex items-center gap-1 mb-0.5"><span className="w-2 h-2 rounded-full bg-[#d4a017] inline-block"></span> Selected region</div>
+            <div className="text-[9px] text-gray-500 mt-1">
+              {globalTransit.loading ? 'Loading caravans...' : `${globalTransit.packets.length} caravans active`}
+            </div>
+            <div className="text-[9px] text-gray-500 mt-1">Click a region to see stock & demand. Hover a dot to see caravan details.</div>
+            <div className="text-[8px] text-gray-400 mt-2 border-t border-gray-200 pt-1.5">
+              {Object.entries(RES).map(([key, val]) => {
+                const count = globalTransit.packets.filter(p => p.resource === key).length
+                if (count === 0) return null
+                return (
+                  <div key={key} className="flex items-center gap-1 mb-0.5">
+                    <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: val.color }} />
+                    <span className="text-gray-600">{val.label}</span>
+                    <span className="ml-auto font-bold text-gray-700">{count}</span>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
@@ -822,17 +910,15 @@ function TheatreMap() {
 
   useEffect(() => {
     if (!chainTheatre) return
-    const locs: CampaignLocation[] = chainTheatre.nodes.map((n, idx) => ({
+    const locs: CampaignLocation[] = chainTheatre.regions.map((region, idx) => ({
       id: idx,
-      name: n.name,
-      subtitle: n.nodeType,
-      description: n.desc,
-      terrain: n.terrain as any,
+      name: region,
+      subtitle: 'region',
+      description: '',
+      terrain: 'plains' as any,
       resources: [],
-      connections: chainTheatre.edges
-        .filter(e => e.from === idx || e.to === idx)
-        .map(e => e.from === idx ? e.to : e.from),
-      position: { x: (n.coord[0] + 5) * 6, y: (n.coord[1] + 5) * 6 },
+      connections: [],
+      position: { x: 10 + (idx % 4) * 25, y: 20 + Math.floor(idx / 4) * 30 },
     }))
     setLocations(locs)
   }, [chainTheatre])
@@ -874,8 +960,7 @@ function TheatreMap() {
   if (theatreLoading || !chainTheatre) {
     return <ChainLoader title="Theatre" skeletonCount={2} steps={[
       { label: 'Theatre definition', status: chainTheatre ? 'done' : theatreLoading ? 'loading' : 'pending' },
-      { label: 'Nodes', status: chainTheatre?.nodes?.length ? 'done' : 'pending', current: chainTheatre?.nodes?.length || undefined },
-      { label: 'Edges', status: chainTheatre?.edges?.length ? 'done' : 'pending', current: chainTheatre?.edges?.length || undefined },
+      { label: 'Regions', status: chainTheatre?.regions?.length ? 'done' : 'pending', current: chainTheatre?.regions?.length || undefined },
     ]} />
   }
 

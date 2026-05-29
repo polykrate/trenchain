@@ -1,0 +1,2042 @@
+{
+  "0,20": {
+    "nodeType": "port"
+  },
+  "0,21": {
+    "nodeType": "marsh"
+  },
+  "0,22": {
+    "nodeType": "village"
+  },
+  "1,21": {
+    "nodeType": "city"
+  },
+  "0,36": {
+    "nodeType": "village"
+  },
+  "1,35": {
+    "nodeType": "city"
+  },
+  "0,39": {
+    "nodeType": "village"
+  },
+  "1,38": {
+    "nodeType": "city",
+    "name": "Porto"
+  },
+  "1,39": {
+    "nodeType": "city",
+    "name": "Lisboa"
+  },
+  "2,39": {
+    "nodeType": "fortress"
+  },
+  "0,48": {
+    "nodeType": "port"
+  },
+  "1,48": {
+    "nodeType": "village"
+  },
+  "2,48": {
+    "nodeType": "city"
+  },
+  "1,50": {
+    "nodeType": "crossroads"
+  },
+  "2,50": {
+    "nodeType": "mine"
+  },
+  "2,51": {
+    "nodeType": "village"
+  },
+  "4,46": {
+    "nodeType": "port"
+  },
+  "4,49": {
+    "nodeType": "city"
+  },
+  "0,52": {
+    "nodeType": "village"
+  },
+  "2,53": {
+    "nodeType": "mine"
+  },
+  "3,52": {
+    "nodeType": "ruins"
+  },
+  "4,51": {
+    "nodeType": "fortress"
+  },
+  "4,55": {
+    "nodeType": "port"
+  },
+  "16,53": {
+    "nodeType": "city"
+  },
+  "3,19": {
+    "nodeType": "city"
+  },
+  "3,40": {
+    "nodeType": "city"
+  },
+  "4,43": {
+    "nodeType": "port"
+  },
+  "6,42": {
+    "nodeType": "city"
+  },
+  "6,43": {
+    "nodeType": "city",
+    "name": "Sevilla"
+  },
+  "7,42": {
+    "nodeType": "city",
+    "name": "Córdoba"
+  },
+  "9,41": {
+    "nodeType": "fortress"
+  },
+  "3,12": {
+    "nodeType": "port"
+  },
+  "6,13": {
+    "nodeType": "city"
+  },
+  "6,15": {
+    "nodeType": "fortress"
+  },
+  "4,36": {
+    "nodeType": "village"
+  },
+  "5,35": {
+    "nodeType": "port"
+  },
+  "5,37": {
+    "nodeType": "mine"
+  },
+  "6,37": {
+    "nodeType": "city",
+    "name": "Valladolid"
+  },
+  "7,36": {
+    "nodeType": "city",
+    "name": "Burgos"
+  },
+  "8,35": {
+    "nodeType": "city"
+  },
+  "5,25": {
+    "nodeType": "port"
+  },
+  "9,23": {
+    "nodeType": "city",
+    "name": "Winchester"
+  },
+  "9,24": {
+    "nodeType": "city",
+    "name": "Canterbury"
+  },
+  "10,23": {
+    "nodeType": "city",
+    "name": "London"
+  },
+  "6,39": {
+    "nodeType": "village"
+  },
+  "7,38": {
+    "nodeType": "fortress"
+  },
+  "8,39": {
+    "nodeType": "city",
+    "name": "Madrid"
+  },
+  "9,39": {
+    "nodeType": "city",
+    "name": "Toledo"
+  },
+  "6,46": {
+    "nodeType": "crossroads"
+  },
+  "7,45": {
+    "nodeType": "city",
+    "name": "Fès"
+  },
+  "8,45": {
+    "nodeType": "port"
+  },
+  "8,46": {
+    "nodeType": "city",
+    "name": "Meknès"
+  },
+  "10,48": {
+    "nodeType": "village"
+  },
+  "6,16": {
+    "nodeType": "port"
+  },
+  "7,16": {
+    "nodeType": "city",
+    "name": "Glasgow"
+  },
+  "8,16": {
+    "nodeType": "city",
+    "name": "Edinburgh"
+  },
+  "8,17": {
+    "nodeType": "village"
+  },
+  "7,22": {
+    "nodeType": "city",
+    "name": "Cardiff"
+  },
+  "8,21": {
+    "nodeType": "city",
+    "name": "Caernarvon"
+  },
+  "6,28": {
+    "nodeType": "city",
+    "name": "Brest"
+  },
+  "8,28": {
+    "nodeType": "city",
+    "name": "Rennes"
+  },
+  "9,17": {
+    "nodeType": "city",
+    "name": "Carlisle"
+  },
+  "9,18": {
+    "nodeType": "fortress"
+  },
+  "9,20": {
+    "nodeType": "city",
+    "name": "York"
+  },
+  "9,22": {
+    "nodeType": "village"
+  },
+  "10,19": {
+    "nodeType": "city",
+    "name": "Durham"
+  },
+  "11,19": {
+    "nodeType": "port"
+  },
+  "10,29": {
+    "nodeType": "fortress"
+  },
+  "11,29": {
+    "nodeType": "city"
+  },
+  "12,29": {
+    "nodeType": "village"
+  },
+  "11,21": {
+    "nodeType": "city",
+    "name": "Cambridge"
+  },
+  "12,22": {
+    "nodeType": "city",
+    "name": "Norwich"
+  },
+  "13,22": {
+    "nodeType": "city",
+    "name": "Ipswich"
+  },
+  "14,22": {
+    "nodeType": "port"
+  },
+  "11,37": {
+    "nodeType": "city"
+  },
+  "12,36": {
+    "nodeType": "mine"
+  },
+  "11,39": {
+    "nodeType": "mine"
+  },
+  "12,40": {
+    "nodeType": "city"
+  },
+  "10,46": {
+    "nodeType": "fortress"
+  },
+  "14,44": {
+    "nodeType": "city",
+    "name": "Alger"
+  },
+  "16,44": {
+    "nodeType": "city"
+  },
+  "17,43": {
+    "nodeType": "port"
+  },
+  "18,43": {
+    "nodeType": "city",
+    "name": "Constantine"
+  },
+  "12,47": {
+    "nodeType": "crossroads"
+  },
+  "13,46": {
+    "nodeType": "village"
+  },
+  "15,44": {
+    "nodeType": "mine"
+  },
+  "15,45": {
+    "nodeType": "fortress"
+  },
+  "16,46": {
+    "nodeType": "city"
+  },
+  "12,27": {
+    "nodeType": "city",
+    "name": "Rouen"
+  },
+  "13,27": {
+    "nodeType": "city"
+  },
+  "14,27": {
+    "nodeType": "city",
+    "name": "Caen"
+  },
+  "11,31": {
+    "nodeType": "port"
+  },
+  "12,32": {
+    "nodeType": "city",
+    "name": "Bordeaux"
+  },
+  "12,35": {
+    "nodeType": "village"
+  },
+  "13,32": {
+    "nodeType": "city"
+  },
+  "14,28": {
+    "nodeType": "village"
+  },
+  "15,29": {
+    "nodeType": "city"
+  },
+  "13,34": {
+    "nodeType": "village"
+  },
+  "15,34": {
+    "nodeType": "city",
+    "name": "Toulouse"
+  },
+  "16,35": {
+    "nodeType": "city",
+    "name": "Montpellier"
+  },
+  "16,36": {
+    "nodeType": "port"
+  },
+  "14,37": {
+    "nodeType": "port"
+  },
+  "15,36": {
+    "nodeType": "fortress"
+  },
+  "15,37": {
+    "nodeType": "city",
+    "name": "Barcelona"
+  },
+  "16,25": {
+    "nodeType": "port"
+  },
+  "16,26": {
+    "nodeType": "city"
+  },
+  "17,25": {
+    "nodeType": "crossroads"
+  },
+  "15,27": {
+    "nodeType": "city",
+    "name": "Paris"
+  },
+  "16,33": {
+    "nodeType": "mine"
+  },
+  "17,32": {
+    "nodeType": "village"
+  },
+  "19,31": {
+    "nodeType": "city"
+  },
+  "21,32": {
+    "nodeType": "fortress"
+  },
+  "18,24": {
+    "nodeType": "city",
+    "name": "Bruxelles"
+  },
+  "18,25": {
+    "nodeType": "village"
+  },
+  "19,24": {
+    "nodeType": "city",
+    "name": "Gent"
+  },
+  "19,25": {
+    "nodeType": "city"
+  },
+  "18,30": {
+    "nodeType": "village"
+  },
+  "19,29": {
+    "nodeType": "city"
+  },
+  "20,30": {
+    "nodeType": "mine"
+  },
+  "20,22": {
+    "nodeType": "city",
+    "name": "Amsterdam"
+  },
+  "21,21": {
+    "nodeType": "port"
+  },
+  "21,22": {
+    "nodeType": "city",
+    "name": "Utrecht"
+  },
+  "20,27": {
+    "nodeType": "city"
+  },
+  "21,27": {
+    "nodeType": "crossroads"
+  },
+  "21,28": {
+    "nodeType": "mine"
+  },
+  "20,6": {
+    "nodeType": "port"
+  },
+  "22,6": {
+    "nodeType": "city"
+  },
+  "23,8": {
+    "nodeType": "village"
+  },
+  "23,10": {
+    "nodeType": "marsh"
+  },
+  "23,11": {
+    "nodeType": "city",
+    "name": "Bergen"
+  },
+  "24,10": {
+    "nodeType": "city",
+    "name": "Oslo"
+  },
+  "25,8": {
+    "nodeType": "mine"
+  },
+  "25,10": {
+    "nodeType": "city"
+  },
+  "25,11": {
+    "nodeType": "port"
+  },
+  "22,24": {
+    "nodeType": "fortress"
+  },
+  "22,25": {
+    "nodeType": "city",
+    "name": "Frankfurt"
+  },
+  "22,26": {
+    "nodeType": "village"
+  },
+  "23,24": {
+    "nodeType": "city",
+    "name": "Köln"
+  },
+  "24,23": {
+    "nodeType": "marsh"
+  },
+  "24,21": {
+    "nodeType": "port"
+  },
+  "26,22": {
+    "nodeType": "marsh"
+  },
+  "26,23": {
+    "nodeType": "mine"
+  },
+  "27,22": {
+    "nodeType": "city",
+    "name": "Leipzig"
+  },
+  "27,23": {
+    "nodeType": "crossroads"
+  },
+  "28,22": {
+    "nodeType": "city",
+    "name": "Dresden"
+  },
+  "28,23": {
+    "nodeType": "village"
+  },
+  "23,29": {
+    "nodeType": "city",
+    "name": "Genève"
+  },
+  "24,30": {
+    "nodeType": "city",
+    "name": "Bern"
+  },
+  "24,6": {
+    "nodeType": "port"
+  },
+  "26,6": {
+    "nodeType": "mine"
+  },
+  "27,7": {
+    "nodeType": "fortress"
+  },
+  "28,2": {
+    "nodeType": "village"
+  },
+  "28,4": {
+    "nodeType": "city"
+  },
+  "29,1": {
+    "nodeType": "marsh"
+  },
+  "23,31": {
+    "nodeType": "city",
+    "name": "Genova"
+  },
+  "24,31": {
+    "nodeType": "mine"
+  },
+  "24,32": {
+    "nodeType": "city",
+    "name": "Torino"
+  },
+  "25,15": {
+    "nodeType": "port"
+  },
+  "25,16": {
+    "nodeType": "city",
+    "name": "Odense"
+  },
+  "26,16": {
+    "nodeType": "city",
+    "name": "København"
+  },
+  "25,24": {
+    "nodeType": "village"
+  },
+  "25,25": {
+    "nodeType": "city"
+  },
+  "24,29": {
+    "nodeType": "marsh"
+  },
+  "25,27": {
+    "nodeType": "village"
+  },
+  "25,28": {
+    "nodeType": "city"
+  },
+  "24,46": {
+    "nodeType": "ruins"
+  },
+  "25,43": {
+    "nodeType": "port"
+  },
+  "25,44": {
+    "nodeType": "city",
+    "name": "Tunis"
+  },
+  "26,45": {
+    "nodeType": "city",
+    "name": "Kairouan"
+  },
+  "26,46": {
+    "nodeType": "city"
+  },
+  "26,19": {
+    "nodeType": "city"
+  },
+  "27,20": {
+    "nodeType": "marsh"
+  },
+  "25,31": {
+    "nodeType": "village"
+  },
+  "25,32": {
+    "nodeType": "port"
+  },
+  "26,31": {
+    "nodeType": "city",
+    "name": "Milano"
+  },
+  "27,31": {
+    "nodeType": "city"
+  },
+  "27,32": {
+    "nodeType": "city",
+    "name": "Verona"
+  },
+  "26,39": {
+    "nodeType": "city"
+  },
+  "28,26": {
+    "nodeType": "city",
+    "name": "Nürnberg"
+  },
+  "28,27": {
+    "nodeType": "city"
+  },
+  "28,28": {
+    "nodeType": "village"
+  },
+  "29,27": {
+    "nodeType": "city",
+    "name": "München"
+  },
+  "30,29": {
+    "nodeType": "mine"
+  },
+  "28,33": {
+    "nodeType": "city"
+  },
+  "28,49": {
+    "nodeType": "village"
+  },
+  "28,50": {
+    "nodeType": "crossroads"
+  },
+  "29,47": {
+    "nodeType": "port"
+  },
+  "29,54": {
+    "nodeType": "ruins"
+  },
+  "33,50": {
+    "nodeType": "city"
+  },
+  "27,52": {
+    "nodeType": "ruins"
+  },
+  "28,52": {
+    "nodeType": "fortress"
+  },
+  "28,55": {
+    "nodeType": "mine"
+  },
+  "30,57": {
+    "nodeType": "port"
+  },
+  "34,54": {
+    "nodeType": "city"
+  },
+  "35,56": {
+    "nodeType": "crossroads"
+  },
+  "28,20": {
+    "nodeType": "port"
+  },
+  "29,20": {
+    "nodeType": "village"
+  },
+  "31,21": {
+    "nodeType": "city"
+  },
+  "29,29": {
+    "nodeType": "marsh"
+  },
+  "31,29": {
+    "nodeType": "city",
+    "name": "Salzburg"
+  },
+  "32,28": {
+    "nodeType": "marsh"
+  },
+  "33,28": {
+    "nodeType": "marsh"
+  },
+  "33,29": {
+    "nodeType": "city",
+    "name": "Wien"
+  },
+  "33,30": {
+    "nodeType": "village"
+  },
+  "35,28": {
+    "nodeType": "crossroads"
+  },
+  "29,31": {
+    "nodeType": "crossroads"
+  },
+  "28,35": {
+    "nodeType": "city",
+    "name": "Siena"
+  },
+  "29,34": {
+    "nodeType": "city",
+    "name": "Firenze"
+  },
+  "30,35": {
+    "nodeType": "city"
+  },
+  "31,34": {
+    "nodeType": "port"
+  },
+  "30,11": {
+    "nodeType": "marsh"
+  },
+  "30,13": {
+    "nodeType": "port"
+  },
+  "31,12": {
+    "nodeType": "village"
+  },
+  "32,14": {
+    "nodeType": "city",
+    "name": "Göteborg"
+  },
+  "33,12": {
+    "nodeType": "marsh"
+  },
+  "33,13": {
+    "nodeType": "city",
+    "name": "Stockholm"
+  },
+  "30,2": {
+    "nodeType": "marsh"
+  },
+  "32,0": {
+    "nodeType": "marsh"
+  },
+  "33,0": {
+    "nodeType": "marsh"
+  },
+  "33,3": {
+    "nodeType": "village"
+  },
+  "34,2": {
+    "nodeType": "mine"
+  },
+  "34,5": {
+    "nodeType": "marsh"
+  },
+  "35,0": {
+    "nodeType": "fortress"
+  },
+  "35,1": {
+    "nodeType": "marsh"
+  },
+  "35,2": {
+    "nodeType": "city"
+  },
+  "37,4": {
+    "nodeType": "port"
+  },
+  "31,7": {
+    "nodeType": "village"
+  },
+  "33,9": {
+    "nodeType": "crossroads"
+  },
+  "34,8": {
+    "nodeType": "city"
+  },
+  "38,10": {
+    "nodeType": "port"
+  },
+  "30,36": {
+    "nodeType": "city",
+    "name": "Roma"
+  },
+  "31,26": {
+    "nodeType": "marsh"
+  },
+  "32,25": {
+    "nodeType": "crossroads"
+  },
+  "32,26": {
+    "nodeType": "mine"
+  },
+  "32,27": {
+    "nodeType": "marsh"
+  },
+  "33,25": {
+    "nodeType": "city",
+    "name": "Praha"
+  },
+  "33,26": {
+    "nodeType": "marsh"
+  },
+  "34,26": {
+    "nodeType": "city"
+  },
+  "35,26": {
+    "nodeType": "city",
+    "name": "Brno"
+  },
+  "36,26": {
+    "nodeType": "village"
+  },
+  "33,37": {
+    "nodeType": "city"
+  },
+  "33,42": {
+    "nodeType": "city"
+  },
+  "33,31": {
+    "nodeType": "city"
+  },
+  "33,20": {
+    "nodeType": "port"
+  },
+  "34,20": {
+    "nodeType": "city"
+  },
+  "35,20": {
+    "nodeType": "crossroads"
+  },
+  "34,23": {
+    "nodeType": "marsh"
+  },
+  "35,21": {
+    "nodeType": "marsh"
+  },
+  "36,22": {
+    "nodeType": "marsh"
+  },
+  "36,23": {
+    "nodeType": "village"
+  },
+  "37,19": {
+    "nodeType": "fortress"
+  },
+  "38,21": {
+    "nodeType": "city",
+    "name": "Poznań"
+  },
+  "39,21": {
+    "nodeType": "city"
+  },
+  "39,22": {
+    "nodeType": "city",
+    "name": "Warszawa"
+  },
+  "40,23": {
+    "nodeType": "crossroads"
+  },
+  "34,24": {
+    "nodeType": "fortress"
+  },
+  "35,23": {
+    "nodeType": "mine"
+  },
+  "37,24": {
+    "nodeType": "city"
+  },
+  "40,25": {
+    "nodeType": "marsh"
+  },
+  "34,33": {
+    "nodeType": "port"
+  },
+  "36,32": {
+    "nodeType": "city"
+  },
+  "38,32": {
+    "nodeType": "village"
+  },
+  "35,37": {
+    "nodeType": "port"
+  },
+  "35,39": {
+    "nodeType": "city"
+  },
+  "35,32": {
+    "nodeType": "mine"
+  },
+  "36,34": {
+    "nodeType": "port"
+  },
+  "37,33": {
+    "nodeType": "city"
+  },
+  "38,33": {
+    "nodeType": "village"
+  },
+  "39,34": {
+    "nodeType": "fortress"
+  },
+  "37,30": {
+    "nodeType": "village"
+  },
+  "40,29": {
+    "nodeType": "city"
+  },
+  "40,30": {
+    "nodeType": "city",
+    "name": "Pécs"
+  },
+  "41,29": {
+    "nodeType": "city",
+    "name": "Budapest"
+  },
+  "42,29": {
+    "nodeType": "fortress"
+  },
+  "37,27": {
+    "nodeType": "mine"
+  },
+  "39,26": {
+    "nodeType": "village"
+  },
+  "40,27": {
+    "nodeType": "city"
+  },
+  "40,28": {
+    "nodeType": "crossroads"
+  },
+  "40,59": {
+    "nodeType": "port"
+  },
+  "41,52": {
+    "nodeType": "ruins"
+  },
+  "43,48": {
+    "nodeType": "village"
+  },
+  "43,50": {
+    "nodeType": "mine"
+  },
+  "43,53": {
+    "nodeType": "crossroads"
+  },
+  "44,54": {
+    "nodeType": "city"
+  },
+  "45,53": {
+    "nodeType": "fortress"
+  },
+  "40,26": {
+    "nodeType": "fortress"
+  },
+  "41,19": {
+    "nodeType": "port"
+  },
+  "41,20": {
+    "nodeType": "marsh"
+  },
+  "42,20": {
+    "nodeType": "marsh"
+  },
+  "43,19": {
+    "nodeType": "marsh"
+  },
+  "43,20": {
+    "nodeType": "marsh"
+  },
+  "43,25": {
+    "nodeType": "city"
+  },
+  "44,20": {
+    "nodeType": "marsh"
+  },
+  "41,34": {
+    "nodeType": "village"
+  },
+  "42,33": {
+    "nodeType": "city"
+  },
+  "41,18": {
+    "nodeType": "port"
+  },
+  "44,19": {
+    "nodeType": "marsh"
+  },
+  "53,12": {
+    "nodeType": "village"
+  },
+  "54,7": {
+    "nodeType": "mine"
+  },
+  "54,11": {
+    "nodeType": "marsh"
+  },
+  "55,13": {
+    "nodeType": "city",
+    "name": "Pskov"
+  },
+  "56,12": {
+    "nodeType": "city",
+    "name": "Novgorod"
+  },
+  "56,16": {
+    "nodeType": "marsh"
+  },
+  "57,9": {
+    "nodeType": "marsh"
+  },
+  "57,13": {
+    "nodeType": "marsh"
+  },
+  "42,21": {
+    "nodeType": "marsh"
+  },
+  "42,23": {
+    "nodeType": "village"
+  },
+  "42,24": {
+    "nodeType": "marsh"
+  },
+  "43,23": {
+    "nodeType": "city"
+  },
+  "42,40": {
+    "nodeType": "port"
+  },
+  "45,39": {
+    "nodeType": "city"
+  },
+  "50,37": {
+    "nodeType": "village"
+  },
+  "43,3": {
+    "nodeType": "port"
+  },
+  "44,4": {
+    "nodeType": "village"
+  },
+  "45,4": {
+    "nodeType": "marsh"
+  },
+  "46,2": {
+    "nodeType": "city"
+  },
+  "45,8": {
+    "nodeType": "port"
+  },
+  "46,6": {
+    "nodeType": "village"
+  },
+  "47,7": {
+    "nodeType": "city"
+  },
+  "49,7": {
+    "nodeType": "crossroads"
+  },
+  "44,14": {
+    "nodeType": "port"
+  },
+  "45,15": {
+    "nodeType": "village"
+  },
+  "48,15": {
+    "nodeType": "city"
+  },
+  "44,16": {
+    "nodeType": "village"
+  },
+  "44,17": {
+    "nodeType": "mine"
+  },
+  "47,17": {
+    "nodeType": "city"
+  },
+  "44,33": {
+    "nodeType": "crossroads"
+  },
+  "46,31": {
+    "nodeType": "city"
+  },
+  "47,31": {
+    "nodeType": "village"
+  },
+  "49,30": {
+    "nodeType": "fortress"
+  },
+  "44,12": {
+    "nodeType": "port"
+  },
+  "49,11": {
+    "nodeType": "city"
+  },
+  "49,12": {
+    "nodeType": "village"
+  },
+  "44,28": {
+    "nodeType": "village"
+  },
+  "45,26": {
+    "nodeType": "crossroads"
+  },
+  "47,27": {
+    "nodeType": "city"
+  },
+  "50,28": {
+    "nodeType": "mine"
+  },
+  "46,33": {
+    "nodeType": "city"
+  },
+  "46,34": {
+    "nodeType": "crossroads"
+  },
+  "45,34": {
+    "nodeType": "crossroads"
+  },
+  "45,36": {
+    "nodeType": "mine"
+  },
+  "47,35": {
+    "nodeType": "fortress"
+  },
+  "47,36": {
+    "nodeType": "village"
+  },
+  "48,35": {
+    "nodeType": "city"
+  },
+  "53,34": {
+    "nodeType": "port"
+  },
+  "46,22": {
+    "nodeType": "marsh"
+  },
+  "47,20": {
+    "nodeType": "village"
+  },
+  "47,22": {
+    "nodeType": "marsh"
+  },
+  "48,20": {
+    "nodeType": "marsh"
+  },
+  "49,21": {
+    "nodeType": "marsh"
+  },
+  "50,19": {
+    "nodeType": "city"
+  },
+  "50,22": {
+    "nodeType": "crossroads"
+  },
+  "54,18": {
+    "nodeType": "fortress"
+  },
+  "55,17": {
+    "nodeType": "mine"
+  },
+  "47,4": {
+    "nodeType": "mine"
+  },
+  "48,5": {
+    "nodeType": "marsh"
+  },
+  "50,3": {
+    "nodeType": "marsh"
+  },
+  "50,6": {
+    "nodeType": "marsh"
+  },
+  "51,0": {
+    "nodeType": "fortress"
+  },
+  "51,4": {
+    "nodeType": "village"
+  },
+  "52,3": {
+    "nodeType": "city"
+  },
+  "52,4": {
+    "nodeType": "marsh"
+  },
+  "47,24": {
+    "nodeType": "village"
+  },
+  "48,24": {
+    "nodeType": "marsh"
+  },
+  "49,23": {
+    "nodeType": "mine"
+  },
+  "50,25": {
+    "nodeType": "city"
+  },
+  "50,26": {
+    "nodeType": "crossroads"
+  },
+  "47,32": {
+    "nodeType": "mine"
+  },
+  "48,33": {
+    "nodeType": "village"
+  },
+  "49,33": {
+    "nodeType": "city"
+  },
+  "50,32": {
+    "nodeType": "crossroads"
+  },
+  "48,29": {
+    "nodeType": "mine"
+  },
+  "50,30": {
+    "nodeType": "city"
+  },
+  "51,30": {
+    "nodeType": "village"
+  },
+  "52,30": {
+    "nodeType": "crossroads"
+  },
+  "48,49": {
+    "nodeType": "port"
+  },
+  "49,52": {
+    "nodeType": "village"
+  },
+  "49,54": {
+    "nodeType": "crossroads"
+  },
+  "51,54": {
+    "nodeType": "ruins"
+  },
+  "54,56": {
+    "nodeType": "mine"
+  },
+  "55,54": {
+    "nodeType": "city"
+  },
+  "51,59": {
+    "nodeType": "ruins"
+  },
+  "52,59": {
+    "nodeType": "mine"
+  },
+  "56,59": {
+    "nodeType": "city"
+  },
+  "64,59": {
+    "nodeType": "port"
+  },
+  "51,21": {
+    "nodeType": "village"
+  },
+  "52,23": {
+    "nodeType": "marsh"
+  },
+  "53,22": {
+    "nodeType": "marsh"
+  },
+  "54,21": {
+    "nodeType": "city"
+  },
+  "54,22": {
+    "nodeType": "marsh"
+  },
+  "54,23": {
+    "nodeType": "marsh"
+  },
+  "55,20": {
+    "nodeType": "crossroads"
+  },
+  "55,21": {
+    "nodeType": "marsh"
+  },
+  "55,22": {
+    "nodeType": "marsh"
+  },
+  "55,23": {
+    "nodeType": "marsh"
+  },
+  "56,21": {
+    "nodeType": "marsh"
+  },
+  "56,22": {
+    "nodeType": "marsh"
+  },
+  "56,23": {
+    "nodeType": "marsh"
+  },
+  "57,21": {
+    "nodeType": "marsh"
+  },
+  "57,22": {
+    "nodeType": "marsh"
+  },
+  "50,38": {
+    "nodeType": "port"
+  },
+  "52,37": {
+    "nodeType": "city",
+    "name": "Constantinople"
+  },
+  "53,37": {
+    "nodeType": "city"
+  },
+  "51,28": {
+    "nodeType": "village"
+  },
+  "53,29": {
+    "nodeType": "city"
+  },
+  "51,31": {
+    "nodeType": "fortress"
+  },
+  "52,32": {
+    "nodeType": "city"
+  },
+  "51,40": {
+    "nodeType": "port"
+  },
+  "52,40": {
+    "nodeType": "village"
+  },
+  "54,41": {
+    "nodeType": "city"
+  },
+  "52,24": {
+    "nodeType": "mine"
+  },
+  "52,25": {
+    "nodeType": "marsh"
+  },
+  "52,26": {
+    "nodeType": "village"
+  },
+  "53,24": {
+    "nodeType": "city",
+    "name": "Chernihiv"
+  },
+  "54,25": {
+    "nodeType": "city",
+    "name": "Kyiv"
+  },
+  "54,26": {
+    "nodeType": "crossroads"
+  },
+  "54,52": {
+    "nodeType": "village"
+  },
+  "55,49": {
+    "nodeType": "city",
+    "name": "Cairo"
+  },
+  "55,51": {
+    "nodeType": "city"
+  },
+  "56,49": {
+    "nodeType": "city",
+    "name": "Alexandria"
+  },
+  "56,50": {
+    "nodeType": "crossroads"
+  },
+  "56,27": {
+    "nodeType": "city"
+  },
+  "57,27": {
+    "nodeType": "village"
+  },
+  "54,32": {
+    "nodeType": "port"
+  },
+  "56,30": {
+    "nodeType": "village"
+  },
+  "59,30": {
+    "nodeType": "city"
+  },
+  "54,40": {
+    "nodeType": "village"
+  },
+  "58,41": {
+    "nodeType": "crossroads"
+  },
+  "60,39": {
+    "nodeType": "city",
+    "name": "Konya"
+  },
+  "61,42": {
+    "nodeType": "port"
+  },
+  "62,40": {
+    "nodeType": "city",
+    "name": "Ankara"
+  },
+  "70,40": {
+    "nodeType": "mine"
+  },
+  "56,52": {
+    "nodeType": "city"
+  },
+  "56,53": {
+    "nodeType": "village"
+  },
+  "55,6": {
+    "nodeType": "village"
+  },
+  "56,2": {
+    "nodeType": "marsh"
+  },
+  "56,6": {
+    "nodeType": "marsh"
+  },
+  "57,0": {
+    "nodeType": "marsh"
+  },
+  "57,1": {
+    "nodeType": "marsh"
+  },
+  "57,6": {
+    "nodeType": "marsh"
+  },
+  "58,0": {
+    "nodeType": "marsh"
+  },
+  "58,2": {
+    "nodeType": "fortress"
+  },
+  "58,3": {
+    "nodeType": "marsh"
+  },
+  "58,6": {
+    "nodeType": "marsh"
+  },
+  "59,2": {
+    "nodeType": "marsh"
+  },
+  "59,7": {
+    "nodeType": "mine"
+  },
+  "60,4": {
+    "nodeType": "city"
+  },
+  "60,5": {
+    "nodeType": "marsh"
+  },
+  "62,1": {
+    "nodeType": "port"
+  },
+  "55,43": {
+    "nodeType": "port"
+  },
+  "57,41": {
+    "nodeType": "village"
+  },
+  "60,43": {
+    "nodeType": "city"
+  },
+  "66,41": {
+    "nodeType": "crossroads"
+  },
+  "56,24": {
+    "nodeType": "mine"
+  },
+  "57,23": {
+    "nodeType": "village"
+  },
+  "58,23": {
+    "nodeType": "city"
+  },
+  "59,25": {
+    "nodeType": "village"
+  },
+  "60,27": {
+    "nodeType": "city"
+  },
+  "59,14": {
+    "nodeType": "village"
+  },
+  "63,17": {
+    "nodeType": "city",
+    "name": "Tver"
+  },
+  "64,16": {
+    "nodeType": "city",
+    "name": "Moskva"
+  },
+  "65,17": {
+    "nodeType": "crossroads"
+  },
+  "70,20": {
+    "nodeType": "city"
+  },
+  "75,35": {
+    "nodeType": "mine"
+  },
+  "78,33": {
+    "nodeType": "fortress"
+  },
+  "79,32": {
+    "nodeType": "port"
+  },
+  "58,17": {
+    "nodeType": "mine"
+  },
+  "58,22": {
+    "nodeType": "village"
+  },
+  "59,21": {
+    "nodeType": "crossroads"
+  },
+  "60,19": {
+    "nodeType": "city"
+  },
+  "60,37": {
+    "nodeType": "port"
+  },
+  "65,37": {
+    "nodeType": "city"
+  },
+  "60,23": {
+    "nodeType": "marsh"
+  },
+  "61,23": {
+    "nodeType": "marsh"
+  },
+  "61,27": {
+    "nodeType": "marsh"
+  },
+  "62,27": {
+    "nodeType": "village"
+  },
+  "63,26": {
+    "nodeType": "city"
+  },
+  "64,27": {
+    "nodeType": "crossroads"
+  },
+  "61,31": {
+    "nodeType": "village"
+  },
+  "67,33": {
+    "nodeType": "port"
+  },
+  "72,28": {
+    "nodeType": "crossroads"
+  },
+  "73,29": {
+    "nodeType": "city"
+  },
+  "63,9": {
+    "nodeType": "marsh"
+  },
+  "64,7": {
+    "nodeType": "marsh"
+  },
+  "64,9": {
+    "nodeType": "marsh"
+  },
+  "64,10": {
+    "nodeType": "marsh"
+  },
+  "64,11": {
+    "nodeType": "fortress"
+  },
+  "65,1": {
+    "nodeType": "port"
+  },
+  "65,7": {
+    "nodeType": "marsh"
+  },
+  "66,3": {
+    "nodeType": "village"
+  },
+  "67,2": {
+    "nodeType": "crossroads"
+  },
+  "67,10": {
+    "nodeType": "marsh"
+  },
+  "68,10": {
+    "nodeType": "marsh"
+  },
+  "69,9": {
+    "nodeType": "marsh"
+  },
+  "72,8": {
+    "nodeType": "marsh"
+  },
+  "72,9": {
+    "nodeType": "marsh"
+  },
+  "72,10": {
+    "nodeType": "mine"
+  },
+  "74,10": {
+    "nodeType": "marsh"
+  },
+  "76,5": {
+    "nodeType": "city"
+  },
+  "80,4": {
+    "nodeType": "marsh"
+  },
+  "81,4": {
+    "nodeType": "marsh"
+  },
+  "82,1": {
+    "nodeType": "marsh"
+  },
+  "83,7": {
+    "nodeType": "marsh"
+  },
+  "84,4": {
+    "nodeType": "marsh"
+  },
+  "84,7": {
+    "nodeType": "marsh"
+  },
+  "84,8": {
+    "nodeType": "marsh"
+  },
+  "86,1": {
+    "nodeType": "marsh"
+  },
+  "86,6": {
+    "nodeType": "marsh"
+  },
+  "86,8": {
+    "nodeType": "marsh"
+  },
+  "87,1": {
+    "nodeType": "marsh"
+  },
+  "87,8": {
+    "nodeType": "marsh"
+  },
+  "89,4": {
+    "nodeType": "marsh"
+  },
+  "62,24": {
+    "nodeType": "village"
+  },
+  "63,22": {
+    "nodeType": "crossroads"
+  },
+  "64,22": {
+    "nodeType": "mine"
+  },
+  "65,23": {
+    "nodeType": "marsh"
+  },
+  "66,23": {
+    "nodeType": "marsh"
+  },
+  "67,22": {
+    "nodeType": "marsh"
+  },
+  "67,23": {
+    "nodeType": "marsh"
+  },
+  "67,25": {
+    "nodeType": "marsh"
+  },
+  "68,23": {
+    "nodeType": "city"
+  },
+  "68,25": {
+    "nodeType": "marsh"
+  },
+  "65,48": {
+    "nodeType": "fortress"
+  },
+  "65,49": {
+    "nodeType": "city"
+  },
+  "66,50": {
+    "nodeType": "village"
+  },
+  "64,52": {
+    "nodeType": "village"
+  },
+  "66,51": {
+    "nodeType": "crossroads"
+  },
+  "66,55": {
+    "nodeType": "port"
+  },
+  "70,52": {
+    "nodeType": "city"
+  },
+  "72,52": {
+    "nodeType": "ruins"
+  },
+  "65,45": {
+    "nodeType": "village"
+  },
+  "67,45": {
+    "nodeType": "city"
+  },
+  "67,27": {
+    "nodeType": "city"
+  },
+  "67,28": {
+    "nodeType": "crossroads"
+  },
+  "66,42": {
+    "nodeType": "village"
+  },
+  "67,41": {
+    "nodeType": "crossroads"
+  },
+  "69,42": {
+    "nodeType": "city"
+  },
+  "65,44": {
+    "nodeType": "mine"
+  },
+  "68,44": {
+    "nodeType": "city"
+  },
+  "71,43": {
+    "nodeType": "village"
+  },
+  "68,54": {
+    "nodeType": "village"
+  },
+  "68,57": {
+    "nodeType": "port"
+  },
+  "73,57": {
+    "nodeType": "crossroads"
+  },
+  "74,57": {
+    "nodeType": "city"
+  },
+  "76,59": {
+    "nodeType": "mine"
+  },
+  "77,54": {
+    "nodeType": "fortress"
+  },
+  "81,57": {
+    "nodeType": "ruins"
+  },
+  "66,13": {
+    "nodeType": "marsh"
+  },
+  "67,12": {
+    "nodeType": "village"
+  },
+  "68,13": {
+    "nodeType": "marsh"
+  },
+  "69,12": {
+    "nodeType": "marsh"
+  },
+  "69,14": {
+    "nodeType": "fortress"
+  },
+  "70,16": {
+    "nodeType": "marsh"
+  },
+  "71,13": {
+    "nodeType": "marsh"
+  },
+  "72,11": {
+    "nodeType": "marsh"
+  },
+  "72,13": {
+    "nodeType": "city"
+  },
+  "72,14": {
+    "nodeType": "marsh"
+  },
+  "73,15": {
+    "nodeType": "marsh"
+  },
+  "67,40": {
+    "nodeType": "village"
+  },
+  "68,40": {
+    "nodeType": "mine"
+  },
+  "68,41": {
+    "nodeType": "crossroads"
+  },
+  "69,40": {
+    "nodeType": "fortress"
+  },
+  "72,40": {
+    "nodeType": "city"
+  },
+  "70,47": {
+    "nodeType": "village"
+  },
+  "73,48": {
+    "nodeType": "crossroads"
+  },
+  "74,46": {
+    "nodeType": "city",
+    "name": "Baghdad"
+  },
+  "75,47": {
+    "nodeType": "city"
+  },
+  "77,43": {
+    "nodeType": "mine"
+  },
+  "77,45": {
+    "nodeType": "fortress"
+  },
+  "79,47": {
+    "nodeType": "marsh"
+  },
+  "79,48": {
+    "nodeType": "marsh"
+  },
+  "80,48": {
+    "nodeType": "marsh"
+  },
+  "80,49": {
+    "nodeType": "marsh"
+  },
+  "72,37": {
+    "nodeType": "port"
+  },
+  "73,35": {
+    "nodeType": "village"
+  },
+  "74,37": {
+    "nodeType": "crossroads"
+  },
+  "75,36": {
+    "nodeType": "city"
+  },
+  "74,18": {
+    "nodeType": "village"
+  },
+  "76,16": {
+    "nodeType": "crossroads"
+  },
+  "80,8": {
+    "nodeType": "marsh"
+  },
+  "80,9": {
+    "nodeType": "marsh"
+  },
+  "80,10": {
+    "nodeType": "marsh"
+  },
+  "80,12": {
+    "nodeType": "marsh"
+  },
+  "80,14": {
+    "nodeType": "marsh"
+  },
+  "81,8": {
+    "nodeType": "fortress"
+  },
+  "81,13": {
+    "nodeType": "city"
+  },
+  "83,12": {
+    "nodeType": "marsh"
+  },
+  "83,14": {
+    "nodeType": "marsh"
+  },
+  "84,10": {
+    "nodeType": "marsh"
+  },
+  "85,12": {
+    "nodeType": "marsh"
+  },
+  "85,14": {
+    "nodeType": "marsh"
+  },
+  "73,19": {
+    "nodeType": "mine"
+  },
+  "74,19": {
+    "nodeType": "fortress"
+  },
+  "75,18": {
+    "nodeType": "marsh"
+  },
+  "75,19": {
+    "nodeType": "village"
+  },
+  "77,18": {
+    "nodeType": "crossroads"
+  },
+  "77,19": {
+    "nodeType": "marsh"
+  },
+  "78,16": {
+    "nodeType": "marsh"
+  },
+  "83,16": {
+    "nodeType": "city"
+  },
+  "84,18": {
+    "nodeType": "marsh"
+  },
+  "74,21": {
+    "nodeType": "village"
+  },
+  "75,23": {
+    "nodeType": "mine"
+  },
+  "77,21": {
+    "nodeType": "crossroads"
+  },
+  "79,22": {
+    "nodeType": "marsh"
+  },
+  "79,24": {
+    "nodeType": "marsh"
+  },
+  "80,21": {
+    "nodeType": "city"
+  },
+  "83,20": {
+    "nodeType": "marsh"
+  },
+  "85,19": {
+    "nodeType": "marsh"
+  },
+  "85,20": {
+    "nodeType": "fortress"
+  },
+  "85,22": {
+    "nodeType": "marsh"
+  },
+  "76,38": {
+    "nodeType": "city"
+  },
+  "77,40": {
+    "nodeType": "village"
+  },
+  "79,43": {
+    "nodeType": "crossroads"
+  },
+  "83,45": {
+    "nodeType": "city"
+  },
+  "83,49": {
+    "nodeType": "port"
+  },
+  "85,45": {
+    "nodeType": "ruins"
+  },
+  "77,53": {
+    "nodeType": "ruins"
+  },
+  "81,52": {
+    "nodeType": "port"
+  },
+  "82,57": {
+    "nodeType": "village"
+  },
+  "83,56": {
+    "nodeType": "city"
+  },
+  "86,59": {
+    "nodeType": "crossroads"
+  },
+  "80,45": {
+    "nodeType": "mine"
+  },
+  "80,46": {
+    "nodeType": "city"
+  },
+  "81,44": {
+    "nodeType": "village"
+  },
+  "81,46": {
+    "nodeType": "fortress"
+  },
+  "80,27": {
+    "nodeType": "village"
+  },
+  "82,27": {
+    "nodeType": "mine"
+  },
+  "83,24": {
+    "nodeType": "marsh"
+  },
+  "85,26": {
+    "nodeType": "city"
+  },
+  "80,29": {
+    "nodeType": "village"
+  },
+  "84,30": {
+    "nodeType": "port"
+  },
+  "86,29": {
+    "nodeType": "city"
+  },
+  "84,43": {
+    "nodeType": "city"
+  },
+  "86,33": {
+    "nodeType": "port"
+  },
+  "87,33": {
+    "nodeType": "village"
+  },
+  "87,34": {
+    "nodeType": "city"
+  },
+  "88,33": {
+    "nodeType": "crossroads"
+  },
+  "87,50": {
+    "nodeType": "village"
+  },
+  "87,51": {
+    "nodeType": "city"
+  },
+  "89,53": {
+    "nodeType": "port"
+  },
+  "86,22": {
+    "nodeType": "crossroads"
+  },
+  "87,21": {
+    "nodeType": "fortress"
+  },
+  "87,22": {
+    "nodeType": "village"
+  },
+  "88,20": {
+    "nodeType": "marsh"
+  },
+  "88,21": {
+    "nodeType": "city"
+  },
+  "89,22": {
+    "nodeType": "marsh"
+  },
+  "21,33": {
+    "nodeType": "mine"
+  },
+  "21,34": {
+    "nodeType": "city"
+  },
+  "19,32": {
+    "nodeType": "marsh"
+  },
+  "19,33": {
+    "nodeType": "city"
+  },
+  "20,33": {
+    "nodeType": "village"
+  },
+  "79,39": {
+    "nodeType": "village"
+  },
+  "80,39": {
+    "nodeType": "city"
+  }
+}

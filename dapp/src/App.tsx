@@ -6,6 +6,7 @@ import { Units } from './pages/Units'
 import { Battlekits } from './pages/Battlekits'
 import { Keywords } from './pages/Keywords'
 import { WarbandCreate } from './pages/WarbandCreate'
+import { WarbandList } from './pages/WarbandList'
 import { WarbandView } from './pages/WarbandView'
 import { Recruit } from './pages/Recruit'
 import { Campaign } from './pages/Campaign'
@@ -15,6 +16,7 @@ import { TerritoryMap } from './pages/TerritoryMap'
 import { TheatreList } from './pages/TheatreList'
 import { TheatreCreate } from './pages/TheatreCreate'
 import { TheatreDetail } from './pages/TheatreDetail'
+import { LogisticsTracker } from './pages/LogisticsTracker'
 import { FAQ } from './pages/FAQ'
 import { PostBattle } from './pages/PostBattle'
 
@@ -32,7 +34,7 @@ export default function App() {
 
         {/* Warband */}
         <Route path="/warband/new" element={<WarbandCreate />} />
-        <Route path="/warband/my" element={<WarbandView />} />
+        <Route path="/warband/my" element={<WarbandList />} />
         <Route path="/warband/:id" element={<WarbandView />} />
         <Route path="/warband/:id/recruit" element={<Recruit />} />
 
@@ -45,6 +47,7 @@ export default function App() {
 
         {/* The Long War */}
         <Route path="/longwar" element={<TerritoryMap />} />
+        <Route path="/longwar/logistics" element={<LogisticsTracker />} />
         <Route path="/longwar/theatres" element={<TheatreList />} />
         <Route path="/longwar/theatres/new" element={<TheatreCreate />} />
         <Route path="/longwar/theatre/:id" element={<TheatreDetail />} />

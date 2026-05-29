@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { getChainClient } from './useChainClient';
 
 export interface RegionStockEntry {
@@ -27,17 +27,23 @@ export interface LogisticsData {
   loading: boolean;
 }
 
-function decodeResourceCode(bytes: Uint8Array | number[]): string {
-  const arr = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+function decodeBytes(bytes: any): string {
+  if (!bytes) return '';
+  let arr: Uint8Array;
+  if (typeof bytes === 'string') {
+    const hex = bytes.startsWith('0x') ? bytes.slice(2) : bytes;
+    arr = new Uint8Array(hex.match(/.{1,2}/g)!.map(b => parseInt(b, 16)));
+  } else if (bytes instanceof Uint8Array) {
+    arr = bytes;
+  } else {
+    arr = new Uint8Array(bytes);
+  }
   const end = arr.indexOf(0);
   return new TextDecoder().decode(arr.slice(0, end === -1 ? undefined : end));
 }
 
-function decodeRegionCode(bytes: Uint8Array | number[]): string {
-  const arr = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
-  const end = arr.indexOf(0);
-  return new TextDecoder().decode(arr.slice(0, end === -1 ? undefined : end));
-}
+const decodeResourceCode = decodeBytes;
+const decodeRegionCode = decodeBytes;
 
 export function useLogistics(regionCode: string | null): LogisticsData {
   const [data, setData] = useState<LogisticsData>({
@@ -115,8 +121,61 @@ export function useLogistics(regionCode: string | null): LogisticsData {
     }
 
     fetch();
-    return () => { cancelled = true; };
+    const interval = setInterval(fetch, 6000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, [regionCode]);
 
   return data;
+}
+
+/** Fetches all in-transit packets globally across all regions, polling every interval. */
+export function useGlobalTransit(enabled: boolean, intervalMs = 6000): { packets: TransitPacket[]; loading: boolean } {
+  const [packets, setPackets] = useState<TransitPacket[]>([]);
+  const [loading, setLoading] = useState(false);
+  const prevRef = useRef<TransitPacket[]>([]);
+
+  const fetchAll = useCallback(async () => {
+    if (!enabled) return;
+    try {
+      const client = await getChainClient();
+      const q = client.query as any;
+      const known = await q.logistics.knownRegions();
+      if (!known || !Array.isArray(known) || known.length === 0) return;
+
+      const all: TransitPacket[] = [];
+      const BATCH = 30;
+      for (let i = 0; i < known.length; i += BATCH) {
+        const batch = known.slice(i, i + BATCH);
+        const results = await Promise.all(batch.map((hex: string) => q.logistics.inTransit(hex).catch(() => [])));
+        for (const rawTransit of results) {
+          if (!rawTransit || !Array.isArray(rawTransit) || rawTransit.length === 0) continue;
+          for (const pkt of rawTransit) {
+            all.push({
+              resource: decodeBytes(pkt.resource),
+              qty: Number(pkt.qty),
+              origin: decodeBytes(pkt.origin),
+              destination: decodeBytes(pkt.destination),
+              currentRegion: decodeBytes(pkt.currentRegion),
+              ttmRemaining: Number(pkt.ttmRemaining),
+            });
+          }
+        }
+      }
+      prevRef.current = all;
+      setPackets(all);
+      setLoading(false);
+    } catch {
+      setLoading(false);
+    }
+  }, [enabled]);
+
+  useEffect(() => {
+    if (!enabled) { setPackets([]); return; }
+    setLoading(true);
+    fetchAll();
+    const id = setInterval(fetchAll, intervalMs);
+    return () => clearInterval(id);
+  }, [enabled, intervalMs, fetchAll]);
+
+  return { packets, loading };
 }
