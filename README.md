@@ -26,6 +26,15 @@ Builds the runtime, starts a dev node (3s blocks), seeds all game data, and laun
 
 Requires: Rust (stable + nightly), Node.js 20+, `polkadot-omni-node`, `chain-spec-builder`.
 
+## Docker
+
+```bash
+docker build -t trenchain .
+docker run -p 9944:9944 -p 5173:5173 trenchain
+```
+
+Requires `polkadot-omni-node` and `chain-spec-builder` available in the image or mounted. The all-in-one image builds the runtime, serves the dApp, and seeds the chain on startup.
+
 ## Structure
 
 ```
